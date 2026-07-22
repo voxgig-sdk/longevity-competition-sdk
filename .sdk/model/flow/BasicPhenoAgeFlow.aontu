@@ -1,0 +1,18 @@
+# BasicPhenoAgeFlow
+
+main: kit: flow: BasicPhenoAgeFlow:
+{
+  entity: "pheno_age",
+  kind: "basic",
+  name: "BasicPhenoAgeFlow",
+  step: [
+    {
+      input: {
+        ref: "pheno_age_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicPhenoAgeFlow"
+}

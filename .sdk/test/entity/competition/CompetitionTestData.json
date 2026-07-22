@@ -1,0 +1,37 @@
+{
+  "existing": {
+    "competition": {
+      "COMPETITION00": {
+        "age_range": "s32",
+        "id": "COMPETITION00",
+        "max_age": "s34",
+        "min_age": "s35",
+        "name": "s36"
+      },
+      "COMPETITION01": {
+        "age_range": "s64",
+        "id": "COMPETITION01",
+        "max_age": "s66",
+        "min_age": "s67",
+        "name": "s68"
+      },
+      "COMPETITION02": {
+        "age_range": "s96",
+        "id": "COMPETITION02",
+        "max_age": "s98",
+        "min_age": "s99",
+        "name": "s9a"
+      }
+    }
+  },
+  "new": {
+    "competition": {
+      "competition_ref01": {
+        "age_range": "sc8",
+        "max_age": "sca",
+        "min_age": "scb",
+        "name": "scc"
+      }
+    }
+  }
+}

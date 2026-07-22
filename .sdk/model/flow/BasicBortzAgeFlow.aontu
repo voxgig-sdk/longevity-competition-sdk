@@ -1,0 +1,18 @@
+# BasicBortzAgeFlow
+
+main: kit: flow: BasicBortzAgeFlow:
+{
+  entity: "bortz_age",
+  kind: "basic",
+  name: "BasicBortzAgeFlow",
+  step: [
+    {
+      input: {
+        ref: "bortz_age_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicBortzAgeFlow"
+}

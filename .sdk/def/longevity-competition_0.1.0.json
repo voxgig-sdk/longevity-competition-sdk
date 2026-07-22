@@ -1,0 +1,747 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "Longevity Competition API",
+    "description": "The Longevity Competition API provides access to real-time information about participants, rankings, events, and historical data related to the Longevity World Cup. It enables users to retrieve public rankings, athlete profiles, and detailed competition rules, facilitating engagement with the longevity-focused sporting community.",
+    "version": "1.0.0",
+    "contact": {
+      "name": "Longevity World Cup",
+      "url": "https://longevityworldcup.com"
+    },
+    "license": {
+      "name": "API Terms of Service",
+      "url": "https://longevityworldcup.com/privacy"
+    }
+  },
+  "servers": [
+    {
+      "url": "https://longevityworldcup.com/api",
+      "description": "Production API server"
+    }
+  ],
+  "paths": {
+    "/data/athletes": {
+      "get": {
+        "summary": "Get public athlete data",
+        "description": "Retrieves public athlete biomarker and biological-age ranking data including athlete profiles, biological age results, and Age Reduction rankings.",
+        "operationId": "getAthletes",
+        "tags": [
+          "Athletes"
+        ],
+        "parameters": [
+          {
+            "name": "league",
+            "in": "query",
+            "description": "Filter athletes by league (e.g., Ultimate, Pro, Amateur)",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Ultimate",
+                "Pro",
+                "Amateur"
+              ]
+            }
+          },
+          {
+            "name": "division",
+            "in": "query",
+            "description": "Filter athletes by age division",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "limit",
+            "in": "query",
+            "description": "Maximum number of athletes to return",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 1,
+              "maximum": 1000,
+              "default": 100
+            }
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "description": "Number of athletes to skip for pagination",
+            "required": false,
+            "schema": {
+              "type": "integer",
+              "minimum": 0,
+              "default": 0
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with athlete data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "athletes": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Athlete"
+                      }
+                    },
+                    "total": {
+                      "type": "integer",
+                      "description": "Total number of athletes matching the query"
+                    },
+                    "limit": {
+                      "type": "integer",
+                      "description": "Number of results per page"
+                    },
+                    "offset": {
+                      "type": "integer",
+                      "description": "Current offset in the result set"
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad request - invalid parameters",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          },
+          "500": {
+            "description": "Internal server error",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/leaderboard": {
+      "get": {
+        "summary": "Get leaderboard rankings",
+        "description": "Retrieves current public leaderboard rankings with Age Reduction scores and standings.",
+        "operationId": "getLeaderboard",
+        "tags": [
+          "Leaderboard"
+        ],
+        "parameters": [
+          {
+            "name": "league",
+            "in": "query",
+            "description": "Filter by league type",
+            "required": false,
+            "schema": {
+              "type": "string",
+              "enum": [
+                "Ultimate",
+                "Pro",
+                "Amateur",
+                "CrowdAge"
+              ]
+            }
+          },
+          {
+            "name": "division",
+            "in": "query",
+            "description": "Filter by age division",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with leaderboard data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "rankings": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/LeaderboardEntry"
+                      }
+                    },
+                    "lastUpdated": {
+                      "type": "string",
+                      "format": "date-time",
+                      "description": "Timestamp of last leaderboard update"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/pheno-age": {
+      "post": {
+        "summary": "Calculate Pheno Age",
+        "description": "Calculates phenotypic biological age from blood biomarkers. Pheno Age is the Amateur biological aging clock used in competition.",
+        "operationId": "calculatePhenoAge",
+        "tags": [
+          "Calculators"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PhenoAgeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Pheno Age calculation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PhenoAgeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid biomarker data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/bortz-age": {
+      "post": {
+        "summary": "Calculate Bortz Age",
+        "description": "Calculates Bortz biological age from blood biomarkers. Bortz Age is the Pro seasonal biological aging clock used in competition.",
+        "operationId": "calculateBortzAge",
+        "tags": [
+          "Calculators"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/BortzAgeRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful Bortz Age calculation",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/BortzAgeResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid biomarker data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/divisions": {
+      "get": {
+        "summary": "Get competition divisions",
+        "description": "Retrieves list of age divisions and categories used in the competition.",
+        "operationId": "getDivisions",
+        "tags": [
+          "Competition"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with division data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "divisions": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Division"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/flags": {
+      "get": {
+        "summary": "Get country flags",
+        "description": "Retrieves country flag data for athlete nationalities.",
+        "operationId": "getFlags",
+        "tags": [
+          "Reference"
+        ],
+        "responses": {
+          "200": {
+            "description": "Successful response with flag data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "flags": {
+                      "type": "array",
+                      "items": {
+                        "$ref": "#/components/schemas/Flag"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/data/rank-preview": {
+      "post": {
+        "summary": "Preview hypothetical rank",
+        "description": "Calculates a hypothetical ranking position based on provided biological age data without submitting to the competition.",
+        "operationId": "previewRank",
+        "tags": [
+          "Calculators"
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RankPreviewRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Successful rank preview",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RankPreviewResponse"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Invalid preview data",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Error"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Athlete": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique athlete identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Athlete name"
+          },
+          "profileUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to athlete's public profile"
+          },
+          "chronologicalAge": {
+            "type": "number",
+            "description": "Actual age in years"
+          },
+          "biologicalAge": {
+            "type": "number",
+            "description": "Calculated biological age"
+          },
+          "ageReduction": {
+            "type": "number",
+            "description": "Age Reduction score (chronological age minus biological age)"
+          },
+          "effectiveAgeReduction": {
+            "type": "number",
+            "description": "Effective Age Reduction used for ranking"
+          },
+          "league": {
+            "type": "string",
+            "enum": [
+              "Pro",
+              "Amateur"
+            ],
+            "description": "Competition league"
+          },
+          "division": {
+            "type": "string",
+            "description": "Age division category"
+          },
+          "generation": {
+            "type": "string",
+            "description": "Generation category"
+          },
+          "rank": {
+            "type": "integer",
+            "description": "Current ranking position"
+          },
+          "ultimateLeagueRank": {
+            "type": "integer",
+            "description": "Rank in Ultimate League (combined Pro and Amateur)"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country code"
+          },
+          "clockType": {
+            "type": "string",
+            "enum": [
+              "PhenoAge",
+              "BortzAge"
+            ],
+            "description": "Biological aging clock used"
+          },
+          "lastUpdated": {
+            "type": "string",
+            "format": "date-time",
+            "description": "Last result submission date"
+          }
+        }
+      },
+      "LeaderboardEntry": {
+        "type": "object",
+        "properties": {
+          "rank": {
+            "type": "integer",
+            "description": "Current ranking position"
+          },
+          "athleteId": {
+            "type": "string",
+            "description": "Athlete identifier"
+          },
+          "athleteName": {
+            "type": "string",
+            "description": "Athlete name"
+          },
+          "ageReduction": {
+            "type": "number",
+            "description": "Age Reduction score"
+          },
+          "league": {
+            "type": "string",
+            "description": "Competition league"
+          },
+          "division": {
+            "type": "string",
+            "description": "Age division"
+          },
+          "country": {
+            "type": "string",
+            "description": "Country code"
+          }
+        }
+      },
+      "PhenoAgeRequest": {
+        "type": "object",
+        "required": [
+          "chronologicalAge",
+          "biomarkers"
+        ],
+        "properties": {
+          "chronologicalAge": {
+            "type": "number",
+            "description": "Actual age in years"
+          },
+          "biomarkers": {
+            "type": "object",
+            "description": "Blood biomarker values required for Pheno Age calculation",
+            "properties": {
+              "albumin": {
+                "type": "number",
+                "description": "Albumin level (g/dL)"
+              },
+              "creatinine": {
+                "type": "number",
+                "description": "Creatinine level (mg/dL)"
+              },
+              "glucose": {
+                "type": "number",
+                "description": "Glucose level (mg/dL)"
+              },
+              "crp": {
+                "type": "number",
+                "description": "C-reactive protein (mg/L)"
+              },
+              "lymphocytePercent": {
+                "type": "number",
+                "description": "Lymphocyte percentage"
+              },
+              "mcv": {
+                "type": "number",
+                "description": "Mean corpuscular volume (fL)"
+              },
+              "rdw": {
+                "type": "number",
+                "description": "Red cell distribution width (%)"
+              },
+              "alkalinePhosphatase": {
+                "type": "number",
+                "description": "Alkaline phosphatase (U/L)"
+              },
+              "whiteBloodCellCount": {
+                "type": "number",
+                "description": "White blood cell count (1000 cells/µL)"
+              }
+            }
+          }
+        }
+      },
+      "PhenoAgeResponse": {
+        "type": "object",
+        "properties": {
+          "phenoAge": {
+            "type": "number",
+            "description": "Calculated phenotypic biological age"
+          },
+          "chronologicalAge": {
+            "type": "number",
+            "description": "Input chronological age"
+          },
+          "ageReduction": {
+            "type": "number",
+            "description": "Calculated Age Reduction"
+          },
+          "calculationMethod": {
+            "type": "string",
+            "description": "Algorithm version used"
+          }
+        }
+      },
+      "BortzAgeRequest": {
+        "type": "object",
+        "required": [
+          "chronologicalAge",
+          "biomarkers"
+        ],
+        "properties": {
+          "chronologicalAge": {
+            "type": "number",
+            "description": "Actual age in years"
+          },
+          "biomarkers": {
+            "type": "object",
+            "description": "Blood biomarker values required for Bortz Age calculation"
+          }
+        }
+      },
+      "BortzAgeResponse": {
+        "type": "object",
+        "properties": {
+          "bortzAge": {
+            "type": "number",
+            "description": "Calculated Bortz biological age"
+          },
+          "chronologicalAge": {
+            "type": "number",
+            "description": "Input chronological age"
+          },
+          "ageReduction": {
+            "type": "number",
+            "description": "Calculated Age Reduction"
+          },
+          "season": {
+            "type": "string",
+            "description": "Competition season"
+          }
+        }
+      },
+      "Division": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Division identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Division name"
+          },
+          "ageRange": {
+            "type": "string",
+            "description": "Age range for this division"
+          },
+          "minAge": {
+            "type": "integer",
+            "description": "Minimum age for division"
+          },
+          "maxAge": {
+            "type": "integer",
+            "description": "Maximum age for division"
+          }
+        }
+      },
+      "Flag": {
+        "type": "object",
+        "properties": {
+          "countryCode": {
+            "type": "string",
+            "description": "ISO country code"
+          },
+          "countryName": {
+            "type": "string",
+            "description": "Country name"
+          },
+          "flagUrl": {
+            "type": "string",
+            "format": "uri",
+            "description": "URL to flag image"
+          }
+        }
+      },
+      "RankPreviewRequest": {
+        "type": "object",
+        "required": [
+          "chronologicalAge",
+          "biologicalAge"
+        ],
+        "properties": {
+          "chronologicalAge": {
+            "type": "number",
+            "description": "Actual age in years"
+          },
+          "biologicalAge": {
+            "type": "number",
+            "description": "Calculated biological age"
+          },
+          "league": {
+            "type": "string",
+            "enum": [
+              "Pro",
+              "Amateur"
+            ],
+            "description": "Target league for preview"
+          },
+          "division": {
+            "type": "string",
+            "description": "Target division for preview"
+          }
+        }
+      },
+      "RankPreviewResponse": {
+        "type": "object",
+        "properties": {
+          "estimatedRank": {
+            "type": "integer",
+            "description": "Estimated ranking position"
+          },
+          "estimatedUltimateLeagueRank": {
+            "type": "integer",
+            "description": "Estimated Ultimate League rank"
+          },
+          "ageReduction": {
+            "type": "number",
+            "description": "Calculated Age Reduction"
+          },
+          "percentile": {
+            "type": "number",
+            "description": "Percentile ranking"
+          },
+          "athletesInLeague": {
+            "type": "integer",
+            "description": "Total athletes in target league"
+          }
+        }
+      },
+      "Error": {
+        "type": "object",
+        "properties": {
+          "error": {
+            "type": "string",
+            "description": "Error message"
+          },
+          "code": {
+            "type": "string",
+            "description": "Error code"
+          },
+          "details": {
+            "type": "object",
+            "description": "Additional error details"
+          }
+        }
+      }
+    }
+  },
+  "tags": [
+    {
+      "name": "Athletes",
+      "description": "Operations related to athlete data and profiles"
+    },
+    {
+      "name": "Leaderboard",
+      "description": "Public leaderboard and ranking operations"
+    },
+    {
+      "name": "Calculators",
+      "description": "Biological age calculation and ranking preview tools"
+    },
+    {
+      "name": "Competition",
+      "description": "Competition structure and division information"
+    },
+    {
+      "name": "Reference",
+      "description": "Reference data and metadata"
+    }
+  ],
+  "externalDocs": {
+    "description": "Full API documentation and Swagger UI",
+    "url": "https://longevityworldcup.com/swagger"
+  }
+}

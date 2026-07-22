@@ -1,0 +1,48 @@
+# Entity: reference
+
+main: kit: entity: reference: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "country_code"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "flag_url"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "reference"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/data/flags"
+          parts: [
+            "data"
+            "flags"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,78 @@
+# Entity: rank_preview
+
+main: kit: entity: rank_preview: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age_reduction"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "athletes_in_league"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "biological_age"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "chronological_age"
+      req: true
+      type: "`$NUMBER`"
+    }
+    {
+      name: "division"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "estimated_rank"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "estimated_ultimate_league_rank"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "league"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "percentile"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "rank_preview"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/data/rank-preview"
+          parts: [
+            "data"
+            "rank-preview"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

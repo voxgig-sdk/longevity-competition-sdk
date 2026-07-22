@@ -1,0 +1,1309 @@
+{
+  "def": "longevity-competition_0.1.0.json",
+  "main": {
+    "def": {
+      "desc": ""
+    },
+    "kit": {
+      "config": {
+        "docs_order": [
+          "ts",
+          "py",
+          "php",
+          "go",
+          "rb",
+          "lua"
+        ],
+        "headers": {
+          "content-type": "application/json"
+        }
+      },
+      "entity": {
+        "athlete": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "age_reduction",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "biological_age",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "chronological_age",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "clock_type",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "division",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "effective_age_reduction",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "generation",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "last_updated",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "league",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "profile_url",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "rank",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "ultimate_league_rank",
+              "req": false,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "athlete",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "division",
+                        "orig": "division",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "league",
+                        "orig": "league",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "example": 100,
+                        "kind": "query",
+                        "name": "limit",
+                        "orig": "limit",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      },
+                      {
+                        "active": true,
+                        "example": 0,
+                        "kind": "query",
+                        "name": "offset",
+                        "orig": "offset",
+                        "reqd": false,
+                        "type": "`$INTEGER`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/data/athletes",
+                  "parts": [
+                    "data",
+                    "athletes"
+                  ],
+                  "select": {
+                    "exist": [
+                      "division",
+                      "league",
+                      "limit",
+                      "offset"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "bortz_age": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "age_reduction",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "biomarker",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "bortz_age",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "chronological_age",
+              "op": {
+                "create": {
+                  "req": true,
+                  "type": "`$NUMBER`"
+                }
+              },
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "season",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "bortz_age",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "POST",
+                  "orig": "/data/bortz-age",
+                  "parts": [
+                    "data",
+                    "bortz-age"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "competition": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "age_range",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "max_age",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "min_age",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "name",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "id": {
+            "field": "id",
+            "name": "id"
+          },
+          "name": "competition",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/data/divisions",
+                  "parts": [
+                    "data",
+                    "divisions"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "leaderboard": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "age_reduction",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "athlete_id",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "athlete_name",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "country",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "division",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "league",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "rank",
+              "req": false,
+              "type": "`$INTEGER`"
+            }
+          ],
+          "name": "leaderboard",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {
+                    "query": [
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "division",
+                        "orig": "division",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      },
+                      {
+                        "active": true,
+                        "kind": "query",
+                        "name": "league",
+                        "orig": "league",
+                        "reqd": false,
+                        "type": "`$STRING`"
+                      }
+                    ]
+                  },
+                  "method": "GET",
+                  "orig": "/data/leaderboard",
+                  "parts": [
+                    "data",
+                    "leaderboard"
+                  ],
+                  "select": {
+                    "exist": [
+                      "division",
+                      "league"
+                    ]
+                  },
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "pheno_age": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "age_reduction",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "biomarker",
+              "req": true,
+              "type": "`$OBJECT`"
+            },
+            {
+              "active": true,
+              "name": "calculation_method",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "chronological_age",
+              "op": {
+                "create": {
+                  "req": true,
+                  "type": "`$NUMBER`"
+                }
+              },
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "pheno_age",
+              "req": false,
+              "type": "`$NUMBER`"
+            }
+          ],
+          "name": "pheno_age",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "POST",
+                  "orig": "/data/pheno-age",
+                  "parts": [
+                    "data",
+                    "pheno-age"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "rank_preview": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "age_reduction",
+              "req": false,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "athletes_in_league",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "biological_age",
+              "req": true,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "chronological_age",
+              "req": true,
+              "type": "`$NUMBER`"
+            },
+            {
+              "active": true,
+              "name": "division",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "estimated_rank",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "estimated_ultimate_league_rank",
+              "req": false,
+              "type": "`$INTEGER`"
+            },
+            {
+              "active": true,
+              "name": "league",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "percentile",
+              "req": false,
+              "type": "`$NUMBER`"
+            }
+          ],
+          "name": "rank_preview",
+          "op": {
+            "create": {
+              "input": "data",
+              "name": "create",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "POST",
+                  "orig": "/data/rank-preview",
+                  "parts": [
+                    "data",
+                    "rank-preview"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        },
+        "reference": {
+          "active": true,
+          "alias": {
+            "field": {}
+          },
+          "fields": [
+            {
+              "active": true,
+              "name": "country_code",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "country_name",
+              "req": false,
+              "type": "`$STRING`"
+            },
+            {
+              "active": true,
+              "name": "flag_url",
+              "req": false,
+              "type": "`$STRING`"
+            }
+          ],
+          "name": "reference",
+          "op": {
+            "list": {
+              "input": "data",
+              "name": "list",
+              "points": [
+                {
+                  "active": true,
+                  "args": {},
+                  "method": "GET",
+                  "orig": "/data/flags",
+                  "parts": [
+                    "data",
+                    "flags"
+                  ],
+                  "select": {},
+                  "transform": {
+                    "req": "`reqdata`",
+                    "res": "`body`"
+                  }
+                }
+              ]
+            }
+          },
+          "relations": {
+            "ancestors": []
+          }
+        }
+      },
+      "feature": {
+        "test": {
+          "active": true,
+          "config": {
+            "options": {
+              "active": false
+            }
+          },
+          "hook": {
+            "GetData": {
+              "active": true,
+              "await": false
+            },
+            "GetMatch": {
+              "active": true,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": true,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": true,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PrePoint": {
+              "active": true,
+              "await": false
+            },
+            "PreRequest": {
+              "active": true,
+              "await": false
+            },
+            "PreResponse": {
+              "active": true,
+              "await": false
+            },
+            "PreResult": {
+              "active": true,
+              "await": false
+            },
+            "PreSpec": {
+              "active": true,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": true,
+              "await": false
+            },
+            "SetMatch": {
+              "active": true,
+              "await": false
+            }
+          },
+          "name": "test",
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "In-memory mock transport for testing without a live server",
+          "version": "0.0.1"
+        }
+      },
+      "flow": {
+        "BasicAthleteFlow": {
+          "active": true,
+          "entity": "athlete",
+          "key$": "BasicAthleteFlow",
+          "kind": "basic",
+          "name": "BasicAthleteFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "athlete_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicBortzAgeFlow": {
+          "active": true,
+          "entity": "bortz_age",
+          "key$": "BasicBortzAgeFlow",
+          "kind": "basic",
+          "name": "BasicBortzAgeFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "bortz_age_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        },
+        "BasicCompetitionFlow": {
+          "active": true,
+          "entity": "competition",
+          "key$": "BasicCompetitionFlow",
+          "kind": "basic",
+          "name": "BasicCompetitionFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "competition_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicLeaderboardFlow": {
+          "active": true,
+          "entity": "leaderboard",
+          "key$": "BasicLeaderboardFlow",
+          "kind": "basic",
+          "name": "BasicLeaderboardFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "leaderboard_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        },
+        "BasicPhenoAgeFlow": {
+          "active": true,
+          "entity": "pheno_age",
+          "key$": "BasicPhenoAgeFlow",
+          "kind": "basic",
+          "name": "BasicPhenoAgeFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "pheno_age_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        },
+        "BasicRankPreviewFlow": {
+          "active": true,
+          "entity": "rank_preview",
+          "key$": "BasicRankPreviewFlow",
+          "kind": "basic",
+          "name": "BasicRankPreviewFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {
+                "ref": "rank_preview_ref01"
+              },
+              "match": {},
+              "op": "create",
+              "spec": [],
+              "valid": []
+            }
+          ]
+        },
+        "BasicReferenceFlow": {
+          "active": true,
+          "entity": "reference",
+          "key$": "BasicReferenceFlow",
+          "kind": "basic",
+          "name": "BasicReferenceFlow",
+          "param": {},
+          "step": [
+            {
+              "active": true,
+              "data": {},
+              "input": {},
+              "match": {},
+              "op": "list",
+              "spec": [],
+              "valid": [
+                {
+                  "apply": "ItemExists",
+                  "def": {
+                    "ref": "reference_ref01"
+                  }
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "info": {
+        "auth": false,
+        "contact": {
+          "name": "Longevity World Cup",
+          "url": "https://longevityworldcup.com"
+        },
+        "description": "The Longevity Competition API provides access to real-time information about participants, rankings, events, and historical data related to the Longevity World Cup. It enables users to retrieve public rankings, athlete profiles, and detailed competition rules, facilitating engagement with the longevity-focused sporting community.",
+        "license": {
+          "name": "API Terms of Service",
+          "url": "https://longevityworldcup.com/privacy"
+        },
+        "meta_source": "https://www.freepublicapis.com",
+        "servers": [
+          {
+            "description": "Production API server",
+            "url": "https://longevityworldcup.com/api"
+          }
+        ],
+        "summary": "The Longevity Competition API provides access to real-time information about participants, rankings, events, and historical data related to the Longevity World Cup.",
+        "title": "Longevity Competition API",
+        "version": "1.0.0",
+        "website": "https://longevityworldcup.com/swagger"
+      },
+      "option": {},
+      "target": {
+        "go": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "longevity-competition"
+          },
+          "name": "go",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Golang"
+        },
+        "go-cli": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "longevity-competition"
+          },
+          "name": "go-cli",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            }
+          },
+          "title": "Go CLI"
+        },
+        "go-mcp": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "go",
+          "module": {
+            "name": "longevity-competition"
+          },
+          "name": "go-mcp",
+          "phase": {
+            "agentguide": {
+              "active": false
+            },
+            "entity": {
+              "active": false
+            },
+            "feature": {
+              "active": false
+            },
+            "readme": {
+              "active": false
+            },
+            "test": {
+              "active": false
+            }
+          },
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "",
+              "package": "",
+              "state": "pending",
+              "url": "",
+              "vault": {
+                "alias": "",
+                "env": "",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "root"
+            }
+          },
+          "title": "Go MCP server"
+        },
+        "lua": {
+          "active": true,
+          "comment": {
+            "line": "--"
+          },
+          "deps": {
+            "dkjson": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.5"
+            }
+          },
+          "ext": "lua",
+          "module": {
+            "name": "longevity-competition"
+          },
+          "name": "lua",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "luarocks",
+              "package": "",
+              "state": "pending",
+              "url": "https://luarocks.org",
+              "vault": {
+                "alias": "luarocks",
+                "env": "LUAROCKS_API_KEY",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Lua"
+        },
+        "php": {
+          "active": true,
+          "comment": {
+            "line": "//"
+          },
+          "deps": {},
+          "ext": "php",
+          "module": {
+            "name": "longevity-competition"
+          },
+          "name": "php",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "packagist",
+              "package": "",
+              "state": "pending",
+              "url": "https://packagist.org",
+              "vault": {
+                "alias": "packagist",
+                "env": "PACKAGIST_API_TOKEN",
+                "recipe": ""
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "PHP"
+        },
+        "py": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "requests": {
+              "active": true,
+              "kind": "prod",
+              "version": "2.33"
+            }
+          },
+          "ext": "py",
+          "module": {
+            "name": "longevity-competition"
+          },
+          "name": "py",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "pypi",
+              "package": "",
+              "state": "pending",
+              "url": "https://pypi.org",
+              "vault": {
+                "alias": "pypi",
+                "env": "",
+                "recipe": "pypi"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Python"
+        },
+        "rb": {
+          "active": true,
+          "comment": {
+            "line": "#"
+          },
+          "deps": {
+            "json": {
+              "active": true,
+              "kind": "prod",
+              "version": "0"
+            },
+            "voxgig-struct": {
+              "active": true,
+              "kind": "prod",
+              "version": "0.0.10"
+            }
+          },
+          "ext": "rb",
+          "module": {
+            "name": "longevity-competition"
+          },
+          "name": "rb",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "rubygems",
+              "package": "",
+              "state": "pending",
+              "url": "https://rubygems.org",
+              "vault": {
+                "alias": "gem",
+                "env": "",
+                "recipe": "gem"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "srcfeature": false,
+          "title": "Ruby"
+        },
+        "ts": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "comment": {
+            "line": "//"
+          },
+          "deps": {
+            "@types/node": {
+              "active": true,
+              "kind": "dev",
+              "version": "^25.6.0"
+            },
+            "dotenv": {
+              "active": true,
+              "kind": "dev",
+              "version": "^17.4.2"
+            },
+            "typescript": {
+              "active": true,
+              "kind": "dev",
+              "version": "^5.9.3"
+            }
+          },
+          "ext": "ts",
+          "module": {
+            "name": "longevity-competition"
+          },
+          "name": "ts",
+          "publish": {
+            "registry": {
+              "active": false,
+              "name": "npm",
+              "package": "",
+              "state": "pending",
+              "url": "https://registry.npmjs.org",
+              "vault": {
+                "alias": "npm",
+                "env": "",
+                "recipe": "npm"
+              }
+            },
+            "tag": {
+              "active": true,
+              "prefix": "",
+              "vault": {
+                "alias": "github",
+                "recipe": "github"
+              },
+              "via": "port"
+            }
+          },
+          "title": "TypeScript"
+        }
+      }
+    }
+  },
+  "name": "longevity-competition",
+  "origin": "voxgig-sdk"
+}

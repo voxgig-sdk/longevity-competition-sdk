@@ -1,0 +1,77 @@
+{
+  "existing": {
+    "athlete": {
+      "ATHLETE00": {
+        "age_reduction": 150,
+        "biological_age": 151,
+        "chronological_age": 152,
+        "clock_type": "s99",
+        "country": "s9a",
+        "division": "s9b",
+        "effective_age_reduction": 156,
+        "generation": "s9d",
+        "id": "ATHLETE00",
+        "last_updated": "s9f",
+        "league": "sa0",
+        "name": "sa1",
+        "profile_url": "sa2",
+        "rank": "sa3",
+        "ultimate_league_rank": "sa4"
+      },
+      "ATHLETE01": {
+        "age_reduction": 300,
+        "biological_age": 301,
+        "chronological_age": 302,
+        "clock_type": "s12f",
+        "country": "s130",
+        "division": "s131",
+        "effective_age_reduction": 306,
+        "generation": "s133",
+        "id": "ATHLETE01",
+        "last_updated": "s135",
+        "league": "s136",
+        "name": "s137",
+        "profile_url": "s138",
+        "rank": "s139",
+        "ultimate_league_rank": "s13a"
+      },
+      "ATHLETE02": {
+        "age_reduction": 450,
+        "biological_age": 451,
+        "chronological_age": 452,
+        "clock_type": "s1c5",
+        "country": "s1c6",
+        "division": "s1c7",
+        "effective_age_reduction": 456,
+        "generation": "s1c9",
+        "id": "ATHLETE02",
+        "last_updated": "s1cb",
+        "league": "s1cc",
+        "name": "s1cd",
+        "profile_url": "s1ce",
+        "rank": "s1cf",
+        "ultimate_league_rank": "s1d0"
+      }
+    }
+  },
+  "new": {
+    "athlete": {
+      "athlete_ref01": {
+        "age_reduction": 600,
+        "biological_age": 601,
+        "chronological_age": 602,
+        "clock_type": "s25b",
+        "country": "s25c",
+        "division": "s25d",
+        "effective_age_reduction": 606,
+        "generation": "s25f",
+        "last_updated": "s261",
+        "league": "s262",
+        "name": "s263",
+        "profile_url": "s264",
+        "rank": "s265",
+        "ultimate_league_rank": "s266"
+      }
+    }
+  }
+}

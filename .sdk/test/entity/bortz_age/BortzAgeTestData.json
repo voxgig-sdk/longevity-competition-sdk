@@ -1,0 +1,41 @@
+{
+  "existing": {
+    "bortz_age": {
+      "BORTZ_AGE00": {
+        "age_reduction": 50,
+        "biomarker": {},
+        "bortz_age": 52,
+        "chronological_age": 53,
+        "season": "s36",
+        "id": "BORTZ_AGE00"
+      },
+      "BORTZ_AGE01": {
+        "age_reduction": 100,
+        "biomarker": {},
+        "bortz_age": 102,
+        "chronological_age": 103,
+        "season": "s68",
+        "id": "BORTZ_AGE01"
+      },
+      "BORTZ_AGE02": {
+        "age_reduction": 150,
+        "biomarker": {},
+        "bortz_age": 152,
+        "chronological_age": 153,
+        "season": "s9a",
+        "id": "BORTZ_AGE02"
+      }
+    }
+  },
+  "new": {
+    "bortz_age": {
+      "bortz_age_ref01": {
+        "age_reduction": 200,
+        "biomarker": {},
+        "bortz_age": 202,
+        "chronological_age": 203,
+        "season": "scc"
+      }
+    }
+  }
+}

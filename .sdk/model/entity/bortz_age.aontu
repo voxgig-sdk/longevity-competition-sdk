@@ -1,0 +1,64 @@
+# Entity: bortz_age
+
+main: kit: entity: bortz_age: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age_reduction"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "biomarker"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "bortz_age"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "chronological_age"
+      op: {
+        create: {
+          req: true
+          type: "`$NUMBER`"
+        }
+      }
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "season"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  name: "bortz_age"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/data/bortz-age"
+          parts: [
+            "data"
+            "bortz-age"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

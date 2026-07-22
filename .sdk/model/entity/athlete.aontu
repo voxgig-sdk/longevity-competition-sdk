@@ -1,0 +1,155 @@
+# Entity: athlete
+
+main: kit: entity: athlete: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age_reduction"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "biological_age"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "chronological_age"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "clock_type"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "division"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "effective_age_reduction"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "generation"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "last_updated"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "league"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "profile_url"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "rank"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "ultimate_league_rank"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "athlete"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "division"
+                orig: "division"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "league"
+                orig: "league"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/data/athletes"
+          parts: [
+            "data"
+            "athletes"
+          ]
+          select: {
+            exist: [
+              "division"
+              "league"
+              "limit"
+              "offset"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,64 @@
+# Entity: pheno_age
+
+main: kit: entity: pheno_age: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age_reduction"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "biomarker"
+      req: true
+      type: "`$OBJECT`"
+    }
+    {
+      name: "calculation_method"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "chronological_age"
+      op: {
+        create: {
+          req: true
+          type: "`$NUMBER`"
+        }
+      }
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "pheno_age"
+      req: false
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "pheno_age"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/data/pheno-age"
+          parts: [
+            "data"
+            "pheno-age"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

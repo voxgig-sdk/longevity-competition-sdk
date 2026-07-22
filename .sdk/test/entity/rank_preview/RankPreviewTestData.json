@@ -1,0 +1,57 @@
+{
+  "existing": {
+    "rank_preview": {
+      "RANK_PREVIEW00": {
+        "age_reduction": 90,
+        "athletes_in_league": "s5b",
+        "biological_age": 92,
+        "chronological_age": 93,
+        "division": "s5e",
+        "estimated_rank": "s5f",
+        "estimated_ultimate_league_rank": "s60",
+        "league": "s61",
+        "percentile": 98,
+        "id": "RANK_PREVIEW00"
+      },
+      "RANK_PREVIEW01": {
+        "age_reduction": 180,
+        "athletes_in_league": "sb5",
+        "biological_age": 182,
+        "chronological_age": 183,
+        "division": "sb8",
+        "estimated_rank": "sb9",
+        "estimated_ultimate_league_rank": "sba",
+        "league": "sbb",
+        "percentile": 188,
+        "id": "RANK_PREVIEW01"
+      },
+      "RANK_PREVIEW02": {
+        "age_reduction": 270,
+        "athletes_in_league": "s10f",
+        "biological_age": 272,
+        "chronological_age": 273,
+        "division": "s112",
+        "estimated_rank": "s113",
+        "estimated_ultimate_league_rank": "s114",
+        "league": "s115",
+        "percentile": 278,
+        "id": "RANK_PREVIEW02"
+      }
+    }
+  },
+  "new": {
+    "rank_preview": {
+      "rank_preview_ref01": {
+        "age_reduction": 360,
+        "athletes_in_league": "s169",
+        "biological_age": 362,
+        "chronological_age": 363,
+        "division": "s16c",
+        "estimated_rank": "s16d",
+        "estimated_ultimate_league_rank": "s16e",
+        "league": "s16f",
+        "percentile": 368
+      }
+    }
+  }
+}

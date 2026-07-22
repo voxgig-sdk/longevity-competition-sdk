@@ -1,0 +1,50 @@
+# Guide
+
+guide: {
+  metrics: count: entity: 7
+  metrics: count: path: 7
+  metrics: count: method: 7
+
+  entity: athlete: {
+    path: "/data/athletes": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: bortz_age: {
+    path: "/data/bortz-age": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: competition: {
+    path: "/data/divisions": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: leaderboard: {
+    path: "/data/leaderboard": {
+      op: list: method: *GET
+    }
+  }
+
+  entity: pheno_age: {
+    path: "/data/pheno-age": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: rank_preview: {
+    path: "/data/rank-preview": {
+      op: create: method: *POST
+    }
+  }
+
+  entity: reference: {
+    path: "/data/flags": {
+      op: list: method: *GET
+    }
+  }
+
+}

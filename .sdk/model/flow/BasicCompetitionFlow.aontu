@@ -1,0 +1,22 @@
+# BasicCompetitionFlow
+
+main: kit: flow: BasicCompetitionFlow:
+{
+  entity: "competition",
+  kind: "basic",
+  name: "BasicCompetitionFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "competition_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicCompetitionFlow"
+}

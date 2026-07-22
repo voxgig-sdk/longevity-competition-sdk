@@ -1,0 +1,18 @@
+# BasicRankPreviewFlow
+
+main: kit: flow: BasicRankPreviewFlow:
+{
+  entity: "rank_preview",
+  kind: "basic",
+  name: "BasicRankPreviewFlow",
+  step: [
+    {
+      input: {
+        ref: "rank_preview_ref01"
+      }
+
+      op: "create"
+    }
+  ],
+  "key$": "BasicRankPreviewFlow"
+}

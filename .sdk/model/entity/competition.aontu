@@ -1,0 +1,63 @@
+# Entity: competition
+
+main: kit: entity: competition: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age_range"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "max_age"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "min_age"
+      req: false
+      type: "`$INTEGER`"
+    }
+    {
+      name: "name"
+      req: false
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "competition"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/data/divisions"
+          parts: [
+            "data"
+            "divisions"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

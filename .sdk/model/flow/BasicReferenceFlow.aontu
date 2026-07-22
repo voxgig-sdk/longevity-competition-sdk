@@ -1,0 +1,22 @@
+# BasicReferenceFlow
+
+main: kit: flow: BasicReferenceFlow:
+{
+  entity: "reference",
+  kind: "basic",
+  name: "BasicReferenceFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "reference_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicReferenceFlow"
+}

@@ -1,0 +1,9 @@
+# Entity Models
+
+@"athlete.aontu"
+@"bortz_age.aontu"
+@"competition.aontu"
+@"leaderboard.aontu"
+@"pheno_age.aontu"
+@"rank_preview.aontu"
+@"reference.aontu"

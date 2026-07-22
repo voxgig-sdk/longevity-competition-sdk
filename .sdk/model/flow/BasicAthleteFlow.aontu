@@ -1,0 +1,22 @@
+# BasicAthleteFlow
+
+main: kit: flow: BasicAthleteFlow:
+{
+  entity: "athlete",
+  kind: "basic",
+  name: "BasicAthleteFlow",
+  step: [
+    {
+      op: "list",
+      valid: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "athlete_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicAthleteFlow"
+}

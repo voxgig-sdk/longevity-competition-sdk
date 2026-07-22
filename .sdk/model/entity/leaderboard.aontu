@@ -1,0 +1,92 @@
+# Entity: leaderboard
+
+main: kit: entity: leaderboard: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "age_reduction"
+      req: false
+      type: "`$NUMBER`"
+    }
+    {
+      name: "athlete_id"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "athlete_name"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "division"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "league"
+      req: false
+      type: "`$STRING`"
+    }
+    {
+      name: "rank"
+      req: false
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "leaderboard"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "division"
+                orig: "division"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "league"
+                orig: "league"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/data/leaderboard"
+          parts: [
+            "data"
+            "leaderboard"
+          ]
+          select: {
+            exist: [
+              "division"
+              "league"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

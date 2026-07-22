@@ -1,0 +1,46 @@
+{
+  "existing": {
+    "leaderboard": {
+      "LEADERBOARD00": {
+        "age_reduction": 70,
+        "athlete_id": "ATHLETE01",
+        "athlete_name": "s48",
+        "country": "s49",
+        "division": "s4a",
+        "league": "s4b",
+        "rank": "s4c"
+      },
+      "LEADERBOARD01": {
+        "age_reduction": 140,
+        "athlete_id": "ATHLETE01",
+        "athlete_name": "s8e",
+        "country": "s8f",
+        "division": "s90",
+        "league": "s91",
+        "rank": "s92"
+      },
+      "LEADERBOARD02": {
+        "age_reduction": 210,
+        "athlete_id": "ATHLETE01",
+        "athlete_name": "sd4",
+        "country": "sd5",
+        "division": "sd6",
+        "league": "sd7",
+        "rank": "sd8"
+      }
+    }
+  },
+  "new": {
+    "leaderboard": {
+      "leaderboard_ref01": {
+        "age_reduction": 280,
+        "athlete_id": "ATHLETE01",
+        "athlete_name": "s11a",
+        "country": "s11b",
+        "division": "s11c",
+        "league": "s11d",
+        "rank": "s11e"
+      }
+    }
+  }
+}

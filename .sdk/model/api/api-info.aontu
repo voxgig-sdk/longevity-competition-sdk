@@ -1,0 +1,30 @@
+# API Information
+
+
+main: {
+  kit: {
+    info: {
+      auth: false
+      contact: {
+        name: "Longevity World Cup"
+        url: "https://longevityworldcup.com"
+      }
+      description: "The Longevity Competition API provides access to real-time information about participants, rankings, events, and historical data related to the Longevity World Cup. It enables users to retrieve public rankings, athlete profiles, and detailed competition rules, facilitating engagement with the longevity-focused sporting community."
+      license: {
+        name: "API Terms of Service"
+        url: "https://longevityworldcup.com/privacy"
+      }
+      servers: [
+        {
+          description: "Production API server"
+          url: "https://longevityworldcup.com/api"
+        }
+      ]
+      summary: "The Longevity Competition API provides access to real-time information about participants, rankings, events, and historical data related to the Longevity World Cup."
+      title: "Longevity Competition API"
+      version: "1.0.0"
+      website: "https://longevityworldcup.com/swagger"
+    }
+  }
+}
+
