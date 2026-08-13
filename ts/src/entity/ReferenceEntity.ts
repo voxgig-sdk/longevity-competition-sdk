@@ -37,7 +37,7 @@ class ReferenceEntity extends LongevityCompetitionEntityBase<Reference> {
 
 
 
-  async list(this: any, reqmatch?: ReferenceListMatch, ctrl?: Control): Promise<Reference[]> {
+  async list(this: any, reqmatch?: ReferenceListMatch, ctrl?: Control): Promise<ReferenceEntity[]> {
 
     const utility = this._utility
 

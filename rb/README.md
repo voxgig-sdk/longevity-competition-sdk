@@ -37,7 +37,7 @@ begin
   # list returns an Array of Athlete records — iterate directly.
   athletes = client.Athlete.list
   athletes.each do |item|
-    puts "#{item["id"]} #{item["age_reduction"]}"
+    puts "#{item["id"]} #{item["ageReduction"]}"
   end
 rescue => err
   warn "list failed: #{err}"
@@ -51,7 +51,7 @@ Entity operations raise on failure, so rescue them:
 
 ```ruby
 begin
-  athletes = client.Athlete.list()
+  competitions = client.Competition.list()
 rescue => err
   warn "list failed: #{err}"
 end
@@ -119,9 +119,10 @@ Create a mock client for unit testing — no server required:
 ```ruby
 client = LongevityCompetitionSDK.test
 
-# Entity ops return the bare mock record (raises on error).
-athlete = client.Athlete.list()
-puts athlete
+# Entity ops return the ENTITY (raises on error);
+# call data_get for the mock record.
+competition = client.Competition.list()
+puts competition
 ```
 
 ### Use a custom fetch function
@@ -243,21 +244,21 @@ returns a result `Hash` with these keys:
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biological_age` |  |
-| `chronological_age` |  |
-| `clock_type` |  |
+| `ageReduction` |  |
+| `biologicalAge` |  |
+| `chronologicalAge` |  |
+| `clockType` |  |
 | `country` |  |
 | `division` |  |
-| `effective_age_reduction` |  |
+| `effectiveAgeReduction` |  |
 | `generation` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `league` |  |
 | `name` |  |
-| `profile_url` |  |
+| `profileUrl` |  |
 | `rank` |  |
-| `ultimate_league_rank` |  |
+| `ultimateLeagueRank` |  |
 
 Operations: List.
 
@@ -267,10 +268,10 @@ API path: `/data/athletes`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biomarker` |  |
-| `bortz_age` |  |
-| `chronological_age` |  |
+| `ageReduction` |  |
+| `biomarkers` |  |
+| `bortzAge` |  |
+| `chronologicalAge` |  |
 | `season` |  |
 
 Operations: Create.
@@ -281,10 +282,10 @@ API path: `/data/bortz-age`
 
 | Field | Description |
 | --- | --- |
-| `age_range` |  |
+| `ageRange` |  |
 | `id` |  |
-| `max_age` |  |
-| `min_age` |  |
+| `maxAge` |  |
+| `minAge` |  |
 | `name` |  |
 
 Operations: List.
@@ -295,9 +296,9 @@ API path: `/data/divisions`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `athlete_id` |  |
-| `athlete_name` |  |
+| `ageReduction` |  |
+| `athleteId` |  |
+| `athleteName` |  |
 | `country` |  |
 | `division` |  |
 | `league` |  |
@@ -311,11 +312,11 @@ API path: `/data/leaderboard`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biomarker` |  |
-| `calculation_method` |  |
-| `chronological_age` |  |
-| `pheno_age` |  |
+| `ageReduction` |  |
+| `biomarkers` |  |
+| `calculationMethod` |  |
+| `chronologicalAge` |  |
+| `phenoAge` |  |
 
 Operations: Create.
 
@@ -325,13 +326,13 @@ API path: `/data/pheno-age`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `athletes_in_league` |  |
-| `biological_age` |  |
-| `chronological_age` |  |
+| `ageReduction` |  |
+| `athletesInLeague` |  |
+| `biologicalAge` |  |
+| `chronologicalAge` |  |
 | `division` |  |
-| `estimated_rank` |  |
-| `estimated_ultimate_league_rank` |  |
+| `estimatedRank` |  |
+| `estimatedUltimateLeagueRank` |  |
 | `league` |  |
 | `percentile` |  |
 
@@ -343,9 +344,9 @@ API path: `/data/rank-preview`
 
 | Field | Description |
 | --- | --- |
-| `country_code` |  |
-| `country_name` |  |
-| `flag_url` |  |
+| `countryCode` |  |
+| `countryName` |  |
+| `flagUrl` |  |
 
 Operations: List.
 
@@ -370,21 +371,21 @@ Create an instance: `athlete = client.Athlete`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `Float` |  |
-| `biological_age` | `Float` |  |
-| `chronological_age` | `Float` |  |
-| `clock_type` | `String` |  |
+| `ageReduction` | `Float` |  |
+| `biologicalAge` | `Float` |  |
+| `chronologicalAge` | `Float` |  |
+| `clockType` | `String` |  |
 | `country` | `String` |  |
 | `division` | `String` |  |
-| `effective_age_reduction` | `Float` |  |
+| `effectiveAgeReduction` | `Float` |  |
 | `generation` | `String` |  |
 | `id` | `String` |  |
-| `last_updated` | `String` |  |
+| `lastUpdated` | `String` |  |
 | `league` | `String` |  |
 | `name` | `String` |  |
-| `profile_url` | `String` |  |
+| `profileUrl` | `String` |  |
 | `rank` | `Integer` |  |
-| `ultimate_league_rank` | `Integer` |  |
+| `ultimateLeagueRank` | `Integer` |  |
 
 #### Example: List
 
@@ -408,17 +409,17 @@ Create an instance: `bortz_age = client.BortzAge`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `Float` |  |
-| `biomarker` | `Hash` |  |
-| `bortz_age` | `Float` |  |
-| `chronological_age` | `Float` |  |
+| `ageReduction` | `Float` |  |
+| `biomarkers` | `Hash` |  |
+| `bortzAge` | `Float` |  |
+| `chronologicalAge` | `Float` |  |
 | `season` | `String` |  |
 
 #### Example: Create
 
 ```ruby
 bortz_age = client.BortzAge.create({
-  "biomarker" => {}, # Hash
+  "biomarkers" => {}, # Hash
 })
 ```
 
@@ -437,10 +438,10 @@ Create an instance: `competition = client.Competition`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_range` | `String` |  |
+| `ageRange` | `String` |  |
 | `id` | `String` |  |
-| `max_age` | `Integer` |  |
-| `min_age` | `Integer` |  |
+| `maxAge` | `Integer` |  |
+| `minAge` | `Integer` |  |
 | `name` | `String` |  |
 
 #### Example: List
@@ -465,9 +466,9 @@ Create an instance: `leaderboard = client.Leaderboard`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `Float` |  |
-| `athlete_id` | `String` |  |
-| `athlete_name` | `String` |  |
+| `ageReduction` | `Float` |  |
+| `athleteId` | `String` |  |
+| `athleteName` | `String` |  |
 | `country` | `String` |  |
 | `division` | `String` |  |
 | `league` | `String` |  |
@@ -495,17 +496,17 @@ Create an instance: `pheno_age = client.PhenoAge`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `Float` |  |
-| `biomarker` | `Hash` |  |
-| `calculation_method` | `String` |  |
-| `chronological_age` | `Float` |  |
-| `pheno_age` | `Float` |  |
+| `ageReduction` | `Float` |  |
+| `biomarkers` | `Hash` |  |
+| `calculationMethod` | `String` |  |
+| `chronologicalAge` | `Float` |  |
+| `phenoAge` | `Float` |  |
 
 #### Example: Create
 
 ```ruby
 pheno_age = client.PhenoAge.create({
-  "biomarker" => {}, # Hash
+  "biomarkers" => {}, # Hash
 })
 ```
 
@@ -524,13 +525,13 @@ Create an instance: `rank_preview = client.RankPreview`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `Float` |  |
-| `athletes_in_league` | `Integer` |  |
-| `biological_age` | `Float` |  |
-| `chronological_age` | `Float` |  |
+| `ageReduction` | `Float` |  |
+| `athletesInLeague` | `Integer` |  |
+| `biologicalAge` | `Float` |  |
+| `chronologicalAge` | `Float` |  |
 | `division` | `String` |  |
-| `estimated_rank` | `Integer` |  |
-| `estimated_ultimate_league_rank` | `Integer` |  |
+| `estimatedRank` | `Integer` |  |
+| `estimatedUltimateLeagueRank` | `Integer` |  |
 | `league` | `String` |  |
 | `percentile` | `Float` |  |
 
@@ -538,8 +539,8 @@ Create an instance: `rank_preview = client.RankPreview`
 
 ```ruby
 rank_preview = client.RankPreview.create({
-  "biological_age" => 1, # Float
-  "chronological_age" => 1, # Float
+  "biologicalAge" => 1, # Float
+  "chronologicalAge" => 1, # Float
 })
 ```
 
@@ -558,9 +559,9 @@ Create an instance: `reference = client.Reference`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country_code` | `String` |  |
-| `country_name` | `String` |  |
-| `flag_url` | `String` |  |
+| `countryCode` | `String` |  |
+| `countryName` | `String` |  |
+| `flagUrl` | `String` |  |
 
 #### Example: List
 
@@ -646,11 +647,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```ruby
-athlete = client.Athlete
-athlete.list()
+competition = client.Competition
+competition.list()
 
-# athlete.data_get now returns the athlete data from the last list
-# athlete.match_get returns the last match criteria
+# competition.data_get now returns the competition data from the last list
+# competition.match_get returns the last match criteria
 ```
 
 Call `make` to create a fresh instance with the same configuration

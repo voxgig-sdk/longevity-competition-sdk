@@ -26,8 +26,8 @@ import {
 describe('BortzAgeEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when LONGEVITYCOMPETITION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('LONGEVITYCOMPETITION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when LONGEVITY_COMPETITION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('LONGEVITY_COMPETITION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = LongevityCompetitionSDK.test()
@@ -62,7 +62,7 @@ describe('BortzAgeEntity', async () => {
     const bortz_age_ref01_ent = client.BortzAge()
     let bortz_age_ref01_data = setup.data.new.bortz_age['bortz_age_ref01']
 
-    bortz_age_ref01_data = await bortz_age_ref01_ent.create(bortz_age_ref01_data)
+    bortz_age_ref01_data = (await bortz_age_ref01_ent.create(bortz_age_ref01_data)).data()
     assert(null != bortz_age_ref01_data)
 
 

@@ -3,9 +3,9 @@
 import json
 import pytest
 
-from utility.voxgig_struct import voxgig_struct as vs
+from longevitycompetition_sdk.utility.voxgig_struct import voxgig_struct as vs
 from longevitycompetition_sdk import LongevityCompetitionSDK
-from core import helpers
+from longevitycompetition_sdk.core import helpers
 from test import runner
 
 
@@ -58,11 +58,11 @@ def _athlete_direct_setup(mockres):
     calls = []
 
     env = runner.env_override({
-        "LONGEVITYCOMPETITION_TEST_ATHLETE_ENTID": {},
-        "LONGEVITYCOMPETITION_TEST_LIVE": "FALSE",
+        "LONGEVITY_COMPETITION_TEST_ATHLETE_ENTID": {},
+        "LONGEVITY_COMPETITION_TEST_LIVE": "FALSE",
     })
 
-    live = env.get("LONGEVITYCOMPETITION_TEST_LIVE") == "TRUE"
+    live = env.get("LONGEVITY_COMPETITION_TEST_LIVE") == "TRUE"
 
     if live:
         merged_opts = {

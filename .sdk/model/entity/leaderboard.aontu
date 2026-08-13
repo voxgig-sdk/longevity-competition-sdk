@@ -6,17 +6,17 @@ main: kit: entity: leaderboard: {
 
   fields: [
     {
-      name: "age_reduction"
+      name: "ageReduction"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "athlete_id"
+      name: "athleteId"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "athlete_name"
+      name: "athleteName"
       req: false
       type: "`$STRING`"
     }
@@ -80,7 +80,7 @@ main: kit: entity: leaderboard: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.rankings`"
           }
         }
       ]

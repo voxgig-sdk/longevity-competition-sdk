@@ -14,12 +14,12 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from config import make_config
-from features import _make_feature
-from core.control import LongevityCompetitionControl
-from core.error import LongevityCompetitionError
-from core.result import LongevityCompetitionResult
-from core.spec import LongevityCompetitionSpec
+from longevitycompetition_sdk.config import make_config
+from longevitycompetition_sdk.features import _make_feature
+from longevitycompetition_sdk.core.control import LongevityCompetitionControl
+from longevitycompetition_sdk.core.error import LongevityCompetitionError
+from longevitycompetition_sdk.core.result import LongevityCompetitionResult
+from longevitycompetition_sdk.core.spec import LongevityCompetitionSpec
 
 
 # True when this SDK was generated with the named feature.

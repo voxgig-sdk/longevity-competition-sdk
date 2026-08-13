@@ -32,28 +32,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "age_reduction",
+						"name": "ageReduction",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "biological_age",
+						"name": "biologicalAge",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "chronological_age",
+						"name": "chronologicalAge",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "clock_type",
+						"name": "clockType",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 3,
@@ -74,7 +74,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "effective_age_reduction",
+						"name": "effectiveAgeReduction",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 6,
@@ -95,7 +95,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "last_updated",
+						"name": "lastUpdated",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 9,
@@ -116,7 +116,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "profile_url",
+						"name": "profileUrl",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 12,
@@ -130,7 +130,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "ultimate_league_rank",
+						"name": "ultimateLeagueRank",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 14,
@@ -182,6 +182,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/data/athletes",
 								"parts": []any{
@@ -198,12 +199,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.athletes`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -214,28 +214,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "age_reduction",
+						"name": "ageReduction",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "biomarker",
+						"name": "biomarkers",
 						"req": true,
 						"type": "`$OBJECT`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "bortz_age",
+						"name": "bortzAge",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "chronological_age",
+						"name": "chronologicalAge",
 						"op": map[string]any{
 							"create": map[string]any{
 								"req": true,
@@ -263,6 +263,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/data/bortz-age",
 								"parts": []any{
@@ -277,7 +278,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 				},
 				"relations": map[string]any{
@@ -288,7 +288,7 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "age_range",
+						"name": "ageRange",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
@@ -302,14 +302,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "max_age",
+						"name": "maxAge",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "min_age",
+						"name": "minAge",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 3,
@@ -331,6 +331,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/data/divisions",
 								"parts": []any{
@@ -340,12 +341,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.divisions`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -356,21 +356,21 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "age_reduction",
+						"name": "ageReduction",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "athlete_id",
+						"name": "athleteId",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "athlete_name",
+						"name": "athleteName",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 2,
@@ -432,6 +432,7 @@ func MakeConfig() map[string]any {
 										},
 									},
 								},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/data/leaderboard",
 								"parts": []any{
@@ -446,12 +447,11 @@ func MakeConfig() map[string]any {
 								},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.rankings`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{
@@ -462,28 +462,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "age_reduction",
+						"name": "ageReduction",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "biomarker",
+						"name": "biomarkers",
 						"req": true,
 						"type": "`$OBJECT`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "calculation_method",
+						"name": "calculationMethod",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "chronological_age",
+						"name": "chronologicalAge",
 						"op": map[string]any{
 							"create": map[string]any{
 								"req": true,
@@ -496,7 +496,7 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "pheno_age",
+						"name": "phenoAge",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 4,
@@ -511,6 +511,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/data/pheno-age",
 								"parts": []any{
@@ -525,7 +526,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 				},
 				"relations": map[string]any{
@@ -536,28 +536,28 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "age_reduction",
+						"name": "ageReduction",
 						"req": false,
 						"type": "`$NUMBER`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "athletes_in_league",
+						"name": "athletesInLeague",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "biological_age",
+						"name": "biologicalAge",
 						"req": true,
 						"type": "`$NUMBER`",
 						"index$": 2,
 					},
 					map[string]any{
 						"active": true,
-						"name": "chronological_age",
+						"name": "chronologicalAge",
 						"req": true,
 						"type": "`$NUMBER`",
 						"index$": 3,
@@ -571,14 +571,14 @@ func MakeConfig() map[string]any {
 					},
 					map[string]any{
 						"active": true,
-						"name": "estimated_rank",
+						"name": "estimatedRank",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 5,
 					},
 					map[string]any{
 						"active": true,
-						"name": "estimated_ultimate_league_rank",
+						"name": "estimatedUltimateLeagueRank",
 						"req": false,
 						"type": "`$INTEGER`",
 						"index$": 6,
@@ -607,6 +607,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "POST",
 								"orig": "/data/rank-preview",
 								"parts": []any{
@@ -621,7 +622,6 @@ func MakeConfig() map[string]any {
 								"index$": 0,
 							},
 						},
-						"key$": "create",
 					},
 				},
 				"relations": map[string]any{
@@ -632,21 +632,21 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"active": true,
-						"name": "country_code",
+						"name": "countryCode",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 0,
 					},
 					map[string]any{
 						"active": true,
-						"name": "country_name",
+						"name": "countryName",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 1,
 					},
 					map[string]any{
 						"active": true,
-						"name": "flag_url",
+						"name": "flagUrl",
 						"req": false,
 						"type": "`$STRING`",
 						"index$": 2,
@@ -661,6 +661,7 @@ func MakeConfig() map[string]any {
 							map[string]any{
 								"active": true,
 								"args": map[string]any{},
+								"kind": "http",
 								"method": "GET",
 								"orig": "/data/flags",
 								"parts": []any{
@@ -670,12 +671,11 @@ func MakeConfig() map[string]any {
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
-									"res": "`body`",
+									"res": "`body.flags`",
 								},
 								"index$": 0,
 							},
 						},
-						"key$": "list",
 					},
 				},
 				"relations": map[string]any{

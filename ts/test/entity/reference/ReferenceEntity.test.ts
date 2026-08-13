@@ -26,8 +26,8 @@ import {
 describe('ReferenceEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when LONGEVITYCOMPETITION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('LONGEVITYCOMPETITION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when LONGEVITY_COMPETITION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('LONGEVITY_COMPETITION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = LongevityCompetitionSDK.test()
@@ -63,7 +63,7 @@ describe('ReferenceEntity', async () => {
     const reference_ref01_ent = client.Reference()
     const reference_ref01_match: any = {}
 
-    const reference_ref01_list = await reference_ref01_ent.list(reference_ref01_match)
+    const reference_ref01_list = (await reference_ref01_ent.list(reference_ref01_match)).map((e: any) => e.data())
 
 
   })

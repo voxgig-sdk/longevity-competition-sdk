@@ -6,22 +6,22 @@ main: kit: entity: bortz_age: {
 
   fields: [
     {
-      name: "age_reduction"
+      name: "ageReduction"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "biomarker"
+      name: "biomarkers"
       req: true
       type: "`$OBJECT`"
     }
     {
-      name: "bortz_age"
+      name: "bortzAge"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "chronological_age"
+      name: "chronologicalAge"
       op: {
         create: {
           req: true

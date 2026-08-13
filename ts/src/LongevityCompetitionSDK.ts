@@ -152,8 +152,29 @@ class LongevityCompetitionSDK {
   }
 
 
+  // Raw endpoint access is operator-controllable, like every entity op.
+  // Blocking it means denying BOTH the 'direct' and 'graphql' tokens, since
+  // either one reaches the same endpoint.
   async direct(fetchargs?: any) {
+    if (!this._options.allow.op.includes('direct')) {
+      return {
+        ok: false,
+        err: new Error('LongevityCompetitionSDK: direct: operation not allowed by' +
+          ' SDK option allow.op value: "' + this._options.allow.op + '"'),
+      }
+    }
+
+    return this._rawRequest(fetchargs)
+  }
+
+
+  // Ungated request path shared by direct() and graphql(), each of which
+  // checks its own allow.op token first. Private, rather than a flag on
+  // fetchargs: a caller-supplied marker would let anyone opt straight back
+  // out of the gate by passing it.
+  async _rawRequest(fetchargs?: any) {
     const utility = this._utility
+
     const fetcher = utility.fetcher
     const makeContext = utility.makeContext
 
@@ -214,52 +235,120 @@ class LongevityCompetitionSDK {
 
 
 
+  // Raw GraphQL access: the pressure valve that makes the generated
+  // surface's deliberate omissions (per-call selection sets, typed filter
+  // builders, batching, subscriptions) livable — the whole schema stays
+  // reachable.
+  //
+  // Thin wrapper over the same prepare/fetch path `direct` uses, with the
+  // one thing raw `direct` cannot do for GraphQL: a GraphQL failure rides
+  // HTTP 200 as a top-level `errors` array, so status alone would report a
+  // failed query as ok.
+  //
+  // NOTE: like `direct`, this bypasses the feature pipeline — no retry,
+  // ratelimit or paging features apply.
+  async graphql(query: string, variables?: any, ctrl?: any) {
+    const options = this._options
+
+    if (!options.allow.op.includes('graphql')) {
+      return {
+        ok: false,
+        err: new Error('LongevityCompetitionSDK: graphql: operation not allowed by' +
+          ' SDK option allow.op value: "' + options.allow.op + '"'),
+      }
+    }
+
+    const res: any = await this._rawRequest({
+      method: 'POST',
+      headers: { 'content-type': 'application/json' },
+      body: { query, variables: variables || {} },
+      ctrl,
+    })
+
+    if (res instanceof Error) {
+      return res
+    }
+
+    // Errors are read BEFORE any status check: a GraphQL parse or validation
+    // failure comes back as HTTP 400 carrying the standard { errors: [...] }
+    // body, and the raw path represents a non-2xx as { ok: false } with no
+    // err — so returning early on status would discard the server's own
+    // diagnostics, which are the only useful part of that response.
+    const errors = null == res.data ? undefined : res.data.errors
+
+    if (null != errors && Array.isArray(errors) && 0 < errors.length) {
+      const first = errors[0] || {}
+      const err: any = new Error('LongevityCompetitionSDK: graphql: ' +
+        (first.message || 'graphql error'))
+      err.graphql = errors
+      return { ok: false, status: res.status, headers: res.headers, err, data: res.data }
+    }
+
+    return res
+  }
+
+
+
   // Entity access: `client.Athlete().list()` / `client.Athlete().load({ id })`.
-  Athlete(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Athlete(entopts?: Record<string, any>) {
     const self = this
-    return new AthleteEntity(self,data)
+    return new AthleteEntity(self, entopts)
   }
 
 
   // Entity access: `client.BortzAge().list()` / `client.BortzAge().load({ id })`.
-  BortzAge(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  BortzAge(entopts?: Record<string, any>) {
     const self = this
-    return new BortzAgeEntity(self,data)
+    return new BortzAgeEntity(self, entopts)
   }
 
 
   // Entity access: `client.Competition().list()` / `client.Competition().load({ id })`.
-  Competition(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Competition(entopts?: Record<string, any>) {
     const self = this
-    return new CompetitionEntity(self,data)
+    return new CompetitionEntity(self, entopts)
   }
 
 
   // Entity access: `client.Leaderboard().list()` / `client.Leaderboard().load({ id })`.
-  Leaderboard(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Leaderboard(entopts?: Record<string, any>) {
     const self = this
-    return new LeaderboardEntity(self,data)
+    return new LeaderboardEntity(self, entopts)
   }
 
 
   // Entity access: `client.PhenoAge().list()` / `client.PhenoAge().load({ id })`.
-  PhenoAge(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  PhenoAge(entopts?: Record<string, any>) {
     const self = this
-    return new PhenoAgeEntity(self,data)
+    return new PhenoAgeEntity(self, entopts)
   }
 
 
   // Entity access: `client.RankPreview().list()` / `client.RankPreview().load({ id })`.
-  RankPreview(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  RankPreview(entopts?: Record<string, any>) {
     const self = this
-    return new RankPreviewEntity(self,data)
+    return new RankPreviewEntity(self, entopts)
   }
 
 
   // Entity access: `client.Reference().list()` / `client.Reference().load({ id })`.
-  Reference(data?: any) {
+  // The argument is the entity OPTIONS object (passed to the entity
+  // constructor as entopts), not initial entity data.
+  Reference(entopts?: Record<string, any>) {
     const self = this
-    return new ReferenceEntity(self,data)
+    return new ReferenceEntity(self, entopts)
   }
 
 

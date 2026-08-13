@@ -37,7 +37,7 @@ class AthleteEntity extends LongevityCompetitionEntityBase<Athlete> {
 
 
 
-  async list(this: any, reqmatch?: AthleteListMatch, ctrl?: Control): Promise<Athlete[]> {
+  async list(this: any, reqmatch?: AthleteListMatch, ctrl?: Control): Promise<AthleteEntity[]> {
 
     const utility = this._utility
 

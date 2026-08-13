@@ -111,21 +111,21 @@ athlete = client.Athlete()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `biological_age` | `float` | No |  |
-| `chronological_age` | `float` | No |  |
-| `clock_type` | `str` | No |  |
+| `ageReduction` | `float` | No |  |
+| `biologicalAge` | `float` | No |  |
+| `chronologicalAge` | `float` | No |  |
+| `clockType` | `str` | No |  |
 | `country` | `str` | No |  |
 | `division` | `str` | No |  |
-| `effective_age_reduction` | `float` | No |  |
+| `effectiveAgeReduction` | `float` | No |  |
 | `generation` | `str` | No |  |
 | `id` | `str` | No |  |
-| `last_updated` | `str` | No |  |
+| `lastUpdated` | `str` | No |  |
 | `league` | `str` | No |  |
 | `name` | `str` | No |  |
-| `profile_url` | `str` | No |  |
+| `profileUrl` | `str` | No |  |
 | `rank` | `int` | No |  |
-| `ultimate_league_rank` | `int` | No |  |
+| `ultimateLeagueRank` | `int` | No |  |
 
 ### Operations
 
@@ -178,20 +178,20 @@ bortz_age = client.BortzAge()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `biomarker` | `dict` | Yes |  |
-| `bortz_age` | `float` | No |  |
-| `chronological_age` | `float` | No |  |
+| `ageReduction` | `float` | No |  |
+| `biomarkers` | `dict` | Yes |  |
+| `bortzAge` | `float` | No |  |
+| `chronologicalAge` | `float` | No |  |
 | `season` | `str` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `bortz_age` | - |
-| `chronological_age` | Yes |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `bortzAge` | - |
+| `chronologicalAge` | Yes |
 | `season` | - |
 
 ### Operations
@@ -202,7 +202,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.BortzAge().create({
-    "biomarker": {},  # dict
+    "biomarkers": {},  # dict
 })
 ```
 
@@ -245,10 +245,10 @@ competition = client.Competition()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_range` | `str` | No |  |
+| `ageRange` | `str` | No |  |
 | `id` | `str` | No |  |
-| `max_age` | `int` | No |  |
-| `min_age` | `int` | No |  |
+| `maxAge` | `int` | No |  |
+| `minAge` | `int` | No |  |
 | `name` | `str` | No |  |
 
 ### Operations
@@ -302,9 +302,9 @@ leaderboard = client.Leaderboard()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `athlete_id` | `str` | No |  |
-| `athlete_name` | `str` | No |  |
+| `ageReduction` | `float` | No |  |
+| `athleteId` | `str` | No |  |
+| `athleteName` | `str` | No |  |
 | `country` | `str` | No |  |
 | `division` | `str` | No |  |
 | `league` | `str` | No |  |
@@ -361,21 +361,21 @@ pheno_age = client.PhenoAge()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `biomarker` | `dict` | Yes |  |
-| `calculation_method` | `str` | No |  |
-| `chronological_age` | `float` | No |  |
-| `pheno_age` | `float` | No |  |
+| `ageReduction` | `float` | No |  |
+| `biomarkers` | `dict` | Yes |  |
+| `calculationMethod` | `str` | No |  |
+| `chronologicalAge` | `float` | No |  |
+| `phenoAge` | `float` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `calculation_method` | - |
-| `chronological_age` | Yes |
-| `pheno_age` | - |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `calculationMethod` | - |
+| `chronologicalAge` | Yes |
+| `phenoAge` | - |
 
 ### Operations
 
@@ -385,7 +385,7 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.PhenoAge().create({
-    "biomarker": {},  # dict
+    "biomarkers": {},  # dict
 })
 ```
 
@@ -428,13 +428,13 @@ rank_preview = client.RankPreview()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `athletes_in_league` | `int` | No |  |
-| `biological_age` | `float` | Yes |  |
-| `chronological_age` | `float` | Yes |  |
+| `ageReduction` | `float` | No |  |
+| `athletesInLeague` | `int` | No |  |
+| `biologicalAge` | `float` | Yes |  |
+| `chronologicalAge` | `float` | Yes |  |
 | `division` | `str` | No |  |
-| `estimated_rank` | `int` | No |  |
-| `estimated_ultimate_league_rank` | `int` | No |  |
+| `estimatedRank` | `int` | No |  |
+| `estimatedUltimateLeagueRank` | `int` | No |  |
 | `league` | `str` | No |  |
 | `percentile` | `float` | No |  |
 
@@ -446,8 +446,8 @@ Create a new entity with the given data. Returns the created entity data and rai
 
 ```python
 result = client.RankPreview().create({
-    "biological_age": 1,  # float
-    "chronological_age": 1,  # float
+    "biologicalAge": 1,  # float
+    "chronologicalAge": 1,  # float
 })
 ```
 
@@ -490,9 +490,9 @@ reference = client.Reference()
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country_code` | `str` | No |  |
-| `country_name` | `str` | No |  |
-| `flag_url` | `str` | No |  |
+| `countryCode` | `str` | No |  |
+| `countryName` | `str` | No |  |
+| `flagUrl` | `str` | No |  |
 
 ### Operations
 

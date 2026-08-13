@@ -37,7 +37,7 @@ class CompetitionEntity extends LongevityCompetitionEntityBase<Competition> {
 
 
 
-  async list(this: any, reqmatch?: CompetitionListMatch, ctrl?: Control): Promise<Competition[]> {
+  async list(this: any, reqmatch?: CompetitionListMatch, ctrl?: Control): Promise<CompetitionEntity[]> {
 
     const utility = this._utility
 

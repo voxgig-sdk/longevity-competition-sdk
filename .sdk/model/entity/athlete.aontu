@@ -6,22 +6,22 @@ main: kit: entity: athlete: {
 
   fields: [
     {
-      name: "age_reduction"
+      name: "ageReduction"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "biological_age"
+      name: "biologicalAge"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "chronological_age"
+      name: "chronologicalAge"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "clock_type"
+      name: "clockType"
       req: false
       type: "`$STRING`"
     }
@@ -36,7 +36,7 @@ main: kit: entity: athlete: {
       type: "`$STRING`"
     }
     {
-      name: "effective_age_reduction"
+      name: "effectiveAgeReduction"
       req: false
       type: "`$NUMBER`"
     }
@@ -51,7 +51,7 @@ main: kit: entity: athlete: {
       type: "`$STRING`"
     }
     {
-      name: "last_updated"
+      name: "lastUpdated"
       req: false
       type: "`$STRING`"
     }
@@ -66,7 +66,7 @@ main: kit: entity: athlete: {
       type: "`$STRING`"
     }
     {
-      name: "profile_url"
+      name: "profileUrl"
       req: false
       type: "`$STRING`"
     }
@@ -76,7 +76,7 @@ main: kit: entity: athlete: {
       type: "`$INTEGER`"
     }
     {
-      name: "ultimate_league_rank"
+      name: "ultimateLeagueRank"
       req: false
       type: "`$INTEGER`"
     }
@@ -143,7 +143,7 @@ main: kit: entity: athlete: {
           }
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.athletes`"
           }
         }
       ]

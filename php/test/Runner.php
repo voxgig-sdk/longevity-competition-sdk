@@ -43,8 +43,8 @@ class LongevityCompetitionTestRunner
 
     public static function env_override(array $m): array
     {
-        $live = self::getenv('LONGEVITYCOMPETITION_TEST_LIVE');
-        $override = self::getenv('LONGEVITYCOMPETITION_TEST_OVERRIDE');
+        $live = self::getenv('LONGEVITY_COMPETITION_TEST_LIVE');
+        $override = self::getenv('LONGEVITY_COMPETITION_TEST_OVERRIDE');
 
         if ($live === 'TRUE' || $override === 'TRUE') {
             foreach (array_keys($m) as $key) {
@@ -63,9 +63,9 @@ class LongevityCompetitionTestRunner
             }
         }
 
-        $explain = self::getenv('LONGEVITYCOMPETITION_TEST_EXPLAIN');
+        $explain = self::getenv('LONGEVITY_COMPETITION_TEST_EXPLAIN');
         if ($explain !== null && $explain !== '') {
-            $m['LONGEVITYCOMPETITION_TEST_EXPLAIN'] = $explain;
+            $m['LONGEVITY_COMPETITION_TEST_EXPLAIN'] = $explain;
         }
 
         return $m;

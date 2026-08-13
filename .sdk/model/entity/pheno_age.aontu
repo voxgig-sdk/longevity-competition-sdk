@@ -6,22 +6,22 @@ main: kit: entity: pheno_age: {
 
   fields: [
     {
-      name: "age_reduction"
+      name: "ageReduction"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "biomarker"
+      name: "biomarkers"
       req: true
       type: "`$OBJECT`"
     }
     {
-      name: "calculation_method"
+      name: "calculationMethod"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "chronological_age"
+      name: "chronologicalAge"
       op: {
         create: {
           req: true
@@ -32,7 +32,7 @@ main: kit: entity: pheno_age: {
       type: "`$NUMBER`"
     }
     {
-      name: "pheno_age"
+      name: "phenoAge"
       req: false
       type: "`$NUMBER`"
     }

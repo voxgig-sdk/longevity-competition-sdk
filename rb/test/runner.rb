@@ -23,8 +23,8 @@ module LongevityCompetitionTestRunner
   end
 
   def self.env_override(m)
-    live = getenv("LONGEVITYCOMPETITION_TEST_LIVE")
-    override = getenv("LONGEVITYCOMPETITION_TEST_OVERRIDE")
+    live = getenv("LONGEVITY_COMPETITION_TEST_LIVE")
+    override = getenv("LONGEVITY_COMPETITION_TEST_OVERRIDE")
 
     if live == "TRUE" || override == "TRUE"
       m.each_key do |key|
@@ -44,8 +44,8 @@ module LongevityCompetitionTestRunner
       end
     end
 
-    explain = getenv("LONGEVITYCOMPETITION_TEST_EXPLAIN")
-    m["LONGEVITYCOMPETITION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
+    explain = getenv("LONGEVITY_COMPETITION_TEST_EXPLAIN")
+    m["LONGEVITY_COMPETITION_TEST_EXPLAIN"] = explain if explain && !explain.empty?
 
     m
   end

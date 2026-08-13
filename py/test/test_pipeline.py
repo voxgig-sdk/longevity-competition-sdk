@@ -16,11 +16,11 @@
 import pytest
 
 from longevitycompetition_sdk import LongevityCompetitionSDK
-from core.error import LongevityCompetitionError
-from core.result import LongevityCompetitionResult
-from core.response import LongevityCompetitionResponse
-from core.spec import LongevityCompetitionSpec
-from feature.base_feature import LongevityCompetitionBaseFeature
+from longevitycompetition_sdk.core.error import LongevityCompetitionError
+from longevitycompetition_sdk.core.result import LongevityCompetitionResult
+from longevitycompetition_sdk.core.response import LongevityCompetitionResponse
+from longevitycompetition_sdk.core.spec import LongevityCompetitionSpec
+from longevitycompetition_sdk.feature.base_feature import LongevityCompetitionBaseFeature
 
 
 def _client():

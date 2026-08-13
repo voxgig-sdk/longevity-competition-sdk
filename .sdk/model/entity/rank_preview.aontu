@@ -6,22 +6,22 @@ main: kit: entity: rank_preview: {
 
   fields: [
     {
-      name: "age_reduction"
+      name: "ageReduction"
       req: false
       type: "`$NUMBER`"
     }
     {
-      name: "athletes_in_league"
+      name: "athletesInLeague"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "biological_age"
+      name: "biologicalAge"
       req: true
       type: "`$NUMBER`"
     }
     {
-      name: "chronological_age"
+      name: "chronologicalAge"
       req: true
       type: "`$NUMBER`"
     }
@@ -31,12 +31,12 @@ main: kit: entity: rank_preview: {
       type: "`$STRING`"
     }
     {
-      name: "estimated_rank"
+      name: "estimatedRank"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "estimated_ultimate_league_rank"
+      name: "estimatedUltimateLeagueRank"
       req: false
       type: "`$INTEGER`"
     }

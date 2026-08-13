@@ -26,8 +26,8 @@ import {
 describe('AthleteEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when LONGEVITYCOMPETITION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('LONGEVITYCOMPETITION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when LONGEVITY_COMPETITION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('LONGEVITY_COMPETITION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = LongevityCompetitionSDK.test()
@@ -63,7 +63,7 @@ describe('AthleteEntity', async () => {
     const athlete_ref01_ent = client.Athlete()
     const athlete_ref01_match: any = {}
 
-    const athlete_ref01_list = await athlete_ref01_ent.list(athlete_ref01_match)
+    const athlete_ref01_list = (await athlete_ref01_ent.list(athlete_ref01_match)).map((e: any) => e.data())
 
 
   })

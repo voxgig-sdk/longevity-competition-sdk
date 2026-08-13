@@ -38,28 +38,28 @@ class LongevityCompetitionConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'age_reduction',
+              'name' => 'ageReduction',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'biological_age',
+              'name' => 'biologicalAge',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'chronological_age',
+              'name' => 'chronologicalAge',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'clock_type',
+              'name' => 'clockType',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 3,
@@ -80,7 +80,7 @@ class LongevityCompetitionConfig
             ],
             [
               'active' => true,
-              'name' => 'effective_age_reduction',
+              'name' => 'effectiveAgeReduction',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 6,
@@ -101,7 +101,7 @@ class LongevityCompetitionConfig
             ],
             [
               'active' => true,
-              'name' => 'last_updated',
+              'name' => 'lastUpdated',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 9,
@@ -122,7 +122,7 @@ class LongevityCompetitionConfig
             ],
             [
               'active' => true,
-              'name' => 'profile_url',
+              'name' => 'profileUrl',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 12,
@@ -136,7 +136,7 @@ class LongevityCompetitionConfig
             ],
             [
               'active' => true,
-              'name' => 'ultimate_league_rank',
+              'name' => 'ultimateLeagueRank',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 14,
@@ -188,6 +188,7 @@ class LongevityCompetitionConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/athletes',
                   'parts' => [
@@ -204,7 +205,7 @@ class LongevityCompetitionConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.athletes`',
                   ],
                   'index$' => 0,
                 ],
@@ -220,28 +221,28 @@ class LongevityCompetitionConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'age_reduction',
+              'name' => 'ageReduction',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'biomarker',
+              'name' => 'biomarkers',
               'req' => true,
               'type' => '`$OBJECT`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'bortz_age',
+              'name' => 'bortzAge',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'chronological_age',
+              'name' => 'chronologicalAge',
               'op' => [
                 'create' => [
                   'req' => true,
@@ -269,6 +270,7 @@ class LongevityCompetitionConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/data/bortz-age',
                   'parts' => [
@@ -294,7 +296,7 @@ class LongevityCompetitionConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'age_range',
+              'name' => 'ageRange',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
@@ -308,14 +310,14 @@ class LongevityCompetitionConfig
             ],
             [
               'active' => true,
-              'name' => 'max_age',
+              'name' => 'maxAge',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'min_age',
+              'name' => 'minAge',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 3,
@@ -337,6 +339,7 @@ class LongevityCompetitionConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/divisions',
                   'parts' => [
@@ -346,7 +349,7 @@ class LongevityCompetitionConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.divisions`',
                   ],
                   'index$' => 0,
                 ],
@@ -362,21 +365,21 @@ class LongevityCompetitionConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'age_reduction',
+              'name' => 'ageReduction',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'athlete_id',
+              'name' => 'athleteId',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'athlete_name',
+              'name' => 'athleteName',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 2,
@@ -438,6 +441,7 @@ class LongevityCompetitionConfig
                       ],
                     ],
                   ],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/leaderboard',
                   'parts' => [
@@ -452,7 +456,7 @@ class LongevityCompetitionConfig
                   ],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.rankings`',
                   ],
                   'index$' => 0,
                 ],
@@ -468,28 +472,28 @@ class LongevityCompetitionConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'age_reduction',
+              'name' => 'ageReduction',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'biomarker',
+              'name' => 'biomarkers',
               'req' => true,
               'type' => '`$OBJECT`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'calculation_method',
+              'name' => 'calculationMethod',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'chronological_age',
+              'name' => 'chronologicalAge',
               'op' => [
                 'create' => [
                   'req' => true,
@@ -502,7 +506,7 @@ class LongevityCompetitionConfig
             ],
             [
               'active' => true,
-              'name' => 'pheno_age',
+              'name' => 'phenoAge',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 4,
@@ -517,6 +521,7 @@ class LongevityCompetitionConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/data/pheno-age',
                   'parts' => [
@@ -542,28 +547,28 @@ class LongevityCompetitionConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'age_reduction',
+              'name' => 'ageReduction',
               'req' => false,
               'type' => '`$NUMBER`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'athletes_in_league',
+              'name' => 'athletesInLeague',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'biological_age',
+              'name' => 'biologicalAge',
               'req' => true,
               'type' => '`$NUMBER`',
               'index$' => 2,
             ],
             [
               'active' => true,
-              'name' => 'chronological_age',
+              'name' => 'chronologicalAge',
               'req' => true,
               'type' => '`$NUMBER`',
               'index$' => 3,
@@ -577,14 +582,14 @@ class LongevityCompetitionConfig
             ],
             [
               'active' => true,
-              'name' => 'estimated_rank',
+              'name' => 'estimatedRank',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 5,
             ],
             [
               'active' => true,
-              'name' => 'estimated_ultimate_league_rank',
+              'name' => 'estimatedUltimateLeagueRank',
               'req' => false,
               'type' => '`$INTEGER`',
               'index$' => 6,
@@ -613,6 +618,7 @@ class LongevityCompetitionConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'POST',
                   'orig' => '/data/rank-preview',
                   'parts' => [
@@ -638,21 +644,21 @@ class LongevityCompetitionConfig
           'fields' => [
             [
               'active' => true,
-              'name' => 'country_code',
+              'name' => 'countryCode',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 0,
             ],
             [
               'active' => true,
-              'name' => 'country_name',
+              'name' => 'countryName',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 1,
             ],
             [
               'active' => true,
-              'name' => 'flag_url',
+              'name' => 'flagUrl',
               'req' => false,
               'type' => '`$STRING`',
               'index$' => 2,
@@ -667,6 +673,7 @@ class LongevityCompetitionConfig
                 [
                   'active' => true,
                   'args' => [],
+                  'kind' => 'http',
                   'method' => 'GET',
                   'orig' => '/data/flags',
                   'parts' => [
@@ -676,7 +683,7 @@ class LongevityCompetitionConfig
                   'select' => [],
                   'transform' => [
                     'req' => '`reqdata`',
-                    'res' => '`body`',
+                    'res' => '`body.flags`',
                   ],
                   'index$' => 0,
                 ],

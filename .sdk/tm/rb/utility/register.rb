@@ -24,6 +24,7 @@ require_relative 'prepare_method'
 require_relative 'prepare_params'
 require_relative 'prepare_path'
 require_relative 'prepare_query'
+require_relative 'graphql'
 require_relative 'result_basic'
 require_relative 'result_body'
 require_relative 'result_headers'
@@ -55,6 +56,8 @@ LongevityCompetitionUtility.registrar = ->(u) {
   u.prepare_params = LongevityCompetitionUtilities::PrepareParams
   u.prepare_path = LongevityCompetitionUtilities::PreparePath
   u.prepare_query = LongevityCompetitionUtilities::PrepareQuery
+  u.graphql_body = LongevityCompetitionUtilities::GraphqlBody
+  u.graphql_errors = LongevityCompetitionUtilities::GraphqlErrors
   u.result_basic = LongevityCompetitionUtilities::ResultBasic
   u.result_body = LongevityCompetitionUtilities::ResultBody
   u.result_headers = LongevityCompetitionUtilities::ResultHeaders

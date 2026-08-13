@@ -26,8 +26,8 @@ import {
 describe('PhenoAgeEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when LONGEVITYCOMPETITION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('LONGEVITYCOMPETITION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when LONGEVITY_COMPETITION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('LONGEVITY_COMPETITION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = LongevityCompetitionSDK.test()
@@ -62,7 +62,7 @@ describe('PhenoAgeEntity', async () => {
     const pheno_age_ref01_ent = client.PhenoAge()
     let pheno_age_ref01_data = setup.data.new.pheno_age['pheno_age_ref01']
 
-    pheno_age_ref01_data = await pheno_age_ref01_ent.create(pheno_age_ref01_data)
+    pheno_age_ref01_data = (await pheno_age_ref01_ent.create(pheno_age_ref01_data)).data()
     assert(null != pheno_age_ref01_data)
 
 

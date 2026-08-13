@@ -33,7 +33,7 @@ class BortzAgeEntityTest extends TestCase
         // The basic flow consumes synthetic IDs from the fixture. In live mode
         // without an *_ENTID env override, those IDs hit the live API and 4xx.
         if (!empty($setup["synthetic_only"])) {
-            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set LONGEVITYCOMPETITION_TEST_BORTZ_AGE_ENTID JSON to run live");
+            $this->markTestSkipped("live entity test uses synthetic IDs from fixture — set LONGEVITY_COMPETITION_TEST_BORTZ_AGE_ENTID JSON to run live");
             return;
         }
         $client = $setup["client"];
@@ -44,7 +44,7 @@ class BortzAgeEntityTest extends TestCase
             Vs::getpath($setup["data"], "new.bortz_age"), "bortz_age_ref01"));
 
         $bortz_age_ref01_data_result = $bortz_age_ref01_ent->create($bortz_age_ref01_data, null);
-        $bortz_age_ref01_data = Helpers::to_map($bortz_age_ref01_data_result);
+        $bortz_age_ref01_data = Helpers::to_map(is_object($bortz_age_ref01_data_result) && method_exists($bortz_age_ref01_data_result, 'data_get') ? $bortz_age_ref01_data_result->data_get() : $bortz_age_ref01_data_result);
         $this->assertNotNull($bortz_age_ref01_data);
 
     }
@@ -72,22 +72,22 @@ function bortz_age_basic_setup($extra)
     // Detect ENTID env override before envOverride consumes it. When live
     // mode is on without a real override, the basic test runs against synthetic
     // IDs from the fixture and 4xx's. Surface this so the test can skip.
-    $entid_env_raw = getenv("LONGEVITYCOMPETITION_TEST_BORTZ_AGE_ENTID");
+    $entid_env_raw = getenv("LONGEVITY_COMPETITION_TEST_BORTZ_AGE_ENTID");
     $idmap_overridden = $entid_env_raw !== false && str_starts_with(trim($entid_env_raw), "{");
 
     $env = Runner::env_override([
-        "LONGEVITYCOMPETITION_TEST_BORTZ_AGE_ENTID" => $idmap,
-        "LONGEVITYCOMPETITION_TEST_LIVE" => "FALSE",
-        "LONGEVITYCOMPETITION_TEST_EXPLAIN" => "FALSE",
+        "LONGEVITY_COMPETITION_TEST_BORTZ_AGE_ENTID" => $idmap,
+        "LONGEVITY_COMPETITION_TEST_LIVE" => "FALSE",
+        "LONGEVITY_COMPETITION_TEST_EXPLAIN" => "FALSE",
     ]);
 
     $idmap_resolved = Helpers::to_map(
-        $env["LONGEVITYCOMPETITION_TEST_BORTZ_AGE_ENTID"]);
+        $env["LONGEVITY_COMPETITION_TEST_BORTZ_AGE_ENTID"]);
     if ($idmap_resolved === null) {
         $idmap_resolved = Helpers::to_map($idmap);
     }
 
-    if ($env["LONGEVITYCOMPETITION_TEST_LIVE"] === "TRUE") {
+    if ($env["LONGEVITY_COMPETITION_TEST_LIVE"] === "TRUE") {
         $merged_opts = Vs::merge([
             [
             ],
@@ -96,13 +96,13 @@ function bortz_age_basic_setup($extra)
         $client = new LongevityCompetitionSDK(Helpers::to_map($merged_opts));
     }
 
-    $live = $env["LONGEVITYCOMPETITION_TEST_LIVE"] === "TRUE";
+    $live = $env["LONGEVITY_COMPETITION_TEST_LIVE"] === "TRUE";
     return [
         "client" => $client,
         "data" => $entity_data,
         "idmap" => $idmap_resolved,
         "env" => $env,
-        "explain" => $env["LONGEVITYCOMPETITION_TEST_EXPLAIN"] === "TRUE",
+        "explain" => $env["LONGEVITY_COMPETITION_TEST_EXPLAIN"] === "TRUE",
         "live" => $live,
         "synthetic_only" => $live && !$idmap_overridden,
         "now" => (int)(microtime(true) * 1000),

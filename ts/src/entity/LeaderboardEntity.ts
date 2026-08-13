@@ -37,7 +37,7 @@ class LeaderboardEntity extends LongevityCompetitionEntityBase<Leaderboard> {
 
 
 
-  async list(this: any, reqmatch?: LeaderboardListMatch, ctrl?: Control): Promise<Leaderboard[]> {
+  async list(this: any, reqmatch?: LeaderboardListMatch, ctrl?: Control): Promise<LeaderboardEntity[]> {
 
     const utility = this._utility
 

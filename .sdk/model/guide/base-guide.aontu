@@ -8,6 +8,7 @@ guide: {
   entity: athlete: {
     path: "/data/athletes": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.athletes`")|top
     }
   }
 
@@ -20,12 +21,14 @@ guide: {
   entity: competition: {
     path: "/data/divisions": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.divisions`")|top
     }
   }
 
   entity: leaderboard: {
     path: "/data/leaderboard": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.rankings`")|top
     }
   }
 
@@ -44,6 +47,7 @@ guide: {
   entity: reference: {
     path: "/data/flags": {
       op: list: method: *GET
+      op: list: transform: res: *("`body.flags`")|top
     }
   }
 

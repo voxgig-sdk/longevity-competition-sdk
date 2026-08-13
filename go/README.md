@@ -68,12 +68,12 @@ Every entity operation returns `(value, error)`. Check `err` before
 using the value — there is no exception to catch:
 
 ```go
-athletes, err := client.Athlete(nil).List(nil, nil)
+competitions, err := client.Competition(nil).List(nil, nil)
 if err != nil {
     // handle err
     return
 }
-_ = athletes
+_ = competitions
 ```
 
 `Direct` follows the same `(value, error)` convention:
@@ -137,13 +137,13 @@ Create a mock client for unit testing — no server required:
 ```go
 client := sdk.Test()
 
-athlete, err := client.Athlete(nil).List(
+competition, err := client.Competition(nil).List(
     nil, nil,
 )
 if err != nil {
     panic(err)
 }
-fmt.Println(athlete) // the returned mock data
+fmt.Println(competition) // the returned mock data
 ```
 
 ### Use a custom fetch function
@@ -268,21 +268,21 @@ Only `Direct()` returns a response envelope — a `map[string]any` with
 
 | Field | Description |
 | --- | --- |
-| `"age_reduction"` |  |
-| `"biological_age"` |  |
-| `"chronological_age"` |  |
-| `"clock_type"` |  |
+| `"ageReduction"` |  |
+| `"biologicalAge"` |  |
+| `"chronologicalAge"` |  |
+| `"clockType"` |  |
 | `"country"` |  |
 | `"division"` |  |
-| `"effective_age_reduction"` |  |
+| `"effectiveAgeReduction"` |  |
 | `"generation"` |  |
 | `"id"` |  |
-| `"last_updated"` |  |
+| `"lastUpdated"` |  |
 | `"league"` |  |
 | `"name"` |  |
-| `"profile_url"` |  |
+| `"profileUrl"` |  |
 | `"rank"` |  |
-| `"ultimate_league_rank"` |  |
+| `"ultimateLeagueRank"` |  |
 
 Operations: List.
 
@@ -292,10 +292,10 @@ API path: `/data/athletes`
 
 | Field | Description |
 | --- | --- |
-| `"age_reduction"` |  |
-| `"biomarker"` |  |
-| `"bortz_age"` |  |
-| `"chronological_age"` |  |
+| `"ageReduction"` |  |
+| `"biomarkers"` |  |
+| `"bortzAge"` |  |
+| `"chronologicalAge"` |  |
 | `"season"` |  |
 
 Operations: Create.
@@ -306,10 +306,10 @@ API path: `/data/bortz-age`
 
 | Field | Description |
 | --- | --- |
-| `"age_range"` |  |
+| `"ageRange"` |  |
 | `"id"` |  |
-| `"max_age"` |  |
-| `"min_age"` |  |
+| `"maxAge"` |  |
+| `"minAge"` |  |
 | `"name"` |  |
 
 Operations: List.
@@ -320,9 +320,9 @@ API path: `/data/divisions`
 
 | Field | Description |
 | --- | --- |
-| `"age_reduction"` |  |
-| `"athlete_id"` |  |
-| `"athlete_name"` |  |
+| `"ageReduction"` |  |
+| `"athleteId"` |  |
+| `"athleteName"` |  |
 | `"country"` |  |
 | `"division"` |  |
 | `"league"` |  |
@@ -336,11 +336,11 @@ API path: `/data/leaderboard`
 
 | Field | Description |
 | --- | --- |
-| `"age_reduction"` |  |
-| `"biomarker"` |  |
-| `"calculation_method"` |  |
-| `"chronological_age"` |  |
-| `"pheno_age"` |  |
+| `"ageReduction"` |  |
+| `"biomarkers"` |  |
+| `"calculationMethod"` |  |
+| `"chronologicalAge"` |  |
+| `"phenoAge"` |  |
 
 Operations: Create.
 
@@ -350,13 +350,13 @@ API path: `/data/pheno-age`
 
 | Field | Description |
 | --- | --- |
-| `"age_reduction"` |  |
-| `"athletes_in_league"` |  |
-| `"biological_age"` |  |
-| `"chronological_age"` |  |
+| `"ageReduction"` |  |
+| `"athletesInLeague"` |  |
+| `"biologicalAge"` |  |
+| `"chronologicalAge"` |  |
 | `"division"` |  |
-| `"estimated_rank"` |  |
-| `"estimated_ultimate_league_rank"` |  |
+| `"estimatedRank"` |  |
+| `"estimatedUltimateLeagueRank"` |  |
 | `"league"` |  |
 | `"percentile"` |  |
 
@@ -368,9 +368,9 @@ API path: `/data/rank-preview`
 
 | Field | Description |
 | --- | --- |
-| `"country_code"` |  |
-| `"country_name"` |  |
-| `"flag_url"` |  |
+| `"countryCode"` |  |
+| `"countryName"` |  |
+| `"flagUrl"` |  |
 
 Operations: List.
 
@@ -395,21 +395,21 @@ Create an instance: `athlete := client.Athlete(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float64` |  |
-| `biological_age` | `float64` |  |
-| `chronological_age` | `float64` |  |
-| `clock_type` | `string` |  |
+| `ageReduction` | `float64` |  |
+| `biologicalAge` | `float64` |  |
+| `chronologicalAge` | `float64` |  |
+| `clockType` | `string` |  |
 | `country` | `string` |  |
 | `division` | `string` |  |
-| `effective_age_reduction` | `float64` |  |
+| `effectiveAgeReduction` | `float64` |  |
 | `generation` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `league` | `string` |  |
 | `name` | `string` |  |
-| `profile_url` | `string` |  |
+| `profileUrl` | `string` |  |
 | `rank` | `int` |  |
-| `ultimate_league_rank` | `int` |  |
+| `ultimateLeagueRank` | `int` |  |
 
 #### Example: List
 
@@ -436,17 +436,17 @@ Create an instance: `bortzAge := client.BortzAge(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float64` |  |
-| `biomarker` | `map[string]any` |  |
-| `bortz_age` | `float64` |  |
-| `chronological_age` | `float64` |  |
+| `ageReduction` | `float64` |  |
+| `biomarkers` | `map[string]any` |  |
+| `bortzAge` | `float64` |  |
+| `chronologicalAge` | `float64` |  |
 | `season` | `string` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.BortzAge(nil).Create(map[string]any{
-    "biomarker": map[string]any{},
+    "biomarkers": map[string]any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -469,10 +469,10 @@ Create an instance: `competition := client.Competition(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_range` | `string` |  |
+| `ageRange` | `string` |  |
 | `id` | `string` |  |
-| `max_age` | `int` |  |
-| `min_age` | `int` |  |
+| `maxAge` | `int` |  |
+| `minAge` | `int` |  |
 | `name` | `string` |  |
 
 #### Example: List
@@ -500,9 +500,9 @@ Create an instance: `leaderboard := client.Leaderboard(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float64` |  |
-| `athlete_id` | `string` |  |
-| `athlete_name` | `string` |  |
+| `ageReduction` | `float64` |  |
+| `athleteId` | `string` |  |
+| `athleteName` | `string` |  |
 | `country` | `string` |  |
 | `division` | `string` |  |
 | `league` | `string` |  |
@@ -533,17 +533,17 @@ Create an instance: `phenoAge := client.PhenoAge(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float64` |  |
-| `biomarker` | `map[string]any` |  |
-| `calculation_method` | `string` |  |
-| `chronological_age` | `float64` |  |
-| `pheno_age` | `float64` |  |
+| `ageReduction` | `float64` |  |
+| `biomarkers` | `map[string]any` |  |
+| `calculationMethod` | `string` |  |
+| `chronologicalAge` | `float64` |  |
+| `phenoAge` | `float64` |  |
 
 #### Example: Create
 
 ```go
 result, err := client.PhenoAge(nil).Create(map[string]any{
-    "biomarker": map[string]any{},
+    "biomarkers": map[string]any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -566,13 +566,13 @@ Create an instance: `rankPreview := client.RankPreview(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float64` |  |
-| `athletes_in_league` | `int` |  |
-| `biological_age` | `float64` |  |
-| `chronological_age` | `float64` |  |
+| `ageReduction` | `float64` |  |
+| `athletesInLeague` | `int` |  |
+| `biologicalAge` | `float64` |  |
+| `chronologicalAge` | `float64` |  |
 | `division` | `string` |  |
-| `estimated_rank` | `int` |  |
-| `estimated_ultimate_league_rank` | `int` |  |
+| `estimatedRank` | `int` |  |
+| `estimatedUltimateLeagueRank` | `int` |  |
 | `league` | `string` |  |
 | `percentile` | `float64` |  |
 
@@ -580,8 +580,8 @@ Create an instance: `rankPreview := client.RankPreview(nil)`
 
 ```go
 result, err := client.RankPreview(nil).Create(map[string]any{
-    "biological_age": 1,
-    "chronological_age": 1,
+    "biologicalAge": 1,
+    "chronologicalAge": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -604,9 +604,9 @@ Create an instance: `reference := client.Reference(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country_code` | `string` |  |
-| `country_name` | `string` |  |
-| `flag_url` | `string` |  |
+| `countryCode` | `string` |  |
+| `countryName` | `string` |  |
+| `flagUrl` | `string` |  |
 
 #### Example: List
 
@@ -692,11 +692,11 @@ Entity instances are stateful. After a successful `List`, the entity
 stores the returned data and match criteria internally.
 
 ```go
-athlete := client.Athlete(nil)
-athlete.List(nil, nil)
+competition := client.Competition(nil)
+competition.List(nil, nil)
 
-// athlete.Data() now returns the athlete data from the last list
-// athlete.Match() returns the last match criteria
+// competition.Data() now returns the competition data from the last list
+// competition.Match() returns the last match criteria
 ```
 
 Call `Make()` to create a fresh instance with the same configuration

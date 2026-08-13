@@ -66,11 +66,11 @@ function athlete_direct_setup($mockres)
     $calls = new \ArrayObject();
 
     $env = Runner::env_override([
-        "LONGEVITYCOMPETITION_TEST_ATHLETE_ENTID" => [],
-        "LONGEVITYCOMPETITION_TEST_LIVE" => "FALSE",
+        "LONGEVITY_COMPETITION_TEST_ATHLETE_ENTID" => [],
+        "LONGEVITY_COMPETITION_TEST_LIVE" => "FALSE",
     ]);
 
-    $live = $env["LONGEVITYCOMPETITION_TEST_LIVE"] === "TRUE";
+    $live = $env["LONGEVITY_COMPETITION_TEST_LIVE"] === "TRUE";
 
     if ($live) {
         $merged_opts = [

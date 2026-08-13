@@ -114,21 +114,21 @@ local athlete = client:Athlete(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `number` | No |  |
-| `biological_age` | `number` | No |  |
-| `chronological_age` | `number` | No |  |
-| `clock_type` | `string` | No |  |
+| `ageReduction` | `number` | No |  |
+| `biologicalAge` | `number` | No |  |
+| `chronologicalAge` | `number` | No |  |
+| `clockType` | `string` | No |  |
 | `country` | `string` | No |  |
 | `division` | `string` | No |  |
-| `effective_age_reduction` | `number` | No |  |
+| `effectiveAgeReduction` | `number` | No |  |
 | `generation` | `string` | No |  |
 | `id` | `string` | No |  |
-| `last_updated` | `string` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `league` | `string` | No |  |
 | `name` | `string` | No |  |
-| `profile_url` | `string` | No |  |
+| `profileUrl` | `string` | No |  |
 | `rank` | `number` | No |  |
-| `ultimate_league_rank` | `number` | No |  |
+| `ultimateLeagueRank` | `number` | No |  |
 
 ### Operations
 
@@ -180,20 +180,20 @@ local bortz_age = client:BortzAge(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `number` | No |  |
-| `biomarker` | `table` | Yes |  |
-| `bortz_age` | `number` | No |  |
-| `chronological_age` | `number` | No |  |
+| `ageReduction` | `number` | No |  |
+| `biomarkers` | `table` | Yes |  |
+| `bortzAge` | `number` | No |  |
+| `chronologicalAge` | `number` | No |  |
 | `season` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `bortz_age` | - |
-| `chronological_age` | Yes |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `bortzAge` | - |
+| `chronologicalAge` | Yes |
 | `season` | - |
 
 ### Operations
@@ -204,7 +204,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:BortzAge():create({
-  biomarker = --[[ table ]],
+  biomarkers = --[[ table ]],
 })
 ```
 
@@ -248,10 +248,10 @@ local competition = client:Competition(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_range` | `string` | No |  |
+| `ageRange` | `string` | No |  |
 | `id` | `string` | No |  |
-| `max_age` | `number` | No |  |
-| `min_age` | `number` | No |  |
+| `maxAge` | `number` | No |  |
+| `minAge` | `number` | No |  |
 | `name` | `string` | No |  |
 
 ### Operations
@@ -304,9 +304,9 @@ local leaderboard = client:Leaderboard(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `number` | No |  |
-| `athlete_id` | `string` | No |  |
-| `athlete_name` | `string` | No |  |
+| `ageReduction` | `number` | No |  |
+| `athleteId` | `string` | No |  |
+| `athleteName` | `string` | No |  |
 | `country` | `string` | No |  |
 | `division` | `string` | No |  |
 | `league` | `string` | No |  |
@@ -362,21 +362,21 @@ local pheno_age = client:PhenoAge(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `number` | No |  |
-| `biomarker` | `table` | Yes |  |
-| `calculation_method` | `string` | No |  |
-| `chronological_age` | `number` | No |  |
-| `pheno_age` | `number` | No |  |
+| `ageReduction` | `number` | No |  |
+| `biomarkers` | `table` | Yes |  |
+| `calculationMethod` | `string` | No |  |
+| `chronologicalAge` | `number` | No |  |
+| `phenoAge` | `number` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `calculation_method` | - |
-| `chronological_age` | Yes |
-| `pheno_age` | - |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `calculationMethod` | - |
+| `chronologicalAge` | Yes |
+| `phenoAge` | - |
 
 ### Operations
 
@@ -386,7 +386,7 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:PhenoAge():create({
-  biomarker = --[[ table ]],
+  biomarkers = --[[ table ]],
 })
 ```
 
@@ -430,13 +430,13 @@ local rank_preview = client:RankPreview(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `number` | No |  |
-| `athletes_in_league` | `number` | No |  |
-| `biological_age` | `number` | Yes |  |
-| `chronological_age` | `number` | Yes |  |
+| `ageReduction` | `number` | No |  |
+| `athletesInLeague` | `number` | No |  |
+| `biologicalAge` | `number` | Yes |  |
+| `chronologicalAge` | `number` | Yes |  |
 | `division` | `string` | No |  |
-| `estimated_rank` | `number` | No |  |
-| `estimated_ultimate_league_rank` | `number` | No |  |
+| `estimatedRank` | `number` | No |  |
+| `estimatedUltimateLeagueRank` | `number` | No |  |
 | `league` | `string` | No |  |
 | `percentile` | `number` | No |  |
 
@@ -448,8 +448,8 @@ Create a new entity with the given data.
 
 ```lua
 local result, err = client:RankPreview():create({
-  biological_age = --[[ number ]],
-  chronological_age = --[[ number ]],
+  biologicalAge = --[[ number ]],
+  chronologicalAge = --[[ number ]],
 })
 ```
 
@@ -493,9 +493,9 @@ local reference = client:Reference(nil)
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country_code` | `string` | No |  |
-| `country_name` | `string` | No |  |
-| `flag_url` | `string` | No |  |
+| `countryCode` | `string` | No |  |
+| `countryName` | `string` | No |  |
+| `flagUrl` | `string` | No |  |
 
 ### Operations
 

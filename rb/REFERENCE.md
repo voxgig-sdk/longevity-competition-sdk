@@ -117,21 +117,21 @@ athlete = client.Athlete
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `Float` | No |  |
-| `biological_age` | `Float` | No |  |
-| `chronological_age` | `Float` | No |  |
-| `clock_type` | `String` | No |  |
+| `ageReduction` | `Float` | No |  |
+| `biologicalAge` | `Float` | No |  |
+| `chronologicalAge` | `Float` | No |  |
+| `clockType` | `String` | No |  |
 | `country` | `String` | No |  |
 | `division` | `String` | No |  |
-| `effective_age_reduction` | `Float` | No |  |
+| `effectiveAgeReduction` | `Float` | No |  |
 | `generation` | `String` | No |  |
 | `id` | `String` | No |  |
-| `last_updated` | `String` | No |  |
+| `lastUpdated` | `String` | No |  |
 | `league` | `String` | No |  |
 | `name` | `String` | No |  |
-| `profile_url` | `String` | No |  |
+| `profileUrl` | `String` | No |  |
 | `rank` | `Integer` | No |  |
-| `ultimate_league_rank` | `Integer` | No |  |
+| `ultimateLeagueRank` | `Integer` | No |  |
 
 ### Operations
 
@@ -183,20 +183,20 @@ bortz_age = client.BortzAge
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `Float` | No |  |
-| `biomarker` | `Hash` | Yes |  |
-| `bortz_age` | `Float` | No |  |
-| `chronological_age` | `Float` | No |  |
+| `ageReduction` | `Float` | No |  |
+| `biomarkers` | `Hash` | Yes |  |
+| `bortzAge` | `Float` | No |  |
+| `chronologicalAge` | `Float` | No |  |
 | `season` | `String` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `bortz_age` | - |
-| `chronological_age` | Yes |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `bortzAge` | - |
+| `chronologicalAge` | Yes |
 | `season` | - |
 
 ### Operations
@@ -207,7 +207,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.BortzAge.create({
-  "biomarker" => {}, # Hash
+  "biomarkers" => {}, # Hash
 })
 ```
 
@@ -251,10 +251,10 @@ competition = client.Competition
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_range` | `String` | No |  |
+| `ageRange` | `String` | No |  |
 | `id` | `String` | No |  |
-| `max_age` | `Integer` | No |  |
-| `min_age` | `Integer` | No |  |
+| `maxAge` | `Integer` | No |  |
+| `minAge` | `Integer` | No |  |
 | `name` | `String` | No |  |
 
 ### Operations
@@ -307,9 +307,9 @@ leaderboard = client.Leaderboard
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `Float` | No |  |
-| `athlete_id` | `String` | No |  |
-| `athlete_name` | `String` | No |  |
+| `ageReduction` | `Float` | No |  |
+| `athleteId` | `String` | No |  |
+| `athleteName` | `String` | No |  |
 | `country` | `String` | No |  |
 | `division` | `String` | No |  |
 | `league` | `String` | No |  |
@@ -365,21 +365,21 @@ pheno_age = client.PhenoAge
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `Float` | No |  |
-| `biomarker` | `Hash` | Yes |  |
-| `calculation_method` | `String` | No |  |
-| `chronological_age` | `Float` | No |  |
-| `pheno_age` | `Float` | No |  |
+| `ageReduction` | `Float` | No |  |
+| `biomarkers` | `Hash` | Yes |  |
+| `calculationMethod` | `String` | No |  |
+| `chronologicalAge` | `Float` | No |  |
+| `phenoAge` | `Float` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `calculation_method` | - |
-| `chronological_age` | Yes |
-| `pheno_age` | - |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `calculationMethod` | - |
+| `chronologicalAge` | Yes |
+| `phenoAge` | - |
 
 ### Operations
 
@@ -389,7 +389,7 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.PhenoAge.create({
-  "biomarker" => {}, # Hash
+  "biomarkers" => {}, # Hash
 })
 ```
 
@@ -433,13 +433,13 @@ rank_preview = client.RankPreview
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `Float` | No |  |
-| `athletes_in_league` | `Integer` | No |  |
-| `biological_age` | `Float` | Yes |  |
-| `chronological_age` | `Float` | Yes |  |
+| `ageReduction` | `Float` | No |  |
+| `athletesInLeague` | `Integer` | No |  |
+| `biologicalAge` | `Float` | Yes |  |
+| `chronologicalAge` | `Float` | Yes |  |
 | `division` | `String` | No |  |
-| `estimated_rank` | `Integer` | No |  |
-| `estimated_ultimate_league_rank` | `Integer` | No |  |
+| `estimatedRank` | `Integer` | No |  |
+| `estimatedUltimateLeagueRank` | `Integer` | No |  |
 | `league` | `String` | No |  |
 | `percentile` | `Float` | No |  |
 
@@ -451,8 +451,8 @@ Create a new entity with the given data. Raises on error.
 
 ```ruby
 result = client.RankPreview.create({
-  "biological_age" => 1, # Float
-  "chronological_age" => 1, # Float
+  "biologicalAge" => 1, # Float
+  "chronologicalAge" => 1, # Float
 })
 ```
 
@@ -496,9 +496,9 @@ reference = client.Reference
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country_code` | `String` | No |  |
-| `country_name` | `String` | No |  |
-| `flag_url` | `String` | No |  |
+| `countryCode` | `String` | No |  |
+| `countryName` | `String` | No |  |
+| `flagUrl` | `String` | No |  |
 
 ### Operations
 

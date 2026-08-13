@@ -6,17 +6,17 @@ main: kit: entity: reference: {
 
   fields: [
     {
-      name: "country_code"
+      name: "countryCode"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "country_name"
+      name: "countryName"
       req: false
       type: "`$STRING`"
     }
     {
-      name: "flag_url"
+      name: "flagUrl"
       req: false
       type: "`$STRING`"
     }
@@ -36,7 +36,7 @@ main: kit: entity: reference: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.flags`"
           }
         }
       ]

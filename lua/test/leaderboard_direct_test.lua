@@ -61,11 +61,11 @@ function leaderboard_direct_setup(mockres)
   local calls = {}
 
   local env = runner.env_override({
-    ["LONGEVITYCOMPETITION_TEST_LEADERBOARD_ENTID"] = {},
-    ["LONGEVITYCOMPETITION_TEST_LIVE"] = "FALSE",
+    ["LONGEVITY_COMPETITION_TEST_LEADERBOARD_ENTID"] = {},
+    ["LONGEVITY_COMPETITION_TEST_LIVE"] = "FALSE",
   })
 
-  local live = env["LONGEVITYCOMPETITION_TEST_LIVE"] == "TRUE"
+  local live = env["LONGEVITY_COMPETITION_TEST_LIVE"] == "TRUE"
 
   if live then
     local merged_opts = {

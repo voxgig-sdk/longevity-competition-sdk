@@ -2,75 +2,75 @@
   "existing": {
     "athlete": {
       "ATHLETE00": {
-        "age_reduction": 150,
-        "biological_age": 151,
-        "chronological_age": 152,
-        "clock_type": "s99",
+        "ageReduction": 150,
+        "biologicalAge": 151,
+        "chronologicalAge": 152,
+        "clockType": "s99",
         "country": "s9a",
         "division": "s9b",
-        "effective_age_reduction": 156,
+        "effectiveAgeReduction": 156,
         "generation": "s9d",
         "id": "ATHLETE00",
-        "last_updated": "s9f",
+        "lastUpdated": "s9f",
         "league": "sa0",
         "name": "sa1",
-        "profile_url": "sa2",
+        "profileUrl": "sa2",
         "rank": "sa3",
-        "ultimate_league_rank": "sa4"
+        "ultimateLeagueRank": "sa4"
       },
       "ATHLETE01": {
-        "age_reduction": 300,
-        "biological_age": 301,
-        "chronological_age": 302,
-        "clock_type": "s12f",
+        "ageReduction": 300,
+        "biologicalAge": 301,
+        "chronologicalAge": 302,
+        "clockType": "s12f",
         "country": "s130",
         "division": "s131",
-        "effective_age_reduction": 306,
+        "effectiveAgeReduction": 306,
         "generation": "s133",
         "id": "ATHLETE01",
-        "last_updated": "s135",
+        "lastUpdated": "s135",
         "league": "s136",
         "name": "s137",
-        "profile_url": "s138",
+        "profileUrl": "s138",
         "rank": "s139",
-        "ultimate_league_rank": "s13a"
+        "ultimateLeagueRank": "s13a"
       },
       "ATHLETE02": {
-        "age_reduction": 450,
-        "biological_age": 451,
-        "chronological_age": 452,
-        "clock_type": "s1c5",
+        "ageReduction": 450,
+        "biologicalAge": 451,
+        "chronologicalAge": 452,
+        "clockType": "s1c5",
         "country": "s1c6",
         "division": "s1c7",
-        "effective_age_reduction": 456,
+        "effectiveAgeReduction": 456,
         "generation": "s1c9",
         "id": "ATHLETE02",
-        "last_updated": "s1cb",
+        "lastUpdated": "s1cb",
         "league": "s1cc",
         "name": "s1cd",
-        "profile_url": "s1ce",
+        "profileUrl": "s1ce",
         "rank": "s1cf",
-        "ultimate_league_rank": "s1d0"
+        "ultimateLeagueRank": "s1d0"
       }
     }
   },
   "new": {
     "athlete": {
       "athlete_ref01": {
-        "age_reduction": 600,
-        "biological_age": 601,
-        "chronological_age": 602,
-        "clock_type": "s25b",
+        "ageReduction": 600,
+        "biologicalAge": 601,
+        "chronologicalAge": 602,
+        "clockType": "s25b",
         "country": "s25c",
         "division": "s25d",
-        "effective_age_reduction": 606,
+        "effectiveAgeReduction": 606,
         "generation": "s25f",
-        "last_updated": "s261",
+        "lastUpdated": "s261",
         "league": "s262",
         "name": "s263",
-        "profile_url": "s264",
+        "profileUrl": "s264",
         "rank": "s265",
-        "ultimate_league_rank": "s266"
+        "ultimateLeagueRank": "s266"
       }
     }
   }

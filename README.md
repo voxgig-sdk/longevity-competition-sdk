@@ -38,18 +38,27 @@ network, and no credentials:
 ### TypeScript
 
 ```ts
-const client = LongevityCompetitionSDK.test()
-const athletes = await client.Athlete().list()
-// athletes is an array of bare Athlete records populated with mock data
-console.log(athletes)
+// The offline mock starts EMPTY — seed it with the records the test needs.
+// Shape: { entity: { <entity-name>: { <id>: <record> } } }
+const client = LongevityCompetitionSDK.test({
+  entity: {
+    competition: {
+      test01: { id: 'test01' },
+    },
+  },
+})
+const competitions = await client.Competition().list()
+// competitions is an array of Competition entities, populated with mock data
+// — call competitions[0].data() for the record itself
+console.log(competitions)
 ```
 
 ### Python
 
 ```python
 client = LongevityCompetitionSDK.test()
-athletes = client.Athlete().list()
-print(athletes)
+competitions = client.Competition().list()
+print(competitions)
 ```
 
 ### PHP
@@ -57,16 +66,16 @@ print(athletes)
 ```php
 // Seed fixture data so offline calls resolve without a live server.
 $client = LongevityCompetitionSDK::test([
-    "entity" => ["athlete" => ["test01" => []]],
+    "entity" => ["competition" => ["test01" => []]],
 ]);
-$athletes = $client->Athlete()->list();
+$competitions = $client->Competition()->list();
 ```
 
 ### Golang
 
 ```go
 client := sdk.Test()
-result, err := client.Athlete(nil).List(
+result, err := client.Competition(nil).List(
     nil, nil,
 )
 ```
@@ -76,16 +85,16 @@ result, err := client.Athlete(nil).List(
 ```ruby
 # Seed fixture data so offline calls resolve without a live server.
 client = LongevityCompetitionSDK.test({
-  "entity" => { "athlete" => { "test01" => {} } },
+  "entity" => { "competition" => { "test01" => {} } },
 })
-athletes = client.Athlete.list()
+competitions = client.Competition.list()
 ```
 
 ### Lua
 
 ```lua
 local client = sdk.test()
-local results, err = client:Athlete():list()
+local results, err = client:Competition():list()
 ```
 
 ## Packages
@@ -110,7 +119,7 @@ import { LongevityCompetitionSDK } from '@voxgig-sdk/longevity-competition'
 
 const client = new LongevityCompetitionSDK()
 
-// List all athletes (returns Athlete[])
+// List all athletes (returns AthleteEntity[] — .data() for the record)
 const athletes = await client.Athlete().list()
 for (const athlete of athletes) {
   console.log(athlete)
@@ -349,6 +358,9 @@ Pass custom features via the `extend` option at construction time.
 
 This SDK is generated from the upstream OpenAPI specification. It is an
 unofficial client and is not affiliated with the API provider.
+
+The OpenAPI spec(s) this SDK was generated from are kept in the
+[`.sdk/def/`](.sdk/def/) folder.
 
 - Upstream API: [https://longevityworldcup.com](https://longevityworldcup.com)
 

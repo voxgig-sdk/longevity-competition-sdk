@@ -6,7 +6,7 @@ main: kit: entity: competition: {
 
   fields: [
     {
-      name: "age_range"
+      name: "ageRange"
       req: false
       type: "`$STRING`"
     }
@@ -16,12 +16,12 @@ main: kit: entity: competition: {
       type: "`$STRING`"
     }
     {
-      name: "max_age"
+      name: "maxAge"
       req: false
       type: "`$INTEGER`"
     }
     {
-      name: "min_age"
+      name: "minAge"
       req: false
       type: "`$INTEGER`"
     }
@@ -51,7 +51,7 @@ main: kit: entity: competition: {
           ]
           transform: {
             req: "`reqdata`"
-            res: "`body`"
+            res: "`body.divisions`"
           }
         }
       ]

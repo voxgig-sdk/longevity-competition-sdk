@@ -116,21 +116,21 @@ $athlete = $client->Athlete();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `biological_age` | `float` | No |  |
-| `chronological_age` | `float` | No |  |
-| `clock_type` | `string` | No |  |
+| `ageReduction` | `float` | No |  |
+| `biologicalAge` | `float` | No |  |
+| `chronologicalAge` | `float` | No |  |
+| `clockType` | `string` | No |  |
 | `country` | `string` | No |  |
 | `division` | `string` | No |  |
-| `effective_age_reduction` | `float` | No |  |
+| `effectiveAgeReduction` | `float` | No |  |
 | `generation` | `string` | No |  |
 | `id` | `string` | No |  |
-| `last_updated` | `string` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `league` | `string` | No |  |
 | `name` | `string` | No |  |
-| `profile_url` | `string` | No |  |
+| `profileUrl` | `string` | No |  |
 | `rank` | `int` | No |  |
-| `ultimate_league_rank` | `int` | No |  |
+| `ultimateLeagueRank` | `int` | No |  |
 
 ### Operations
 
@@ -182,20 +182,20 @@ $bortz_age = $client->BortzAge();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `biomarker` | `array` | Yes |  |
-| `bortz_age` | `float` | No |  |
-| `chronological_age` | `float` | No |  |
+| `ageReduction` | `float` | No |  |
+| `biomarkers` | `array` | Yes |  |
+| `bortzAge` | `float` | No |  |
+| `chronologicalAge` | `float` | No |  |
 | `season` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `bortz_age` | - |
-| `chronological_age` | Yes |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `bortzAge` | - |
+| `chronologicalAge` | Yes |
 | `season` | - |
 
 ### Operations
@@ -206,7 +206,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->BortzAge()->create([
-  "biomarker" => null, // array
+  "biomarkers" => null, // array
 ]);
 ```
 
@@ -250,10 +250,10 @@ $competition = $client->Competition();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_range` | `string` | No |  |
+| `ageRange` | `string` | No |  |
 | `id` | `string` | No |  |
-| `max_age` | `int` | No |  |
-| `min_age` | `int` | No |  |
+| `maxAge` | `int` | No |  |
+| `minAge` | `int` | No |  |
 | `name` | `string` | No |  |
 
 ### Operations
@@ -306,9 +306,9 @@ $leaderboard = $client->Leaderboard();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `athlete_id` | `string` | No |  |
-| `athlete_name` | `string` | No |  |
+| `ageReduction` | `float` | No |  |
+| `athleteId` | `string` | No |  |
+| `athleteName` | `string` | No |  |
 | `country` | `string` | No |  |
 | `division` | `string` | No |  |
 | `league` | `string` | No |  |
@@ -364,21 +364,21 @@ $pheno_age = $client->PhenoAge();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `biomarker` | `array` | Yes |  |
-| `calculation_method` | `string` | No |  |
-| `chronological_age` | `float` | No |  |
-| `pheno_age` | `float` | No |  |
+| `ageReduction` | `float` | No |  |
+| `biomarkers` | `array` | Yes |  |
+| `calculationMethod` | `string` | No |  |
+| `chronologicalAge` | `float` | No |  |
+| `phenoAge` | `float` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `calculation_method` | - |
-| `chronological_age` | Yes |
-| `pheno_age` | - |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `calculationMethod` | - |
+| `chronologicalAge` | Yes |
+| `phenoAge` | - |
 
 ### Operations
 
@@ -388,7 +388,7 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->PhenoAge()->create([
-  "biomarker" => null, // array
+  "biomarkers" => null, // array
 ]);
 ```
 
@@ -432,13 +432,13 @@ $rank_preview = $client->RankPreview();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float` | No |  |
-| `athletes_in_league` | `int` | No |  |
-| `biological_age` | `float` | Yes |  |
-| `chronological_age` | `float` | Yes |  |
+| `ageReduction` | `float` | No |  |
+| `athletesInLeague` | `int` | No |  |
+| `biologicalAge` | `float` | Yes |  |
+| `chronologicalAge` | `float` | Yes |  |
 | `division` | `string` | No |  |
-| `estimated_rank` | `int` | No |  |
-| `estimated_ultimate_league_rank` | `int` | No |  |
+| `estimatedRank` | `int` | No |  |
+| `estimatedUltimateLeagueRank` | `int` | No |  |
 | `league` | `string` | No |  |
 | `percentile` | `float` | No |  |
 
@@ -450,8 +450,8 @@ Create a new entity with the given data. Throws on error.
 
 ```php
 $result = $client->RankPreview()->create([
-  "biological_age" => null, // float
-  "chronological_age" => null, // float
+  "biologicalAge" => null, // float
+  "chronologicalAge" => null, // float
 ]);
 ```
 
@@ -495,9 +495,9 @@ $reference = $client->Reference();
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country_code` | `string` | No |  |
-| `country_name` | `string` | No |  |
-| `flag_url` | `string` | No |  |
+| `countryCode` | `string` | No |  |
+| `countryName` | `string` | No |  |
+| `flagUrl` | `string` | No |  |
 
 ### Operations
 

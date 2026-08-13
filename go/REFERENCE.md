@@ -122,21 +122,21 @@ fmt.Println(athlete.GetName()) // "athlete"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float64` | No |  |
-| `biological_age` | `float64` | No |  |
-| `chronological_age` | `float64` | No |  |
-| `clock_type` | `string` | No |  |
+| `ageReduction` | `float64` | No |  |
+| `biologicalAge` | `float64` | No |  |
+| `chronologicalAge` | `float64` | No |  |
+| `clockType` | `string` | No |  |
 | `country` | `string` | No |  |
 | `division` | `string` | No |  |
-| `effective_age_reduction` | `float64` | No |  |
+| `effectiveAgeReduction` | `float64` | No |  |
 | `generation` | `string` | No |  |
 | `id` | `string` | No |  |
-| `last_updated` | `string` | No |  |
+| `lastUpdated` | `string` | No |  |
 | `league` | `string` | No |  |
 | `name` | `string` | No |  |
-| `profile_url` | `string` | No |  |
+| `profileUrl` | `string` | No |  |
 | `rank` | `int` | No |  |
-| `ultimate_league_rank` | `int` | No |  |
+| `ultimateLeagueRank` | `int` | No |  |
 
 ### Operations
 
@@ -187,20 +187,20 @@ fmt.Println(bortzAge.GetName()) // "bortz_age"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float64` | No |  |
-| `biomarker` | `map[string]any` | Yes |  |
-| `bortz_age` | `float64` | No |  |
-| `chronological_age` | `float64` | No |  |
+| `ageReduction` | `float64` | No |  |
+| `biomarkers` | `map[string]any` | Yes |  |
+| `bortzAge` | `float64` | No |  |
+| `chronologicalAge` | `float64` | No |  |
 | `season` | `string` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `bortz_age` | - |
-| `chronological_age` | Yes |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `bortzAge` | - |
+| `chronologicalAge` | Yes |
 | `season` | - |
 
 ### Operations
@@ -211,7 +211,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.BortzAge(nil).Create(map[string]any{
-    "biomarker": map[string]any{},
+    "biomarkers": map[string]any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -254,10 +254,10 @@ fmt.Println(competition.GetName()) // "competition"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_range` | `string` | No |  |
+| `ageRange` | `string` | No |  |
 | `id` | `string` | No |  |
-| `max_age` | `int` | No |  |
-| `min_age` | `int` | No |  |
+| `maxAge` | `int` | No |  |
+| `minAge` | `int` | No |  |
 | `name` | `string` | No |  |
 
 ### Operations
@@ -309,9 +309,9 @@ fmt.Println(leaderboard.GetName()) // "leaderboard"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float64` | No |  |
-| `athlete_id` | `string` | No |  |
-| `athlete_name` | `string` | No |  |
+| `ageReduction` | `float64` | No |  |
+| `athleteId` | `string` | No |  |
+| `athleteName` | `string` | No |  |
 | `country` | `string` | No |  |
 | `division` | `string` | No |  |
 | `league` | `string` | No |  |
@@ -366,21 +366,21 @@ fmt.Println(phenoAge.GetName()) // "pheno_age"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float64` | No |  |
-| `biomarker` | `map[string]any` | Yes |  |
-| `calculation_method` | `string` | No |  |
-| `chronological_age` | `float64` | No |  |
-| `pheno_age` | `float64` | No |  |
+| `ageReduction` | `float64` | No |  |
+| `biomarkers` | `map[string]any` | Yes |  |
+| `calculationMethod` | `string` | No |  |
+| `chronologicalAge` | `float64` | No |  |
+| `phenoAge` | `float64` | No |  |
 
 ### Field Usage by Operation
 
 | Field | create |
 | --- | --- |
-| `age_reduction` | - |
-| `biomarker` | - |
-| `calculation_method` | - |
-| `chronological_age` | Yes |
-| `pheno_age` | - |
+| `ageReduction` | - |
+| `biomarkers` | - |
+| `calculationMethod` | - |
+| `chronologicalAge` | Yes |
+| `phenoAge` | - |
 
 ### Operations
 
@@ -390,7 +390,7 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.PhenoAge(nil).Create(map[string]any{
-    "biomarker": map[string]any{},
+    "biomarkers": map[string]any{},
 }, nil)
 if err != nil {
     panic(err)
@@ -433,13 +433,13 @@ fmt.Println(rankPreview.GetName()) // "rank_preview"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `age_reduction` | `float64` | No |  |
-| `athletes_in_league` | `int` | No |  |
-| `biological_age` | `float64` | Yes |  |
-| `chronological_age` | `float64` | Yes |  |
+| `ageReduction` | `float64` | No |  |
+| `athletesInLeague` | `int` | No |  |
+| `biologicalAge` | `float64` | Yes |  |
+| `chronologicalAge` | `float64` | Yes |  |
 | `division` | `string` | No |  |
-| `estimated_rank` | `int` | No |  |
-| `estimated_ultimate_league_rank` | `int` | No |  |
+| `estimatedRank` | `int` | No |  |
+| `estimatedUltimateLeagueRank` | `int` | No |  |
 | `league` | `string` | No |  |
 | `percentile` | `float64` | No |  |
 
@@ -451,8 +451,8 @@ Create a new entity with the given data.
 
 ```go
 result, err := client.RankPreview(nil).Create(map[string]any{
-    "biological_age": 1,
-    "chronological_age": 1,
+    "biologicalAge": 1,
+    "chronologicalAge": 1,
 }, nil)
 if err != nil {
     panic(err)
@@ -495,9 +495,9 @@ fmt.Println(reference.GetName()) // "reference"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `country_code` | `string` | No |  |
-| `country_name` | `string` | No |  |
-| `flag_url` | `string` | No |  |
+| `countryCode` | `string` | No |  |
+| `countryName` | `string` | No |  |
+| `flagUrl` | `string` | No |  |
 
 ### Operations
 

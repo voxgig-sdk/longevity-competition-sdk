@@ -2,28 +2,28 @@
   "existing": {
     "reference": {
       "REFERENCE00": {
-        "country_code": "s1e",
-        "country_name": "s1f",
-        "flag_url": "s20"
+        "countryCode": "s1e",
+        "countryName": "s1f",
+        "flagUrl": "s20"
       },
       "REFERENCE01": {
-        "country_code": "s3c",
-        "country_name": "s3d",
-        "flag_url": "s3e"
+        "countryCode": "s3c",
+        "countryName": "s3d",
+        "flagUrl": "s3e"
       },
       "REFERENCE02": {
-        "country_code": "s5a",
-        "country_name": "s5b",
-        "flag_url": "s5c"
+        "countryCode": "s5a",
+        "countryName": "s5b",
+        "flagUrl": "s5c"
       }
     }
   },
   "new": {
     "reference": {
       "reference_ref01": {
-        "country_code": "s78",
-        "country_name": "s79",
-        "flag_url": "s7a"
+        "countryCode": "s78",
+        "countryName": "s79",
+        "flagUrl": "s7a"
       }
     }
   }

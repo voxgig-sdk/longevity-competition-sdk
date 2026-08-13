@@ -2,27 +2,27 @@
   "existing": {
     "pheno_age": {
       "PHENO_AGE00": {
-        "age_reduction": 50,
-        "biomarker": {},
-        "calculation_method": "s34",
-        "chronological_age": 53,
-        "pheno_age": 54,
+        "ageReduction": 50,
+        "biomarkers": {},
+        "calculationMethod": "s34",
+        "chronologicalAge": 53,
+        "phenoAge": 54,
         "id": "PHENO_AGE00"
       },
       "PHENO_AGE01": {
-        "age_reduction": 100,
-        "biomarker": {},
-        "calculation_method": "s66",
-        "chronological_age": 103,
-        "pheno_age": 104,
+        "ageReduction": 100,
+        "biomarkers": {},
+        "calculationMethod": "s66",
+        "chronologicalAge": 103,
+        "phenoAge": 104,
         "id": "PHENO_AGE01"
       },
       "PHENO_AGE02": {
-        "age_reduction": 150,
-        "biomarker": {},
-        "calculation_method": "s98",
-        "chronological_age": 153,
-        "pheno_age": 154,
+        "ageReduction": 150,
+        "biomarkers": {},
+        "calculationMethod": "s98",
+        "chronologicalAge": 153,
+        "phenoAge": 154,
         "id": "PHENO_AGE02"
       }
     }
@@ -30,11 +30,11 @@
   "new": {
     "pheno_age": {
       "pheno_age_ref01": {
-        "age_reduction": 200,
-        "biomarker": {},
-        "calculation_method": "sca",
-        "chronological_age": 203,
-        "pheno_age": 204
+        "ageReduction": 200,
+        "biomarkers": {},
+        "calculationMethod": "sca",
+        "chronologicalAge": 203,
+        "phenoAge": 204
       }
     }
   }

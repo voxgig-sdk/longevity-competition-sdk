@@ -35,7 +35,9 @@ const client = new LongevityCompetitionSDK()
 
 ### 2. List athlete records
 
-`list()` resolves to an array of Athlete objects — iterate it directly:
+`list()` resolves to an array of Athlete ENTITIES — every operation
+resolves to entities, not raw records. Iterate them directly, and call
+`.data()` on one for the record it holds:
 
 ```ts
 const athletes = await client.Athlete().list()
@@ -52,8 +54,8 @@ Entity operations reject on failure, so wrap them in `try` / `catch`:
 
 ```ts
 try {
-  const athletes = await client.Athlete().list()
-  console.log(athletes)
+  const competitions = await client.Competition().list()
+  console.log(competitions)
 } catch (err) {
   console.error('list failed:', err)
 }
@@ -119,9 +121,10 @@ Create a mock client for unit testing — no server required:
 ```ts
 const client = LongevityCompetitionSDK.test()
 
-const athlete = await client.Athlete().list()
-// athlete is a bare entity populated with mock response data
-console.log(athlete)
+const competition = await client.Competition().list()
+// competition is the entity, populated with mock response data
+// — call competition.data() for the record itself
+console.log(competition)
 ```
 
 You can also use the instance method:
@@ -136,7 +139,7 @@ const testClient = client.tester()
 Entity instances remember their last match and data:
 
 ```ts
-const entity = client.Athlete()
+const entity = client.Competition()
 
 // First call runs the operation and stores its result
 await entity.list()
@@ -292,21 +295,21 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biological_age` |  |
-| `chronological_age` |  |
-| `clock_type` |  |
+| `ageReduction` |  |
+| `biologicalAge` |  |
+| `chronologicalAge` |  |
+| `clockType` |  |
 | `country` |  |
 | `division` |  |
-| `effective_age_reduction` |  |
+| `effectiveAgeReduction` |  |
 | `generation` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `league` |  |
 | `name` |  |
-| `profile_url` |  |
+| `profileUrl` |  |
 | `rank` |  |
-| `ultimate_league_rank` |  |
+| `ultimateLeagueRank` |  |
 
 Operations: list.
 
@@ -316,10 +319,10 @@ API path: `/data/athletes`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biomarker` |  |
-| `bortz_age` |  |
-| `chronological_age` |  |
+| `ageReduction` |  |
+| `biomarkers` |  |
+| `bortzAge` |  |
+| `chronologicalAge` |  |
 | `season` |  |
 
 Operations: create.
@@ -330,10 +333,10 @@ API path: `/data/bortz-age`
 
 | Field | Description |
 | --- | --- |
-| `age_range` |  |
+| `ageRange` |  |
 | `id` |  |
-| `max_age` |  |
-| `min_age` |  |
+| `maxAge` |  |
+| `minAge` |  |
 | `name` |  |
 
 Operations: list.
@@ -344,9 +347,9 @@ API path: `/data/divisions`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `athlete_id` |  |
-| `athlete_name` |  |
+| `ageReduction` |  |
+| `athleteId` |  |
+| `athleteName` |  |
 | `country` |  |
 | `division` |  |
 | `league` |  |
@@ -360,11 +363,11 @@ API path: `/data/leaderboard`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biomarker` |  |
-| `calculation_method` |  |
-| `chronological_age` |  |
-| `pheno_age` |  |
+| `ageReduction` |  |
+| `biomarkers` |  |
+| `calculationMethod` |  |
+| `chronologicalAge` |  |
+| `phenoAge` |  |
 
 Operations: create.
 
@@ -374,13 +377,13 @@ API path: `/data/pheno-age`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `athletes_in_league` |  |
-| `biological_age` |  |
-| `chronological_age` |  |
+| `ageReduction` |  |
+| `athletesInLeague` |  |
+| `biologicalAge` |  |
+| `chronologicalAge` |  |
 | `division` |  |
-| `estimated_rank` |  |
-| `estimated_ultimate_league_rank` |  |
+| `estimatedRank` |  |
+| `estimatedUltimateLeagueRank` |  |
 | `league` |  |
 | `percentile` |  |
 
@@ -392,9 +395,9 @@ API path: `/data/rank-preview`
 
 | Field | Description |
 | --- | --- |
-| `country_code` |  |
-| `country_name` |  |
-| `flag_url` |  |
+| `countryCode` |  |
+| `countryName` |  |
+| `flagUrl` |  |
 
 Operations: list.
 
@@ -419,21 +422,21 @@ Create an instance: `const athlete = client.Athlete()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `biological_age` | `number` |  |
-| `chronological_age` | `number` |  |
-| `clock_type` | `string` |  |
+| `ageReduction` | `number` |  |
+| `biologicalAge` | `number` |  |
+| `chronologicalAge` | `number` |  |
+| `clockType` | `string` |  |
 | `country` | `string` |  |
 | `division` | `string` |  |
-| `effective_age_reduction` | `number` |  |
+| `effectiveAgeReduction` | `number` |  |
 | `generation` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `league` | `string` |  |
 | `name` | `string` |  |
-| `profile_url` | `string` |  |
+| `profileUrl` | `string` |  |
 | `rank` | `number` |  |
-| `ultimate_league_rank` | `number` |  |
+| `ultimateLeagueRank` | `number` |  |
 
 #### Example: List
 
@@ -456,17 +459,17 @@ Create an instance: `const bortz_age = client.BortzAge()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `biomarker` | `Record<string, any>` |  |
-| `bortz_age` | `number` |  |
-| `chronological_age` | `number` |  |
+| `ageReduction` | `number` |  |
+| `biomarkers` | `Record<string, any>` |  |
+| `bortzAge` | `number` |  |
+| `chronologicalAge` | `number` |  |
 | `season` | `string` |  |
 
 #### Example: Create
 
 ```ts
 const bortz_age = await client.BortzAge().create({
-  biomarker: {},
+  biomarkers: {},
 })
 ```
 
@@ -485,10 +488,10 @@ Create an instance: `const competition = client.Competition()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_range` | `string` |  |
+| `ageRange` | `string` |  |
 | `id` | `string` |  |
-| `max_age` | `number` |  |
-| `min_age` | `number` |  |
+| `maxAge` | `number` |  |
+| `minAge` | `number` |  |
 | `name` | `string` |  |
 
 #### Example: List
@@ -512,9 +515,9 @@ Create an instance: `const leaderboard = client.Leaderboard()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `athlete_id` | `string` |  |
-| `athlete_name` | `string` |  |
+| `ageReduction` | `number` |  |
+| `athleteId` | `string` |  |
+| `athleteName` | `string` |  |
 | `country` | `string` |  |
 | `division` | `string` |  |
 | `league` | `string` |  |
@@ -541,17 +544,17 @@ Create an instance: `const pheno_age = client.PhenoAge()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `biomarker` | `Record<string, any>` |  |
-| `calculation_method` | `string` |  |
-| `chronological_age` | `number` |  |
-| `pheno_age` | `number` |  |
+| `ageReduction` | `number` |  |
+| `biomarkers` | `Record<string, any>` |  |
+| `calculationMethod` | `string` |  |
+| `chronologicalAge` | `number` |  |
+| `phenoAge` | `number` |  |
 
 #### Example: Create
 
 ```ts
 const pheno_age = await client.PhenoAge().create({
-  biomarker: {},
+  biomarkers: {},
 })
 ```
 
@@ -570,13 +573,13 @@ Create an instance: `const rank_preview = client.RankPreview()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `athletes_in_league` | `number` |  |
-| `biological_age` | `number` |  |
-| `chronological_age` | `number` |  |
+| `ageReduction` | `number` |  |
+| `athletesInLeague` | `number` |  |
+| `biologicalAge` | `number` |  |
+| `chronologicalAge` | `number` |  |
 | `division` | `string` |  |
-| `estimated_rank` | `number` |  |
-| `estimated_ultimate_league_rank` | `number` |  |
+| `estimatedRank` | `number` |  |
+| `estimatedUltimateLeagueRank` | `number` |  |
 | `league` | `string` |  |
 | `percentile` | `number` |  |
 
@@ -584,8 +587,8 @@ Create an instance: `const rank_preview = client.RankPreview()`
 
 ```ts
 const rank_preview = await client.RankPreview().create({
-  biological_age: 1,
-  chronological_age: 1,
+  biologicalAge: 1,
+  chronologicalAge: 1,
 })
 ```
 
@@ -604,9 +607,9 @@ Create an instance: `const reference = client.Reference()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country_code` | `string` |  |
-| `country_name` | `string` |  |
-| `flag_url` | `string` |  |
+| `countryCode` | `string` |  |
+| `countryName` | `string` |  |
+| `flagUrl` | `string` |  |
 
 #### Example: List
 
@@ -684,11 +687,11 @@ stores the returned data and match criteria internally. Subsequent
 calls on the same instance can rely on this state.
 
 ```ts
-const athlete = client.Athlete()
-await athlete.list()
+const competition = client.Competition()
+await competition.list()
 
-// athlete.data() now returns the athlete data from the last `list`
-// athlete.match() returns the last match criteria
+// competition.data() now returns the competition data from the last `list`
+// competition.match() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

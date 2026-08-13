@@ -6,77 +6,77 @@
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 
 export interface Athlete {
-  age_reduction?: number
-  biological_age?: number
-  chronological_age?: number
-  clock_type?: string
+  ageReduction?: number
+  biologicalAge?: number
+  chronologicalAge?: number
+  clockType?: string
   country?: string
   division?: string
-  effective_age_reduction?: number
+  effectiveAgeReduction?: number
   generation?: string
   id?: string
-  last_updated?: string
+  lastUpdated?: string
   league?: string
   name?: string
-  profile_url?: string
+  profileUrl?: string
   rank?: number
-  ultimate_league_rank?: number
+  ultimateLeagueRank?: number
 }
 
 export interface AthleteListMatch {
-  age_reduction?: number
-  biological_age?: number
-  chronological_age?: number
-  clock_type?: string
+  ageReduction?: number
+  biologicalAge?: number
+  chronologicalAge?: number
+  clockType?: string
   country?: string
   division?: string
-  effective_age_reduction?: number
+  effectiveAgeReduction?: number
   generation?: string
   id?: string
-  last_updated?: string
+  lastUpdated?: string
   league?: string
   name?: string
-  profile_url?: string
+  profileUrl?: string
   rank?: number
-  ultimate_league_rank?: number
+  ultimateLeagueRank?: number
 }
 
 export interface BortzAge {
-  age_reduction?: number
-  biomarker: Record<string, any>
-  bortz_age?: number
-  chronological_age?: number
+  ageReduction?: number
+  biomarkers: Record<string, any>
+  bortzAge?: number
+  chronologicalAge?: number
   season?: string
 }
 
 export interface BortzAgeCreateData {
-  age_reduction?: number
-  biomarker: Record<string, any>
-  bortz_age?: number
-  chronological_age?: number
+  ageReduction?: number
+  biomarkers: Record<string, any>
+  bortzAge?: number
+  chronologicalAge?: number
   season?: string
 }
 
 export interface Competition {
-  age_range?: string
+  ageRange?: string
   id?: string
-  max_age?: number
-  min_age?: number
+  maxAge?: number
+  minAge?: number
   name?: string
 }
 
 export interface CompetitionListMatch {
-  age_range?: string
+  ageRange?: string
   id?: string
-  max_age?: number
-  min_age?: number
+  maxAge?: number
+  minAge?: number
   name?: string
 }
 
 export interface Leaderboard {
-  age_reduction?: number
-  athlete_id?: string
-  athlete_name?: string
+  ageReduction?: number
+  athleteId?: string
+  athleteName?: string
   country?: string
   division?: string
   league?: string
@@ -84,9 +84,9 @@ export interface Leaderboard {
 }
 
 export interface LeaderboardListMatch {
-  age_reduction?: number
-  athlete_id?: string
-  athlete_name?: string
+  ageReduction?: number
+  athleteId?: string
+  athleteName?: string
   country?: string
   division?: string
   league?: string
@@ -94,54 +94,54 @@ export interface LeaderboardListMatch {
 }
 
 export interface PhenoAge {
-  age_reduction?: number
-  biomarker: Record<string, any>
-  calculation_method?: string
-  chronological_age?: number
-  pheno_age?: number
+  ageReduction?: number
+  biomarkers: Record<string, any>
+  calculationMethod?: string
+  chronologicalAge?: number
+  phenoAge?: number
 }
 
 export interface PhenoAgeCreateData {
-  age_reduction?: number
-  biomarker: Record<string, any>
-  calculation_method?: string
-  chronological_age?: number
-  pheno_age?: number
+  ageReduction?: number
+  biomarkers: Record<string, any>
+  calculationMethod?: string
+  chronologicalAge?: number
+  phenoAge?: number
 }
 
 export interface RankPreview {
-  age_reduction?: number
-  athletes_in_league?: number
-  biological_age: number
-  chronological_age: number
+  ageReduction?: number
+  athletesInLeague?: number
+  biologicalAge: number
+  chronologicalAge: number
   division?: string
-  estimated_rank?: number
-  estimated_ultimate_league_rank?: number
+  estimatedRank?: number
+  estimatedUltimateLeagueRank?: number
   league?: string
   percentile?: number
 }
 
 export interface RankPreviewCreateData {
-  age_reduction?: number
-  athletes_in_league?: number
-  biological_age: number
-  chronological_age: number
+  ageReduction?: number
+  athletesInLeague?: number
+  biologicalAge: number
+  chronologicalAge: number
   division?: string
-  estimated_rank?: number
-  estimated_ultimate_league_rank?: number
+  estimatedRank?: number
+  estimatedUltimateLeagueRank?: number
   league?: string
   percentile?: number
 }
 
 export interface Reference {
-  country_code?: string
-  country_name?: string
-  flag_url?: string
+  countryCode?: string
+  countryName?: string
+  flagUrl?: string
 }
 
 export interface ReferenceListMatch {
-  country_code?: string
-  country_name?: string
-  flag_url?: string
+  countryCode?: string
+  countryName?: string
+  flagUrl?: string
 }
 

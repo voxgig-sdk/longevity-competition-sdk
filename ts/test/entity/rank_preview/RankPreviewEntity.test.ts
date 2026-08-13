@@ -26,8 +26,8 @@ import {
 describe('RankPreviewEntity', async () => {
 
   // Per-test live pacing. Delay is read from sdk-test-control.json's
-  // `test.live.delayMs`; only sleeps when LONGEVITYCOMPETITION_TEST_LIVE=TRUE.
-  afterEach(liveDelay('LONGEVITYCOMPETITION_TEST_LIVE'))
+  // `test.live.delayMs`; only sleeps when LONGEVITY_COMPETITION_TEST_LIVE=TRUE.
+  afterEach(liveDelay('LONGEVITY_COMPETITION_TEST_LIVE'))
 
   test('instance', async () => {
     const testsdk = LongevityCompetitionSDK.test()
@@ -62,7 +62,7 @@ describe('RankPreviewEntity', async () => {
     const rank_preview_ref01_ent = client.RankPreview()
     let rank_preview_ref01_data = setup.data.new.rank_preview['rank_preview_ref01']
 
-    rank_preview_ref01_data = await rank_preview_ref01_ent.create(rank_preview_ref01_data)
+    rank_preview_ref01_data = (await rank_preview_ref01_ent.create(rank_preview_ref01_data)).data()
     assert(null != rank_preview_ref01_data)
 
 

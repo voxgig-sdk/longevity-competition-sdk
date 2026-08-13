@@ -5,6 +5,10 @@
       "desc": ""
     },
     "kit": {
+      "author": {
+        "name": "",
+        "url": ""
+      },
       "config": {
         "docs_order": [
           "ts",
@@ -18,6 +22,7 @@
           "content-type": "application/json"
         }
       },
+      "contributor": {},
       "entity": {
         "athlete": {
           "active": true,
@@ -27,25 +32,25 @@
           "fields": [
             {
               "active": true,
-              "name": "age_reduction",
+              "name": "ageReduction",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "biological_age",
+              "name": "biologicalAge",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "chronological_age",
+              "name": "chronologicalAge",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "clock_type",
+              "name": "clockType",
               "req": false,
               "type": "`$STRING`"
             },
@@ -63,7 +68,7 @@
             },
             {
               "active": true,
-              "name": "effective_age_reduction",
+              "name": "effectiveAgeReduction",
               "req": false,
               "type": "`$NUMBER`"
             },
@@ -81,7 +86,7 @@
             },
             {
               "active": true,
-              "name": "last_updated",
+              "name": "lastUpdated",
               "req": false,
               "type": "`$STRING`"
             },
@@ -99,7 +104,7 @@
             },
             {
               "active": true,
-              "name": "profile_url",
+              "name": "profileUrl",
               "req": false,
               "type": "`$STRING`"
             },
@@ -111,7 +116,7 @@
             },
             {
               "active": true,
-              "name": "ultimate_league_rank",
+              "name": "ultimateLeagueRank",
               "req": false,
               "type": "`$INTEGER`"
             }
@@ -166,6 +171,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/athletes",
                   "parts": [
@@ -182,7 +188,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.athletes`"
                   }
                 }
               ]
@@ -200,25 +206,25 @@
           "fields": [
             {
               "active": true,
-              "name": "age_reduction",
+              "name": "ageReduction",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "biomarker",
+              "name": "biomarkers",
               "req": true,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "bortz_age",
+              "name": "bortzAge",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "chronological_age",
+              "name": "chronologicalAge",
               "op": {
                 "create": {
                   "req": true,
@@ -244,6 +250,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/data/bortz-age",
                   "parts": [
@@ -271,7 +278,7 @@
           "fields": [
             {
               "active": true,
-              "name": "age_range",
+              "name": "ageRange",
               "req": false,
               "type": "`$STRING`"
             },
@@ -283,13 +290,13 @@
             },
             {
               "active": true,
-              "name": "max_age",
+              "name": "maxAge",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "min_age",
+              "name": "minAge",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -313,6 +320,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/divisions",
                   "parts": [
@@ -322,7 +330,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.divisions`"
                   }
                 }
               ]
@@ -340,19 +348,19 @@
           "fields": [
             {
               "active": true,
-              "name": "age_reduction",
+              "name": "ageReduction",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "athlete_id",
+              "name": "athleteId",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "athlete_name",
+              "name": "athleteName",
               "req": false,
               "type": "`$STRING`"
             },
@@ -409,6 +417,7 @@
                       }
                     ]
                   },
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/leaderboard",
                   "parts": [
@@ -423,7 +432,7 @@
                   },
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.rankings`"
                   }
                 }
               ]
@@ -441,25 +450,25 @@
           "fields": [
             {
               "active": true,
-              "name": "age_reduction",
+              "name": "ageReduction",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "biomarker",
+              "name": "biomarkers",
               "req": true,
               "type": "`$OBJECT`"
             },
             {
               "active": true,
-              "name": "calculation_method",
+              "name": "calculationMethod",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "chronological_age",
+              "name": "chronologicalAge",
               "op": {
                 "create": {
                   "req": true,
@@ -471,7 +480,7 @@
             },
             {
               "active": true,
-              "name": "pheno_age",
+              "name": "phenoAge",
               "req": false,
               "type": "`$NUMBER`"
             }
@@ -485,6 +494,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/data/pheno-age",
                   "parts": [
@@ -512,25 +522,25 @@
           "fields": [
             {
               "active": true,
-              "name": "age_reduction",
+              "name": "ageReduction",
               "req": false,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "athletes_in_league",
+              "name": "athletesInLeague",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "biological_age",
+              "name": "biologicalAge",
               "req": true,
               "type": "`$NUMBER`"
             },
             {
               "active": true,
-              "name": "chronological_age",
+              "name": "chronologicalAge",
               "req": true,
               "type": "`$NUMBER`"
             },
@@ -542,13 +552,13 @@
             },
             {
               "active": true,
-              "name": "estimated_rank",
+              "name": "estimatedRank",
               "req": false,
               "type": "`$INTEGER`"
             },
             {
               "active": true,
-              "name": "estimated_ultimate_league_rank",
+              "name": "estimatedUltimateLeagueRank",
               "req": false,
               "type": "`$INTEGER`"
             },
@@ -574,6 +584,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "POST",
                   "orig": "/data/rank-preview",
                   "parts": [
@@ -601,19 +612,19 @@
           "fields": [
             {
               "active": true,
-              "name": "country_code",
+              "name": "countryCode",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "country_name",
+              "name": "countryName",
               "req": false,
               "type": "`$STRING`"
             },
             {
               "active": true,
-              "name": "flag_url",
+              "name": "flagUrl",
               "req": false,
               "type": "`$STRING`"
             }
@@ -627,6 +638,7 @@
                 {
                   "active": true,
                   "args": {},
+                  "kind": "http",
                   "method": "GET",
                   "orig": "/data/flags",
                   "parts": [
@@ -636,7 +648,7 @@
                   "select": {},
                   "transform": {
                     "req": "`reqdata`",
-                    "res": "`body`"
+                    "res": "`body.flags`"
                   }
                 }
               ]
@@ -933,18 +945,41 @@
         "website": "https://longevityworldcup.com/swagger"
       },
       "option": {},
+      "repo": {
+        "host": "github.com",
+        "path": ""
+      },
       "target": {
         "go": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [
+              "test/feature_test.go"
+            ],
+            "trim": true
+          },
           "module": {
-            "name": "longevity-competition"
+            "goversion": "",
+            "name": "longevity-competition",
+            "package": "",
+            "path": ""
           },
           "name": "go",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -966,22 +1001,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Golang"
         },
         "go-cli": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "longevity-competition"
+            "goversion": "",
+            "name": "longevity-competition",
+            "package": "",
+            "path": ""
           },
           "name": "go-cli",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1020,21 +1073,39 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go CLI"
         },
         "go-mcp": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "go",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "longevity-competition"
+            "goversion": "",
+            "name": "longevity-competition",
+            "package": "",
+            "path": ""
           },
           "name": "go-mcp",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "phase": {
             "agentguide": {
               "active": false
@@ -1073,12 +1144,17 @@
                 "recipe": "github"
               },
               "via": "root"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "Go MCP server"
         },
         "lua": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "--"
           },
@@ -1090,10 +1166,23 @@
             }
           },
           "ext": "lua",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "longevity-competition"
+            "goversion": "",
+            "name": "longevity-competition",
+            "package": "",
+            "path": ""
           },
           "name": "lua",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1115,22 +1204,40 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Lua"
         },
         "php": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "//"
           },
           "deps": {},
           "ext": "php",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "longevity-competition"
+            "goversion": "",
+            "name": "longevity-competition",
+            "package": "",
+            "path": ""
           },
           "name": "php",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1152,13 +1259,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "PHP"
         },
         "py": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1170,10 +1282,23 @@
             }
           },
           "ext": "py",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "longevity-competition"
+            "goversion": "",
+            "name": "longevity-competition",
+            "package": "",
+            "path": ""
           },
           "name": "py",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1195,13 +1320,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Python"
         },
         "rb": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "comment": {
             "line": "#"
           },
@@ -1218,10 +1348,23 @@
             }
           },
           "ext": "rb",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "longevity-competition"
+            "goversion": "",
+            "name": "longevity-competition",
+            "package": "",
+            "path": ""
           },
           "name": "rb",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1243,13 +1386,18 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "srcfeature": false,
           "title": "Ruby"
         },
         "ts": {
           "active": true,
+          "author": {
+            "name": "",
+            "url": ""
+          },
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "comment": {
             "line": "//"
@@ -1272,10 +1420,23 @@
             }
           },
           "ext": "ts",
+          "feature": {
+            "fullset": [],
+            "trim": true
+          },
           "module": {
-            "name": "longevity-competition"
+            "goversion": "",
+            "name": "longevity-competition",
+            "package": "",
+            "path": ""
           },
           "name": "ts",
+          "output": {
+            "adopt": false,
+            "path": "",
+            "repo": "",
+            "sdkrel": ""
+          },
           "publish": {
             "registry": {
               "active": false,
@@ -1297,9 +1458,17 @@
                 "recipe": "github"
               },
               "via": "port"
-            }
+            },
+            "version": "0.0.1"
           },
           "title": "TypeScript"
+        }
+      },
+      "test": {
+        "live": {
+          "app": false,
+          "base": "",
+          "strict": false
         }
       }
     }

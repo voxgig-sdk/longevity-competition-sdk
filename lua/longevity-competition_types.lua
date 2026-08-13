@@ -7,130 +7,130 @@
 -- edit by hand.
 
 ---@class Athlete
----@field age_reduction? number
----@field biological_age? number
----@field chronological_age? number
----@field clock_type? string
+---@field ageReduction? number
+---@field biologicalAge? number
+---@field chronologicalAge? number
+---@field clockType? string
 ---@field country? string
 ---@field division? string
----@field effective_age_reduction? number
+---@field effectiveAgeReduction? number
 ---@field generation? string
 ---@field id? string
----@field last_updated? string
+---@field lastUpdated? string
 ---@field league? string
 ---@field name? string
----@field profile_url? string
+---@field profileUrl? string
 ---@field rank? number
----@field ultimate_league_rank? number
+---@field ultimateLeagueRank? number
 
 ---@class AthleteListMatch
----@field age_reduction? number
----@field biological_age? number
----@field chronological_age? number
----@field clock_type? string
+---@field ageReduction? number
+---@field biologicalAge? number
+---@field chronologicalAge? number
+---@field clockType? string
 ---@field country? string
 ---@field division? string
----@field effective_age_reduction? number
+---@field effectiveAgeReduction? number
 ---@field generation? string
 ---@field id? string
----@field last_updated? string
+---@field lastUpdated? string
 ---@field league? string
 ---@field name? string
----@field profile_url? string
+---@field profileUrl? string
 ---@field rank? number
----@field ultimate_league_rank? number
+---@field ultimateLeagueRank? number
 
 ---@class BortzAge
----@field age_reduction? number
----@field biomarker table
----@field bortz_age? number
----@field chronological_age? number
+---@field ageReduction? number
+---@field biomarkers table
+---@field bortzAge? number
+---@field chronologicalAge? number
 ---@field season? string
 
 ---@class BortzAgeCreateData
----@field age_reduction? number
----@field biomarker table
----@field bortz_age? number
----@field chronological_age? number
+---@field ageReduction? number
+---@field biomarkers table
+---@field bortzAge? number
+---@field chronologicalAge? number
 ---@field season? string
 
 ---@class Competition
----@field age_range? string
+---@field ageRange? string
 ---@field id? string
----@field max_age? number
----@field min_age? number
+---@field maxAge? number
+---@field minAge? number
 ---@field name? string
 
 ---@class CompetitionListMatch
----@field age_range? string
+---@field ageRange? string
 ---@field id? string
----@field max_age? number
----@field min_age? number
+---@field maxAge? number
+---@field minAge? number
 ---@field name? string
 
 ---@class Leaderboard
----@field age_reduction? number
----@field athlete_id? string
----@field athlete_name? string
+---@field ageReduction? number
+---@field athleteId? string
+---@field athleteName? string
 ---@field country? string
 ---@field division? string
 ---@field league? string
 ---@field rank? number
 
 ---@class LeaderboardListMatch
----@field age_reduction? number
----@field athlete_id? string
----@field athlete_name? string
+---@field ageReduction? number
+---@field athleteId? string
+---@field athleteName? string
 ---@field country? string
 ---@field division? string
 ---@field league? string
 ---@field rank? number
 
 ---@class PhenoAge
----@field age_reduction? number
----@field biomarker table
----@field calculation_method? string
----@field chronological_age? number
----@field pheno_age? number
+---@field ageReduction? number
+---@field biomarkers table
+---@field calculationMethod? string
+---@field chronologicalAge? number
+---@field phenoAge? number
 
 ---@class PhenoAgeCreateData
----@field age_reduction? number
----@field biomarker table
----@field calculation_method? string
----@field chronological_age? number
----@field pheno_age? number
+---@field ageReduction? number
+---@field biomarkers table
+---@field calculationMethod? string
+---@field chronologicalAge? number
+---@field phenoAge? number
 
 ---@class RankPreview
----@field age_reduction? number
----@field athletes_in_league? number
----@field biological_age number
----@field chronological_age number
+---@field ageReduction? number
+---@field athletesInLeague? number
+---@field biologicalAge number
+---@field chronologicalAge number
 ---@field division? string
----@field estimated_rank? number
----@field estimated_ultimate_league_rank? number
+---@field estimatedRank? number
+---@field estimatedUltimateLeagueRank? number
 ---@field league? string
 ---@field percentile? number
 
 ---@class RankPreviewCreateData
----@field age_reduction? number
----@field athletes_in_league? number
----@field biological_age number
----@field chronological_age number
+---@field ageReduction? number
+---@field athletesInLeague? number
+---@field biologicalAge number
+---@field chronologicalAge number
 ---@field division? string
----@field estimated_rank? number
----@field estimated_ultimate_league_rank? number
+---@field estimatedRank? number
+---@field estimatedUltimateLeagueRank? number
 ---@field league? string
 ---@field percentile? number
 
 ---@class Reference
----@field country_code? string
----@field country_name? string
----@field flag_url? string
+---@field countryCode? string
+---@field countryName? string
+---@field flagUrl? string
 
 ---@class ReferenceListMatch
----@field country_code? string
----@field country_name? string
----@field flag_url? string
+---@field countryCode? string
+---@field countryName? string
+---@field flagUrl? string
 
 local M = {}
 

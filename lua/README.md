@@ -43,7 +43,7 @@ local athletes, err = client:Athlete():list()
 if err then error(err) end
 
 for _, item in ipairs(athletes) do
-  print(item["id"], item["clock_type"])
+  print(item["id"], item["clockType"])
 end
 ```
 
@@ -54,7 +54,7 @@ Entity operations return `(value, err)`. Check `err` before using
 the value:
 
 ```lua
-local athletes, err = client:Athlete():list()
+local competitions, err = client:Competition():list()
 if err then error(err) end
 ```
 
@@ -112,7 +112,7 @@ Create a mock client for unit testing — no server required:
 ```lua
 local client = sdk.test()
 
-local result, err = client:Athlete():list()
+local result, err = client:Competition():list()
 -- result is the returned data; err is set on failure
 ```
 
@@ -226,9 +226,9 @@ data **directly** — there is no wrapper:
 
 Check `err` first (it is non-`nil` on failure), then use `value`:
 
-    local athlete, err = client:Athlete():load()
+    local athlete, err = client:Athlete():list()
     if err then error(err) end
-    -- athlete is the loaded record
+    -- athlete is the record list
 
 Only `direct()` returns a response envelope — a `table` with `ok`,
 `status`, `headers`, and `data` keys.
@@ -239,21 +239,21 @@ Only `direct()` returns a response envelope — a `table` with `ok`,
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biological_age` |  |
-| `chronological_age` |  |
-| `clock_type` |  |
+| `ageReduction` |  |
+| `biologicalAge` |  |
+| `chronologicalAge` |  |
+| `clockType` |  |
 | `country` |  |
 | `division` |  |
-| `effective_age_reduction` |  |
+| `effectiveAgeReduction` |  |
 | `generation` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `league` |  |
 | `name` |  |
-| `profile_url` |  |
+| `profileUrl` |  |
 | `rank` |  |
-| `ultimate_league_rank` |  |
+| `ultimateLeagueRank` |  |
 
 Operations: List.
 
@@ -263,10 +263,10 @@ API path: `/data/athletes`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biomarker` |  |
-| `bortz_age` |  |
-| `chronological_age` |  |
+| `ageReduction` |  |
+| `biomarkers` |  |
+| `bortzAge` |  |
+| `chronologicalAge` |  |
 | `season` |  |
 
 Operations: Create.
@@ -277,10 +277,10 @@ API path: `/data/bortz-age`
 
 | Field | Description |
 | --- | --- |
-| `age_range` |  |
+| `ageRange` |  |
 | `id` |  |
-| `max_age` |  |
-| `min_age` |  |
+| `maxAge` |  |
+| `minAge` |  |
 | `name` |  |
 
 Operations: List.
@@ -291,9 +291,9 @@ API path: `/data/divisions`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `athlete_id` |  |
-| `athlete_name` |  |
+| `ageReduction` |  |
+| `athleteId` |  |
+| `athleteName` |  |
 | `country` |  |
 | `division` |  |
 | `league` |  |
@@ -307,11 +307,11 @@ API path: `/data/leaderboard`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biomarker` |  |
-| `calculation_method` |  |
-| `chronological_age` |  |
-| `pheno_age` |  |
+| `ageReduction` |  |
+| `biomarkers` |  |
+| `calculationMethod` |  |
+| `chronologicalAge` |  |
+| `phenoAge` |  |
 
 Operations: Create.
 
@@ -321,13 +321,13 @@ API path: `/data/pheno-age`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `athletes_in_league` |  |
-| `biological_age` |  |
-| `chronological_age` |  |
+| `ageReduction` |  |
+| `athletesInLeague` |  |
+| `biologicalAge` |  |
+| `chronologicalAge` |  |
 | `division` |  |
-| `estimated_rank` |  |
-| `estimated_ultimate_league_rank` |  |
+| `estimatedRank` |  |
+| `estimatedUltimateLeagueRank` |  |
 | `league` |  |
 | `percentile` |  |
 
@@ -339,9 +339,9 @@ API path: `/data/rank-preview`
 
 | Field | Description |
 | --- | --- |
-| `country_code` |  |
-| `country_name` |  |
-| `flag_url` |  |
+| `countryCode` |  |
+| `countryName` |  |
+| `flagUrl` |  |
 
 Operations: List.
 
@@ -366,21 +366,21 @@ Create an instance: `local athlete = client:Athlete(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `biological_age` | `number` |  |
-| `chronological_age` | `number` |  |
-| `clock_type` | `string` |  |
+| `ageReduction` | `number` |  |
+| `biologicalAge` | `number` |  |
+| `chronologicalAge` | `number` |  |
+| `clockType` | `string` |  |
 | `country` | `string` |  |
 | `division` | `string` |  |
-| `effective_age_reduction` | `number` |  |
+| `effectiveAgeReduction` | `number` |  |
 | `generation` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `league` | `string` |  |
 | `name` | `string` |  |
-| `profile_url` | `string` |  |
+| `profileUrl` | `string` |  |
 | `rank` | `number` |  |
-| `ultimate_league_rank` | `number` |  |
+| `ultimateLeagueRank` | `number` |  |
 
 #### Example: List
 
@@ -403,17 +403,17 @@ Create an instance: `local bortz_age = client:BortzAge(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `biomarker` | `table` |  |
-| `bortz_age` | `number` |  |
-| `chronological_age` | `number` |  |
+| `ageReduction` | `number` |  |
+| `biomarkers` | `table` |  |
+| `bortzAge` | `number` |  |
+| `chronologicalAge` | `number` |  |
 | `season` | `string` |  |
 
 #### Example: Create
 
 ```lua
 local bortz_age, err = client:BortzAge():create({
-  biomarker = {}, -- table
+  biomarkers = {}, -- table
 })
 ```
 
@@ -432,10 +432,10 @@ Create an instance: `local competition = client:Competition(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_range` | `string` |  |
+| `ageRange` | `string` |  |
 | `id` | `string` |  |
-| `max_age` | `number` |  |
-| `min_age` | `number` |  |
+| `maxAge` | `number` |  |
+| `minAge` | `number` |  |
 | `name` | `string` |  |
 
 #### Example: List
@@ -459,9 +459,9 @@ Create an instance: `local leaderboard = client:Leaderboard(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `athlete_id` | `string` |  |
-| `athlete_name` | `string` |  |
+| `ageReduction` | `number` |  |
+| `athleteId` | `string` |  |
+| `athleteName` | `string` |  |
 | `country` | `string` |  |
 | `division` | `string` |  |
 | `league` | `string` |  |
@@ -488,17 +488,17 @@ Create an instance: `local pheno_age = client:PhenoAge(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `biomarker` | `table` |  |
-| `calculation_method` | `string` |  |
-| `chronological_age` | `number` |  |
-| `pheno_age` | `number` |  |
+| `ageReduction` | `number` |  |
+| `biomarkers` | `table` |  |
+| `calculationMethod` | `string` |  |
+| `chronologicalAge` | `number` |  |
+| `phenoAge` | `number` |  |
 
 #### Example: Create
 
 ```lua
 local pheno_age, err = client:PhenoAge():create({
-  biomarker = {}, -- table
+  biomarkers = {}, -- table
 })
 ```
 
@@ -517,13 +517,13 @@ Create an instance: `local rank_preview = client:RankPreview(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `number` |  |
-| `athletes_in_league` | `number` |  |
-| `biological_age` | `number` |  |
-| `chronological_age` | `number` |  |
+| `ageReduction` | `number` |  |
+| `athletesInLeague` | `number` |  |
+| `biologicalAge` | `number` |  |
+| `chronologicalAge` | `number` |  |
 | `division` | `string` |  |
-| `estimated_rank` | `number` |  |
-| `estimated_ultimate_league_rank` | `number` |  |
+| `estimatedRank` | `number` |  |
+| `estimatedUltimateLeagueRank` | `number` |  |
 | `league` | `string` |  |
 | `percentile` | `number` |  |
 
@@ -531,8 +531,8 @@ Create an instance: `local rank_preview = client:RankPreview(nil)`
 
 ```lua
 local rank_preview, err = client:RankPreview():create({
-  biological_age = 1, -- number
-  chronological_age = 1, -- number
+  biologicalAge = 1, -- number
+  chronologicalAge = 1, -- number
 })
 ```
 
@@ -551,9 +551,9 @@ Create an instance: `local reference = client:Reference(nil)`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country_code` | `string` |  |
-| `country_name` | `string` |  |
-| `flag_url` | `string` |  |
+| `countryCode` | `string` |  |
+| `countryName` | `string` |  |
+| `flagUrl` | `string` |  |
 
 #### Example: List
 
@@ -638,11 +638,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```lua
-local athlete = client:Athlete()
-athlete:list()
+local competition = client:Competition()
+competition:list()
 
--- athlete:data_get() now returns the athlete data from the last list
--- athlete:match_get() returns the last match criteria
+-- competition:data_get() now returns the competition data from the last list
+-- competition:match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

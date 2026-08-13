@@ -38,7 +38,7 @@ try {
     // list() returns an array of Athlete records — iterate directly.
     $athletes = $client->Athlete()->list();
     foreach ($athletes as $item) {
-        echo $item["id"] . " " . $item["age_reduction"] . "\n";
+        echo $item["id"] . " " . $item["ageReduction"] . "\n";
     }
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
@@ -53,7 +53,7 @@ Entity operations throw a `\Throwable` on failure, so wrap them in
 
 ```php
 try {
-    $athletes = $client->Athlete()->list();
+    $competitions = $client->Competition()->list();
 } catch (\Throwable $err) {
     echo "Error: " . $err->getMessage();
 }
@@ -125,9 +125,10 @@ Create a mock client for unit testing — no server required:
 ```php
 $client = LongevityCompetitionSDK::test();
 
-// Entity ops return the bare mock record (throws on error).
-$athlete = $client->Athlete()->list();
-print_r($athlete);
+// Entity ops return the ENTITY (throws on error);
+// call data_get() for the mock record.
+$competition = $client->Competition()->list();
+print_r($competition);
 ```
 
 ### Use a custom fetch function
@@ -231,7 +232,7 @@ All entities share the same interface.
 
 ### Result shape
 
-Entity operations return the bare result data (an `array` for single-entity
+Entity operations return the ENTITY (call data_get() for the record) (an `array` for single-entity
 ops, a `list` for `list`) and throw on error. Wrap calls in
 `try`/`catch` to handle failures.
 
@@ -253,21 +254,21 @@ On error, `ok` is `false` and `$err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biological_age` |  |
-| `chronological_age` |  |
-| `clock_type` |  |
+| `ageReduction` |  |
+| `biologicalAge` |  |
+| `chronologicalAge` |  |
+| `clockType` |  |
 | `country` |  |
 | `division` |  |
-| `effective_age_reduction` |  |
+| `effectiveAgeReduction` |  |
 | `generation` |  |
 | `id` |  |
-| `last_updated` |  |
+| `lastUpdated` |  |
 | `league` |  |
 | `name` |  |
-| `profile_url` |  |
+| `profileUrl` |  |
 | `rank` |  |
-| `ultimate_league_rank` |  |
+| `ultimateLeagueRank` |  |
 
 Operations: List.
 
@@ -277,10 +278,10 @@ API path: `/data/athletes`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biomarker` |  |
-| `bortz_age` |  |
-| `chronological_age` |  |
+| `ageReduction` |  |
+| `biomarkers` |  |
+| `bortzAge` |  |
+| `chronologicalAge` |  |
 | `season` |  |
 
 Operations: Create.
@@ -291,10 +292,10 @@ API path: `/data/bortz-age`
 
 | Field | Description |
 | --- | --- |
-| `age_range` |  |
+| `ageRange` |  |
 | `id` |  |
-| `max_age` |  |
-| `min_age` |  |
+| `maxAge` |  |
+| `minAge` |  |
 | `name` |  |
 
 Operations: List.
@@ -305,9 +306,9 @@ API path: `/data/divisions`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `athlete_id` |  |
-| `athlete_name` |  |
+| `ageReduction` |  |
+| `athleteId` |  |
+| `athleteName` |  |
 | `country` |  |
 | `division` |  |
 | `league` |  |
@@ -321,11 +322,11 @@ API path: `/data/leaderboard`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `biomarker` |  |
-| `calculation_method` |  |
-| `chronological_age` |  |
-| `pheno_age` |  |
+| `ageReduction` |  |
+| `biomarkers` |  |
+| `calculationMethod` |  |
+| `chronologicalAge` |  |
+| `phenoAge` |  |
 
 Operations: Create.
 
@@ -335,13 +336,13 @@ API path: `/data/pheno-age`
 
 | Field | Description |
 | --- | --- |
-| `age_reduction` |  |
-| `athletes_in_league` |  |
-| `biological_age` |  |
-| `chronological_age` |  |
+| `ageReduction` |  |
+| `athletesInLeague` |  |
+| `biologicalAge` |  |
+| `chronologicalAge` |  |
 | `division` |  |
-| `estimated_rank` |  |
-| `estimated_ultimate_league_rank` |  |
+| `estimatedRank` |  |
+| `estimatedUltimateLeagueRank` |  |
 | `league` |  |
 | `percentile` |  |
 
@@ -353,9 +354,9 @@ API path: `/data/rank-preview`
 
 | Field | Description |
 | --- | --- |
-| `country_code` |  |
-| `country_name` |  |
-| `flag_url` |  |
+| `countryCode` |  |
+| `countryName` |  |
+| `flagUrl` |  |
 
 Operations: List.
 
@@ -380,21 +381,21 @@ Create an instance: `$athlete = $client->Athlete();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float` |  |
-| `biological_age` | `float` |  |
-| `chronological_age` | `float` |  |
-| `clock_type` | `string` |  |
+| `ageReduction` | `float` |  |
+| `biologicalAge` | `float` |  |
+| `chronologicalAge` | `float` |  |
+| `clockType` | `string` |  |
 | `country` | `string` |  |
 | `division` | `string` |  |
-| `effective_age_reduction` | `float` |  |
+| `effectiveAgeReduction` | `float` |  |
 | `generation` | `string` |  |
 | `id` | `string` |  |
-| `last_updated` | `string` |  |
+| `lastUpdated` | `string` |  |
 | `league` | `string` |  |
 | `name` | `string` |  |
-| `profile_url` | `string` |  |
+| `profileUrl` | `string` |  |
 | `rank` | `int` |  |
-| `ultimate_league_rank` | `int` |  |
+| `ultimateLeagueRank` | `int` |  |
 
 #### Example: List
 
@@ -418,17 +419,17 @@ Create an instance: `$bortz_age = $client->BortzAge();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float` |  |
-| `biomarker` | `array` |  |
-| `bortz_age` | `float` |  |
-| `chronological_age` | `float` |  |
+| `ageReduction` | `float` |  |
+| `biomarkers` | `array` |  |
+| `bortzAge` | `float` |  |
+| `chronologicalAge` | `float` |  |
 | `season` | `string` |  |
 
 #### Example: Create
 
 ```php
 $bortz_age = $client->BortzAge()->create([
-    "biomarker" => null, // array
+    "biomarkers" => null, // array
 ]);
 ```
 
@@ -447,10 +448,10 @@ Create an instance: `$competition = $client->Competition();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_range` | `string` |  |
+| `ageRange` | `string` |  |
 | `id` | `string` |  |
-| `max_age` | `int` |  |
-| `min_age` | `int` |  |
+| `maxAge` | `int` |  |
+| `minAge` | `int` |  |
 | `name` | `string` |  |
 
 #### Example: List
@@ -475,9 +476,9 @@ Create an instance: `$leaderboard = $client->Leaderboard();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float` |  |
-| `athlete_id` | `string` |  |
-| `athlete_name` | `string` |  |
+| `ageReduction` | `float` |  |
+| `athleteId` | `string` |  |
+| `athleteName` | `string` |  |
 | `country` | `string` |  |
 | `division` | `string` |  |
 | `league` | `string` |  |
@@ -505,17 +506,17 @@ Create an instance: `$pheno_age = $client->PhenoAge();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float` |  |
-| `biomarker` | `array` |  |
-| `calculation_method` | `string` |  |
-| `chronological_age` | `float` |  |
-| `pheno_age` | `float` |  |
+| `ageReduction` | `float` |  |
+| `biomarkers` | `array` |  |
+| `calculationMethod` | `string` |  |
+| `chronologicalAge` | `float` |  |
+| `phenoAge` | `float` |  |
 
 #### Example: Create
 
 ```php
 $pheno_age = $client->PhenoAge()->create([
-    "biomarker" => null, // array
+    "biomarkers" => null, // array
 ]);
 ```
 
@@ -534,13 +535,13 @@ Create an instance: `$rank_preview = $client->RankPreview();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `age_reduction` | `float` |  |
-| `athletes_in_league` | `int` |  |
-| `biological_age` | `float` |  |
-| `chronological_age` | `float` |  |
+| `ageReduction` | `float` |  |
+| `athletesInLeague` | `int` |  |
+| `biologicalAge` | `float` |  |
+| `chronologicalAge` | `float` |  |
 | `division` | `string` |  |
-| `estimated_rank` | `int` |  |
-| `estimated_ultimate_league_rank` | `int` |  |
+| `estimatedRank` | `int` |  |
+| `estimatedUltimateLeagueRank` | `int` |  |
 | `league` | `string` |  |
 | `percentile` | `float` |  |
 
@@ -548,8 +549,8 @@ Create an instance: `$rank_preview = $client->RankPreview();`
 
 ```php
 $rank_preview = $client->RankPreview()->create([
-    "biological_age" => null, // float
-    "chronological_age" => null, // float
+    "biologicalAge" => null, // float
+    "chronologicalAge" => null, // float
 ]);
 ```
 
@@ -568,9 +569,9 @@ Create an instance: `$reference = $client->Reference();`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `country_code` | `string` |  |
-| `country_name` | `string` |  |
-| `flag_url` | `string` |  |
+| `countryCode` | `string` |  |
+| `countryName` | `string` |  |
+| `flagUrl` | `string` |  |
 
 #### Example: List
 
@@ -656,11 +657,11 @@ Entity instances are stateful. After a successful `list`, the entity
 stores the returned data and match criteria internally.
 
 ```php
-$athlete = $client->Athlete();
-$athlete->list();
+$competition = $client->Competition();
+$competition->list();
 
-// $athlete->data_get() now returns the athlete data from the last list
-// $athlete->match_get() returns the last match criteria
+// $competition->data_get() now returns the competition data from the last list
+// $competition->match_get() returns the last match criteria
 ```
 
 Call `make()` to create a fresh instance with the same configuration

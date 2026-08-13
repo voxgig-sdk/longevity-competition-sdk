@@ -10,16 +10,16 @@
 
 # Athlete entity data model.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] biological_age
+# @!attribute [rw] biologicalAge
 #   @return [Float, nil]
 #
-# @!attribute [rw] chronological_age
+# @!attribute [rw] chronologicalAge
 #   @return [Float, nil]
 #
-# @!attribute [rw] clock_type
+# @!attribute [rw] clockType
 #   @return [String, nil]
 #
 # @!attribute [rw] country
@@ -28,7 +28,7 @@
 # @!attribute [rw] division
 #   @return [String, nil]
 #
-# @!attribute [rw] effective_age_reduction
+# @!attribute [rw] effectiveAgeReduction
 #   @return [Float, nil]
 #
 # @!attribute [rw] generation
@@ -37,7 +37,7 @@
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] last_updated
+# @!attribute [rw] lastUpdated
 #   @return [String, nil]
 #
 # @!attribute [rw] league
@@ -46,45 +46,45 @@
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] profile_url
+# @!attribute [rw] profileUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] rank
 #   @return [Integer, nil]
 #
-# @!attribute [rw] ultimate_league_rank
+# @!attribute [rw] ultimateLeagueRank
 #   @return [Integer, nil]
 Athlete = Struct.new(
-  :age_reduction,
-  :biological_age,
-  :chronological_age,
-  :clock_type,
+  :ageReduction,
+  :biologicalAge,
+  :chronologicalAge,
+  :clockType,
   :country,
   :division,
-  :effective_age_reduction,
+  :effectiveAgeReduction,
   :generation,
   :id,
-  :last_updated,
+  :lastUpdated,
   :league,
   :name,
-  :profile_url,
+  :profileUrl,
   :rank,
-  :ultimate_league_rank,
+  :ultimateLeagueRank,
   keyword_init: true
 )
 
 # Request payload for Athlete#list.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] biological_age
+# @!attribute [rw] biologicalAge
 #   @return [Float, nil]
 #
-# @!attribute [rw] chronological_age
+# @!attribute [rw] chronologicalAge
 #   @return [Float, nil]
 #
-# @!attribute [rw] clock_type
+# @!attribute [rw] clockType
 #   @return [String, nil]
 #
 # @!attribute [rw] country
@@ -93,7 +93,7 @@ Athlete = Struct.new(
 # @!attribute [rw] division
 #   @return [String, nil]
 #
-# @!attribute [rw] effective_age_reduction
+# @!attribute [rw] effectiveAgeReduction
 #   @return [Float, nil]
 #
 # @!attribute [rw] generation
@@ -102,7 +102,7 @@ Athlete = Struct.new(
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] last_updated
+# @!attribute [rw] lastUpdated
 #   @return [String, nil]
 #
 # @!attribute [rw] league
@@ -111,142 +111,142 @@ Athlete = Struct.new(
 # @!attribute [rw] name
 #   @return [String, nil]
 #
-# @!attribute [rw] profile_url
+# @!attribute [rw] profileUrl
 #   @return [String, nil]
 #
 # @!attribute [rw] rank
 #   @return [Integer, nil]
 #
-# @!attribute [rw] ultimate_league_rank
+# @!attribute [rw] ultimateLeagueRank
 #   @return [Integer, nil]
 AthleteListMatch = Struct.new(
-  :age_reduction,
-  :biological_age,
-  :chronological_age,
-  :clock_type,
+  :ageReduction,
+  :biologicalAge,
+  :chronologicalAge,
+  :clockType,
   :country,
   :division,
-  :effective_age_reduction,
+  :effectiveAgeReduction,
   :generation,
   :id,
-  :last_updated,
+  :lastUpdated,
   :league,
   :name,
-  :profile_url,
+  :profileUrl,
   :rank,
-  :ultimate_league_rank,
+  :ultimateLeagueRank,
   keyword_init: true
 )
 
 # BortzAge entity data model.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] biomarker
+# @!attribute [rw] biomarkers
 #   @return [Hash]
 #
-# @!attribute [rw] bortz_age
+# @!attribute [rw] bortzAge
 #   @return [Float, nil]
 #
-# @!attribute [rw] chronological_age
+# @!attribute [rw] chronologicalAge
 #   @return [Float, nil]
 #
 # @!attribute [rw] season
 #   @return [String, nil]
 BortzAge = Struct.new(
-  :age_reduction,
-  :biomarker,
-  :bortz_age,
-  :chronological_age,
+  :ageReduction,
+  :biomarkers,
+  :bortzAge,
+  :chronologicalAge,
   :season,
   keyword_init: true
 )
 
 # Request payload for BortzAge#create.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] biomarker
+# @!attribute [rw] biomarkers
 #   @return [Hash]
 #
-# @!attribute [rw] bortz_age
+# @!attribute [rw] bortzAge
 #   @return [Float, nil]
 #
-# @!attribute [rw] chronological_age
+# @!attribute [rw] chronologicalAge
 #   @return [Float, nil]
 #
 # @!attribute [rw] season
 #   @return [String, nil]
 BortzAgeCreateData = Struct.new(
-  :age_reduction,
-  :biomarker,
-  :bortz_age,
-  :chronological_age,
+  :ageReduction,
+  :biomarkers,
+  :bortzAge,
+  :chronologicalAge,
   :season,
   keyword_init: true
 )
 
 # Competition entity data model.
 #
-# @!attribute [rw] age_range
+# @!attribute [rw] ageRange
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] max_age
+# @!attribute [rw] maxAge
 #   @return [Integer, nil]
 #
-# @!attribute [rw] min_age
+# @!attribute [rw] minAge
 #   @return [Integer, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 Competition = Struct.new(
-  :age_range,
+  :ageRange,
   :id,
-  :max_age,
-  :min_age,
+  :maxAge,
+  :minAge,
   :name,
   keyword_init: true
 )
 
 # Request payload for Competition#list.
 #
-# @!attribute [rw] age_range
+# @!attribute [rw] ageRange
 #   @return [String, nil]
 #
 # @!attribute [rw] id
 #   @return [String, nil]
 #
-# @!attribute [rw] max_age
+# @!attribute [rw] maxAge
 #   @return [Integer, nil]
 #
-# @!attribute [rw] min_age
+# @!attribute [rw] minAge
 #   @return [Integer, nil]
 #
 # @!attribute [rw] name
 #   @return [String, nil]
 CompetitionListMatch = Struct.new(
-  :age_range,
+  :ageRange,
   :id,
-  :max_age,
-  :min_age,
+  :maxAge,
+  :minAge,
   :name,
   keyword_init: true
 )
 
 # Leaderboard entity data model.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] athlete_id
+# @!attribute [rw] athleteId
 #   @return [String, nil]
 #
-# @!attribute [rw] athlete_name
+# @!attribute [rw] athleteName
 #   @return [String, nil]
 #
 # @!attribute [rw] country
@@ -261,9 +261,9 @@ CompetitionListMatch = Struct.new(
 # @!attribute [rw] rank
 #   @return [Integer, nil]
 Leaderboard = Struct.new(
-  :age_reduction,
-  :athlete_id,
-  :athlete_name,
+  :ageReduction,
+  :athleteId,
+  :athleteName,
   :country,
   :division,
   :league,
@@ -273,13 +273,13 @@ Leaderboard = Struct.new(
 
 # Request payload for Leaderboard#list.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] athlete_id
+# @!attribute [rw] athleteId
 #   @return [String, nil]
 #
-# @!attribute [rw] athlete_name
+# @!attribute [rw] athleteName
 #   @return [String, nil]
 #
 # @!attribute [rw] country
@@ -294,9 +294,9 @@ Leaderboard = Struct.new(
 # @!attribute [rw] rank
 #   @return [Integer, nil]
 LeaderboardListMatch = Struct.new(
-  :age_reduction,
-  :athlete_id,
-  :athlete_name,
+  :ageReduction,
+  :athleteId,
+  :athleteName,
   :country,
   :division,
   :league,
@@ -306,75 +306,75 @@ LeaderboardListMatch = Struct.new(
 
 # PhenoAge entity data model.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] biomarker
+# @!attribute [rw] biomarkers
 #   @return [Hash]
 #
-# @!attribute [rw] calculation_method
+# @!attribute [rw] calculationMethod
 #   @return [String, nil]
 #
-# @!attribute [rw] chronological_age
+# @!attribute [rw] chronologicalAge
 #   @return [Float, nil]
 #
-# @!attribute [rw] pheno_age
+# @!attribute [rw] phenoAge
 #   @return [Float, nil]
 PhenoAge = Struct.new(
-  :age_reduction,
-  :biomarker,
-  :calculation_method,
-  :chronological_age,
-  :pheno_age,
+  :ageReduction,
+  :biomarkers,
+  :calculationMethod,
+  :chronologicalAge,
+  :phenoAge,
   keyword_init: true
 )
 
 # Request payload for PhenoAge#create.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] biomarker
+# @!attribute [rw] biomarkers
 #   @return [Hash]
 #
-# @!attribute [rw] calculation_method
+# @!attribute [rw] calculationMethod
 #   @return [String, nil]
 #
-# @!attribute [rw] chronological_age
+# @!attribute [rw] chronologicalAge
 #   @return [Float, nil]
 #
-# @!attribute [rw] pheno_age
+# @!attribute [rw] phenoAge
 #   @return [Float, nil]
 PhenoAgeCreateData = Struct.new(
-  :age_reduction,
-  :biomarker,
-  :calculation_method,
-  :chronological_age,
-  :pheno_age,
+  :ageReduction,
+  :biomarkers,
+  :calculationMethod,
+  :chronologicalAge,
+  :phenoAge,
   keyword_init: true
 )
 
 # RankPreview entity data model.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] athletes_in_league
+# @!attribute [rw] athletesInLeague
 #   @return [Integer, nil]
 #
-# @!attribute [rw] biological_age
+# @!attribute [rw] biologicalAge
 #   @return [Float]
 #
-# @!attribute [rw] chronological_age
+# @!attribute [rw] chronologicalAge
 #   @return [Float]
 #
 # @!attribute [rw] division
 #   @return [String, nil]
 #
-# @!attribute [rw] estimated_rank
+# @!attribute [rw] estimatedRank
 #   @return [Integer, nil]
 #
-# @!attribute [rw] estimated_ultimate_league_rank
+# @!attribute [rw] estimatedUltimateLeagueRank
 #   @return [Integer, nil]
 #
 # @!attribute [rw] league
@@ -383,13 +383,13 @@ PhenoAgeCreateData = Struct.new(
 # @!attribute [rw] percentile
 #   @return [Float, nil]
 RankPreview = Struct.new(
-  :age_reduction,
-  :athletes_in_league,
-  :biological_age,
-  :chronological_age,
+  :ageReduction,
+  :athletesInLeague,
+  :biologicalAge,
+  :chronologicalAge,
   :division,
-  :estimated_rank,
-  :estimated_ultimate_league_rank,
+  :estimatedRank,
+  :estimatedUltimateLeagueRank,
   :league,
   :percentile,
   keyword_init: true
@@ -397,25 +397,25 @@ RankPreview = Struct.new(
 
 # Request payload for RankPreview#create.
 #
-# @!attribute [rw] age_reduction
+# @!attribute [rw] ageReduction
 #   @return [Float, nil]
 #
-# @!attribute [rw] athletes_in_league
+# @!attribute [rw] athletesInLeague
 #   @return [Integer, nil]
 #
-# @!attribute [rw] biological_age
+# @!attribute [rw] biologicalAge
 #   @return [Float]
 #
-# @!attribute [rw] chronological_age
+# @!attribute [rw] chronologicalAge
 #   @return [Float]
 #
 # @!attribute [rw] division
 #   @return [String, nil]
 #
-# @!attribute [rw] estimated_rank
+# @!attribute [rw] estimatedRank
 #   @return [Integer, nil]
 #
-# @!attribute [rw] estimated_ultimate_league_rank
+# @!attribute [rw] estimatedUltimateLeagueRank
 #   @return [Integer, nil]
 #
 # @!attribute [rw] league
@@ -424,13 +424,13 @@ RankPreview = Struct.new(
 # @!attribute [rw] percentile
 #   @return [Float, nil]
 RankPreviewCreateData = Struct.new(
-  :age_reduction,
-  :athletes_in_league,
-  :biological_age,
-  :chronological_age,
+  :ageReduction,
+  :athletesInLeague,
+  :biologicalAge,
+  :chronologicalAge,
   :division,
-  :estimated_rank,
-  :estimated_ultimate_league_rank,
+  :estimatedRank,
+  :estimatedUltimateLeagueRank,
   :league,
   :percentile,
   keyword_init: true
@@ -438,35 +438,35 @@ RankPreviewCreateData = Struct.new(
 
 # Reference entity data model.
 #
-# @!attribute [rw] country_code
+# @!attribute [rw] countryCode
 #   @return [String, nil]
 #
-# @!attribute [rw] country_name
+# @!attribute [rw] countryName
 #   @return [String, nil]
 #
-# @!attribute [rw] flag_url
+# @!attribute [rw] flagUrl
 #   @return [String, nil]
 Reference = Struct.new(
-  :country_code,
-  :country_name,
-  :flag_url,
+  :countryCode,
+  :countryName,
+  :flagUrl,
   keyword_init: true
 )
 
 # Request payload for Reference#list.
 #
-# @!attribute [rw] country_code
+# @!attribute [rw] countryCode
 #   @return [String, nil]
 #
-# @!attribute [rw] country_name
+# @!attribute [rw] countryName
 #   @return [String, nil]
 #
-# @!attribute [rw] flag_url
+# @!attribute [rw] flagUrl
 #   @return [String, nil]
 ReferenceListMatch = Struct.new(
-  :country_code,
-  :country_name,
-  :flag_url,
+  :countryCode,
+  :countryName,
+  :flagUrl,
   keyword_init: true
 )
 
