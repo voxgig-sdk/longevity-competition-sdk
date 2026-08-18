@@ -40,7 +40,7 @@ class LongevityCompetitionSDK
         $utility = new LongevityCompetitionUtility();
         $this->_utility = $utility;
 
-        $config = LongevityCompetitionConfig::make_config();
+        $config = LongevityCompetitionConfig::shared_config();
 
         $this->_rootctx = ($utility->make_context)([
             "client" => $this,

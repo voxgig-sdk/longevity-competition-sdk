@@ -28,7 +28,7 @@ class LongevityCompetitionSDK
     utility = LongevityCompetitionUtility.new
     @_utility = utility
 
-    config = LongevityCompetitionConfig.make_config
+    config = LongevityCompetitionConfig.shared_config
 
     @_rootctx = utility.make_context.call({
       "client" => self,

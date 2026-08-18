@@ -14,7 +14,7 @@ from __future__ import annotations
 
 from urllib.parse import quote
 
-from longevitycompetition_sdk.config import make_config
+from longevitycompetition_sdk.config import shared_config
 from longevitycompetition_sdk.features import _make_feature
 from longevitycompetition_sdk.core.control import LongevityCompetitionControl
 from longevitycompetition_sdk.core.error import LongevityCompetitionError
@@ -24,7 +24,7 @@ from longevitycompetition_sdk.core.spec import LongevityCompetitionSpec
 
 # True when this SDK was generated with the named feature.
 def has_feature(name):
-    feature = make_config().get("feature")
+    feature = shared_config().get("feature")
     return isinstance(feature, dict) and feature.get(name) is not None
 
 
