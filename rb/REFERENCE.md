@@ -117,21 +117,21 @@ athlete = client.Athlete
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `Float` | No |  |
-| `biologicalAge` | `Float` | No |  |
-| `chronologicalAge` | `Float` | No |  |
-| `clockType` | `String` | No |  |
-| `country` | `String` | No |  |
-| `division` | `String` | No |  |
-| `effectiveAgeReduction` | `Float` | No |  |
-| `generation` | `String` | No |  |
-| `id` | `String` | No |  |
-| `lastUpdated` | `String` | No |  |
-| `league` | `String` | No |  |
-| `name` | `String` | No |  |
-| `profileUrl` | `String` | No |  |
-| `rank` | `Integer` | No |  |
-| `ultimateLeagueRank` | `Integer` | No |  |
+| `ageReduction` | `Float` | No | Age Reduction score (chronological age minus biological age) |
+| `biologicalAge` | `Float` | No | Calculated biological age |
+| `chronologicalAge` | `Float` | No | Actual age in years |
+| `clockType` | `String` | No | Biological aging clock used |
+| `country` | `String` | No | Country code |
+| `division` | `String` | No | Age division category |
+| `effectiveAgeReduction` | `Float` | No | Effective Age Reduction used for ranking |
+| `generation` | `String` | No | Generation category |
+| `id` | `String` | No | Unique athlete identifier |
+| `lastUpdated` | `String` | No | Last result submission date |
+| `league` | `String` | No | Competition league |
+| `name` | `String` | No | Athlete name |
+| `profileUrl` | `String` | No | URL to athlete's public profile |
+| `rank` | `Integer` | No | Current ranking position |
+| `ultimateLeagueRank` | `Integer` | No | Rank in Ultimate League (combined Pro and Amateur) |
 
 ### Operations
 
@@ -183,11 +183,11 @@ bortz_age = client.BortzAge
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `Float` | No |  |
-| `biomarkers` | `Hash` | Yes |  |
-| `bortzAge` | `Float` | No |  |
-| `chronologicalAge` | `Float` | No |  |
-| `season` | `String` | No |  |
+| `ageReduction` | `Float` | No | Calculated Age Reduction |
+| `biomarkers` | `Hash` | Yes | Blood biomarker values required for Bortz Age calculation |
+| `bortzAge` | `Float` | No | Calculated Bortz biological age |
+| `chronologicalAge` | `Float` | No | Input chronological age |
+| `season` | `String` | No | Competition season |
 
 ### Field Usage by Operation
 
@@ -251,11 +251,11 @@ competition = client.Competition
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRange` | `String` | No |  |
-| `id` | `String` | No |  |
-| `maxAge` | `Integer` | No |  |
-| `minAge` | `Integer` | No |  |
-| `name` | `String` | No |  |
+| `ageRange` | `String` | No | Age range for this division |
+| `id` | `String` | No | Division identifier |
+| `maxAge` | `Integer` | No | Maximum age for division |
+| `minAge` | `Integer` | No | Minimum age for division |
+| `name` | `String` | No | Division name |
 
 ### Operations
 
@@ -307,13 +307,13 @@ leaderboard = client.Leaderboard
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `Float` | No |  |
-| `athleteId` | `String` | No |  |
-| `athleteName` | `String` | No |  |
-| `country` | `String` | No |  |
-| `division` | `String` | No |  |
-| `league` | `String` | No |  |
-| `rank` | `Integer` | No |  |
+| `ageReduction` | `Float` | No | Age Reduction score |
+| `athleteId` | `String` | No | Athlete identifier |
+| `athleteName` | `String` | No | Athlete name |
+| `country` | `String` | No | Country code |
+| `division` | `String` | No | Age division |
+| `league` | `String` | No | Competition league |
+| `rank` | `Integer` | No | Current ranking position |
 
 ### Operations
 
@@ -365,11 +365,11 @@ pheno_age = client.PhenoAge
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `Float` | No |  |
-| `biomarkers` | `Hash` | Yes |  |
-| `calculationMethod` | `String` | No |  |
-| `chronologicalAge` | `Float` | No |  |
-| `phenoAge` | `Float` | No |  |
+| `ageReduction` | `Float` | No | Calculated Age Reduction |
+| `biomarkers` | `Hash` | Yes | Blood biomarker values required for Pheno Age calculation |
+| `calculationMethod` | `String` | No | Algorithm version used |
+| `chronologicalAge` | `Float` | No | Input chronological age |
+| `phenoAge` | `Float` | No | Calculated phenotypic biological age |
 
 ### Field Usage by Operation
 
@@ -433,15 +433,15 @@ rank_preview = client.RankPreview
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `Float` | No |  |
-| `athletesInLeague` | `Integer` | No |  |
-| `biologicalAge` | `Float` | Yes |  |
-| `chronologicalAge` | `Float` | Yes |  |
-| `division` | `String` | No |  |
-| `estimatedRank` | `Integer` | No |  |
-| `estimatedUltimateLeagueRank` | `Integer` | No |  |
-| `league` | `String` | No |  |
-| `percentile` | `Float` | No |  |
+| `ageReduction` | `Float` | No | Calculated Age Reduction |
+| `athletesInLeague` | `Integer` | No | Total athletes in target league |
+| `biologicalAge` | `Float` | Yes | Calculated biological age |
+| `chronologicalAge` | `Float` | Yes | Actual age in years |
+| `division` | `String` | No | Target division for preview |
+| `estimatedRank` | `Integer` | No | Estimated ranking position |
+| `estimatedUltimateLeagueRank` | `Integer` | No | Estimated Ultimate League rank |
+| `league` | `String` | No | Target league for preview |
+| `percentile` | `Float` | No | Percentile ranking |
 
 ### Operations
 
@@ -496,9 +496,9 @@ reference = client.Reference
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `countryCode` | `String` | No |  |
-| `countryName` | `String` | No |  |
-| `flagUrl` | `String` | No |  |
+| `countryCode` | `String` | No | ISO country code |
+| `countryName` | `String` | No | Country name |
+| `flagUrl` | `String` | No | URL to flag image |
 
 ### Operations
 

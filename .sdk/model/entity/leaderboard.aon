@@ -1,0 +1,99 @@
+# Entity: leaderboard
+
+main: kit: entity: leaderboard: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ageReduction"
+      req: false
+      short: "Age Reduction score"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "athleteId"
+      req: false
+      short: "Athlete identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "athleteName"
+      req: false
+      short: "Athlete name"
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      short: "Country code"
+      type: "`$STRING`"
+    }
+    {
+      name: "division"
+      req: false
+      short: "Age division"
+      type: "`$STRING`"
+    }
+    {
+      name: "league"
+      req: false
+      short: "Competition league"
+      type: "`$STRING`"
+    }
+    {
+      name: "rank"
+      req: false
+      short: "Current ranking position"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  name: "leaderboard"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "division"
+                orig: "division"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "league"
+                orig: "league"
+                reqd: false
+                type: "`$STRING`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/data/leaderboard"
+          parts: [
+            "data"
+            "leaderboard"
+          ]
+          select: {
+            exist: [
+              "division"
+              "league"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.rankings`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,68 @@
+# Entity: competition
+
+main: kit: entity: competition: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ageRange"
+      req: false
+      short: "Age range for this division"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Division identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "maxAge"
+      req: false
+      short: "Maximum age for division"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "minAge"
+      req: false
+      short: "Minimum age for division"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Division name"
+      type: "`$STRING`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "competition"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          method: "GET"
+          orig: "/data/divisions"
+          parts: [
+            "data"
+            "divisions"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body.divisions`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -36,90 +36,105 @@
               "active": true,
               "name": "ageReduction",
               "req": false,
+              "short": "Age Reduction score (chronological age minus biological age)",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "biologicalAge",
               "req": false,
+              "short": "Calculated biological age",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "chronologicalAge",
               "req": false,
+              "short": "Actual age in years",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "clockType",
               "req": false,
+              "short": "Biological aging clock used",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "division",
               "req": false,
+              "short": "Age division category",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "effectiveAgeReduction",
               "req": false,
+              "short": "Effective Age Reduction used for ranking",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "generation",
               "req": false,
+              "short": "Generation category",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Unique athlete identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "lastUpdated",
               "req": false,
+              "short": "Last result submission date",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "league",
               "req": false,
+              "short": "Competition league",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Athlete name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "profileUrl",
               "req": false,
+              "short": "URL to athlete's public profile",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rank",
               "req": false,
+              "short": "Current ranking position",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "ultimateLeagueRank",
               "req": false,
+              "short": "Rank in Ultimate League (combined Pro and Amateur)",
               "type": "`$INTEGER`"
             }
           ],
@@ -210,18 +225,21 @@
               "active": true,
               "name": "ageReduction",
               "req": false,
+              "short": "Calculated Age Reduction",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "biomarkers",
               "req": true,
+              "short": "Blood biomarker values required for Bortz Age calculation",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "bortzAge",
               "req": false,
+              "short": "Calculated Bortz biological age",
               "type": "`$NUMBER`"
             },
             {
@@ -234,12 +252,14 @@
                 }
               },
               "req": false,
+              "short": "Input chronological age",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "season",
               "req": false,
+              "short": "Competition season",
               "type": "`$STRING`"
             }
           ],
@@ -282,30 +302,35 @@
               "active": true,
               "name": "ageRange",
               "req": false,
+              "short": "Age range for this division",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "id",
               "req": false,
+              "short": "Division identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "maxAge",
               "req": false,
+              "short": "Maximum age for division",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "minAge",
               "req": false,
+              "short": "Minimum age for division",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "name",
               "req": false,
+              "short": "Division name",
               "type": "`$STRING`"
             }
           ],
@@ -352,42 +377,49 @@
               "active": true,
               "name": "ageReduction",
               "req": false,
+              "short": "Age Reduction score",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "athleteId",
               "req": false,
+              "short": "Athlete identifier",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "athleteName",
               "req": false,
+              "short": "Athlete name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "country",
               "req": false,
+              "short": "Country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "division",
               "req": false,
+              "short": "Age division",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "league",
               "req": false,
+              "short": "Competition league",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "rank",
               "req": false,
+              "short": "Current ranking position",
               "type": "`$INTEGER`"
             }
           ],
@@ -454,18 +486,21 @@
               "active": true,
               "name": "ageReduction",
               "req": false,
+              "short": "Calculated Age Reduction",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "biomarkers",
               "req": true,
+              "short": "Blood biomarker values required for Pheno Age calculation",
               "type": "`$OBJECT`"
             },
             {
               "active": true,
               "name": "calculationMethod",
               "req": false,
+              "short": "Algorithm version used",
               "type": "`$STRING`"
             },
             {
@@ -478,12 +513,14 @@
                 }
               },
               "req": false,
+              "short": "Input chronological age",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "phenoAge",
               "req": false,
+              "short": "Calculated phenotypic biological age",
               "type": "`$NUMBER`"
             }
           ],
@@ -526,54 +563,63 @@
               "active": true,
               "name": "ageReduction",
               "req": false,
+              "short": "Calculated Age Reduction",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "athletesInLeague",
               "req": false,
+              "short": "Total athletes in target league",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "biologicalAge",
               "req": true,
+              "short": "Calculated biological age",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "chronologicalAge",
               "req": true,
+              "short": "Actual age in years",
               "type": "`$NUMBER`"
             },
             {
               "active": true,
               "name": "division",
               "req": false,
+              "short": "Target division for preview",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "estimatedRank",
               "req": false,
+              "short": "Estimated ranking position",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "estimatedUltimateLeagueRank",
               "req": false,
+              "short": "Estimated Ultimate League rank",
               "type": "`$INTEGER`"
             },
             {
               "active": true,
               "name": "league",
               "req": false,
+              "short": "Target league for preview",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "percentile",
               "req": false,
+              "short": "Percentile ranking",
               "type": "`$NUMBER`"
             }
           ],
@@ -616,18 +662,21 @@
               "active": true,
               "name": "countryCode",
               "req": false,
+              "short": "ISO country code",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "countryName",
               "req": false,
+              "short": "Country name",
               "type": "`$STRING`"
             },
             {
               "active": true,
               "name": "flagUrl",
               "req": false,
+              "short": "URL to flag image",
               "type": "`$STRING`"
             }
           ],

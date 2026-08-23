@@ -122,21 +122,21 @@ fmt.Println(athlete.GetName()) // "athlete"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `float64` | No |  |
-| `biologicalAge` | `float64` | No |  |
-| `chronologicalAge` | `float64` | No |  |
-| `clockType` | `string` | No |  |
-| `country` | `string` | No |  |
-| `division` | `string` | No |  |
-| `effectiveAgeReduction` | `float64` | No |  |
-| `generation` | `string` | No |  |
-| `id` | `string` | No |  |
-| `lastUpdated` | `string` | No |  |
-| `league` | `string` | No |  |
-| `name` | `string` | No |  |
-| `profileUrl` | `string` | No |  |
-| `rank` | `int` | No |  |
-| `ultimateLeagueRank` | `int` | No |  |
+| `ageReduction` | `float64` | No | Age Reduction score (chronological age minus biological age) |
+| `biologicalAge` | `float64` | No | Calculated biological age |
+| `chronologicalAge` | `float64` | No | Actual age in years |
+| `clockType` | `string` | No | Biological aging clock used |
+| `country` | `string` | No | Country code |
+| `division` | `string` | No | Age division category |
+| `effectiveAgeReduction` | `float64` | No | Effective Age Reduction used for ranking |
+| `generation` | `string` | No | Generation category |
+| `id` | `string` | No | Unique athlete identifier |
+| `lastUpdated` | `string` | No | Last result submission date |
+| `league` | `string` | No | Competition league |
+| `name` | `string` | No | Athlete name |
+| `profileUrl` | `string` | No | URL to athlete's public profile |
+| `rank` | `int` | No | Current ranking position |
+| `ultimateLeagueRank` | `int` | No | Rank in Ultimate League (combined Pro and Amateur) |
 
 ### Operations
 
@@ -187,11 +187,11 @@ fmt.Println(bortzAge.GetName()) // "bortz_age"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `float64` | No |  |
-| `biomarkers` | `map[string]any` | Yes |  |
-| `bortzAge` | `float64` | No |  |
-| `chronologicalAge` | `float64` | No |  |
-| `season` | `string` | No |  |
+| `ageReduction` | `float64` | No | Calculated Age Reduction |
+| `biomarkers` | `map[string]any` | Yes | Blood biomarker values required for Bortz Age calculation |
+| `bortzAge` | `float64` | No | Calculated Bortz biological age |
+| `chronologicalAge` | `float64` | No | Input chronological age |
+| `season` | `string` | No | Competition season |
 
 ### Field Usage by Operation
 
@@ -254,11 +254,11 @@ fmt.Println(competition.GetName()) // "competition"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageRange` | `string` | No |  |
-| `id` | `string` | No |  |
-| `maxAge` | `int` | No |  |
-| `minAge` | `int` | No |  |
-| `name` | `string` | No |  |
+| `ageRange` | `string` | No | Age range for this division |
+| `id` | `string` | No | Division identifier |
+| `maxAge` | `int` | No | Maximum age for division |
+| `minAge` | `int` | No | Minimum age for division |
+| `name` | `string` | No | Division name |
 
 ### Operations
 
@@ -309,13 +309,13 @@ fmt.Println(leaderboard.GetName()) // "leaderboard"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `float64` | No |  |
-| `athleteId` | `string` | No |  |
-| `athleteName` | `string` | No |  |
-| `country` | `string` | No |  |
-| `division` | `string` | No |  |
-| `league` | `string` | No |  |
-| `rank` | `int` | No |  |
+| `ageReduction` | `float64` | No | Age Reduction score |
+| `athleteId` | `string` | No | Athlete identifier |
+| `athleteName` | `string` | No | Athlete name |
+| `country` | `string` | No | Country code |
+| `division` | `string` | No | Age division |
+| `league` | `string` | No | Competition league |
+| `rank` | `int` | No | Current ranking position |
 
 ### Operations
 
@@ -366,11 +366,11 @@ fmt.Println(phenoAge.GetName()) // "pheno_age"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `float64` | No |  |
-| `biomarkers` | `map[string]any` | Yes |  |
-| `calculationMethod` | `string` | No |  |
-| `chronologicalAge` | `float64` | No |  |
-| `phenoAge` | `float64` | No |  |
+| `ageReduction` | `float64` | No | Calculated Age Reduction |
+| `biomarkers` | `map[string]any` | Yes | Blood biomarker values required for Pheno Age calculation |
+| `calculationMethod` | `string` | No | Algorithm version used |
+| `chronologicalAge` | `float64` | No | Input chronological age |
+| `phenoAge` | `float64` | No | Calculated phenotypic biological age |
 
 ### Field Usage by Operation
 
@@ -433,15 +433,15 @@ fmt.Println(rankPreview.GetName()) // "rank_preview"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `ageReduction` | `float64` | No |  |
-| `athletesInLeague` | `int` | No |  |
-| `biologicalAge` | `float64` | Yes |  |
-| `chronologicalAge` | `float64` | Yes |  |
-| `division` | `string` | No |  |
-| `estimatedRank` | `int` | No |  |
-| `estimatedUltimateLeagueRank` | `int` | No |  |
-| `league` | `string` | No |  |
-| `percentile` | `float64` | No |  |
+| `ageReduction` | `float64` | No | Calculated Age Reduction |
+| `athletesInLeague` | `int` | No | Total athletes in target league |
+| `biologicalAge` | `float64` | Yes | Calculated biological age |
+| `chronologicalAge` | `float64` | Yes | Actual age in years |
+| `division` | `string` | No | Target division for preview |
+| `estimatedRank` | `int` | No | Estimated ranking position |
+| `estimatedUltimateLeagueRank` | `int` | No | Estimated Ultimate League rank |
+| `league` | `string` | No | Target league for preview |
+| `percentile` | `float64` | No | Percentile ranking |
 
 ### Operations
 
@@ -495,9 +495,9 @@ fmt.Println(reference.GetName()) // "reference"
 
 | Field | Type | Required | Description |
 | --- | --- | --- | --- |
-| `countryCode` | `string` | No |  |
-| `countryName` | `string` | No |  |
-| `flagUrl` | `string` | No |  |
+| `countryCode` | `string` | No | ISO country code |
+| `countryName` | `string` | No | Country name |
+| `flagUrl` | `string` | No | URL to flag image |
 
 ### Operations
 

@@ -1,0 +1,69 @@
+# Entity: pheno_age
+
+main: kit: entity: pheno_age: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ageReduction"
+      req: false
+      short: "Calculated Age Reduction"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "biomarkers"
+      req: true
+      short: "Blood biomarker values required for Pheno Age calculation"
+      type: "`$OBJECT`"
+    }
+    {
+      name: "calculationMethod"
+      req: false
+      short: "Algorithm version used"
+      type: "`$STRING`"
+    }
+    {
+      name: "chronologicalAge"
+      op: {
+        create: {
+          req: true
+          type: "`$NUMBER`"
+        }
+      }
+      req: false
+      short: "Input chronological age"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "phenoAge"
+      req: false
+      short: "Calculated phenotypic biological age"
+      type: "`$NUMBER`"
+    }
+  ]
+
+  name: "pheno_age"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          method: "POST"
+          orig: "/data/pheno-age"
+          parts: [
+            "data"
+            "pheno-age"
+          ]
+          transform: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -19,9 +19,20 @@ class Config {
     return fi
   }
 
+  // False for a feature added at runtime via options.extend (station's
+  // adopt path) - the constructor uses this to skip makeFeature for names
+  // no generated class backs.
+  hasFeature(this: any, fn: string) {
+    return null != FEATURE_CLASS[fn]
+  }
+
 
   main = {
     name: 'LongevityCompetition',
+        slug: "longevity-competition",
+    version: "0.0.1",
+    target: "ts",
+
   }
 
 
@@ -74,62 +85,77 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
+          "short": "Age Reduction score (chronological age minus biological age)",
           "type": "`$NUMBER`"
         },
         {
           "name": "biologicalAge",
+          "short": "Calculated biological age",
           "type": "`$NUMBER`"
         },
         {
           "name": "chronologicalAge",
+          "short": "Actual age in years",
           "type": "`$NUMBER`"
         },
         {
           "name": "clockType",
+          "short": "Biological aging clock used",
           "type": "`$STRING`"
         },
         {
           "name": "country",
+          "short": "Country code",
           "type": "`$STRING`"
         },
         {
           "name": "division",
+          "short": "Age division category",
           "type": "`$STRING`"
         },
         {
           "name": "effectiveAgeReduction",
+          "short": "Effective Age Reduction used for ranking",
           "type": "`$NUMBER`"
         },
         {
           "name": "generation",
+          "short": "Generation category",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Unique athlete identifier",
           "type": "`$STRING`"
         },
         {
           "name": "lastUpdated",
+          "short": "Last result submission date",
           "type": "`$STRING`"
         },
         {
           "name": "league",
+          "short": "Competition league",
           "type": "`$STRING`"
         },
         {
           "name": "name",
+          "short": "Athlete name",
           "type": "`$STRING`"
         },
         {
           "name": "profileUrl",
+          "short": "URL to athlete's public profile",
           "type": "`$STRING`"
         },
         {
           "name": "rank",
+          "short": "Current ranking position",
           "type": "`$INTEGER`"
         },
         {
           "name": "ultimateLeagueRank",
+          "short": "Rank in Ultimate League (combined Pro and Amateur)",
           "type": "`$INTEGER`"
         }
       ],
@@ -201,15 +227,18 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
+          "short": "Calculated Age Reduction",
           "type": "`$NUMBER`"
         },
         {
           "name": "biomarkers",
           "req": true,
+          "short": "Blood biomarker values required for Bortz Age calculation",
           "type": "`$OBJECT`"
         },
         {
           "name": "bortzAge",
+          "short": "Calculated Bortz biological age",
           "type": "`$NUMBER`"
         },
         {
@@ -220,10 +249,12 @@ class Config {
               "type": "`$NUMBER`"
             }
           },
+          "short": "Input chronological age",
           "type": "`$NUMBER`"
         },
         {
           "name": "season",
+          "short": "Competition season",
           "type": "`$STRING`"
         }
       ],
@@ -259,22 +290,27 @@ class Config {
       "fields": [
         {
           "name": "ageRange",
+          "short": "Age range for this division",
           "type": "`$STRING`"
         },
         {
           "name": "id",
+          "short": "Division identifier",
           "type": "`$STRING`"
         },
         {
           "name": "maxAge",
+          "short": "Maximum age for division",
           "type": "`$INTEGER`"
         },
         {
           "name": "minAge",
+          "short": "Minimum age for division",
           "type": "`$INTEGER`"
         },
         {
           "name": "name",
+          "short": "Division name",
           "type": "`$STRING`"
         }
       ],
@@ -310,30 +346,37 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
+          "short": "Age Reduction score",
           "type": "`$NUMBER`"
         },
         {
           "name": "athleteId",
+          "short": "Athlete identifier",
           "type": "`$STRING`"
         },
         {
           "name": "athleteName",
+          "short": "Athlete name",
           "type": "`$STRING`"
         },
         {
           "name": "country",
+          "short": "Country code",
           "type": "`$STRING`"
         },
         {
           "name": "division",
+          "short": "Age division",
           "type": "`$STRING`"
         },
         {
           "name": "league",
+          "short": "Competition league",
           "type": "`$STRING`"
         },
         {
           "name": "rank",
+          "short": "Current ranking position",
           "type": "`$INTEGER`"
         }
       ],
@@ -389,15 +432,18 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
+          "short": "Calculated Age Reduction",
           "type": "`$NUMBER`"
         },
         {
           "name": "biomarkers",
           "req": true,
+          "short": "Blood biomarker values required for Pheno Age calculation",
           "type": "`$OBJECT`"
         },
         {
           "name": "calculationMethod",
+          "short": "Algorithm version used",
           "type": "`$STRING`"
         },
         {
@@ -408,10 +454,12 @@ class Config {
               "type": "`$NUMBER`"
             }
           },
+          "short": "Input chronological age",
           "type": "`$NUMBER`"
         },
         {
           "name": "phenoAge",
+          "short": "Calculated phenotypic biological age",
           "type": "`$NUMBER`"
         }
       ],
@@ -447,40 +495,49 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
+          "short": "Calculated Age Reduction",
           "type": "`$NUMBER`"
         },
         {
           "name": "athletesInLeague",
+          "short": "Total athletes in target league",
           "type": "`$INTEGER`"
         },
         {
           "name": "biologicalAge",
           "req": true,
+          "short": "Calculated biological age",
           "type": "`$NUMBER`"
         },
         {
           "name": "chronologicalAge",
           "req": true,
+          "short": "Actual age in years",
           "type": "`$NUMBER`"
         },
         {
           "name": "division",
+          "short": "Target division for preview",
           "type": "`$STRING`"
         },
         {
           "name": "estimatedRank",
+          "short": "Estimated ranking position",
           "type": "`$INTEGER`"
         },
         {
           "name": "estimatedUltimateLeagueRank",
+          "short": "Estimated Ultimate League rank",
           "type": "`$INTEGER`"
         },
         {
           "name": "league",
+          "short": "Target league for preview",
           "type": "`$STRING`"
         },
         {
           "name": "percentile",
+          "short": "Percentile ranking",
           "type": "`$NUMBER`"
         }
       ],
@@ -516,14 +573,17 @@ class Config {
       "fields": [
         {
           "name": "countryCode",
+          "short": "ISO country code",
           "type": "`$STRING`"
         },
         {
           "name": "countryName",
+          "short": "Country name",
           "type": "`$STRING`"
         },
         {
           "name": "flagUrl",
+          "short": "URL to flag image",
           "type": "`$STRING`"
         }
       ],

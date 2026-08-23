@@ -9,7 +9,7 @@ The API is exposed as capitalised, semantic **Entities** — e.g.
 instead of raw URL paths and query parameters. This keeps the surface
 predictable and low-friction for both humans and AI agents.
 
-> Other languages, the CLI, and MCP server live alongside this one — see
+> Also generated from this model: `go`, `go-cli`, `go-mcp`, `lua`, `php`, `py`, `rb` — see
 > the [top-level README](../README.md).
 
 
@@ -295,21 +295,21 @@ The `prepare()` method returns:
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `biologicalAge` |  |
-| `chronologicalAge` |  |
-| `clockType` |  |
-| `country` |  |
-| `division` |  |
-| `effectiveAgeReduction` |  |
-| `generation` |  |
-| `id` |  |
-| `lastUpdated` |  |
-| `league` |  |
-| `name` |  |
-| `profileUrl` |  |
-| `rank` |  |
-| `ultimateLeagueRank` |  |
+| `ageReduction` | Age Reduction score (chronological age minus biological age) |
+| `biologicalAge` | Calculated biological age |
+| `chronologicalAge` | Actual age in years |
+| `clockType` | Biological aging clock used |
+| `country` | Country code |
+| `division` | Age division category |
+| `effectiveAgeReduction` | Effective Age Reduction used for ranking |
+| `generation` | Generation category |
+| `id` | Unique athlete identifier |
+| `lastUpdated` | Last result submission date |
+| `league` | Competition league |
+| `name` | Athlete name |
+| `profileUrl` | URL to athlete's public profile |
+| `rank` | Current ranking position |
+| `ultimateLeagueRank` | Rank in Ultimate League (combined Pro and Amateur) |
 
 Operations: list.
 
@@ -319,11 +319,11 @@ API path: `/data/athletes`
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `biomarkers` |  |
-| `bortzAge` |  |
-| `chronologicalAge` |  |
-| `season` |  |
+| `ageReduction` | Calculated Age Reduction |
+| `biomarkers` | Blood biomarker values required for Bortz Age calculation |
+| `bortzAge` | Calculated Bortz biological age |
+| `chronologicalAge` | Input chronological age |
+| `season` | Competition season |
 
 Operations: create.
 
@@ -333,11 +333,11 @@ API path: `/data/bortz-age`
 
 | Field | Description |
 | --- | --- |
-| `ageRange` |  |
-| `id` |  |
-| `maxAge` |  |
-| `minAge` |  |
-| `name` |  |
+| `ageRange` | Age range for this division |
+| `id` | Division identifier |
+| `maxAge` | Maximum age for division |
+| `minAge` | Minimum age for division |
+| `name` | Division name |
 
 Operations: list.
 
@@ -347,13 +347,13 @@ API path: `/data/divisions`
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `athleteId` |  |
-| `athleteName` |  |
-| `country` |  |
-| `division` |  |
-| `league` |  |
-| `rank` |  |
+| `ageReduction` | Age Reduction score |
+| `athleteId` | Athlete identifier |
+| `athleteName` | Athlete name |
+| `country` | Country code |
+| `division` | Age division |
+| `league` | Competition league |
+| `rank` | Current ranking position |
 
 Operations: list.
 
@@ -363,11 +363,11 @@ API path: `/data/leaderboard`
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `biomarkers` |  |
-| `calculationMethod` |  |
-| `chronologicalAge` |  |
-| `phenoAge` |  |
+| `ageReduction` | Calculated Age Reduction |
+| `biomarkers` | Blood biomarker values required for Pheno Age calculation |
+| `calculationMethod` | Algorithm version used |
+| `chronologicalAge` | Input chronological age |
+| `phenoAge` | Calculated phenotypic biological age |
 
 Operations: create.
 
@@ -377,15 +377,15 @@ API path: `/data/pheno-age`
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `athletesInLeague` |  |
-| `biologicalAge` |  |
-| `chronologicalAge` |  |
-| `division` |  |
-| `estimatedRank` |  |
-| `estimatedUltimateLeagueRank` |  |
-| `league` |  |
-| `percentile` |  |
+| `ageReduction` | Calculated Age Reduction |
+| `athletesInLeague` | Total athletes in target league |
+| `biologicalAge` | Calculated biological age |
+| `chronologicalAge` | Actual age in years |
+| `division` | Target division for preview |
+| `estimatedRank` | Estimated ranking position |
+| `estimatedUltimateLeagueRank` | Estimated Ultimate League rank |
+| `league` | Target league for preview |
+| `percentile` | Percentile ranking |
 
 Operations: create.
 
@@ -395,9 +395,9 @@ API path: `/data/rank-preview`
 
 | Field | Description |
 | --- | --- |
-| `countryCode` |  |
-| `countryName` |  |
-| `flagUrl` |  |
+| `countryCode` | ISO country code |
+| `countryName` | Country name |
+| `flagUrl` | URL to flag image |
 
 Operations: list.
 
@@ -422,21 +422,21 @@ Create an instance: `const athlete = client.Athlete()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `number` |  |
-| `biologicalAge` | `number` |  |
-| `chronologicalAge` | `number` |  |
-| `clockType` | `string` |  |
-| `country` | `string` |  |
-| `division` | `string` |  |
-| `effectiveAgeReduction` | `number` |  |
-| `generation` | `string` |  |
-| `id` | `string` |  |
-| `lastUpdated` | `string` |  |
-| `league` | `string` |  |
-| `name` | `string` |  |
-| `profileUrl` | `string` |  |
-| `rank` | `number` |  |
-| `ultimateLeagueRank` | `number` |  |
+| `ageReduction` | `number` | Age Reduction score (chronological age minus biological age) |
+| `biologicalAge` | `number` | Calculated biological age |
+| `chronologicalAge` | `number` | Actual age in years |
+| `clockType` | `string` | Biological aging clock used |
+| `country` | `string` | Country code |
+| `division` | `string` | Age division category |
+| `effectiveAgeReduction` | `number` | Effective Age Reduction used for ranking |
+| `generation` | `string` | Generation category |
+| `id` | `string` | Unique athlete identifier |
+| `lastUpdated` | `string` | Last result submission date |
+| `league` | `string` | Competition league |
+| `name` | `string` | Athlete name |
+| `profileUrl` | `string` | URL to athlete's public profile |
+| `rank` | `number` | Current ranking position |
+| `ultimateLeagueRank` | `number` | Rank in Ultimate League (combined Pro and Amateur) |
 
 #### Example: List
 
@@ -459,11 +459,11 @@ Create an instance: `const bortz_age = client.BortzAge()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `number` |  |
-| `biomarkers` | `Record<string, any>` |  |
-| `bortzAge` | `number` |  |
-| `chronologicalAge` | `number` |  |
-| `season` | `string` |  |
+| `ageReduction` | `number` | Calculated Age Reduction |
+| `biomarkers` | `Record<string, any>` | Blood biomarker values required for Bortz Age calculation |
+| `bortzAge` | `number` | Calculated Bortz biological age |
+| `chronologicalAge` | `number` | Input chronological age |
+| `season` | `string` | Competition season |
 
 #### Example: Create
 
@@ -488,11 +488,11 @@ Create an instance: `const competition = client.Competition()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRange` | `string` |  |
-| `id` | `string` |  |
-| `maxAge` | `number` |  |
-| `minAge` | `number` |  |
-| `name` | `string` |  |
+| `ageRange` | `string` | Age range for this division |
+| `id` | `string` | Division identifier |
+| `maxAge` | `number` | Maximum age for division |
+| `minAge` | `number` | Minimum age for division |
+| `name` | `string` | Division name |
 
 #### Example: List
 
@@ -515,13 +515,13 @@ Create an instance: `const leaderboard = client.Leaderboard()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `number` |  |
-| `athleteId` | `string` |  |
-| `athleteName` | `string` |  |
-| `country` | `string` |  |
-| `division` | `string` |  |
-| `league` | `string` |  |
-| `rank` | `number` |  |
+| `ageReduction` | `number` | Age Reduction score |
+| `athleteId` | `string` | Athlete identifier |
+| `athleteName` | `string` | Athlete name |
+| `country` | `string` | Country code |
+| `division` | `string` | Age division |
+| `league` | `string` | Competition league |
+| `rank` | `number` | Current ranking position |
 
 #### Example: List
 
@@ -544,11 +544,11 @@ Create an instance: `const pheno_age = client.PhenoAge()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `number` |  |
-| `biomarkers` | `Record<string, any>` |  |
-| `calculationMethod` | `string` |  |
-| `chronologicalAge` | `number` |  |
-| `phenoAge` | `number` |  |
+| `ageReduction` | `number` | Calculated Age Reduction |
+| `biomarkers` | `Record<string, any>` | Blood biomarker values required for Pheno Age calculation |
+| `calculationMethod` | `string` | Algorithm version used |
+| `chronologicalAge` | `number` | Input chronological age |
+| `phenoAge` | `number` | Calculated phenotypic biological age |
 
 #### Example: Create
 
@@ -573,15 +573,15 @@ Create an instance: `const rank_preview = client.RankPreview()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `number` |  |
-| `athletesInLeague` | `number` |  |
-| `biologicalAge` | `number` |  |
-| `chronologicalAge` | `number` |  |
-| `division` | `string` |  |
-| `estimatedRank` | `number` |  |
-| `estimatedUltimateLeagueRank` | `number` |  |
-| `league` | `string` |  |
-| `percentile` | `number` |  |
+| `ageReduction` | `number` | Calculated Age Reduction |
+| `athletesInLeague` | `number` | Total athletes in target league |
+| `biologicalAge` | `number` | Calculated biological age |
+| `chronologicalAge` | `number` | Actual age in years |
+| `division` | `string` | Target division for preview |
+| `estimatedRank` | `number` | Estimated ranking position |
+| `estimatedUltimateLeagueRank` | `number` | Estimated Ultimate League rank |
+| `league` | `string` | Target league for preview |
+| `percentile` | `number` | Percentile ranking |
 
 #### Example: Create
 
@@ -607,9 +607,9 @@ Create an instance: `const reference = client.Reference()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `countryCode` | `string` |  |
-| `countryName` | `string` |  |
-| `flagUrl` | `string` |  |
+| `countryCode` | `string` | ISO country code |
+| `countryName` | `string` | Country name |
+| `flagUrl` | `string` | URL to flag image |
 
 #### Example: List
 

@@ -11,6 +11,9 @@ func MakeConfig() map[string]any {
 	return map[string]any{
 		"main": map[string]any{
 			"name": "LongevityCompetition",
+			"slug": "longevity-competition",
+			"version": "0.0.1",
+			"target": "go",
 		},
 		"feature": map[string]any{
 			"test": map[string]any{
@@ -39,62 +42,77 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
+						"short": "Age Reduction score (chronological age minus biological age)",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "biologicalAge",
+						"short": "Calculated biological age",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "chronologicalAge",
+						"short": "Actual age in years",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "clockType",
+						"short": "Biological aging clock used",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
+						"short": "Country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "division",
+						"short": "Age division category",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "effectiveAgeReduction",
+						"short": "Effective Age Reduction used for ranking",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "generation",
+						"short": "Generation category",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Unique athlete identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "lastUpdated",
+						"short": "Last result submission date",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "league",
+						"short": "Competition league",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Athlete name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "profileUrl",
+						"short": "URL to athlete's public profile",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rank",
+						"short": "Current ranking position",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "ultimateLeagueRank",
+						"short": "Rank in Ultimate League (combined Pro and Amateur)",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -166,15 +184,18 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
+						"short": "Calculated Age Reduction",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "biomarkers",
 						"req": true,
+						"short": "Blood biomarker values required for Bortz Age calculation",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "bortzAge",
+						"short": "Calculated Bortz biological age",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
@@ -185,10 +206,12 @@ func MakeConfig() map[string]any {
 								"type": "`$NUMBER`",
 							},
 						},
+						"short": "Input chronological age",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "season",
+						"short": "Competition season",
 						"type": "`$STRING`",
 					},
 				},
@@ -224,22 +247,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageRange",
+						"short": "Age range for this division",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "id",
+						"short": "Division identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "maxAge",
+						"short": "Maximum age for division",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "minAge",
+						"short": "Minimum age for division",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "name",
+						"short": "Division name",
 						"type": "`$STRING`",
 					},
 				},
@@ -275,30 +303,37 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
+						"short": "Age Reduction score",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "athleteId",
+						"short": "Athlete identifier",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "athleteName",
+						"short": "Athlete name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "country",
+						"short": "Country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "division",
+						"short": "Age division",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "league",
+						"short": "Competition league",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "rank",
+						"short": "Current ranking position",
 						"type": "`$INTEGER`",
 					},
 				},
@@ -354,15 +389,18 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
+						"short": "Calculated Age Reduction",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "biomarkers",
 						"req": true,
+						"short": "Blood biomarker values required for Pheno Age calculation",
 						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "calculationMethod",
+						"short": "Algorithm version used",
 						"type": "`$STRING`",
 					},
 					map[string]any{
@@ -373,10 +411,12 @@ func MakeConfig() map[string]any {
 								"type": "`$NUMBER`",
 							},
 						},
+						"short": "Input chronological age",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "phenoAge",
+						"short": "Calculated phenotypic biological age",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -412,40 +452,49 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
+						"short": "Calculated Age Reduction",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "athletesInLeague",
+						"short": "Total athletes in target league",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "biologicalAge",
 						"req": true,
+						"short": "Calculated biological age",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "chronologicalAge",
 						"req": true,
+						"short": "Actual age in years",
 						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "division",
+						"short": "Target division for preview",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "estimatedRank",
+						"short": "Estimated ranking position",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "estimatedUltimateLeagueRank",
+						"short": "Estimated Ultimate League rank",
 						"type": "`$INTEGER`",
 					},
 					map[string]any{
 						"name": "league",
+						"short": "Target league for preview",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "percentile",
+						"short": "Percentile ranking",
 						"type": "`$NUMBER`",
 					},
 				},
@@ -481,14 +530,17 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "countryCode",
+						"short": "ISO country code",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "countryName",
+						"short": "Country name",
 						"type": "`$STRING`",
 					},
 					map[string]any{
 						"name": "flagUrl",
+						"short": "URL to flag image",
 						"type": "`$STRING`",
 					},
 				},

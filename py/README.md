@@ -250,21 +250,21 @@ On error, `ok` is `False` and `err` contains the error value.
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `biologicalAge` |  |
-| `chronologicalAge` |  |
-| `clockType` |  |
-| `country` |  |
-| `division` |  |
-| `effectiveAgeReduction` |  |
-| `generation` |  |
-| `id` |  |
-| `lastUpdated` |  |
-| `league` |  |
-| `name` |  |
-| `profileUrl` |  |
-| `rank` |  |
-| `ultimateLeagueRank` |  |
+| `ageReduction` | Age Reduction score (chronological age minus biological age) |
+| `biologicalAge` | Calculated biological age |
+| `chronologicalAge` | Actual age in years |
+| `clockType` | Biological aging clock used |
+| `country` | Country code |
+| `division` | Age division category |
+| `effectiveAgeReduction` | Effective Age Reduction used for ranking |
+| `generation` | Generation category |
+| `id` | Unique athlete identifier |
+| `lastUpdated` | Last result submission date |
+| `league` | Competition league |
+| `name` | Athlete name |
+| `profileUrl` | URL to athlete's public profile |
+| `rank` | Current ranking position |
+| `ultimateLeagueRank` | Rank in Ultimate League (combined Pro and Amateur) |
 
 Operations: List.
 
@@ -274,11 +274,11 @@ API path: `/data/athletes`
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `biomarkers` |  |
-| `bortzAge` |  |
-| `chronologicalAge` |  |
-| `season` |  |
+| `ageReduction` | Calculated Age Reduction |
+| `biomarkers` | Blood biomarker values required for Bortz Age calculation |
+| `bortzAge` | Calculated Bortz biological age |
+| `chronologicalAge` | Input chronological age |
+| `season` | Competition season |
 
 Operations: Create.
 
@@ -288,11 +288,11 @@ API path: `/data/bortz-age`
 
 | Field | Description |
 | --- | --- |
-| `ageRange` |  |
-| `id` |  |
-| `maxAge` |  |
-| `minAge` |  |
-| `name` |  |
+| `ageRange` | Age range for this division |
+| `id` | Division identifier |
+| `maxAge` | Maximum age for division |
+| `minAge` | Minimum age for division |
+| `name` | Division name |
 
 Operations: List.
 
@@ -302,13 +302,13 @@ API path: `/data/divisions`
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `athleteId` |  |
-| `athleteName` |  |
-| `country` |  |
-| `division` |  |
-| `league` |  |
-| `rank` |  |
+| `ageReduction` | Age Reduction score |
+| `athleteId` | Athlete identifier |
+| `athleteName` | Athlete name |
+| `country` | Country code |
+| `division` | Age division |
+| `league` | Competition league |
+| `rank` | Current ranking position |
 
 Operations: List.
 
@@ -318,11 +318,11 @@ API path: `/data/leaderboard`
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `biomarkers` |  |
-| `calculationMethod` |  |
-| `chronologicalAge` |  |
-| `phenoAge` |  |
+| `ageReduction` | Calculated Age Reduction |
+| `biomarkers` | Blood biomarker values required for Pheno Age calculation |
+| `calculationMethod` | Algorithm version used |
+| `chronologicalAge` | Input chronological age |
+| `phenoAge` | Calculated phenotypic biological age |
 
 Operations: Create.
 
@@ -332,15 +332,15 @@ API path: `/data/pheno-age`
 
 | Field | Description |
 | --- | --- |
-| `ageReduction` |  |
-| `athletesInLeague` |  |
-| `biologicalAge` |  |
-| `chronologicalAge` |  |
-| `division` |  |
-| `estimatedRank` |  |
-| `estimatedUltimateLeagueRank` |  |
-| `league` |  |
-| `percentile` |  |
+| `ageReduction` | Calculated Age Reduction |
+| `athletesInLeague` | Total athletes in target league |
+| `biologicalAge` | Calculated biological age |
+| `chronologicalAge` | Actual age in years |
+| `division` | Target division for preview |
+| `estimatedRank` | Estimated ranking position |
+| `estimatedUltimateLeagueRank` | Estimated Ultimate League rank |
+| `league` | Target league for preview |
+| `percentile` | Percentile ranking |
 
 Operations: Create.
 
@@ -350,9 +350,9 @@ API path: `/data/rank-preview`
 
 | Field | Description |
 | --- | --- |
-| `countryCode` |  |
-| `countryName` |  |
-| `flagUrl` |  |
+| `countryCode` | ISO country code |
+| `countryName` | Country name |
+| `flagUrl` | URL to flag image |
 
 Operations: List.
 
@@ -377,21 +377,21 @@ Create an instance: `athlete = client.Athlete()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `float` |  |
-| `biologicalAge` | `float` |  |
-| `chronologicalAge` | `float` |  |
-| `clockType` | `str` |  |
-| `country` | `str` |  |
-| `division` | `str` |  |
-| `effectiveAgeReduction` | `float` |  |
-| `generation` | `str` |  |
-| `id` | `str` |  |
-| `lastUpdated` | `str` |  |
-| `league` | `str` |  |
-| `name` | `str` |  |
-| `profileUrl` | `str` |  |
-| `rank` | `int` |  |
-| `ultimateLeagueRank` | `int` |  |
+| `ageReduction` | `float` | Age Reduction score (chronological age minus biological age) |
+| `biologicalAge` | `float` | Calculated biological age |
+| `chronologicalAge` | `float` | Actual age in years |
+| `clockType` | `str` | Biological aging clock used |
+| `country` | `str` | Country code |
+| `division` | `str` | Age division category |
+| `effectiveAgeReduction` | `float` | Effective Age Reduction used for ranking |
+| `generation` | `str` | Generation category |
+| `id` | `str` | Unique athlete identifier |
+| `lastUpdated` | `str` | Last result submission date |
+| `league` | `str` | Competition league |
+| `name` | `str` | Athlete name |
+| `profileUrl` | `str` | URL to athlete's public profile |
+| `rank` | `int` | Current ranking position |
+| `ultimateLeagueRank` | `int` | Rank in Ultimate League (combined Pro and Amateur) |
 
 #### Example: List
 
@@ -414,11 +414,11 @@ Create an instance: `bortz_age = client.BortzAge()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `float` |  |
-| `biomarkers` | `dict` |  |
-| `bortzAge` | `float` |  |
-| `chronologicalAge` | `float` |  |
-| `season` | `str` |  |
+| `ageReduction` | `float` | Calculated Age Reduction |
+| `biomarkers` | `dict` | Blood biomarker values required for Bortz Age calculation |
+| `bortzAge` | `float` | Calculated Bortz biological age |
+| `chronologicalAge` | `float` | Input chronological age |
+| `season` | `str` | Competition season |
 
 #### Example: Create
 
@@ -443,11 +443,11 @@ Create an instance: `competition = client.Competition()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageRange` | `str` |  |
-| `id` | `str` |  |
-| `maxAge` | `int` |  |
-| `minAge` | `int` |  |
-| `name` | `str` |  |
+| `ageRange` | `str` | Age range for this division |
+| `id` | `str` | Division identifier |
+| `maxAge` | `int` | Maximum age for division |
+| `minAge` | `int` | Minimum age for division |
+| `name` | `str` | Division name |
 
 #### Example: List
 
@@ -470,13 +470,13 @@ Create an instance: `leaderboard = client.Leaderboard()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `float` |  |
-| `athleteId` | `str` |  |
-| `athleteName` | `str` |  |
-| `country` | `str` |  |
-| `division` | `str` |  |
-| `league` | `str` |  |
-| `rank` | `int` |  |
+| `ageReduction` | `float` | Age Reduction score |
+| `athleteId` | `str` | Athlete identifier |
+| `athleteName` | `str` | Athlete name |
+| `country` | `str` | Country code |
+| `division` | `str` | Age division |
+| `league` | `str` | Competition league |
+| `rank` | `int` | Current ranking position |
 
 #### Example: List
 
@@ -499,11 +499,11 @@ Create an instance: `pheno_age = client.PhenoAge()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `float` |  |
-| `biomarkers` | `dict` |  |
-| `calculationMethod` | `str` |  |
-| `chronologicalAge` | `float` |  |
-| `phenoAge` | `float` |  |
+| `ageReduction` | `float` | Calculated Age Reduction |
+| `biomarkers` | `dict` | Blood biomarker values required for Pheno Age calculation |
+| `calculationMethod` | `str` | Algorithm version used |
+| `chronologicalAge` | `float` | Input chronological age |
+| `phenoAge` | `float` | Calculated phenotypic biological age |
 
 #### Example: Create
 
@@ -528,15 +528,15 @@ Create an instance: `rank_preview = client.RankPreview()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `ageReduction` | `float` |  |
-| `athletesInLeague` | `int` |  |
-| `biologicalAge` | `float` |  |
-| `chronologicalAge` | `float` |  |
-| `division` | `str` |  |
-| `estimatedRank` | `int` |  |
-| `estimatedUltimateLeagueRank` | `int` |  |
-| `league` | `str` |  |
-| `percentile` | `float` |  |
+| `ageReduction` | `float` | Calculated Age Reduction |
+| `athletesInLeague` | `int` | Total athletes in target league |
+| `biologicalAge` | `float` | Calculated biological age |
+| `chronologicalAge` | `float` | Actual age in years |
+| `division` | `str` | Target division for preview |
+| `estimatedRank` | `int` | Estimated ranking position |
+| `estimatedUltimateLeagueRank` | `int` | Estimated Ultimate League rank |
+| `league` | `str` | Target league for preview |
+| `percentile` | `float` | Percentile ranking |
 
 #### Example: Create
 
@@ -562,9 +562,9 @@ Create an instance: `reference = client.Reference()`
 
 | Field | Type | Description |
 | --- | --- | --- |
-| `countryCode` | `str` |  |
-| `countryName` | `str` |  |
-| `flagUrl` | `str` |  |
+| `countryCode` | `str` | ISO country code |
+| `countryName` | `str` | Country name |
+| `flagUrl` | `str` | URL to flag image |
 
 #### Example: List
 

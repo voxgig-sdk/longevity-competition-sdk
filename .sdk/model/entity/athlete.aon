@@ -1,0 +1,170 @@
+# Entity: athlete
+
+main: kit: entity: athlete: {
+
+  alias: field: {}
+
+  fields: [
+    {
+      name: "ageReduction"
+      req: false
+      short: "Age Reduction score (chronological age minus biological age)"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "biologicalAge"
+      req: false
+      short: "Calculated biological age"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "chronologicalAge"
+      req: false
+      short: "Actual age in years"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "clockType"
+      req: false
+      short: "Biological aging clock used"
+      type: "`$STRING`"
+    }
+    {
+      name: "country"
+      req: false
+      short: "Country code"
+      type: "`$STRING`"
+    }
+    {
+      name: "division"
+      req: false
+      short: "Age division category"
+      type: "`$STRING`"
+    }
+    {
+      name: "effectiveAgeReduction"
+      req: false
+      short: "Effective Age Reduction used for ranking"
+      type: "`$NUMBER`"
+    }
+    {
+      name: "generation"
+      req: false
+      short: "Generation category"
+      type: "`$STRING`"
+    }
+    {
+      name: "id"
+      req: false
+      short: "Unique athlete identifier"
+      type: "`$STRING`"
+    }
+    {
+      name: "lastUpdated"
+      req: false
+      short: "Last result submission date"
+      type: "`$STRING`"
+    }
+    {
+      name: "league"
+      req: false
+      short: "Competition league"
+      type: "`$STRING`"
+    }
+    {
+      name: "name"
+      req: false
+      short: "Athlete name"
+      type: "`$STRING`"
+    }
+    {
+      name: "profileUrl"
+      req: false
+      short: "URL to athlete's public profile"
+      type: "`$STRING`"
+    }
+    {
+      name: "rank"
+      req: false
+      short: "Current ranking position"
+      type: "`$INTEGER`"
+    }
+    {
+      name: "ultimateLeagueRank"
+      req: false
+      short: "Rank in Ultimate League (combined Pro and Amateur)"
+      type: "`$INTEGER`"
+    }
+  ]
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "athlete"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          args: {
+            query: [
+              {
+                kind: "query"
+                name: "division"
+                orig: "division"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                kind: "query"
+                name: "league"
+                orig: "league"
+                reqd: false
+                type: "`$STRING`"
+              }
+              {
+                example: 100
+                kind: "query"
+                name: "limit"
+                orig: "limit"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+              {
+                example: 0
+                kind: "query"
+                name: "offset"
+                orig: "offset"
+                reqd: false
+                type: "`$INTEGER`"
+              }
+            ]
+          }
+          method: "GET"
+          orig: "/data/athletes"
+          parts: [
+            "data"
+            "athletes"
+          ]
+          select: {
+            exist: [
+              "division"
+              "league"
+              "limit"
+              "offset"
+            ]
+          }
+          transform: {
+            req: "`reqdata`"
+            res: "`body.athletes`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}
