@@ -42,6 +42,7 @@ class LongevityCompetitionConfig
           'options' => [
             'active' => false,
           ],
+          'transport' => 'base',
         ],
             ],
             "options" => [
