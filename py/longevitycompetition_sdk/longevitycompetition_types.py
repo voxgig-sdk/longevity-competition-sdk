@@ -35,21 +35,10 @@ class Athlete(TypedDict, total=False):
 
 
 class AthleteListMatch(TypedDict, total=False):
-    ageReduction: float
-    biologicalAge: float
-    chronologicalAge: float
-    clockType: str
-    country: str
     division: str
-    effectiveAgeReduction: float
-    generation: str
-    id: str
-    lastUpdated: str
     league: str
-    name: str
-    profileUrl: str
-    rank: int
-    ultimateLeagueRank: int
+    limit: int
+    offset: int
 
 
 class BortzAgeRequired(TypedDict):
@@ -101,13 +90,8 @@ class Leaderboard(TypedDict, total=False):
 
 
 class LeaderboardListMatch(TypedDict, total=False):
-    ageReduction: float
-    athleteId: str
-    athleteName: str
-    country: str
     division: str
     league: str
-    rank: int
 
 
 class PhenoAgeRequired(TypedDict):

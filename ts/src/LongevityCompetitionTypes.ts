@@ -24,21 +24,10 @@ export interface Athlete {
 }
 
 export interface AthleteListMatch {
-  ageReduction?: number
-  biologicalAge?: number
-  chronologicalAge?: number
-  clockType?: string
-  country?: string
   division?: string
-  effectiveAgeReduction?: number
-  generation?: string
-  id?: string
-  lastUpdated?: string
   league?: string
-  name?: string
-  profileUrl?: string
-  rank?: number
-  ultimateLeagueRank?: number
+  limit?: number
+  offset?: number
 }
 
 export interface BortzAge {
@@ -84,13 +73,8 @@ export interface Leaderboard {
 }
 
 export interface LeaderboardListMatch {
-  ageReduction?: number
-  athleteId?: string
-  athleteName?: string
-  country?: string
   division?: string
   league?: string
-  rank?: number
 }
 
 export interface PhenoAge {

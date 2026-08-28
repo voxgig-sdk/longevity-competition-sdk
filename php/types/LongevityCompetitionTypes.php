@@ -35,21 +35,10 @@ class Athlete
 /** Request payload for Athlete#list. */
 class AthleteListMatch
 {
-    public ?float $ageReduction = null;
-    public ?float $biologicalAge = null;
-    public ?float $chronologicalAge = null;
-    public ?string $clockType = null;
-    public ?string $country = null;
     public ?string $division = null;
-    public ?float $effectiveAgeReduction = null;
-    public ?string $generation = null;
-    public ?string $id = null;
-    public ?string $lastUpdated = null;
     public ?string $league = null;
-    public ?string $name = null;
-    public ?string $profileUrl = null;
-    public ?int $rank = null;
-    public ?int $ultimateLeagueRank = null;
+    public ?int $limit = null;
+    public ?int $offset = null;
 }
 
 /** BortzAge entity data model. */
@@ -107,13 +96,8 @@ class Leaderboard
 /** Request payload for Leaderboard#list. */
 class LeaderboardListMatch
 {
-    public ?float $ageReduction = null;
-    public ?string $athleteId = null;
-    public ?string $athleteName = null;
-    public ?string $country = null;
     public ?string $division = null;
     public ?string $league = null;
-    public ?int $rank = null;
 }
 
 /** PhenoAge entity data model. */

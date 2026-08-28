@@ -24,21 +24,10 @@
 ---@field ultimateLeagueRank? number
 
 ---@class AthleteListMatch
----@field ageReduction? number
----@field biologicalAge? number
----@field chronologicalAge? number
----@field clockType? string
----@field country? string
 ---@field division? string
----@field effectiveAgeReduction? number
----@field generation? string
----@field id? string
----@field lastUpdated? string
 ---@field league? string
----@field name? string
----@field profileUrl? string
----@field rank? number
----@field ultimateLeagueRank? number
+---@field limit? number
+---@field offset? number
 
 ---@class BortzAge
 ---@field ageReduction? number
@@ -78,13 +67,8 @@
 ---@field rank? number
 
 ---@class LeaderboardListMatch
----@field ageReduction? number
----@field athleteId? string
----@field athleteName? string
----@field country? string
 ---@field division? string
 ---@field league? string
----@field rank? number
 
 ---@class PhenoAge
 ---@field ageReduction? number

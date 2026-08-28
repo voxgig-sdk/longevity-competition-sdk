@@ -75,66 +75,22 @@ Athlete = Struct.new(
 
 # Request payload for Athlete#list.
 #
-# @!attribute [rw] ageReduction
-#   @return [Float, nil]
-#
-# @!attribute [rw] biologicalAge
-#   @return [Float, nil]
-#
-# @!attribute [rw] chronologicalAge
-#   @return [Float, nil]
-#
-# @!attribute [rw] clockType
-#   @return [String, nil]
-#
-# @!attribute [rw] country
-#   @return [String, nil]
-#
 # @!attribute [rw] division
-#   @return [String, nil]
-#
-# @!attribute [rw] effectiveAgeReduction
-#   @return [Float, nil]
-#
-# @!attribute [rw] generation
-#   @return [String, nil]
-#
-# @!attribute [rw] id
-#   @return [String, nil]
-#
-# @!attribute [rw] lastUpdated
 #   @return [String, nil]
 #
 # @!attribute [rw] league
 #   @return [String, nil]
 #
-# @!attribute [rw] name
-#   @return [String, nil]
-#
-# @!attribute [rw] profileUrl
-#   @return [String, nil]
-#
-# @!attribute [rw] rank
+# @!attribute [rw] limit
 #   @return [Integer, nil]
 #
-# @!attribute [rw] ultimateLeagueRank
+# @!attribute [rw] offset
 #   @return [Integer, nil]
 AthleteListMatch = Struct.new(
-  :ageReduction,
-  :biologicalAge,
-  :chronologicalAge,
-  :clockType,
-  :country,
   :division,
-  :effectiveAgeReduction,
-  :generation,
-  :id,
-  :lastUpdated,
   :league,
-  :name,
-  :profileUrl,
-  :rank,
-  :ultimateLeagueRank,
+  :limit,
+  :offset,
   keyword_init: true
 )
 
@@ -273,34 +229,14 @@ Leaderboard = Struct.new(
 
 # Request payload for Leaderboard#list.
 #
-# @!attribute [rw] ageReduction
-#   @return [Float, nil]
-#
-# @!attribute [rw] athleteId
-#   @return [String, nil]
-#
-# @!attribute [rw] athleteName
-#   @return [String, nil]
-#
-# @!attribute [rw] country
-#   @return [String, nil]
-#
 # @!attribute [rw] division
 #   @return [String, nil]
 #
 # @!attribute [rw] league
 #   @return [String, nil]
-#
-# @!attribute [rw] rank
-#   @return [Integer, nil]
 LeaderboardListMatch = Struct.new(
-  :ageReduction,
-  :athleteId,
-  :athleteName,
-  :country,
   :division,
   :league,
-  :rank,
   keyword_init: true
 )
 

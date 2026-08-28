@@ -33,21 +33,10 @@ type Athlete struct {
 
 // AthleteListMatch is the typed request payload for Athlete.ListTyped.
 type AthleteListMatch struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
-	BiologicalAge *float64 `json:"biologicalAge,omitempty"`
-	ChronologicalAge *float64 `json:"chronologicalAge,omitempty"`
-	ClockType *string `json:"clockType,omitempty"`
-	Country *string `json:"country,omitempty"`
 	Division *string `json:"division,omitempty"`
-	EffectiveAgeReduction *float64 `json:"effectiveAgeReduction,omitempty"`
-	Generation *string `json:"generation,omitempty"`
-	Id *string `json:"id,omitempty"`
-	LastUpdated *string `json:"lastUpdated,omitempty"`
 	League *string `json:"league,omitempty"`
-	Name *string `json:"name,omitempty"`
-	ProfileUrl *string `json:"profileUrl,omitempty"`
-	Rank *int `json:"rank,omitempty"`
-	UltimateLeagueRank *int `json:"ultimateLeagueRank,omitempty"`
+	Limit *int `json:"limit,omitempty"`
+	Offset *int `json:"offset,omitempty"`
 }
 
 // BortzAge is the typed data model for the bortz_age entity.
@@ -99,13 +88,8 @@ type Leaderboard struct {
 
 // LeaderboardListMatch is the typed request payload for Leaderboard.ListTyped.
 type LeaderboardListMatch struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
-	AthleteId *string `json:"athleteId,omitempty"`
-	AthleteName *string `json:"athleteName,omitempty"`
-	Country *string `json:"country,omitempty"`
 	Division *string `json:"division,omitempty"`
 	League *string `json:"league,omitempty"`
-	Rank *int `json:"rank,omitempty"`
 }
 
 // PhenoAge is the typed data model for the pheno_age entity.
