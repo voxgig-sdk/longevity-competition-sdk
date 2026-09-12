@@ -18,6 +18,7 @@ main: kit: entity: reference: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "flagUrl"
       req: false
       short: "URL to flag image"
@@ -33,9 +34,13 @@ main: kit: entity: reference: {
         {
           method: "GET"
           orig: "/data/flags"
-          parts: [
-            "data"
-            "flags"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "flags"
+            }
           ]
           transform: {
             req: "`reqdata`"

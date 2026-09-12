@@ -87,6 +87,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "date-time",
 						"name": "lastUpdated",
 						"short": "Last result submission date",
 						"type": "`$STRING`",
@@ -102,6 +103,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "profileUrl",
 						"short": "URL to athlete's public profile",
 						"type": "`$STRING`",
@@ -116,6 +118,10 @@ func MakeConfig() map[string]any {
 						"short": "Rank in Ultimate League (combined Pro and Amateur)",
 						"type": "`$INTEGER`",
 					},
+				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
 				},
 				"name": "athlete",
 				"op": map[string]any{
@@ -157,9 +163,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/athletes",
-								"parts": []any{
-									"data",
-									"athletes",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "athletes",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -172,6 +182,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.athletes`",
+								},
+								"parts": []any{
+									"data",
+									"athletes",
 								},
 							},
 						},
@@ -227,14 +241,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/data/bortz-age",
-								"parts": []any{
-									"data",
-									"bortz-age",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "bortz-age",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"data",
+									"bortz-age",
 								},
 							},
 						},
@@ -272,6 +294,10 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 				},
+				"id": map[string]any{
+					"field": "id",
+					"name": "id",
+				},
 				"name": "competition",
 				"op": map[string]any{
 					"list": map[string]any{
@@ -283,14 +309,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/divisions",
-								"parts": []any{
-									"data",
-									"divisions",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "divisions",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.divisions`",
+								},
+								"parts": []any{
+									"data",
+									"divisions",
 								},
 							},
 						},
@@ -364,9 +398,13 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/leaderboard",
-								"parts": []any{
-									"data",
-									"leaderboard",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "leaderboard",
+									},
 								},
 								"select": map[string]any{
 									"exist": []any{
@@ -377,6 +415,10 @@ func MakeConfig() map[string]any {
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.rankings`",
+								},
+								"parts": []any{
+									"data",
+									"leaderboard",
 								},
 							},
 						},
@@ -432,14 +474,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/data/pheno-age",
-								"parts": []any{
-									"data",
-									"pheno-age",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "pheno-age",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"data",
+									"pheno-age",
 								},
 							},
 						},
@@ -510,14 +560,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "POST",
 								"orig": "/data/rank-preview",
-								"parts": []any{
-									"data",
-									"rank-preview",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "rank-preview",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body`",
+								},
+								"parts": []any{
+									"data",
+									"rank-preview",
 								},
 							},
 						},
@@ -540,6 +598,7 @@ func MakeConfig() map[string]any {
 						"type": "`$STRING`",
 					},
 					map[string]any{
+						"format": "uri",
 						"name": "flagUrl",
 						"short": "URL to flag image",
 						"type": "`$STRING`",
@@ -556,14 +615,22 @@ func MakeConfig() map[string]any {
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/flags",
-								"parts": []any{
-									"data",
-									"flags",
+								"segments": []any{
+									map[string]any{
+										"lit": "data",
+									},
+									map[string]any{
+										"lit": "flags",
+									},
 								},
 								"select": map[string]any{},
 								"transform": map[string]any{
 									"req": "`reqdata`",
 									"res": "`body.flags`",
+								},
+								"parts": []any{
+									"data",
+									"flags",
 								},
 							},
 						},
@@ -575,6 +642,17 @@ func MakeConfig() map[string]any {
 			},
 		},
 	}
+}
+
+// The plugin definitions the model selected per feature, as []any so a
+// feature package can consume them without core naming its types. Empty
+// when no active feature declares active plugin groups for this target.
+var featurePlugins = map[string][]any{
+}
+
+// FeaturePlugins is the definitions list for one feature's chain.
+func FeaturePlugins(name string) []any {
+	return featurePlugins[name]
 }
 
 var (

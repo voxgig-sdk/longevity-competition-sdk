@@ -69,9 +69,13 @@ main: kit: entity: rank_preview: {
         {
           method: "POST"
           orig: "/data/rank-preview"
-          parts: [
-            "data"
-            "rank-preview"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "rank-preview"
+            }
           ]
           transform: {
             req: "`reqdata`"

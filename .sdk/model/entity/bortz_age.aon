@@ -51,9 +51,13 @@ main: kit: entity: bortz_age: {
         {
           method: "POST"
           orig: "/data/bortz-age"
-          parts: [
-            "data"
-            "bortz-age"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "bortz-age"
+            }
           ]
           transform: {
             req: "`reqdata`"

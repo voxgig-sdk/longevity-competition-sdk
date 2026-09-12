@@ -95,6 +95,7 @@ module LongevityCompetitionConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "date-time",
               "name" => "lastUpdated",
               "short" => "Last result submission date",
               "type" => "`$STRING`",
@@ -110,6 +111,7 @@ module LongevityCompetitionConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "profileUrl",
               "short" => "URL to athlete's public profile",
               "type" => "`$STRING`",
@@ -125,6 +127,10 @@ module LongevityCompetitionConfig
               "type" => "`$INTEGER`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "athlete",
           "op" => {
             "list" => {
@@ -165,9 +171,13 @@ module LongevityCompetitionConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/athletes",
-                  "parts" => [
-                    "data",
-                    "athletes",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "athletes",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -181,6 +191,10 @@ module LongevityCompetitionConfig
                     "req" => "`reqdata`",
                     "res" => "`body.athletes`",
                   },
+                  "parts" => [
+                    "data",
+                    "athletes",
+                  ],
                 },
               ],
             },
@@ -235,15 +249,23 @@ module LongevityCompetitionConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/data/bortz-age",
-                  "parts" => [
-                    "data",
-                    "bortz-age",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "bortz-age",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "bortz-age",
+                  ],
                 },
               ],
             },
@@ -280,6 +302,10 @@ module LongevityCompetitionConfig
               "type" => "`$STRING`",
             },
           ],
+          "id" => {
+            "field" => "id",
+            "name" => "id",
+          },
           "name" => "competition",
           "op" => {
             "list" => {
@@ -291,15 +317,23 @@ module LongevityCompetitionConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/divisions",
-                  "parts" => [
-                    "data",
-                    "divisions",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "divisions",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.divisions`",
                   },
+                  "parts" => [
+                    "data",
+                    "divisions",
+                  ],
                 },
               ],
             },
@@ -372,9 +406,13 @@ module LongevityCompetitionConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/leaderboard",
-                  "parts" => [
-                    "data",
-                    "leaderboard",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "leaderboard",
+                    },
                   ],
                   "select" => {
                     "exist" => [
@@ -386,6 +424,10 @@ module LongevityCompetitionConfig
                     "req" => "`reqdata`",
                     "res" => "`body.rankings`",
                   },
+                  "parts" => [
+                    "data",
+                    "leaderboard",
+                  ],
                 },
               ],
             },
@@ -440,15 +482,23 @@ module LongevityCompetitionConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/data/pheno-age",
-                  "parts" => [
-                    "data",
-                    "pheno-age",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "pheno-age",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "pheno-age",
+                  ],
                 },
               ],
             },
@@ -518,15 +568,23 @@ module LongevityCompetitionConfig
                   "kind" => "http",
                   "method" => "POST",
                   "orig" => "/data/rank-preview",
-                  "parts" => [
-                    "data",
-                    "rank-preview",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "rank-preview",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body`",
                   },
+                  "parts" => [
+                    "data",
+                    "rank-preview",
+                  ],
                 },
               ],
             },
@@ -548,6 +606,7 @@ module LongevityCompetitionConfig
               "type" => "`$STRING`",
             },
             {
+              "format" => "uri",
               "name" => "flagUrl",
               "short" => "URL to flag image",
               "type" => "`$STRING`",
@@ -564,15 +623,23 @@ module LongevityCompetitionConfig
                   "kind" => "http",
                   "method" => "GET",
                   "orig" => "/data/flags",
-                  "parts" => [
-                    "data",
-                    "flags",
+                  "segments" => [
+                    {
+                      "lit" => "data",
+                    },
+                    {
+                      "lit" => "flags",
+                    },
                   ],
                   "select" => {},
                   "transform" => {
                     "req" => "`reqdata`",
                     "res" => "`body.flags`",
                   },
+                  "parts" => [
+                    "data",
+                    "flags",
+                  ],
                 },
               ],
             },

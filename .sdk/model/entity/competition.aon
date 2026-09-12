@@ -50,9 +50,13 @@ main: kit: entity: competition: {
         {
           method: "GET"
           orig: "/data/divisions"
-          parts: [
-            "data"
-            "divisions"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "divisions"
+            }
           ]
           transform: {
             req: "`reqdata`"

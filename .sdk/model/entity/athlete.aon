@@ -60,6 +60,7 @@ main: kit: entity: athlete: {
       type: "`$STRING`"
     }
     {
+      format: "date-time"
       name: "lastUpdated"
       req: false
       short: "Last result submission date"
@@ -78,6 +79,7 @@ main: kit: entity: athlete: {
       type: "`$STRING`"
     }
     {
+      format: "uri"
       name: "profileUrl"
       req: false
       short: "URL to athlete's public profile"
@@ -144,9 +146,13 @@ main: kit: entity: athlete: {
           }
           method: "GET"
           orig: "/data/athletes"
-          parts: [
-            "data"
-            "athletes"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "athletes"
+            }
           ]
           select: {
             exist: [

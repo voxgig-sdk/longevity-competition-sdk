@@ -75,9 +75,13 @@ main: kit: entity: leaderboard: {
           }
           method: "GET"
           orig: "/data/leaderboard"
-          parts: [
-            "data"
-            "leaderboard"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "leaderboard"
+            }
           ]
           select: {
             exist: [

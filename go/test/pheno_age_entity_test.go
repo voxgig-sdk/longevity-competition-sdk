@@ -52,7 +52,7 @@ func TestPhenoAgeEntity(t *testing.T) {
 		// CREATE
 		phenoAgeRef01Ent := client.PhenoAge(nil)
 		phenoAgeRef01Data := core.ToMapAny(vs.GetProp(
-			vs.GetPath([]any{"new", "pheno_age"}, setup.data), "pheno_age_ref01"))
+			vs.GetPath(setup.data, []any{"new", "pheno_age"}), "pheno_age_ref01"))
 
 		phenoAgeRef01DataResult, err := phenoAgeRef01Ent.Create(phenoAgeRef01Data, nil)
 		if err != nil {
@@ -90,7 +90,7 @@ func pheno_ageBasicSetup(extra map[string]any) *entityTestSetup {
 	client := sdk.TestSDK(options, extra)
 
 	// Generate idmap via transform, matching TS pattern.
-	idmap := vs.Transform(
+	idmap, _ := vs.Transform(
 		[]any{"pheno_age01", "pheno_age02", "pheno_age03"},
 		map[string]any{
 			"`$PACK`": []any{"", map[string]any{
@@ -118,10 +118,22 @@ func pheno_ageBasicSetup(extra map[string]any) *entityTestSetup {
 	}
 
 	if env["LONGEVITY_COMPETITION_TEST_LIVE"] == "TRUE" {
+		// An empty map, not a nil one: Merge returns nil when its last entry
+		// is nil, and BasicSetup is normally called with no extras - so a
+		// bare nil silently discarded the apikey and server values below.
+		extraOpts := extra
+		if extraOpts == nil {
+			extraOpts = map[string]any{}
+		}
+
 		mergedOpts := vs.Merge([]any{
+			// liveClientOptions() FIRST, so the generated fields below win:
+			// sdk-test-control.json's test.client.options adds to the live
+			// client, it does not redirect it.
+			liveClientOptions(),
 			map[string]any{
 			},
-			extra,
+			extraOpts,
 		})
 		client = sdk.NewLongevityCompetitionSDK(core.ToMapAny(mergedOpts))
 	}

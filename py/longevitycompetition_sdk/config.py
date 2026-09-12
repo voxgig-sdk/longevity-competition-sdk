@@ -1,6 +1,14 @@
 # LongevityCompetition SDK configuration
 
 
+# The sekreto plugin DEFINITIONS the model selected per feature, imported
+# above by name from the modules the catalogue's active `plugin.def`
+# entries declare. Handed to each feature (secrets builds its Sekreto
+# with them): a provider kind not listed here is unknown to that SDK.
+FEATURE_PLUGINS = {
+}
+
+
 _shared_config = None
 
 
@@ -104,6 +112,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "date-time",
             "name": "lastUpdated",
             "short": "Last result submission date",
             "type": "`$STRING`",
@@ -119,6 +128,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "profileUrl",
             "short": "URL to athlete's public profile",
             "type": "`$STRING`",
@@ -134,6 +144,10 @@ def make_config():
             "type": "`$INTEGER`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "athlete",
         "op": {
           "list": {
@@ -174,9 +188,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/data/athletes",
-                "parts": [
-                  "data",
-                  "athletes",
+                "segments": [
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "lit": "athletes",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -190,6 +208,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.athletes`",
                 },
+                "parts": [
+                  "data",
+                  "athletes",
+                ],
               },
             ],
           },
@@ -244,15 +266,23 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/data/bortz-age",
-                "parts": [
-                  "data",
-                  "bortz-age",
+                "segments": [
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "lit": "bortz-age",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "data",
+                  "bortz-age",
+                ],
               },
             ],
           },
@@ -289,6 +319,10 @@ def make_config():
             "type": "`$STRING`",
           },
         ],
+        "id": {
+          "field": "id",
+          "name": "id",
+        },
         "name": "competition",
         "op": {
           "list": {
@@ -300,15 +334,23 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/data/divisions",
-                "parts": [
-                  "data",
-                  "divisions",
+                "segments": [
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "lit": "divisions",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.divisions`",
                 },
+                "parts": [
+                  "data",
+                  "divisions",
+                ],
               },
             ],
           },
@@ -381,9 +423,13 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/data/leaderboard",
-                "parts": [
-                  "data",
-                  "leaderboard",
+                "segments": [
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "lit": "leaderboard",
+                  },
                 ],
                 "select": {
                   "exist": [
@@ -395,6 +441,10 @@ def make_config():
                   "req": "`reqdata`",
                   "res": "`body.rankings`",
                 },
+                "parts": [
+                  "data",
+                  "leaderboard",
+                ],
               },
             ],
           },
@@ -449,15 +499,23 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/data/pheno-age",
-                "parts": [
-                  "data",
-                  "pheno-age",
+                "segments": [
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "lit": "pheno-age",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "data",
+                  "pheno-age",
+                ],
               },
             ],
           },
@@ -527,15 +585,23 @@ def make_config():
                 "kind": "http",
                 "method": "POST",
                 "orig": "/data/rank-preview",
-                "parts": [
-                  "data",
-                  "rank-preview",
+                "segments": [
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "lit": "rank-preview",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body`",
                 },
+                "parts": [
+                  "data",
+                  "rank-preview",
+                ],
               },
             ],
           },
@@ -557,6 +623,7 @@ def make_config():
             "type": "`$STRING`",
           },
           {
+            "format": "uri",
             "name": "flagUrl",
             "short": "URL to flag image",
             "type": "`$STRING`",
@@ -573,15 +640,23 @@ def make_config():
                 "kind": "http",
                 "method": "GET",
                 "orig": "/data/flags",
-                "parts": [
-                  "data",
-                  "flags",
+                "segments": [
+                  {
+                    "lit": "data",
+                  },
+                  {
+                    "lit": "flags",
+                  },
                 ],
                 "select": {},
                 "transform": {
                   "req": "`reqdata`",
                   "res": "`body.flags`",
                 },
+                "parts": [
+                  "data",
+                  "flags",
+                ],
               },
             ],
           },

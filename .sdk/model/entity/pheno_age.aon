@@ -51,9 +51,13 @@ main: kit: entity: pheno_age: {
         {
           method: "POST"
           orig: "/data/pheno-age"
-          parts: [
-            "data"
-            "pheno-age"
+          segments: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "pheno-age"
+            }
           ]
           transform: {
             req: "`reqdata`"
