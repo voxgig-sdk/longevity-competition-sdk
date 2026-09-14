@@ -105,7 +105,7 @@ local results, err = client:Competition():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/releases) |
+| TypeScript | `@voxgig-sdk/longevity-competition-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/releases) |
 | Python | `voxgig-sdk-longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/releases) |
 | PHP | `voxgig-sdk/longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/releases) |
 | Golang | `github.com/voxgig-sdk/longevity-competition-sdk/go` | `go get github.com/voxgig-sdk/longevity-competition-sdk/go@latest` |
@@ -119,7 +119,7 @@ local results, err = client:Competition():list()
 ### TypeScript
 
 ```ts
-import { LongevityCompetitionSDK } from '@voxgig-sdk/longevity-competition'
+import { LongevityCompetitionSDK } from '@voxgig-sdk/longevity-competition-sdk'
 
 const client = new LongevityCompetitionSDK()
 

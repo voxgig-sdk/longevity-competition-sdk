@@ -28,7 +28,7 @@ loading a specific record.
 ### 1. Create a client
 
 ```ts
-import { LongevityCompetitionSDK } from '@voxgig-sdk/longevity-competition'
+import { LongevityCompetitionSDK } from '@voxgig-sdk/longevity-competition-sdk'
 
 const client = new LongevityCompetitionSDK()
 ```
@@ -700,7 +700,7 @@ longevity-competition/
 Import the SDK from the package root:
 
 ```ts
-import { LongevityCompetitionSDK } from '@voxgig-sdk/longevity-competition'
+import { LongevityCompetitionSDK } from '@voxgig-sdk/longevity-competition-sdk'
 ```
 
 ### Entity state
