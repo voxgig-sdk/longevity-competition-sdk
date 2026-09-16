@@ -37,5 +37,132 @@
         "phenoAge": 204
       }
     }
+  },
+  "requests": {
+    "POST /data/pheno-age": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "calculatePhenoAge",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "biomarkers": {
+                    "description": "Blood biomarker values required for Pheno Age calculation",
+                    "properties": {
+                      "albumin": {
+                        "description": "Albumin level (g/dL)",
+                        "type": "number"
+                      },
+                      "alkalinePhosphatase": {
+                        "description": "Alkaline phosphatase (U/L)",
+                        "type": "number"
+                      },
+                      "creatinine": {
+                        "description": "Creatinine level (mg/dL)",
+                        "type": "number"
+                      },
+                      "crp": {
+                        "description": "C-reactive protein (mg/L)",
+                        "type": "number"
+                      },
+                      "glucose": {
+                        "description": "Glucose level (mg/dL)",
+                        "type": "number"
+                      },
+                      "lymphocytePercent": {
+                        "description": "Lymphocyte percentage",
+                        "type": "number"
+                      },
+                      "mcv": {
+                        "description": "Mean corpuscular volume (fL)",
+                        "type": "number"
+                      },
+                      "rdw": {
+                        "description": "Red cell distribution width (%)",
+                        "type": "number"
+                      },
+                      "whiteBloodCellCount": {
+                        "description": "White blood cell count (1000 cells/µL)",
+                        "type": "number"
+                      }
+                    },
+                    "type": "object"
+                  },
+                  "chronologicalAge": {
+                    "description": "Actual age in years",
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "chronologicalAge",
+                  "biomarkers"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "ageReduction": {
+                      "description": "Calculated Age Reduction",
+                      "type": "number"
+                    },
+                    "calculationMethod": {
+                      "description": "Algorithm version used",
+                      "type": "string"
+                    },
+                    "chronologicalAge": {
+                      "description": "Input chronological age",
+                      "type": "number"
+                    },
+                    "phenoAge": {
+                      "description": "Calculated phenotypic biological age",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful Pheno Age calculation"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid biomarker data"
+          }
+        },
+        "securitySource": "unspecified"
+      }
+    }
   }
 }

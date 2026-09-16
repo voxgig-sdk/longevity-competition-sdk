@@ -24,7 +24,71 @@
         "repr": "auto"
       },
       "contributor": {},
-      "docs": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "athlete": {
           "active": true,
@@ -190,6 +254,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /data/athletes",
+                    "json": "{\"operationId\":\"getAthletes\",\"parameters\":[{\"description\":\"Filter athletes by league (e.g., Ultimate, Pro, Amateur)\",\"in\":\"query\",\"name\":\"league\",\"required\":false,\"schema\":{\"enum\":[\"Ultimate\",\"Pro\",\"Amateur\"],\"type\":\"string\"}},{\"description\":\"Filter athletes by age division\",\"in\":\"query\",\"name\":\"division\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Maximum number of athletes to return\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":100,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of athletes to skip for pagination\",\"in\":\"query\",\"name\":\"offset\",\"required\":false,\"schema\":{\"default\":0,\"minimum\":0,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"athletes\":{\"items\":{\"properties\":{\"ageReduction\":{\"description\":\"Age Reduction score (chronological age minus biological age)\",\"type\":\"number\"},\"biologicalAge\":{\"description\":\"Calculated biological age\",\"type\":\"number\"},\"chronologicalAge\":{\"description\":\"Actual age in years\",\"type\":\"number\"},\"clockType\":{\"description\":\"Biological aging clock used\",\"enum\":[\"PhenoAge\",\"BortzAge\"],\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"division\":{\"description\":\"Age division category\",\"type\":\"string\"},\"effectiveAgeReduction\":{\"description\":\"Effective Age Reduction used for ranking\",\"type\":\"number\"},\"generation\":{\"description\":\"Generation category\",\"type\":\"string\"},\"id\":{\"description\":\"Unique athlete identifier\",\"type\":\"string\"},\"lastUpdated\":{\"description\":\"Last result submission date\",\"format\":\"date-time\",\"type\":\"string\"},\"league\":{\"description\":\"Competition league\",\"enum\":[\"Pro\",\"Amateur\"],\"type\":\"string\"},\"name\":{\"description\":\"Athlete name\",\"type\":\"string\"},\"profileUrl\":{\"description\":\"URL to athlete's public profile\",\"format\":\"uri\",\"type\":\"string\"},\"rank\":{\"description\":\"Current ranking position\",\"type\":\"integer\"},\"ultimateLeagueRank\":{\"description\":\"Rank in Ultimate League (combined Pro and Amateur)\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"limit\":{\"description\":\"Number of results per page\",\"type\":\"integer\"},\"offset\":{\"description\":\"Current offset in the result set\",\"type\":\"integer\"},\"total\":{\"description\":\"Total number of athletes matching the query\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with athlete data\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/athletes",
@@ -278,6 +348,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /data/bortz-age",
+                    "json": "{\"operationId\":\"calculateBortzAge\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"biomarkers\":{\"description\":\"Blood biomarker values required for Bortz Age calculation\",\"type\":\"object\"},\"chronologicalAge\":{\"description\":\"Actual age in years\",\"type\":\"number\"}},\"required\":[\"chronologicalAge\",\"biomarkers\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ageReduction\":{\"description\":\"Calculated Age Reduction\",\"type\":\"number\"},\"bortzAge\":{\"description\":\"Calculated Bortz biological age\",\"type\":\"number\"},\"chronologicalAge\":{\"description\":\"Input chronological age\",\"type\":\"number\"},\"season\":{\"description\":\"Competition season\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful Bortz Age calculation\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Invalid biomarker data\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/data/bortz-age",
@@ -357,6 +433,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /data/divisions",
+                    "json": "{\"operationId\":\"getDivisions\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"divisions\":{\"items\":{\"properties\":{\"ageRange\":{\"description\":\"Age range for this division\",\"type\":\"string\"},\"id\":{\"description\":\"Division identifier\",\"type\":\"string\"},\"maxAge\":{\"description\":\"Maximum age for division\",\"type\":\"integer\"},\"minAge\":{\"description\":\"Minimum age for division\",\"type\":\"integer\"},\"name\":{\"description\":\"Division name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with division data\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/divisions",
@@ -465,6 +547,12 @@
                       }
                     ]
                   },
+                  "contract": {
+                    "id": "GET /data/leaderboard",
+                    "json": "{\"operationId\":\"getLeaderboard\",\"parameters\":[{\"description\":\"Filter by league type\",\"in\":\"query\",\"name\":\"league\",\"required\":false,\"schema\":{\"enum\":[\"Ultimate\",\"Pro\",\"Amateur\",\"CrowdAge\"],\"type\":\"string\"}},{\"description\":\"Filter by age division\",\"in\":\"query\",\"name\":\"division\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"lastUpdated\":{\"description\":\"Timestamp of last leaderboard update\",\"format\":\"date-time\",\"type\":\"string\"},\"rankings\":{\"items\":{\"properties\":{\"ageReduction\":{\"description\":\"Age Reduction score\",\"type\":\"number\"},\"athleteId\":{\"description\":\"Athlete identifier\",\"type\":\"string\"},\"athleteName\":{\"description\":\"Athlete name\",\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"division\":{\"description\":\"Age division\",\"type\":\"string\"},\"league\":{\"description\":\"Competition league\",\"type\":\"string\"},\"rank\":{\"description\":\"Current ranking position\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with leaderboard data\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/leaderboard",
@@ -551,6 +639,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /data/pheno-age",
+                    "json": "{\"operationId\":\"calculatePhenoAge\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"biomarkers\":{\"description\":\"Blood biomarker values required for Pheno Age calculation\",\"properties\":{\"albumin\":{\"description\":\"Albumin level (g/dL)\",\"type\":\"number\"},\"alkalinePhosphatase\":{\"description\":\"Alkaline phosphatase (U/L)\",\"type\":\"number\"},\"creatinine\":{\"description\":\"Creatinine level (mg/dL)\",\"type\":\"number\"},\"crp\":{\"description\":\"C-reactive protein (mg/L)\",\"type\":\"number\"},\"glucose\":{\"description\":\"Glucose level (mg/dL)\",\"type\":\"number\"},\"lymphocytePercent\":{\"description\":\"Lymphocyte percentage\",\"type\":\"number\"},\"mcv\":{\"description\":\"Mean corpuscular volume (fL)\",\"type\":\"number\"},\"rdw\":{\"description\":\"Red cell distribution width (%)\",\"type\":\"number\"},\"whiteBloodCellCount\":{\"description\":\"White blood cell count (1000 cells/µL)\",\"type\":\"number\"}},\"type\":\"object\"},\"chronologicalAge\":{\"description\":\"Actual age in years\",\"type\":\"number\"}},\"required\":[\"chronologicalAge\",\"biomarkers\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ageReduction\":{\"description\":\"Calculated Age Reduction\",\"type\":\"number\"},\"calculationMethod\":{\"description\":\"Algorithm version used\",\"type\":\"string\"},\"chronologicalAge\":{\"description\":\"Input chronological age\",\"type\":\"number\"},\"phenoAge\":{\"description\":\"Calculated phenotypic biological age\",\"type\":\"number\"}},\"type\":\"object\"}}},\"description\":\"Successful Pheno Age calculation\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Invalid biomarker data\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/data/pheno-age",
@@ -654,6 +748,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "POST /data/rank-preview",
+                    "json": "{\"operationId\":\"previewRank\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"biologicalAge\":{\"description\":\"Calculated biological age\",\"type\":\"number\"},\"chronologicalAge\":{\"description\":\"Actual age in years\",\"type\":\"number\"},\"division\":{\"description\":\"Target division for preview\",\"type\":\"string\"},\"league\":{\"description\":\"Target league for preview\",\"enum\":[\"Pro\",\"Amateur\"],\"type\":\"string\"}},\"required\":[\"chronologicalAge\",\"biologicalAge\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ageReduction\":{\"description\":\"Calculated Age Reduction\",\"type\":\"number\"},\"athletesInLeague\":{\"description\":\"Total athletes in target league\",\"type\":\"integer\"},\"estimatedRank\":{\"description\":\"Estimated ranking position\",\"type\":\"integer\"},\"estimatedUltimateLeagueRank\":{\"description\":\"Estimated Ultimate League rank\",\"type\":\"integer\"},\"percentile\":{\"description\":\"Percentile ranking\",\"type\":\"number\"}},\"type\":\"object\"}}},\"description\":\"Successful rank preview\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Invalid preview data\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "POST",
                   "orig": "/data/rank-preview",
@@ -716,6 +816,12 @@
                 {
                   "active": true,
                   "args": {},
+                  "contract": {
+                    "id": "GET /data/flags",
+                    "json": "{\"operationId\":\"getFlags\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"flags\":{\"items\":{\"properties\":{\"countryCode\":{\"description\":\"ISO country code\",\"type\":\"string\"},\"countryName\":{\"description\":\"Country name\",\"type\":\"string\"},\"flagUrl\":{\"description\":\"URL to flag image\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with flag data\"}},\"securitySource\":\"unspecified\"}",
+                    "source": "openapi3",
+                    "version": 1
+                  },
                   "kind": "http",
                   "method": "GET",
                   "orig": "/data/flags",
@@ -742,13 +848,223 @@
         }
       },
       "feature": {
+        "ratelimit": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "burst": 5,
+              "rate": 5
+            },
+            "optspec": {
+              "now": "`$FUNCTION`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "ratelimit",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Client-side rate limiting via a token bucket",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
+        "retry": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "factor": 2,
+              "maxDelay": 2000,
+              "minDelay": 50,
+              "retries": 2,
+              "statuses": [
+                408,
+                425,
+                429,
+                500,
+                502,
+                503,
+                504
+              ]
+            },
+            "optspec": {
+              "jitter": "`$BOOLEAN`",
+              "sleep": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "retry",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Automatic retry of transient failures with exponential backoff",
+          "transport": "wrap",
+          "version": "0.0.1"
+        },
         "test": {
           "active": true,
           "base": "node_modules/@voxgig/sdkgen/project/.sdk",
           "config": {
             "options": {
               "active": false
-            }
+            },
+            "optspec": {
+              "entity": "`$MAP`",
+              "net": "`$MAP`"
+            },
+            "strict": false
           },
           "hook": {
             "GetData": {
@@ -838,6 +1154,102 @@
           },
           "title": "In-memory mock transport for testing without a live server",
           "transport": "base",
+          "version": "0.0.1"
+        },
+        "timeout": {
+          "active": true,
+          "base": "node_modules/@voxgig/sdkgen/project/.sdk",
+          "config": {
+            "options": {
+              "active": false,
+              "ms": 30000
+            },
+            "optspec": {
+              "clearTimer": "`$FUNCTION`",
+              "setTimer": "`$FUNCTION`"
+            },
+            "strict": false
+          },
+          "hook": {
+            "GetData": {
+              "active": false,
+              "await": false
+            },
+            "GetMatch": {
+              "active": false,
+              "await": false
+            },
+            "PostConstruct": {
+              "active": false,
+              "await": false
+            },
+            "PostConstructEntity": {
+              "active": false,
+              "await": false
+            },
+            "PostOperation": {
+              "active": false,
+              "await": false
+            },
+            "PreRequest": {
+              "active": false,
+              "await": false
+            },
+            "PreResponse": {
+              "active": false,
+              "await": false
+            },
+            "PreResult": {
+              "active": false,
+              "await": false
+            },
+            "PreSpec": {
+              "active": false,
+              "await": false
+            },
+            "PreTarget": {
+              "active": false,
+              "await": false
+            },
+            "SetData": {
+              "active": false,
+              "await": false
+            }
+          },
+          "name": "timeout",
+          "needs": {},
+          "origname": "",
+          "package": "@voxgig/sdkgen",
+          "plugin": {},
+          "spec": {},
+          "target": {
+            "go": {
+              "deps": {}
+            },
+            "go-cli": {
+              "deps": {}
+            },
+            "go-mcp": {
+              "deps": {}
+            },
+            "lua": {
+              "deps": {}
+            },
+            "php": {
+              "deps": {}
+            },
+            "py": {
+              "deps": {}
+            },
+            "rb": {
+              "deps": {}
+            },
+            "ts": {
+              "deps": {}
+            }
+          },
+          "title": "Per-request timeout with transport abort",
+          "transport": "wrap",
           "version": "0.0.1"
         }
       },
@@ -1034,6 +1446,48 @@
         "website": "https://longevityworldcup.com/swagger"
       },
       "option": {},
+      "optspec": {
+        "allow": {
+          "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
+          "op": "create,update,load,list,remove,command,direct,graphql"
+        },
+        "apikey": "",
+        "auth": {
+          "basic": false,
+          "prefix": ""
+        },
+        "base": "http://localhost:8000",
+        "clean": {
+          "keys": "key,token,id"
+        },
+        "entity": {
+          "`$CHILD`": {
+            "`$OPEN`": true,
+            "active": false,
+            "alias": {}
+          }
+        },
+        "extend": "`$ANY`",
+        "headers": {
+          "`$CHILD`": "`$STRING`"
+        },
+        "prefix": "",
+        "secret": "",
+        "server": {
+          "`$CHILD`": ""
+        },
+        "suffix": "",
+        "system": {
+          "fetch": "`$ANY`"
+        },
+        "test": {
+          "active": false,
+          "entity": {
+            "`$OPEN`": true
+          }
+        },
+        "utility": {}
+      },
       "repo": {
         "host": "github.com",
         "path": ""
@@ -1588,6 +2042,7 @@
           },
           "package": "@voxgig/sdkgen",
           "provides": {
+            "schema": true,
             "sekreto": true
           },
           "publish": {
@@ -1629,7 +2084,7 @@
         "live": {
           "app": false,
           "base": "",
-          "strict": false
+          "strict": true
         }
       }
     }

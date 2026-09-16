@@ -4,7 +4,10 @@ declare(strict_types=1);
 // LongevityCompetition SDK feature factory
 
 require_once __DIR__ . '/feature/BaseFeature.php';
+require_once __DIR__ . '/feature/RatelimitFeature.php';
+require_once __DIR__ . '/feature/RetryFeature.php';
 require_once __DIR__ . '/feature/TestFeature.php';
+require_once __DIR__ . '/feature/TimeoutFeature.php';
 
 
 class LongevityCompetitionFeatures
@@ -14,8 +17,14 @@ class LongevityCompetitionFeatures
         switch ($name) {
             case "base":
                 return new LongevityCompetitionBaseFeature();
+            case "ratelimit":
+                return new LongevityCompetitionRatelimitFeature();
+            case "retry":
+                return new LongevityCompetitionRetryFeature();
             case "test":
                 return new LongevityCompetitionTestFeature();
+            case "timeout":
+                return new LongevityCompetitionTimeoutFeature();
             default:
                 return new LongevityCompetitionBaseFeature();
         }
@@ -31,7 +40,10 @@ class LongevityCompetitionFeatures
     {
         switch ($name) {
             case "base":
+            case "ratelimit":
+            case "retry":
             case "test":
+            case "timeout":
                 return true;
             default:
                 return false;

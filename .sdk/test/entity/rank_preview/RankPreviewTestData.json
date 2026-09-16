@@ -3,36 +3,36 @@
     "rank_preview": {
       "RANK_PREVIEW00": {
         "ageReduction": 90,
-        "athletesInLeague": "s5b",
+        "athletesInLeague": 91,
         "biologicalAge": 92,
         "chronologicalAge": 93,
         "division": "s5e",
-        "estimatedRank": "s5f",
-        "estimatedUltimateLeagueRank": "s60",
+        "estimatedRank": 95,
+        "estimatedUltimateLeagueRank": 96,
         "league": "s61",
         "percentile": 98,
         "id": "RANK_PREVIEW00"
       },
       "RANK_PREVIEW01": {
         "ageReduction": 180,
-        "athletesInLeague": "sb5",
+        "athletesInLeague": 181,
         "biologicalAge": 182,
         "chronologicalAge": 183,
         "division": "sb8",
-        "estimatedRank": "sb9",
-        "estimatedUltimateLeagueRank": "sba",
+        "estimatedRank": 185,
+        "estimatedUltimateLeagueRank": 186,
         "league": "sbb",
         "percentile": 188,
         "id": "RANK_PREVIEW01"
       },
       "RANK_PREVIEW02": {
         "ageReduction": 270,
-        "athletesInLeague": "s10f",
+        "athletesInLeague": 271,
         "biologicalAge": 272,
         "chronologicalAge": 273,
         "division": "s112",
-        "estimatedRank": "s113",
-        "estimatedUltimateLeagueRank": "s114",
+        "estimatedRank": 275,
+        "estimatedUltimateLeagueRank": 276,
         "league": "s115",
         "percentile": 278,
         "id": "RANK_PREVIEW02"
@@ -43,14 +43,119 @@
     "rank_preview": {
       "rank_preview_ref01": {
         "ageReduction": 360,
-        "athletesInLeague": "s169",
+        "athletesInLeague": 361,
         "biologicalAge": 362,
         "chronologicalAge": 363,
         "division": "s16c",
-        "estimatedRank": "s16d",
-        "estimatedUltimateLeagueRank": "s16e",
+        "estimatedRank": 365,
+        "estimatedUltimateLeagueRank": 366,
         "league": "s16f",
         "percentile": 368
+      }
+    }
+  },
+  "requests": {
+    "POST /data/rank-preview": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "previewRank",
+        "parameters": [],
+        "protocol": "http",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "properties": {
+                  "biologicalAge": {
+                    "description": "Calculated biological age",
+                    "type": "number"
+                  },
+                  "chronologicalAge": {
+                    "description": "Actual age in years",
+                    "type": "number"
+                  },
+                  "division": {
+                    "description": "Target division for preview",
+                    "type": "string"
+                  },
+                  "league": {
+                    "description": "Target league for preview",
+                    "enum": [
+                      "Pro",
+                      "Amateur"
+                    ],
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "chronologicalAge",
+                  "biologicalAge"
+                ],
+                "type": "object"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "ageReduction": {
+                      "description": "Calculated Age Reduction",
+                      "type": "number"
+                    },
+                    "athletesInLeague": {
+                      "description": "Total athletes in target league",
+                      "type": "integer"
+                    },
+                    "estimatedRank": {
+                      "description": "Estimated ranking position",
+                      "type": "integer"
+                    },
+                    "estimatedUltimateLeagueRank": {
+                      "description": "Estimated Ultimate League rank",
+                      "type": "integer"
+                    },
+                    "percentile": {
+                      "description": "Percentile ranking",
+                      "type": "number"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful rank preview"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Invalid preview data"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

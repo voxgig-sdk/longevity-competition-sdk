@@ -8,7 +8,7 @@
         "country": "s49",
         "division": "s4a",
         "league": "s4b",
-        "rank": "s4c"
+        "rank": 76
       },
       "LEADERBOARD01": {
         "ageReduction": 140,
@@ -17,7 +17,7 @@
         "country": "s8f",
         "division": "s90",
         "league": "s91",
-        "rank": "s92"
+        "rank": 146
       },
       "LEADERBOARD02": {
         "ageReduction": 210,
@@ -26,7 +26,7 @@
         "country": "sd5",
         "division": "sd6",
         "league": "sd7",
-        "rank": "sd8"
+        "rank": 216
       }
     }
   },
@@ -39,7 +39,98 @@
         "country": "s11b",
         "division": "s11c",
         "league": "s11d",
-        "rank": "s11e"
+        "rank": 286
+      }
+    }
+  },
+  "requests": {
+    "GET /data/leaderboard": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getLeaderboard",
+        "parameters": [
+          {
+            "description": "Filter by league type",
+            "in": "query",
+            "name": "league",
+            "required": false,
+            "schema": {
+              "enum": [
+                "Ultimate",
+                "Pro",
+                "Amateur",
+                "CrowdAge"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter by age division",
+            "in": "query",
+            "name": "division",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "lastUpdated": {
+                      "description": "Timestamp of last leaderboard update",
+                      "format": "date-time",
+                      "type": "string"
+                    },
+                    "rankings": {
+                      "items": {
+                        "properties": {
+                          "ageReduction": {
+                            "description": "Age Reduction score",
+                            "type": "number"
+                          },
+                          "athleteId": {
+                            "description": "Athlete identifier",
+                            "type": "string"
+                          },
+                          "athleteName": {
+                            "description": "Athlete name",
+                            "type": "string"
+                          },
+                          "country": {
+                            "description": "Country code",
+                            "type": "string"
+                          },
+                          "division": {
+                            "description": "Age division",
+                            "type": "string"
+                          },
+                          "league": {
+                            "description": "Competition league",
+                            "type": "string"
+                          },
+                          "rank": {
+                            "description": "Current ranking position",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with leaderboard data"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

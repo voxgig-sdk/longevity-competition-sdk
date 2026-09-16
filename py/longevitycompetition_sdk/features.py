@@ -1,12 +1,18 @@
 # LongevityCompetition SDK feature factory
 
 from longevitycompetition_sdk.feature.base_feature import LongevityCompetitionBaseFeature
+from longevitycompetition_sdk.feature.ratelimit_feature import LongevityCompetitionRatelimitFeature
+from longevitycompetition_sdk.feature.retry_feature import LongevityCompetitionRetryFeature
 from longevitycompetition_sdk.feature.test_feature import LongevityCompetitionTestFeature
+from longevitycompetition_sdk.feature.timeout_feature import LongevityCompetitionTimeoutFeature
 
 
 _FEATURES = {
     "base": lambda: LongevityCompetitionBaseFeature(),
+    "ratelimit": lambda: LongevityCompetitionRatelimitFeature(),
+    "retry": lambda: LongevityCompetitionRetryFeature(),
     "test": lambda: LongevityCompetitionTestFeature(),
+    "timeout": lambda: LongevityCompetitionTimeoutFeature(),
 }
 
 

@@ -15,8 +15,8 @@
         "league": "sa0",
         "name": "sa1",
         "profileUrl": "sa2",
-        "rank": "sa3",
-        "ultimateLeagueRank": "sa4"
+        "rank": 163,
+        "ultimateLeagueRank": 164
       },
       "ATHLETE01": {
         "ageReduction": 300,
@@ -32,8 +32,8 @@
         "league": "s136",
         "name": "s137",
         "profileUrl": "s138",
-        "rank": "s139",
-        "ultimateLeagueRank": "s13a"
+        "rank": 313,
+        "ultimateLeagueRank": 314
       },
       "ATHLETE02": {
         "ageReduction": 450,
@@ -49,8 +49,8 @@
         "league": "s1cc",
         "name": "s1cd",
         "profileUrl": "s1ce",
-        "rank": "s1cf",
-        "ultimateLeagueRank": "s1d0"
+        "rank": 463,
+        "ultimateLeagueRank": 464
       }
     }
   },
@@ -69,8 +69,218 @@
         "league": "s262",
         "name": "s263",
         "profileUrl": "s264",
-        "rank": "s265",
-        "ultimateLeagueRank": "s266"
+        "rank": 613,
+        "ultimateLeagueRank": 614
+      }
+    }
+  },
+  "requests": {
+    "GET /data/athletes": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getAthletes",
+        "parameters": [
+          {
+            "description": "Filter athletes by league (e.g., Ultimate, Pro, Amateur)",
+            "in": "query",
+            "name": "league",
+            "required": false,
+            "schema": {
+              "enum": [
+                "Ultimate",
+                "Pro",
+                "Amateur"
+              ],
+              "type": "string"
+            }
+          },
+          {
+            "description": "Filter athletes by age division",
+            "in": "query",
+            "name": "division",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "description": "Maximum number of athletes to return",
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 1000,
+              "minimum": 1,
+              "type": "integer"
+            }
+          },
+          {
+            "description": "Number of athletes to skip for pagination",
+            "in": "query",
+            "name": "offset",
+            "required": false,
+            "schema": {
+              "default": 0,
+              "minimum": 0,
+              "type": "integer"
+            }
+          }
+        ],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "athletes": {
+                      "items": {
+                        "properties": {
+                          "ageReduction": {
+                            "description": "Age Reduction score (chronological age minus biological age)",
+                            "type": "number"
+                          },
+                          "biologicalAge": {
+                            "description": "Calculated biological age",
+                            "type": "number"
+                          },
+                          "chronologicalAge": {
+                            "description": "Actual age in years",
+                            "type": "number"
+                          },
+                          "clockType": {
+                            "description": "Biological aging clock used",
+                            "enum": [
+                              "PhenoAge",
+                              "BortzAge"
+                            ],
+                            "type": "string"
+                          },
+                          "country": {
+                            "description": "Country code",
+                            "type": "string"
+                          },
+                          "division": {
+                            "description": "Age division category",
+                            "type": "string"
+                          },
+                          "effectiveAgeReduction": {
+                            "description": "Effective Age Reduction used for ranking",
+                            "type": "number"
+                          },
+                          "generation": {
+                            "description": "Generation category",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Unique athlete identifier",
+                            "type": "string"
+                          },
+                          "lastUpdated": {
+                            "description": "Last result submission date",
+                            "format": "date-time",
+                            "type": "string"
+                          },
+                          "league": {
+                            "description": "Competition league",
+                            "enum": [
+                              "Pro",
+                              "Amateur"
+                            ],
+                            "type": "string"
+                          },
+                          "name": {
+                            "description": "Athlete name",
+                            "type": "string"
+                          },
+                          "profileUrl": {
+                            "description": "URL to athlete's public profile",
+                            "format": "uri",
+                            "type": "string"
+                          },
+                          "rank": {
+                            "description": "Current ranking position",
+                            "type": "integer"
+                          },
+                          "ultimateLeagueRank": {
+                            "description": "Rank in Ultimate League (combined Pro and Amateur)",
+                            "type": "integer"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    },
+                    "limit": {
+                      "description": "Number of results per page",
+                      "type": "integer"
+                    },
+                    "offset": {
+                      "description": "Current offset in the result set",
+                      "type": "integer"
+                    },
+                    "total": {
+                      "description": "Total number of athletes matching the query",
+                      "type": "integer"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with athlete data"
+          },
+          "400": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Bad request - invalid parameters"
+          },
+          "500": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "code": {
+                      "description": "Error code",
+                      "type": "string"
+                    },
+                    "details": {
+                      "description": "Additional error details",
+                      "type": "object"
+                    },
+                    "error": {
+                      "description": "Error message",
+                      "type": "string"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Internal server error"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

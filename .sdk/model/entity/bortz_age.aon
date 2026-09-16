@@ -49,6 +49,12 @@ main: kit: entity: bortz_age: {
       name: "create"
       points: [
         {
+          contract: {
+            id: "POST /data/bortz-age"
+            json: "{\"operationId\":\"calculateBortzAge\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"biomarkers\":{\"description\":\"Blood biomarker values required for Bortz Age calculation\",\"type\":\"object\"},\"chronologicalAge\":{\"description\":\"Actual age in years\",\"type\":\"number\"}},\"required\":[\"chronologicalAge\",\"biomarkers\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ageReduction\":{\"description\":\"Calculated Age Reduction\",\"type\":\"number\"},\"bortzAge\":{\"description\":\"Calculated Bortz biological age\",\"type\":\"number\"},\"chronologicalAge\":{\"description\":\"Input chronological age\",\"type\":\"number\"},\"season\":{\"description\":\"Competition season\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful Bortz Age calculation\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Invalid biomarker data\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "POST"
           orig: "/data/bortz-age"
           segments: [

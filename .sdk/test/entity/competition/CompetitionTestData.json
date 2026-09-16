@@ -4,22 +4,22 @@
       "COMPETITION00": {
         "ageRange": "s32",
         "id": "COMPETITION00",
-        "maxAge": "s34",
-        "minAge": "s35",
+        "maxAge": 52,
+        "minAge": 53,
         "name": "s36"
       },
       "COMPETITION01": {
         "ageRange": "s64",
         "id": "COMPETITION01",
-        "maxAge": "s66",
-        "minAge": "s67",
+        "maxAge": 102,
+        "minAge": 103,
         "name": "s68"
       },
       "COMPETITION02": {
         "ageRange": "s96",
         "id": "COMPETITION02",
-        "maxAge": "s98",
-        "minAge": "s99",
+        "maxAge": 152,
+        "minAge": 153,
         "name": "s9a"
       }
     }
@@ -28,9 +28,62 @@
     "competition": {
       "competition_ref01": {
         "ageRange": "sc8",
-        "maxAge": "sca",
-        "minAge": "scb",
+        "maxAge": 202,
+        "minAge": 203,
         "name": "scc"
+      }
+    }
+  },
+  "requests": {
+    "GET /data/divisions": {
+      "provenance": "operation-contract",
+      "contract": {
+        "operationId": "getDivisions",
+        "parameters": [],
+        "protocol": "http",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "properties": {
+                    "divisions": {
+                      "items": {
+                        "properties": {
+                          "ageRange": {
+                            "description": "Age range for this division",
+                            "type": "string"
+                          },
+                          "id": {
+                            "description": "Division identifier",
+                            "type": "string"
+                          },
+                          "maxAge": {
+                            "description": "Maximum age for division",
+                            "type": "integer"
+                          },
+                          "minAge": {
+                            "description": "Minimum age for division",
+                            "type": "integer"
+                          },
+                          "name": {
+                            "description": "Division name",
+                            "type": "string"
+                          }
+                        },
+                        "type": "object"
+                      },
+                      "type": "array"
+                    }
+                  },
+                  "type": "object"
+                }
+              }
+            },
+            "description": "Successful response with division data"
+          }
+        },
+        "securitySource": "unspecified"
       }
     }
   }

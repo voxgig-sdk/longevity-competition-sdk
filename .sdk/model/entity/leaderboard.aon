@@ -73,6 +73,12 @@ main: kit: entity: leaderboard: {
               }
             ]
           }
+          contract: {
+            id: "GET /data/leaderboard"
+            json: "{\"operationId\":\"getLeaderboard\",\"parameters\":[{\"description\":\"Filter by league type\",\"in\":\"query\",\"name\":\"league\",\"required\":false,\"schema\":{\"enum\":[\"Ultimate\",\"Pro\",\"Amateur\",\"CrowdAge\"],\"type\":\"string\"}},{\"description\":\"Filter by age division\",\"in\":\"query\",\"name\":\"division\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"lastUpdated\":{\"description\":\"Timestamp of last leaderboard update\",\"format\":\"date-time\",\"type\":\"string\"},\"rankings\":{\"items\":{\"properties\":{\"ageReduction\":{\"description\":\"Age Reduction score\",\"type\":\"number\"},\"athleteId\":{\"description\":\"Athlete identifier\",\"type\":\"string\"},\"athleteName\":{\"description\":\"Athlete name\",\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"division\":{\"description\":\"Age division\",\"type\":\"string\"},\"league\":{\"description\":\"Competition league\",\"type\":\"string\"},\"rank\":{\"description\":\"Current ranking position\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with leaderboard data\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/leaderboard"
           segments: [

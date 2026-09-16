@@ -32,6 +32,12 @@ main: kit: entity: reference: {
       name: "list"
       points: [
         {
+          contract: {
+            id: "GET /data/flags"
+            json: "{\"operationId\":\"getFlags\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"flags\":{\"items\":{\"properties\":{\"countryCode\":{\"description\":\"ISO country code\",\"type\":\"string\"},\"countryName\":{\"description\":\"Country name\",\"type\":\"string\"},\"flagUrl\":{\"description\":\"URL to flag image\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with flag data\"}},\"securitySource\":\"unspecified\"}"
+            source: "openapi3"
+            version: 1
+          }
           method: "GET"
           orig: "/data/flags"
           segments: [
