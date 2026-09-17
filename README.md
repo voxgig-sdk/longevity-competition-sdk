@@ -105,12 +105,12 @@ local results, err = client:Competition():list()
 
 | Language | Package | Install |
 | --- | --- | --- |
-| TypeScript | `@voxgig-sdk/longevity-competition-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/releases) |
-| Python | `voxgig-sdk-longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/releases) |
-| PHP | `voxgig-sdk/longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/releases) |
+| TypeScript | `@voxgig-sdk/longevity-competition-sdk` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/tags) |
+| Python | `voxgig-sdk-longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/tags) |
+| PHP | `voxgig-sdk/longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/tags) |
 | Golang | `github.com/voxgig-sdk/longevity-competition-sdk/go` | `go get github.com/voxgig-sdk/longevity-competition-sdk/go@latest` |
-| Ruby | `voxgig-sdk-longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/releases) |
-| Lua | `voxgig-sdk-longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/releases) |
+| Ruby | `voxgig-sdk-longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/tags) |
+| Lua | `voxgig-sdk-longevity-competition` | publish pending — [install from git tag](https://github.com/voxgig-sdk/longevity-competition-sdk/tags) |
 | Go CLI | `github.com/voxgig-sdk/longevity-competition-sdk/go-cli` | `go install github.com/voxgig-sdk/longevity-competition-sdk/go-cli/cmd/longevity-competition@latest` |
 | Go MCP server | `github.com/voxgig-sdk/longevity-competition-sdk/go-mcp` | `go get github.com/voxgig-sdk/longevity-competition-sdk/go-mcp@latest` |
 

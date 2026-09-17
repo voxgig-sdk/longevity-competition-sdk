@@ -127,27 +127,27 @@ class Config {
 
     entity: {
       
-      athlete: {
-      },
-
-      bortz_age: {
-      },
-
-      competition: {
-      },
-
-      leaderboard: {
-      },
-
-      pheno_age: {
-      },
-
-      rank_preview: {
-      },
-
-      reference: {
-      },
-
+        athlete: {
+        },
+  
+        bortz_age: {
+        },
+  
+        competition: {
+        },
+  
+        leaderboard: {
+        },
+  
+        pheno_age: {
+        },
+  
+        rank_preview: {
+        },
+  
+        reference: {
+        },
+  
     }
   }
 
