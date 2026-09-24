@@ -1,0 +1,82 @@
+# Entity: competition
+
+main: kit: entity: competition: {
+
+  alias: field: {}
+
+  fields: {
+    ageRange: {
+      h: "Age Range"
+      n: "ageRange"
+      r: false
+      sh: "Age range for this division"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Division identifier"
+      t: "`$STRING`"
+    }
+    maxAge: {
+      h: "Max Age"
+      n: "maxAge"
+      r: false
+      sh: "Maximum age for division"
+      t: "`$INTEGER`"
+    }
+    minAge: {
+      h: "Min Age"
+      n: "minAge"
+      r: false
+      sh: "Minimum age for division"
+      t: "`$INTEGER`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Division name"
+      t: "`$STRING`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "competition"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /data/divisions"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/divisions"
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "divisions"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.divisions`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

@@ -1,0 +1,83 @@
+# Entity: bortz_age
+
+main: kit: entity: bortz_age: {
+
+  alias: field: {}
+
+  fields: {
+    ageReduction: {
+      h: "Age Reduction"
+      n: "ageReduction"
+      r: false
+      sh: "Calculated Age Reduction"
+      t: "`$NUMBER`"
+    }
+    biomarkers: {
+      h: "Biomarkers"
+      n: "biomarkers"
+      r: true
+      sh: "Blood biomarker values required for Bortz Age calculation"
+      t: "`$OBJECT`"
+    }
+    bortzAge: {
+      h: "Bortz Age"
+      n: "bortzAge"
+      r: false
+      sh: "Calculated Bortz biological age"
+      t: "`$NUMBER`"
+    }
+    chronologicalAge: {
+      h: "Chronological Age"
+      n: "chronologicalAge"
+      op: {
+        create: {
+          req: true
+          type: "`$NUMBER`"
+        }
+      }
+      r: false
+      sh: "Input chronological age"
+      t: "`$NUMBER`"
+    }
+    season: {
+      h: "Season"
+      n: "season"
+      r: false
+      sh: "Competition season"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "bortz_age"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /data/bortz-age"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/data/bortz-age"
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "bortz-age"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

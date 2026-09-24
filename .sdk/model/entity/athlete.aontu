@@ -1,0 +1,196 @@
+# Entity: athlete
+
+main: kit: entity: athlete: {
+
+  alias: field: {}
+
+  fields: {
+    ageReduction: {
+      h: "Age Reduction"
+      n: "ageReduction"
+      r: false
+      sh: "Age Reduction score (chronological age minus biological age)"
+      t: "`$NUMBER`"
+    }
+    biologicalAge: {
+      h: "Biological Age"
+      n: "biologicalAge"
+      r: false
+      sh: "Calculated biological age"
+      t: "`$NUMBER`"
+    }
+    chronologicalAge: {
+      h: "Chronological Age"
+      n: "chronologicalAge"
+      r: false
+      sh: "Actual age in years"
+      t: "`$NUMBER`"
+    }
+    clockType: {
+      h: "Clock Type"
+      n: "clockType"
+      r: false
+      sh: "Biological aging clock used"
+      t: "`$STRING`"
+    }
+    country: {
+      h: "Country"
+      n: "country"
+      r: false
+      sh: "Country code"
+      t: "`$STRING`"
+    }
+    division: {
+      h: "Division"
+      n: "division"
+      r: false
+      sh: "Age division category"
+      t: "`$STRING`"
+    }
+    effectiveAgeReduction: {
+      h: "Effective Age Reduction"
+      n: "effectiveAgeReduction"
+      r: false
+      sh: "Effective Age Reduction used for ranking"
+      t: "`$NUMBER`"
+    }
+    generation: {
+      h: "Generation"
+      n: "generation"
+      r: false
+      sh: "Generation category"
+      t: "`$STRING`"
+    }
+    id: {
+      h: "Id"
+      n: "id"
+      r: false
+      sh: "Unique athlete identifier"
+      t: "`$STRING`"
+    }
+    lastUpdated: {
+      fo: "date-time"
+      h: "Last Updated"
+      n: "lastUpdated"
+      r: false
+      sh: "Last result submission date"
+      t: "`$STRING`"
+    }
+    league: {
+      h: "League"
+      n: "league"
+      r: false
+      sh: "Competition league"
+      t: "`$STRING`"
+    }
+    name: {
+      h: "Name"
+      n: "name"
+      r: false
+      sh: "Athlete name"
+      t: "`$STRING`"
+    }
+    profileUrl: {
+      fo: "uri"
+      h: "Profile Url"
+      n: "profileUrl"
+      r: false
+      sh: "URL to athlete's public profile"
+      t: "`$STRING`"
+    }
+    rank: {
+      h: "Rank"
+      n: "rank"
+      r: false
+      sh: "Current ranking position"
+      t: "`$INTEGER`"
+    }
+    ultimateLeagueRank: {
+      h: "Ultimate League Rank"
+      n: "ultimateLeagueRank"
+      r: false
+      sh: "Rank in Ultimate League (combined Pro and Amateur)"
+      t: "`$INTEGER`"
+    }
+  }
+
+  id: {
+    field: "id"
+    name: "id"
+  }
+
+  name: "athlete"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /data/athletes"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "division"
+                or: "division"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "league"
+                or: "league"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                ex: 100
+                k: "query"
+                n: "limit"
+                or: "limit"
+                r: false
+                t: "`$INTEGER`"
+              }
+              {
+                ex: 0
+                k: "query"
+                n: "offset"
+                or: "offset"
+                r: false
+                t: "`$INTEGER`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/data/athletes"
+          q: {
+            exist: [
+              "division"
+              "league"
+              "limit"
+              "offset"
+            ]
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "athletes"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.athletes`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

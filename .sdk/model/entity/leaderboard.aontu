@@ -1,0 +1,115 @@
+# Entity: leaderboard
+
+main: kit: entity: leaderboard: {
+
+  alias: field: {}
+
+  fields: {
+    ageReduction: {
+      h: "Age Reduction"
+      n: "ageReduction"
+      r: false
+      sh: "Age Reduction score"
+      t: "`$NUMBER`"
+    }
+    athleteId: {
+      h: "Athlete Id"
+      n: "athleteId"
+      r: false
+      sh: "Athlete identifier"
+      t: "`$STRING`"
+    }
+    athleteName: {
+      h: "Athlete Name"
+      n: "athleteName"
+      r: false
+      sh: "Athlete name"
+      t: "`$STRING`"
+    }
+    country: {
+      h: "Country"
+      n: "country"
+      r: false
+      sh: "Country code"
+      t: "`$STRING`"
+    }
+    division: {
+      h: "Division"
+      n: "division"
+      r: false
+      sh: "Age division"
+      t: "`$STRING`"
+    }
+    league: {
+      h: "League"
+      n: "league"
+      r: false
+      sh: "Competition league"
+      t: "`$STRING`"
+    }
+    rank: {
+      h: "Rank"
+      n: "rank"
+      r: false
+      sh: "Current ranking position"
+      t: "`$INTEGER`"
+    }
+  }
+
+  name: "leaderboard"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /data/leaderboard"
+            source: "openapi3"
+            version: 2
+          }
+          g: {
+            query: [
+              {
+                k: "query"
+                n: "division"
+                or: "division"
+                r: false
+                t: "`$STRING`"
+              }
+              {
+                k: "query"
+                n: "league"
+                or: "league"
+                r: false
+                t: "`$STRING`"
+              }
+            ]
+          }
+          m: "GET"
+          o: "/data/leaderboard"
+          q: {
+            exist: [
+              "division"
+              "league"
+            ]
+          }
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "leaderboard"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.rankings`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

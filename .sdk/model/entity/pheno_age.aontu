@@ -1,0 +1,83 @@
+# Entity: pheno_age
+
+main: kit: entity: pheno_age: {
+
+  alias: field: {}
+
+  fields: {
+    ageReduction: {
+      h: "Age Reduction"
+      n: "ageReduction"
+      r: false
+      sh: "Calculated Age Reduction"
+      t: "`$NUMBER`"
+    }
+    biomarkers: {
+      h: "Biomarkers"
+      n: "biomarkers"
+      r: true
+      sh: "Blood biomarker values required for Pheno Age calculation"
+      t: "`$OBJECT`"
+    }
+    calculationMethod: {
+      h: "Calculation Method"
+      n: "calculationMethod"
+      r: false
+      sh: "Algorithm version used"
+      t: "`$STRING`"
+    }
+    chronologicalAge: {
+      h: "Chronological Age"
+      n: "chronologicalAge"
+      op: {
+        create: {
+          req: true
+          type: "`$NUMBER`"
+        }
+      }
+      r: false
+      sh: "Input chronological age"
+      t: "`$NUMBER`"
+    }
+    phenoAge: {
+      h: "Pheno Age"
+      n: "phenoAge"
+      r: false
+      sh: "Calculated phenotypic biological age"
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "pheno_age"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /data/pheno-age"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/data/pheno-age"
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "pheno-age"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

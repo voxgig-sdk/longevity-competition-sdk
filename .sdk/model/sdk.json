@@ -24,121 +24,202 @@
         "repr": "auto"
       },
       "contributor": {},
+      "doc": {
+        "active": true,
+        "assets": {
+          "path": ".sdk/doc/assets"
+        },
+        "brand": {
+          "label": "",
+          "notice": "",
+          "shortNotice": "",
+          "url": ""
+        },
+        "ci": {
+          "active": true,
+          "branch": "main"
+        },
+        "content": {
+          "path": ".sdk/doc/content"
+        },
+        "edition": {
+          "summary": {
+            "active": true,
+            "base": "node_modules/@voxgig/docgen/project/.sdk",
+            "brand": {},
+            "filter": {
+              "entities": [],
+              "features": [],
+              "targets": []
+            },
+            "kind": "summary",
+            "name": "summary",
+            "origname": "",
+            "output": {
+              "path": "SUMMARY.md"
+            },
+            "package": "@voxgig/docgen",
+            "published": false,
+            "site": {
+              "active": true
+            },
+            "style": {},
+            "title": ""
+          }
+        },
+        "qa": {
+          "vocabulary": []
+        },
+        "style": {
+          "color": {
+            "accent": "#00c6d8",
+            "background": "#f5f5f9",
+            "darkBackground": "#0f1117",
+            "darkText": "#e6edf3",
+            "primary": "#e70042",
+            "text": "#0a0a0a"
+          },
+          "font": "Nunito, system-ui, sans-serif",
+          "fontFile": "",
+          "headingFont": "Nunito, system-ui, sans-serif",
+          "headingFontFile": "",
+          "logo": "",
+          "mode": "light",
+          "mono": "ui-monospace, monospace",
+          "monoFile": ""
+        },
+        "target": {}
+      },
       "entity": {
         "athlete": {
           "active": true,
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "ageReduction",
-              "req": false,
-              "short": "Age Reduction score (chronological age minus biological age)",
-              "type": "`$NUMBER`"
+          "fields": {
+            "ageReduction": {
+              "a": true,
+              "h": "Age Reduction",
+              "n": "ageReduction",
+              "r": false,
+              "sh": "Age Reduction score (chronological age minus biological age)",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "biologicalAge",
-              "req": false,
-              "short": "Calculated biological age",
-              "type": "`$NUMBER`"
+            "biologicalAge": {
+              "a": true,
+              "h": "Biological Age",
+              "n": "biologicalAge",
+              "r": false,
+              "sh": "Calculated biological age",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "chronologicalAge",
-              "req": false,
-              "short": "Actual age in years",
-              "type": "`$NUMBER`"
+            "chronologicalAge": {
+              "a": true,
+              "h": "Chronological Age",
+              "n": "chronologicalAge",
+              "r": false,
+              "sh": "Actual age in years",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "clockType",
-              "req": false,
-              "short": "Biological aging clock used",
-              "type": "`$STRING`"
+            "clockType": {
+              "a": true,
+              "h": "Clock Type",
+              "n": "clockType",
+              "r": false,
+              "sh": "Biological aging clock used",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "country",
-              "req": false,
-              "short": "Country code",
-              "type": "`$STRING`"
+            "country": {
+              "a": true,
+              "h": "Country",
+              "n": "country",
+              "r": false,
+              "sh": "Country code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "division",
-              "req": false,
-              "short": "Age division category",
-              "type": "`$STRING`"
+            "division": {
+              "a": true,
+              "h": "Division",
+              "n": "division",
+              "r": false,
+              "sh": "Age division category",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "effectiveAgeReduction",
-              "req": false,
-              "short": "Effective Age Reduction used for ranking",
-              "type": "`$NUMBER`"
+            "effectiveAgeReduction": {
+              "a": true,
+              "h": "Effective Age Reduction",
+              "n": "effectiveAgeReduction",
+              "r": false,
+              "sh": "Effective Age Reduction used for ranking",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "generation",
-              "req": false,
-              "short": "Generation category",
-              "type": "`$STRING`"
+            "generation": {
+              "a": true,
+              "h": "Generation",
+              "n": "generation",
+              "r": false,
+              "sh": "Generation category",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Unique athlete identifier",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Unique athlete identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "date-time",
-              "name": "lastUpdated",
-              "req": false,
-              "short": "Last result submission date",
-              "type": "`$STRING`"
+            "lastUpdated": {
+              "a": true,
+              "fo": "date-time",
+              "h": "Last Updated",
+              "n": "lastUpdated",
+              "r": false,
+              "sh": "Last result submission date",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "league",
-              "req": false,
-              "short": "Competition league",
-              "type": "`$STRING`"
+            "league": {
+              "a": true,
+              "h": "League",
+              "n": "league",
+              "r": false,
+              "sh": "Competition league",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Athlete name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Athlete name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "profileUrl",
-              "req": false,
-              "short": "URL to athlete's public profile",
-              "type": "`$STRING`"
+            "profileUrl": {
+              "a": true,
+              "fo": "uri",
+              "h": "Profile Url",
+              "n": "profileUrl",
+              "r": false,
+              "sh": "URL to athlete's public profile",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "rank",
-              "req": false,
-              "short": "Current ranking position",
-              "type": "`$INTEGER`"
+            "rank": {
+              "a": true,
+              "h": "Rank",
+              "n": "rank",
+              "r": false,
+              "sh": "Current ranking position",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "ultimateLeagueRank",
-              "req": false,
-              "short": "Rank in Ultimate League (combined Pro and Amateur)",
-              "type": "`$INTEGER`"
+            "ultimateLeagueRank": {
+              "a": true,
+              "h": "Ultimate League Rank",
+              "n": "ultimateLeagueRank",
+              "r": false,
+              "sh": "Rank in Ultimate League (combined Pro and Amateur)",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -150,63 +231,54 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /data/athletes",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "division",
-                        "orig": "division",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "division",
+                        "or": "division",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "league",
-                        "orig": "league",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "league",
+                        "or": "league",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "example": 100,
-                        "kind": "query",
-                        "name": "limit",
-                        "orig": "limit",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 100,
+                        "k": "query",
+                        "n": "limit",
+                        "or": "limit",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       },
                       {
-                        "active": true,
-                        "example": 0,
-                        "kind": "query",
-                        "name": "offset",
-                        "orig": "offset",
-                        "reqd": false,
-                        "type": "`$INTEGER`"
+                        "a": true,
+                        "ex": 0,
+                        "k": "query",
+                        "n": "offset",
+                        "or": "offset",
+                        "r": false,
+                        "t": "`$INTEGER`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /data/athletes",
-                    "json": "{\"operationId\":\"getAthletes\",\"parameters\":[{\"description\":\"Filter athletes by league (e.g., Ultimate, Pro, Amateur)\",\"in\":\"query\",\"name\":\"league\",\"required\":false,\"schema\":{\"enum\":[\"Ultimate\",\"Pro\",\"Amateur\"],\"type\":\"string\"}},{\"description\":\"Filter athletes by age division\",\"in\":\"query\",\"name\":\"division\",\"required\":false,\"schema\":{\"type\":\"string\"}},{\"description\":\"Maximum number of athletes to return\",\"in\":\"query\",\"name\":\"limit\",\"required\":false,\"schema\":{\"default\":100,\"maximum\":1000,\"minimum\":1,\"type\":\"integer\"}},{\"description\":\"Number of athletes to skip for pagination\",\"in\":\"query\",\"name\":\"offset\",\"required\":false,\"schema\":{\"default\":0,\"minimum\":0,\"type\":\"integer\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"athletes\":{\"items\":{\"properties\":{\"ageReduction\":{\"description\":\"Age Reduction score (chronological age minus biological age)\",\"type\":\"number\"},\"biologicalAge\":{\"description\":\"Calculated biological age\",\"type\":\"number\"},\"chronologicalAge\":{\"description\":\"Actual age in years\",\"type\":\"number\"},\"clockType\":{\"description\":\"Biological aging clock used\",\"enum\":[\"PhenoAge\",\"BortzAge\"],\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"division\":{\"description\":\"Age division category\",\"type\":\"string\"},\"effectiveAgeReduction\":{\"description\":\"Effective Age Reduction used for ranking\",\"type\":\"number\"},\"generation\":{\"description\":\"Generation category\",\"type\":\"string\"},\"id\":{\"description\":\"Unique athlete identifier\",\"type\":\"string\"},\"lastUpdated\":{\"description\":\"Last result submission date\",\"format\":\"date-time\",\"type\":\"string\"},\"league\":{\"description\":\"Competition league\",\"enum\":[\"Pro\",\"Amateur\"],\"type\":\"string\"},\"name\":{\"description\":\"Athlete name\",\"type\":\"string\"},\"profileUrl\":{\"description\":\"URL to athlete's public profile\",\"format\":\"uri\",\"type\":\"string\"},\"rank\":{\"description\":\"Current ranking position\",\"type\":\"integer\"},\"ultimateLeagueRank\":{\"description\":\"Rank in Ultimate League (combined Pro and Amateur)\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"},\"limit\":{\"description\":\"Number of results per page\",\"type\":\"integer\"},\"offset\":{\"description\":\"Current offset in the result set\",\"type\":\"integer\"},\"total\":{\"description\":\"Total number of athletes matching the query\",\"type\":\"integer\"}},\"type\":\"object\"}}},\"description\":\"Successful response with athlete data\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Bad request - invalid parameters\"},\"500\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Internal server error\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
-                  },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/data/athletes",
-                  "segments": [
-                    {
-                      "lit": "data"
-                    },
-                    {
-                      "lit": "athletes"
-                    }
-                  ],
-                  "select": {
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/data/athletes",
+                  "q": {
                     "exist": [
                       "division",
                       "league",
@@ -214,7 +286,16 @@
                       "offset"
                     ]
                   },
-                  "transform": {
+                  "r": {},
+                  "s": [
+                    {
+                      "lit": "data"
+                    },
+                    {
+                      "lit": "athletes"
+                    }
+                  ],
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.athletes`"
                   }
@@ -231,49 +312,54 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "ageReduction",
-              "req": false,
-              "short": "Calculated Age Reduction",
-              "type": "`$NUMBER`"
+          "fields": {
+            "ageReduction": {
+              "a": true,
+              "h": "Age Reduction",
+              "n": "ageReduction",
+              "r": false,
+              "sh": "Calculated Age Reduction",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "biomarkers",
-              "req": true,
-              "short": "Blood biomarker values required for Bortz Age calculation",
-              "type": "`$OBJECT`"
+            "biomarkers": {
+              "a": true,
+              "h": "Biomarkers",
+              "n": "biomarkers",
+              "r": true,
+              "sh": "Blood biomarker values required for Bortz Age calculation",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "bortzAge",
-              "req": false,
-              "short": "Calculated Bortz biological age",
-              "type": "`$NUMBER`"
+            "bortzAge": {
+              "a": true,
+              "h": "Bortz Age",
+              "n": "bortzAge",
+              "r": false,
+              "sh": "Calculated Bortz biological age",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "chronologicalAge",
+            "chronologicalAge": {
+              "a": true,
+              "h": "Chronological Age",
+              "n": "chronologicalAge",
               "op": {
                 "create": {
                   "req": true,
                   "type": "`$NUMBER`"
                 }
               },
-              "req": false,
-              "short": "Input chronological age",
-              "type": "`$NUMBER`"
+              "r": false,
+              "sh": "Input chronological age",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "season",
-              "req": false,
-              "short": "Competition season",
-              "type": "`$STRING`"
+            "season": {
+              "a": true,
+              "h": "Season",
+              "n": "season",
+              "r": false,
+              "sh": "Competition season",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "bortz_age",
           "op": {
             "create": {
@@ -281,18 +367,19 @@
               "name": "create",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "POST /data/bortz-age",
-                    "json": "{\"operationId\":\"calculateBortzAge\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"biomarkers\":{\"description\":\"Blood biomarker values required for Bortz Age calculation\",\"type\":\"object\"},\"chronologicalAge\":{\"description\":\"Actual age in years\",\"type\":\"number\"}},\"required\":[\"chronologicalAge\",\"biomarkers\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ageReduction\":{\"description\":\"Calculated Age Reduction\",\"type\":\"number\"},\"bortzAge\":{\"description\":\"Calculated Bortz biological age\",\"type\":\"number\"},\"chronologicalAge\":{\"description\":\"Input chronological age\",\"type\":\"number\"},\"season\":{\"description\":\"Competition season\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Successful Bortz Age calculation\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Invalid biomarker data\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/data/bortz-age",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/data/bortz-age",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "data"
                     },
@@ -300,8 +387,7 @@
                       "lit": "bortz-age"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -318,43 +404,48 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "ageRange",
-              "req": false,
-              "short": "Age range for this division",
-              "type": "`$STRING`"
+          "fields": {
+            "ageRange": {
+              "a": true,
+              "h": "Age Range",
+              "n": "ageRange",
+              "r": false,
+              "sh": "Age range for this division",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "id",
-              "req": false,
-              "short": "Division identifier",
-              "type": "`$STRING`"
+            "id": {
+              "a": true,
+              "h": "Id",
+              "n": "id",
+              "r": false,
+              "sh": "Division identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "maxAge",
-              "req": false,
-              "short": "Maximum age for division",
-              "type": "`$INTEGER`"
+            "maxAge": {
+              "a": true,
+              "h": "Max Age",
+              "n": "maxAge",
+              "r": false,
+              "sh": "Maximum age for division",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "minAge",
-              "req": false,
-              "short": "Minimum age for division",
-              "type": "`$INTEGER`"
+            "minAge": {
+              "a": true,
+              "h": "Min Age",
+              "n": "minAge",
+              "r": false,
+              "sh": "Minimum age for division",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "name",
-              "req": false,
-              "short": "Division name",
-              "type": "`$STRING`"
+            "name": {
+              "a": true,
+              "h": "Name",
+              "n": "name",
+              "r": false,
+              "sh": "Division name",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "id": {
             "field": "id",
             "name": "id"
@@ -366,18 +457,19 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /data/divisions",
-                    "json": "{\"operationId\":\"getDivisions\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"divisions\":{\"items\":{\"properties\":{\"ageRange\":{\"description\":\"Age range for this division\",\"type\":\"string\"},\"id\":{\"description\":\"Division identifier\",\"type\":\"string\"},\"maxAge\":{\"description\":\"Maximum age for division\",\"type\":\"integer\"},\"minAge\":{\"description\":\"Minimum age for division\",\"type\":\"integer\"},\"name\":{\"description\":\"Division name\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with division data\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/data/divisions",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/data/divisions",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "data"
                     },
@@ -385,8 +477,7 @@
                       "lit": "divisions"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.divisions`"
                   }
@@ -403,57 +494,64 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "ageReduction",
-              "req": false,
-              "short": "Age Reduction score",
-              "type": "`$NUMBER`"
+          "fields": {
+            "ageReduction": {
+              "a": true,
+              "h": "Age Reduction",
+              "n": "ageReduction",
+              "r": false,
+              "sh": "Age Reduction score",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "athleteId",
-              "req": false,
-              "short": "Athlete identifier",
-              "type": "`$STRING`"
+            "athleteId": {
+              "a": true,
+              "h": "Athlete Id",
+              "n": "athleteId",
+              "r": false,
+              "sh": "Athlete identifier",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "athleteName",
-              "req": false,
-              "short": "Athlete name",
-              "type": "`$STRING`"
+            "athleteName": {
+              "a": true,
+              "h": "Athlete Name",
+              "n": "athleteName",
+              "r": false,
+              "sh": "Athlete name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "country",
-              "req": false,
-              "short": "Country code",
-              "type": "`$STRING`"
+            "country": {
+              "a": true,
+              "h": "Country",
+              "n": "country",
+              "r": false,
+              "sh": "Country code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "division",
-              "req": false,
-              "short": "Age division",
-              "type": "`$STRING`"
+            "division": {
+              "a": true,
+              "h": "Division",
+              "n": "division",
+              "r": false,
+              "sh": "Age division",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "league",
-              "req": false,
-              "short": "Competition league",
-              "type": "`$STRING`"
+            "league": {
+              "a": true,
+              "h": "League",
+              "n": "league",
+              "r": false,
+              "sh": "Competition league",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "rank",
-              "req": false,
-              "short": "Current ranking position",
-              "type": "`$INTEGER`"
+            "rank": {
+              "a": true,
+              "h": "Rank",
+              "n": "rank",
+              "r": false,
+              "sh": "Current ranking position",
+              "t": "`$INTEGER`"
             }
-          ],
+          },
           "name": "leaderboard",
           "op": {
             "list": {
@@ -461,37 +559,43 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {
+                  "a": true,
+                  "co": {
+                    "id": "GET /data/leaderboard",
+                    "source": "openapi3",
+                    "version": 2
+                  },
+                  "g": {
                     "query": [
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "division",
-                        "orig": "division",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "division",
+                        "or": "division",
+                        "r": false,
+                        "t": "`$STRING`"
                       },
                       {
-                        "active": true,
-                        "kind": "query",
-                        "name": "league",
-                        "orig": "league",
-                        "reqd": false,
-                        "type": "`$STRING`"
+                        "a": true,
+                        "k": "query",
+                        "n": "league",
+                        "or": "league",
+                        "r": false,
+                        "t": "`$STRING`"
                       }
                     ]
                   },
-                  "contract": {
-                    "id": "GET /data/leaderboard",
-                    "json": "{\"operationId\":\"getLeaderboard\",\"parameters\":[{\"description\":\"Filter by league type\",\"in\":\"query\",\"name\":\"league\",\"required\":false,\"schema\":{\"enum\":[\"Ultimate\",\"Pro\",\"Amateur\",\"CrowdAge\"],\"type\":\"string\"}},{\"description\":\"Filter by age division\",\"in\":\"query\",\"name\":\"division\",\"required\":false,\"schema\":{\"type\":\"string\"}}],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"lastUpdated\":{\"description\":\"Timestamp of last leaderboard update\",\"format\":\"date-time\",\"type\":\"string\"},\"rankings\":{\"items\":{\"properties\":{\"ageReduction\":{\"description\":\"Age Reduction score\",\"type\":\"number\"},\"athleteId\":{\"description\":\"Athlete identifier\",\"type\":\"string\"},\"athleteName\":{\"description\":\"Athlete name\",\"type\":\"string\"},\"country\":{\"description\":\"Country code\",\"type\":\"string\"},\"division\":{\"description\":\"Age division\",\"type\":\"string\"},\"league\":{\"description\":\"Competition league\",\"type\":\"string\"},\"rank\":{\"description\":\"Current ranking position\",\"type\":\"integer\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with leaderboard data\"}},\"securitySource\":\"unspecified\"}",
-                    "source": "openapi3",
-                    "version": 1
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/data/leaderboard",
+                  "q": {
+                    "exist": [
+                      "division",
+                      "league"
+                    ]
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/data/leaderboard",
-                  "segments": [
+                  "r": {},
+                  "s": [
                     {
                       "lit": "data"
                     },
@@ -499,13 +603,7 @@
                       "lit": "leaderboard"
                     }
                   ],
-                  "select": {
-                    "exist": [
-                      "division",
-                      "league"
-                    ]
-                  },
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.rankings`"
                   }
@@ -522,49 +620,54 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "ageReduction",
-              "req": false,
-              "short": "Calculated Age Reduction",
-              "type": "`$NUMBER`"
+          "fields": {
+            "ageReduction": {
+              "a": true,
+              "h": "Age Reduction",
+              "n": "ageReduction",
+              "r": false,
+              "sh": "Calculated Age Reduction",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "biomarkers",
-              "req": true,
-              "short": "Blood biomarker values required for Pheno Age calculation",
-              "type": "`$OBJECT`"
+            "biomarkers": {
+              "a": true,
+              "h": "Biomarkers",
+              "n": "biomarkers",
+              "r": true,
+              "sh": "Blood biomarker values required for Pheno Age calculation",
+              "t": "`$OBJECT`"
             },
-            {
-              "active": true,
-              "name": "calculationMethod",
-              "req": false,
-              "short": "Algorithm version used",
-              "type": "`$STRING`"
+            "calculationMethod": {
+              "a": true,
+              "h": "Calculation Method",
+              "n": "calculationMethod",
+              "r": false,
+              "sh": "Algorithm version used",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "chronologicalAge",
+            "chronologicalAge": {
+              "a": true,
+              "h": "Chronological Age",
+              "n": "chronologicalAge",
               "op": {
                 "create": {
                   "req": true,
                   "type": "`$NUMBER`"
                 }
               },
-              "req": false,
-              "short": "Input chronological age",
-              "type": "`$NUMBER`"
+              "r": false,
+              "sh": "Input chronological age",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "phenoAge",
-              "req": false,
-              "short": "Calculated phenotypic biological age",
-              "type": "`$NUMBER`"
+            "phenoAge": {
+              "a": true,
+              "h": "Pheno Age",
+              "n": "phenoAge",
+              "r": false,
+              "sh": "Calculated phenotypic biological age",
+              "t": "`$NUMBER`"
             }
-          ],
+          },
           "name": "pheno_age",
           "op": {
             "create": {
@@ -572,18 +675,19 @@
               "name": "create",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "POST /data/pheno-age",
-                    "json": "{\"operationId\":\"calculatePhenoAge\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"biomarkers\":{\"description\":\"Blood biomarker values required for Pheno Age calculation\",\"properties\":{\"albumin\":{\"description\":\"Albumin level (g/dL)\",\"type\":\"number\"},\"alkalinePhosphatase\":{\"description\":\"Alkaline phosphatase (U/L)\",\"type\":\"number\"},\"creatinine\":{\"description\":\"Creatinine level (mg/dL)\",\"type\":\"number\"},\"crp\":{\"description\":\"C-reactive protein (mg/L)\",\"type\":\"number\"},\"glucose\":{\"description\":\"Glucose level (mg/dL)\",\"type\":\"number\"},\"lymphocytePercent\":{\"description\":\"Lymphocyte percentage\",\"type\":\"number\"},\"mcv\":{\"description\":\"Mean corpuscular volume (fL)\",\"type\":\"number\"},\"rdw\":{\"description\":\"Red cell distribution width (%)\",\"type\":\"number\"},\"whiteBloodCellCount\":{\"description\":\"White blood cell count (1000 cells/µL)\",\"type\":\"number\"}},\"type\":\"object\"},\"chronologicalAge\":{\"description\":\"Actual age in years\",\"type\":\"number\"}},\"required\":[\"chronologicalAge\",\"biomarkers\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ageReduction\":{\"description\":\"Calculated Age Reduction\",\"type\":\"number\"},\"calculationMethod\":{\"description\":\"Algorithm version used\",\"type\":\"string\"},\"chronologicalAge\":{\"description\":\"Input chronological age\",\"type\":\"number\"},\"phenoAge\":{\"description\":\"Calculated phenotypic biological age\",\"type\":\"number\"}},\"type\":\"object\"}}},\"description\":\"Successful Pheno Age calculation\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Invalid biomarker data\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/data/pheno-age",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/data/pheno-age",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "data"
                     },
@@ -591,8 +695,7 @@
                       "lit": "pheno-age"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -609,71 +712,80 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "ageReduction",
-              "req": false,
-              "short": "Calculated Age Reduction",
-              "type": "`$NUMBER`"
+          "fields": {
+            "ageReduction": {
+              "a": true,
+              "h": "Age Reduction",
+              "n": "ageReduction",
+              "r": false,
+              "sh": "Calculated Age Reduction",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "athletesInLeague",
-              "req": false,
-              "short": "Total athletes in target league",
-              "type": "`$INTEGER`"
+            "athletesInLeague": {
+              "a": true,
+              "h": "Athletes In League",
+              "n": "athletesInLeague",
+              "r": false,
+              "sh": "Total athletes in target league",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "biologicalAge",
-              "req": true,
-              "short": "Calculated biological age",
-              "type": "`$NUMBER`"
+            "biologicalAge": {
+              "a": true,
+              "h": "Biological Age",
+              "n": "biologicalAge",
+              "r": true,
+              "sh": "Calculated biological age",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "chronologicalAge",
-              "req": true,
-              "short": "Actual age in years",
-              "type": "`$NUMBER`"
+            "chronologicalAge": {
+              "a": true,
+              "h": "Chronological Age",
+              "n": "chronologicalAge",
+              "r": true,
+              "sh": "Actual age in years",
+              "t": "`$NUMBER`"
             },
-            {
-              "active": true,
-              "name": "division",
-              "req": false,
-              "short": "Target division for preview",
-              "type": "`$STRING`"
+            "division": {
+              "a": true,
+              "h": "Division",
+              "n": "division",
+              "r": false,
+              "sh": "Target division for preview",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "estimatedRank",
-              "req": false,
-              "short": "Estimated ranking position",
-              "type": "`$INTEGER`"
+            "estimatedRank": {
+              "a": true,
+              "h": "Estimated Rank",
+              "n": "estimatedRank",
+              "r": false,
+              "sh": "Estimated ranking position",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "estimatedUltimateLeagueRank",
-              "req": false,
-              "short": "Estimated Ultimate League rank",
-              "type": "`$INTEGER`"
+            "estimatedUltimateLeagueRank": {
+              "a": true,
+              "h": "Estimated Ultimate League Rank",
+              "n": "estimatedUltimateLeagueRank",
+              "r": false,
+              "sh": "Estimated Ultimate League rank",
+              "t": "`$INTEGER`"
             },
-            {
-              "active": true,
-              "name": "league",
-              "req": false,
-              "short": "Target league for preview",
-              "type": "`$STRING`"
+            "league": {
+              "a": true,
+              "h": "League",
+              "n": "league",
+              "r": false,
+              "sh": "Target league for preview",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "percentile",
-              "req": false,
-              "short": "Percentile ranking",
-              "type": "`$NUMBER`"
+            "percentile": {
+              "a": true,
+              "h": "Percentile",
+              "n": "percentile",
+              "r": false,
+              "sh": "Percentile ranking",
+              "t": "`$NUMBER`"
             }
-          ],
+          },
           "name": "rank_preview",
           "op": {
             "create": {
@@ -681,18 +793,19 @@
               "name": "create",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "POST /data/rank-preview",
-                    "json": "{\"operationId\":\"previewRank\",\"parameters\":[],\"protocol\":\"http\",\"requestBody\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"biologicalAge\":{\"description\":\"Calculated biological age\",\"type\":\"number\"},\"chronologicalAge\":{\"description\":\"Actual age in years\",\"type\":\"number\"},\"division\":{\"description\":\"Target division for preview\",\"type\":\"string\"},\"league\":{\"description\":\"Target league for preview\",\"enum\":[\"Pro\",\"Amateur\"],\"type\":\"string\"}},\"required\":[\"chronologicalAge\",\"biologicalAge\"],\"type\":\"object\"}}},\"required\":true},\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"ageReduction\":{\"description\":\"Calculated Age Reduction\",\"type\":\"number\"},\"athletesInLeague\":{\"description\":\"Total athletes in target league\",\"type\":\"integer\"},\"estimatedRank\":{\"description\":\"Estimated ranking position\",\"type\":\"integer\"},\"estimatedUltimateLeagueRank\":{\"description\":\"Estimated Ultimate League rank\",\"type\":\"integer\"},\"percentile\":{\"description\":\"Percentile ranking\",\"type\":\"number\"}},\"type\":\"object\"}}},\"description\":\"Successful rank preview\"},\"400\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"code\":{\"description\":\"Error code\",\"type\":\"string\"},\"details\":{\"description\":\"Additional error details\",\"type\":\"object\"},\"error\":{\"description\":\"Error message\",\"type\":\"string\"}},\"type\":\"object\"}}},\"description\":\"Invalid preview data\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "POST",
-                  "orig": "/data/rank-preview",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "POST",
+                  "o": "/data/rank-preview",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "data"
                     },
@@ -700,8 +813,7 @@
                       "lit": "rank-preview"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body`"
                   }
@@ -718,30 +830,33 @@
           "alias": {
             "field": {}
           },
-          "fields": [
-            {
-              "active": true,
-              "name": "countryCode",
-              "req": false,
-              "short": "ISO country code",
-              "type": "`$STRING`"
+          "fields": {
+            "countryCode": {
+              "a": true,
+              "h": "Country Code",
+              "n": "countryCode",
+              "r": false,
+              "sh": "ISO country code",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "name": "countryName",
-              "req": false,
-              "short": "Country name",
-              "type": "`$STRING`"
+            "countryName": {
+              "a": true,
+              "h": "Country Name",
+              "n": "countryName",
+              "r": false,
+              "sh": "Country name",
+              "t": "`$STRING`"
             },
-            {
-              "active": true,
-              "format": "uri",
-              "name": "flagUrl",
-              "req": false,
-              "short": "URL to flag image",
-              "type": "`$STRING`"
+            "flagUrl": {
+              "a": true,
+              "fo": "uri",
+              "h": "Flag Url",
+              "n": "flagUrl",
+              "r": false,
+              "sh": "URL to flag image",
+              "t": "`$STRING`"
             }
-          ],
+          },
           "name": "reference",
           "op": {
             "list": {
@@ -749,18 +864,19 @@
               "name": "list",
               "points": [
                 {
-                  "active": true,
-                  "args": {},
-                  "contract": {
+                  "a": true,
+                  "co": {
                     "id": "GET /data/flags",
-                    "json": "{\"operationId\":\"getFlags\",\"parameters\":[],\"protocol\":\"http\",\"responses\":{\"200\":{\"content\":{\"application/json\":{\"schema\":{\"properties\":{\"flags\":{\"items\":{\"properties\":{\"countryCode\":{\"description\":\"ISO country code\",\"type\":\"string\"},\"countryName\":{\"description\":\"Country name\",\"type\":\"string\"},\"flagUrl\":{\"description\":\"URL to flag image\",\"format\":\"uri\",\"type\":\"string\"}},\"type\":\"object\"},\"type\":\"array\"}},\"type\":\"object\"}}},\"description\":\"Successful response with flag data\"}},\"securitySource\":\"unspecified\"}",
                     "source": "openapi3",
-                    "version": 1
+                    "version": 2
                   },
-                  "kind": "http",
-                  "method": "GET",
-                  "orig": "/data/flags",
-                  "segments": [
+                  "g": {},
+                  "k": "http",
+                  "m": "GET",
+                  "o": "/data/flags",
+                  "q": {},
+                  "r": {},
+                  "s": [
                     {
                       "lit": "data"
                     },
@@ -768,8 +884,7 @@
                       "lit": "flags"
                     }
                   ],
-                  "select": {},
-                  "transform": {
+                  "t": {
                     "req": "`reqdata`",
                     "res": "`body.flags`"
                   }
@@ -1198,13 +1313,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1224,15 +1339,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "bortz_age_ref01"
               },
-              "match": {},
-              "op": "create",
-              "spec": [],
-              "valid": []
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
             }
           ]
         },
@@ -1245,13 +1360,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1271,13 +1386,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {
@@ -1297,15 +1412,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "pheno_age_ref01"
               },
-              "match": {},
-              "op": "create",
-              "spec": [],
-              "valid": []
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
             }
           ]
         },
@@ -1318,15 +1433,15 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {
+              "a": true,
+              "d": {},
+              "i": {
                 "ref": "rank_preview_ref01"
               },
-              "match": {},
-              "op": "create",
-              "spec": [],
-              "valid": []
+              "m": {},
+              "o": "create",
+              "s": [],
+              "v": []
             }
           ]
         },
@@ -1339,13 +1454,13 @@
           "param": {},
           "step": [
             {
-              "active": true,
-              "data": {},
-              "input": {},
-              "match": {},
-              "op": "list",
-              "spec": [],
-              "valid": [
+              "a": true,
+              "d": {},
+              "i": {},
+              "m": {},
+              "o": "list",
+              "s": [],
+              "v": [
                 {
                   "apply": "ItemExists",
                   "def": {

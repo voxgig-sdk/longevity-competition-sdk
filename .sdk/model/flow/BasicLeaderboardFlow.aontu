@@ -1,0 +1,22 @@
+# BasicLeaderboardFlow
+
+main: kit: flow: BasicLeaderboardFlow:
+{
+  entity: "leaderboard",
+  kind: "basic",
+  name: "BasicLeaderboardFlow",
+  step: [
+    {
+      o: "list",
+      v: [
+        {
+          apply: "ItemExists",
+          def: {
+            ref: "leaderboard_ref01"
+          }
+        }
+      ]
+    }
+  ],
+  "key$": "BasicLeaderboardFlow"
+}

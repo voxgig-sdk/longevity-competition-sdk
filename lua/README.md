@@ -43,7 +43,7 @@ local athletes, err = client:Athlete():list()
 if err then error(err) end
 
 for _, item in ipairs(athletes) do
-  print(item["id"], item["clockType"])
+  print(item["id"])
 end
 ```
 

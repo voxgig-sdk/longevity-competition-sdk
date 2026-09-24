@@ -1,0 +1,105 @@
+# Entity: rank_preview
+
+main: kit: entity: rank_preview: {
+
+  alias: field: {}
+
+  fields: {
+    ageReduction: {
+      h: "Age Reduction"
+      n: "ageReduction"
+      r: false
+      sh: "Calculated Age Reduction"
+      t: "`$NUMBER`"
+    }
+    athletesInLeague: {
+      h: "Athletes In League"
+      n: "athletesInLeague"
+      r: false
+      sh: "Total athletes in target league"
+      t: "`$INTEGER`"
+    }
+    biologicalAge: {
+      h: "Biological Age"
+      n: "biologicalAge"
+      r: true
+      sh: "Calculated biological age"
+      t: "`$NUMBER`"
+    }
+    chronologicalAge: {
+      h: "Chronological Age"
+      n: "chronologicalAge"
+      r: true
+      sh: "Actual age in years"
+      t: "`$NUMBER`"
+    }
+    division: {
+      h: "Division"
+      n: "division"
+      r: false
+      sh: "Target division for preview"
+      t: "`$STRING`"
+    }
+    estimatedRank: {
+      h: "Estimated Rank"
+      n: "estimatedRank"
+      r: false
+      sh: "Estimated ranking position"
+      t: "`$INTEGER`"
+    }
+    estimatedUltimateLeagueRank: {
+      h: "Estimated Ultimate League Rank"
+      n: "estimatedUltimateLeagueRank"
+      r: false
+      sh: "Estimated Ultimate League rank"
+      t: "`$INTEGER`"
+    }
+    league: {
+      h: "League"
+      n: "league"
+      r: false
+      sh: "Target league for preview"
+      t: "`$STRING`"
+    }
+    percentile: {
+      h: "Percentile"
+      n: "percentile"
+      r: false
+      sh: "Percentile ranking"
+      t: "`$NUMBER`"
+    }
+  }
+
+  name: "rank_preview"
+  op: {
+    create: {
+      name: "create"
+      points: [
+        {
+          co: {
+            id: "POST /data/rank-preview"
+            source: "openapi3"
+            version: 2
+          }
+          m: "POST"
+          o: "/data/rank-preview"
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "rank-preview"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

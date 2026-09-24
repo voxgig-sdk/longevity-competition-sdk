@@ -16,12 +16,6 @@ const FEATURE_CLASS: Record<string, typeof BaseFeature> = {
 }
 
 
-// Per-feature plugin DEFINITIONS (voxgig/plugin `Definition` values), from
-// the model's active plugin groups. A feature that takes a `plugins` option
-// (secrets over sekreto) reads its own entry; a feature with no plugins has
-// none. Named imports above make each definition statically reachable, so
-// an SDK carries exactly the plugin modules its model selects — the same
-// leanness the old side-effect registry imports bought, without a registry.
 const FEATURE_PLUGINS: Record<string, any[]> = {
   
 }
@@ -32,7 +26,6 @@ class Config {
   makeFeature(this: any, fn: string) {
     const fc = FEATURE_CLASS[fn]
     const fi = new fc()
-    // TODO: errors etc
     return fi
   }
 
@@ -157,80 +150,95 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
-          "short": "Age Reduction score (chronological age minus biological age)",
-          "type": "`$NUMBER`"
+          "title": "Age Reduction",
+          "type": "`$NUMBER`",
+          "short": "Age Reduction score (chronological age minus biological age)"
         },
         {
           "name": "biologicalAge",
-          "short": "Calculated biological age",
-          "type": "`$NUMBER`"
+          "title": "Biological Age",
+          "type": "`$NUMBER`",
+          "short": "Calculated biological age"
         },
         {
           "name": "chronologicalAge",
-          "short": "Actual age in years",
-          "type": "`$NUMBER`"
+          "title": "Chronological Age",
+          "type": "`$NUMBER`",
+          "short": "Actual age in years"
         },
         {
           "name": "clockType",
-          "short": "Biological aging clock used",
-          "type": "`$STRING`"
+          "title": "Clock Type",
+          "type": "`$STRING`",
+          "short": "Biological aging clock used"
         },
         {
           "name": "country",
-          "short": "Country code",
-          "type": "`$STRING`"
+          "title": "Country",
+          "type": "`$STRING`",
+          "short": "Country code"
         },
         {
           "name": "division",
-          "short": "Age division category",
-          "type": "`$STRING`"
+          "title": "Division",
+          "type": "`$STRING`",
+          "short": "Age division category"
         },
         {
           "name": "effectiveAgeReduction",
-          "short": "Effective Age Reduction used for ranking",
-          "type": "`$NUMBER`"
+          "title": "Effective Age Reduction",
+          "type": "`$NUMBER`",
+          "short": "Effective Age Reduction used for ranking"
         },
         {
           "name": "generation",
-          "short": "Generation category",
-          "type": "`$STRING`"
+          "title": "Generation",
+          "type": "`$STRING`",
+          "short": "Generation category"
         },
         {
           "name": "id",
-          "short": "Unique athlete identifier",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Unique athlete identifier"
         },
         {
-          "format": "date-time",
           "name": "lastUpdated",
+          "title": "Last Updated",
+          "type": "`$STRING`",
           "short": "Last result submission date",
-          "type": "`$STRING`"
+          "format": "date-time"
         },
         {
           "name": "league",
-          "short": "Competition league",
-          "type": "`$STRING`"
+          "title": "League",
+          "type": "`$STRING`",
+          "short": "Competition league"
         },
         {
           "name": "name",
-          "short": "Athlete name",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "Athlete name"
         },
         {
-          "format": "uri",
           "name": "profileUrl",
+          "title": "Profile Url",
+          "type": "`$STRING`",
           "short": "URL to athlete's public profile",
-          "type": "`$STRING`"
+          "format": "uri"
         },
         {
           "name": "rank",
-          "short": "Current ranking position",
-          "type": "`$INTEGER`"
+          "title": "Rank",
+          "type": "`$INTEGER`",
+          "short": "Current ranking position"
         },
         {
           "name": "ultimateLeagueRank",
-          "short": "Rank in Ultimate League (combined Pro and Amateur)",
-          "type": "`$INTEGER`"
+          "title": "Ultimate League Rank",
+          "type": "`$INTEGER`",
+          "short": "Rank in Ultimate League (combined Pro and Amateur)"
         }
       ],
       "id": {
@@ -244,36 +252,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "division",
-                    "orig": "division",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "league",
-                    "orig": "league",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "example": 100,
-                    "kind": "query",
-                    "name": "limit",
-                    "orig": "limit",
-                    "type": "`$INTEGER`"
-                  },
-                  {
-                    "example": 0,
-                    "kind": "query",
-                    "name": "offset",
-                    "orig": "offset",
-                    "type": "`$INTEGER`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/data/athletes",
@@ -285,6 +263,45 @@ class Config {
                   "lit": "athletes"
                 }
               ],
+              "parts": [
+                "data",
+                "athletes"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.athletes`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "division",
+                    "orig": "division",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "league",
+                    "orig": "league",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "limit",
+                    "orig": "limit",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 100
+                  },
+                  {
+                    "name": "offset",
+                    "orig": "offset",
+                    "type": "`$INTEGER`",
+                    "kind": "query",
+                    "example": 0
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "division",
@@ -292,15 +309,7 @@ class Config {
                   "limit",
                   "offset"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.athletes`"
-              },
-              "parts": [
-                "data",
-                "athletes"
-              ]
+              }
             }
           ]
         }
@@ -313,35 +322,40 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
-          "short": "Calculated Age Reduction",
-          "type": "`$NUMBER`"
+          "title": "Age Reduction",
+          "type": "`$NUMBER`",
+          "short": "Calculated Age Reduction"
         },
         {
           "name": "biomarkers",
+          "title": "Biomarkers",
+          "type": "`$OBJECT`",
           "req": true,
-          "short": "Blood biomarker values required for Bortz Age calculation",
-          "type": "`$OBJECT`"
+          "short": "Blood biomarker values required for Bortz Age calculation"
         },
         {
           "name": "bortzAge",
-          "short": "Calculated Bortz biological age",
-          "type": "`$NUMBER`"
+          "title": "Bortz Age",
+          "type": "`$NUMBER`",
+          "short": "Calculated Bortz biological age"
         },
         {
           "name": "chronologicalAge",
+          "title": "Chronological Age",
+          "type": "`$NUMBER`",
           "op": {
             "create": {
               "req": true,
               "type": "`$NUMBER`"
             }
           },
-          "short": "Input chronological age",
-          "type": "`$NUMBER`"
+          "short": "Input chronological age"
         },
         {
           "name": "season",
-          "short": "Competition season",
-          "type": "`$STRING`"
+          "title": "Season",
+          "type": "`$STRING`",
+          "short": "Competition season"
         }
       ],
       "name": "bortz_age",
@@ -351,7 +365,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/data/bortz-age",
@@ -363,15 +376,17 @@ class Config {
                   "lit": "bortz-age"
                 }
               ],
-              "select": {},
+              "parts": [
+                "data",
+                "bortz-age"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "data",
-                "bortz-age"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -384,28 +399,33 @@ class Config {
       "fields": [
         {
           "name": "ageRange",
-          "short": "Age range for this division",
-          "type": "`$STRING`"
+          "title": "Age Range",
+          "type": "`$STRING`",
+          "short": "Age range for this division"
         },
         {
           "name": "id",
-          "short": "Division identifier",
-          "type": "`$STRING`"
+          "title": "Id",
+          "type": "`$STRING`",
+          "short": "Division identifier"
         },
         {
           "name": "maxAge",
-          "short": "Maximum age for division",
-          "type": "`$INTEGER`"
+          "title": "Max Age",
+          "type": "`$INTEGER`",
+          "short": "Maximum age for division"
         },
         {
           "name": "minAge",
-          "short": "Minimum age for division",
-          "type": "`$INTEGER`"
+          "title": "Min Age",
+          "type": "`$INTEGER`",
+          "short": "Minimum age for division"
         },
         {
           "name": "name",
-          "short": "Division name",
-          "type": "`$STRING`"
+          "title": "Name",
+          "type": "`$STRING`",
+          "short": "Division name"
         }
       ],
       "id": {
@@ -419,7 +439,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/data/divisions",
@@ -431,15 +450,17 @@ class Config {
                   "lit": "divisions"
                 }
               ],
-              "select": {},
+              "parts": [
+                "data",
+                "divisions"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.divisions`"
               },
-              "parts": [
-                "data",
-                "divisions"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -452,38 +473,45 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
-          "short": "Age Reduction score",
-          "type": "`$NUMBER`"
+          "title": "Age Reduction",
+          "type": "`$NUMBER`",
+          "short": "Age Reduction score"
         },
         {
           "name": "athleteId",
-          "short": "Athlete identifier",
-          "type": "`$STRING`"
+          "title": "Athlete Id",
+          "type": "`$STRING`",
+          "short": "Athlete identifier"
         },
         {
           "name": "athleteName",
-          "short": "Athlete name",
-          "type": "`$STRING`"
+          "title": "Athlete Name",
+          "type": "`$STRING`",
+          "short": "Athlete name"
         },
         {
           "name": "country",
-          "short": "Country code",
-          "type": "`$STRING`"
+          "title": "Country",
+          "type": "`$STRING`",
+          "short": "Country code"
         },
         {
           "name": "division",
-          "short": "Age division",
-          "type": "`$STRING`"
+          "title": "Division",
+          "type": "`$STRING`",
+          "short": "Age division"
         },
         {
           "name": "league",
-          "short": "Competition league",
-          "type": "`$STRING`"
+          "title": "League",
+          "type": "`$STRING`",
+          "short": "Competition league"
         },
         {
           "name": "rank",
-          "short": "Current ranking position",
-          "type": "`$INTEGER`"
+          "title": "Rank",
+          "type": "`$INTEGER`",
+          "short": "Current ranking position"
         }
       ],
       "name": "leaderboard",
@@ -493,22 +521,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {
-                "query": [
-                  {
-                    "kind": "query",
-                    "name": "division",
-                    "orig": "division",
-                    "type": "`$STRING`"
-                  },
-                  {
-                    "kind": "query",
-                    "name": "league",
-                    "orig": "league",
-                    "type": "`$STRING`"
-                  }
-                ]
-              },
               "kind": "http",
               "method": "GET",
               "orig": "/data/leaderboard",
@@ -520,20 +532,37 @@ class Config {
                   "lit": "leaderboard"
                 }
               ],
+              "parts": [
+                "data",
+                "leaderboard"
+              ],
+              "rename": {},
+              "transform": {
+                "req": "`reqdata`",
+                "res": "`body.rankings`"
+              },
+              "args": {
+                "query": [
+                  {
+                    "name": "division",
+                    "orig": "division",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  },
+                  {
+                    "name": "league",
+                    "orig": "league",
+                    "type": "`$STRING`",
+                    "kind": "query"
+                  }
+                ]
+              },
               "select": {
                 "exist": [
                   "division",
                   "league"
                 ]
-              },
-              "transform": {
-                "req": "`reqdata`",
-                "res": "`body.rankings`"
-              },
-              "parts": [
-                "data",
-                "leaderboard"
-              ]
+              }
             }
           ]
         }
@@ -546,35 +575,40 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
-          "short": "Calculated Age Reduction",
-          "type": "`$NUMBER`"
+          "title": "Age Reduction",
+          "type": "`$NUMBER`",
+          "short": "Calculated Age Reduction"
         },
         {
           "name": "biomarkers",
+          "title": "Biomarkers",
+          "type": "`$OBJECT`",
           "req": true,
-          "short": "Blood biomarker values required for Pheno Age calculation",
-          "type": "`$OBJECT`"
+          "short": "Blood biomarker values required for Pheno Age calculation"
         },
         {
           "name": "calculationMethod",
-          "short": "Algorithm version used",
-          "type": "`$STRING`"
+          "title": "Calculation Method",
+          "type": "`$STRING`",
+          "short": "Algorithm version used"
         },
         {
           "name": "chronologicalAge",
+          "title": "Chronological Age",
+          "type": "`$NUMBER`",
           "op": {
             "create": {
               "req": true,
               "type": "`$NUMBER`"
             }
           },
-          "short": "Input chronological age",
-          "type": "`$NUMBER`"
+          "short": "Input chronological age"
         },
         {
           "name": "phenoAge",
-          "short": "Calculated phenotypic biological age",
-          "type": "`$NUMBER`"
+          "title": "Pheno Age",
+          "type": "`$NUMBER`",
+          "short": "Calculated phenotypic biological age"
         }
       ],
       "name": "pheno_age",
@@ -584,7 +618,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/data/pheno-age",
@@ -596,15 +629,17 @@ class Config {
                   "lit": "pheno-age"
                 }
               ],
-              "select": {},
+              "parts": [
+                "data",
+                "pheno-age"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "data",
-                "pheno-age"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -617,50 +652,59 @@ class Config {
       "fields": [
         {
           "name": "ageReduction",
-          "short": "Calculated Age Reduction",
-          "type": "`$NUMBER`"
+          "title": "Age Reduction",
+          "type": "`$NUMBER`",
+          "short": "Calculated Age Reduction"
         },
         {
           "name": "athletesInLeague",
-          "short": "Total athletes in target league",
-          "type": "`$INTEGER`"
+          "title": "Athletes In League",
+          "type": "`$INTEGER`",
+          "short": "Total athletes in target league"
         },
         {
           "name": "biologicalAge",
+          "title": "Biological Age",
+          "type": "`$NUMBER`",
           "req": true,
-          "short": "Calculated biological age",
-          "type": "`$NUMBER`"
+          "short": "Calculated biological age"
         },
         {
           "name": "chronologicalAge",
+          "title": "Chronological Age",
+          "type": "`$NUMBER`",
           "req": true,
-          "short": "Actual age in years",
-          "type": "`$NUMBER`"
+          "short": "Actual age in years"
         },
         {
           "name": "division",
-          "short": "Target division for preview",
-          "type": "`$STRING`"
+          "title": "Division",
+          "type": "`$STRING`",
+          "short": "Target division for preview"
         },
         {
           "name": "estimatedRank",
-          "short": "Estimated ranking position",
-          "type": "`$INTEGER`"
+          "title": "Estimated Rank",
+          "type": "`$INTEGER`",
+          "short": "Estimated ranking position"
         },
         {
           "name": "estimatedUltimateLeagueRank",
-          "short": "Estimated Ultimate League rank",
-          "type": "`$INTEGER`"
+          "title": "Estimated Ultimate League Rank",
+          "type": "`$INTEGER`",
+          "short": "Estimated Ultimate League rank"
         },
         {
           "name": "league",
-          "short": "Target league for preview",
-          "type": "`$STRING`"
+          "title": "League",
+          "type": "`$STRING`",
+          "short": "Target league for preview"
         },
         {
           "name": "percentile",
-          "short": "Percentile ranking",
-          "type": "`$NUMBER`"
+          "title": "Percentile",
+          "type": "`$NUMBER`",
+          "short": "Percentile ranking"
         }
       ],
       "name": "rank_preview",
@@ -670,7 +714,6 @@ class Config {
           "name": "create",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "POST",
               "orig": "/data/rank-preview",
@@ -682,15 +725,17 @@ class Config {
                   "lit": "rank-preview"
                 }
               ],
-              "select": {},
+              "parts": [
+                "data",
+                "rank-preview"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body`"
               },
-              "parts": [
-                "data",
-                "rank-preview"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }
@@ -703,19 +748,22 @@ class Config {
       "fields": [
         {
           "name": "countryCode",
-          "short": "ISO country code",
-          "type": "`$STRING`"
+          "title": "Country Code",
+          "type": "`$STRING`",
+          "short": "ISO country code"
         },
         {
           "name": "countryName",
-          "short": "Country name",
-          "type": "`$STRING`"
+          "title": "Country Name",
+          "type": "`$STRING`",
+          "short": "Country name"
         },
         {
-          "format": "uri",
           "name": "flagUrl",
+          "title": "Flag Url",
+          "type": "`$STRING`",
           "short": "URL to flag image",
-          "type": "`$STRING`"
+          "format": "uri"
         }
       ],
       "name": "reference",
@@ -725,7 +773,6 @@ class Config {
           "name": "list",
           "points": [
             {
-              "args": {},
               "kind": "http",
               "method": "GET",
               "orig": "/data/flags",
@@ -737,15 +784,17 @@ class Config {
                   "lit": "flags"
                 }
               ],
-              "select": {},
+              "parts": [
+                "data",
+                "flags"
+              ],
+              "rename": {},
               "transform": {
                 "req": "`reqdata`",
                 "res": "`body.flags`"
               },
-              "parts": [
-                "data",
-                "flags"
-              ]
+              "args": {},
+              "select": {}
             }
           ]
         }

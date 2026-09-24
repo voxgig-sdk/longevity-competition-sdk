@@ -1,9 +1,0 @@
-# Flows
-
-@"./BasicAthleteFlow.aon"
-@"./BasicBortzAgeFlow.aon"
-@"./BasicCompetitionFlow.aon"
-@"./BasicLeaderboardFlow.aon"
-@"./BasicPhenoAgeFlow.aon"
-@"./BasicRankPreviewFlow.aon"
-@"./BasicReferenceFlow.aon"

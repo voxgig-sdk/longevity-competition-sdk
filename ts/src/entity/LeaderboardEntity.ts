@@ -19,7 +19,6 @@ import type {
   LeaderboardListMatch,
 } from '../LongevityCompetitionTypes'
 
-// TODO: needs Entity superclass
 class LeaderboardEntity extends LongevityCompetitionEntityBase<Leaderboard> {
 
   constructor(client: LongevityCompetitionSDK, entopts: any) {

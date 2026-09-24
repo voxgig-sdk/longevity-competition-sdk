@@ -1,0 +1,64 @@
+# Entity: reference
+
+main: kit: entity: reference: {
+
+  alias: field: {}
+
+  fields: {
+    countryCode: {
+      h: "Country Code"
+      n: "countryCode"
+      r: false
+      sh: "ISO country code"
+      t: "`$STRING`"
+    }
+    countryName: {
+      h: "Country Name"
+      n: "countryName"
+      r: false
+      sh: "Country name"
+      t: "`$STRING`"
+    }
+    flagUrl: {
+      fo: "uri"
+      h: "Flag Url"
+      n: "flagUrl"
+      r: false
+      sh: "URL to flag image"
+      t: "`$STRING`"
+    }
+  }
+
+  name: "reference"
+  op: {
+    list: {
+      name: "list"
+      points: [
+        {
+          co: {
+            id: "GET /data/flags"
+            source: "openapi3"
+            version: 2
+          }
+          m: "GET"
+          o: "/data/flags"
+          s: [
+            {
+              lit: "data"
+            }
+            {
+              lit: "flags"
+            }
+          ]
+          t: {
+            req: "`reqdata`"
+            res: "`body.flags`"
+          }
+        }
+      ]
+    }
+  }
+
+
+
+}

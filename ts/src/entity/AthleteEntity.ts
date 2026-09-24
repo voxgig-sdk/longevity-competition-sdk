@@ -19,7 +19,6 @@ import type {
   AthleteListMatch,
 } from '../LongevityCompetitionTypes'
 
-// TODO: needs Entity superclass
 class AthleteEntity extends LongevityCompetitionEntityBase<Athlete> {
 
   constructor(client: LongevityCompetitionSDK, entopts: any) {

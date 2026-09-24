@@ -1,7 +1,7 @@
 // Typed models for the LongevityCompetition SDK.
 //
-// GENERATED from the API model: main.kit.entity.<e>.fields[] and per-op
-// params (op.<name>.points[].args.params[]). Field/param types come from the
+// GENERATED from the API model: main.kit.entity.<e>.fields{} and per-op
+// params (op.<name>.points[].g.params[]). Field/param types come from the
 // canonical type sentinels via @voxgig/sdkgen canonToType (source of truth:
 // @voxgig/apidef VALID_CANON). Do not edit by hand.
 package entity
@@ -14,21 +14,6 @@ import (
 
 // Athlete is the typed data model for the athlete entity.
 type Athlete struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
-	BiologicalAge *float64 `json:"biologicalAge,omitempty"`
-	ChronologicalAge *float64 `json:"chronologicalAge,omitempty"`
-	ClockType *string `json:"clockType,omitempty"`
-	Country *string `json:"country,omitempty"`
-	Division *string `json:"division,omitempty"`
-	EffectiveAgeReduction *float64 `json:"effectiveAgeReduction,omitempty"`
-	Generation *string `json:"generation,omitempty"`
-	Id *string `json:"id,omitempty"`
-	LastUpdated *string `json:"lastUpdated,omitempty"`
-	League *string `json:"league,omitempty"`
-	Name *string `json:"name,omitempty"`
-	ProfileUrl *string `json:"profileUrl,omitempty"`
-	Rank *int `json:"rank,omitempty"`
-	UltimateLeagueRank *int `json:"ultimateLeagueRank,omitempty"`
 }
 
 // AthleteListMatch is the typed request payload for Athlete.ListTyped.
@@ -41,11 +26,6 @@ type AthleteListMatch struct {
 
 // BortzAge is the typed data model for the bortz_age entity.
 type BortzAge struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
-	Biomarkers map[string]any `json:"biomarkers"`
-	BortzAge *float64 `json:"bortzAge,omitempty"`
-	ChronologicalAge *float64 `json:"chronologicalAge,omitempty"`
-	Season *string `json:"season,omitempty"`
 }
 
 // BortzAgeCreateData is the typed request payload for BortzAge.CreateTyped.
@@ -59,11 +39,6 @@ type BortzAgeCreateData struct {
 
 // Competition is the typed data model for the competition entity.
 type Competition struct {
-	AgeRange *string `json:"ageRange,omitempty"`
-	Id *string `json:"id,omitempty"`
-	MaxAge *int `json:"maxAge,omitempty"`
-	MinAge *int `json:"minAge,omitempty"`
-	Name *string `json:"name,omitempty"`
 }
 
 // CompetitionListMatch is the typed request payload for Competition.ListTyped.
@@ -77,13 +52,6 @@ type CompetitionListMatch struct {
 
 // Leaderboard is the typed data model for the leaderboard entity.
 type Leaderboard struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
-	AthleteId *string `json:"athleteId,omitempty"`
-	AthleteName *string `json:"athleteName,omitempty"`
-	Country *string `json:"country,omitempty"`
-	Division *string `json:"division,omitempty"`
-	League *string `json:"league,omitempty"`
-	Rank *int `json:"rank,omitempty"`
 }
 
 // LeaderboardListMatch is the typed request payload for Leaderboard.ListTyped.
@@ -94,11 +62,6 @@ type LeaderboardListMatch struct {
 
 // PhenoAge is the typed data model for the pheno_age entity.
 type PhenoAge struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
-	Biomarkers map[string]any `json:"biomarkers"`
-	CalculationMethod *string `json:"calculationMethod,omitempty"`
-	ChronologicalAge *float64 `json:"chronologicalAge,omitempty"`
-	PhenoAge *float64 `json:"phenoAge,omitempty"`
 }
 
 // PhenoAgeCreateData is the typed request payload for PhenoAge.CreateTyped.
@@ -112,15 +75,6 @@ type PhenoAgeCreateData struct {
 
 // RankPreview is the typed data model for the rank_preview entity.
 type RankPreview struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
-	AthletesInLeague *int `json:"athletesInLeague,omitempty"`
-	BiologicalAge float64 `json:"biologicalAge"`
-	ChronologicalAge float64 `json:"chronologicalAge"`
-	Division *string `json:"division,omitempty"`
-	EstimatedRank *int `json:"estimatedRank,omitempty"`
-	EstimatedUltimateLeagueRank *int `json:"estimatedUltimateLeagueRank,omitempty"`
-	League *string `json:"league,omitempty"`
-	Percentile *float64 `json:"percentile,omitempty"`
 }
 
 // RankPreviewCreateData is the typed request payload for RankPreview.CreateTyped.
@@ -138,9 +92,6 @@ type RankPreviewCreateData struct {
 
 // Reference is the typed data model for the reference entity.
 type Reference struct {
-	CountryCode *string `json:"countryCode,omitempty"`
-	CountryName *string `json:"countryName,omitempty"`
-	FlagUrl *string `json:"flagUrl,omitempty"`
 }
 
 // ReferenceListMatch is the typed request payload for Reference.ListTyped.

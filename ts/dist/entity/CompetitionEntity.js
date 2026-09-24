@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.CompetitionEntity = void 0;
 const LongevityCompetitionEntityBase_1 = require("../LongevityCompetitionEntityBase");
-// TODO: needs Entity superclass
 class CompetitionEntity extends LongevityCompetitionEntityBase_1.LongevityCompetitionEntityBase {
     constructor(client, entopts) {
         super(client, entopts);

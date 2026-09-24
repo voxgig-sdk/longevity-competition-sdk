@@ -37,54 +37,8 @@
   "requests": {
     "GET /data/divisions": {
       "provenance": "operation-contract",
-      "contract": {
-        "operationId": "getDivisions",
-        "parameters": [],
-        "protocol": "http",
-        "responses": {
-          "200": {
-            "content": {
-              "application/json": {
-                "schema": {
-                  "properties": {
-                    "divisions": {
-                      "items": {
-                        "properties": {
-                          "ageRange": {
-                            "description": "Age range for this division",
-                            "type": "string"
-                          },
-                          "id": {
-                            "description": "Division identifier",
-                            "type": "string"
-                          },
-                          "maxAge": {
-                            "description": "Maximum age for division",
-                            "type": "integer"
-                          },
-                          "minAge": {
-                            "description": "Minimum age for division",
-                            "type": "integer"
-                          },
-                          "name": {
-                            "description": "Division name",
-                            "type": "string"
-                          }
-                        },
-                        "type": "object"
-                      },
-                      "type": "array"
-                    }
-                  },
-                  "type": "object"
-                }
-              }
-            },
-            "description": "Successful response with division data"
-          }
-        },
-        "securitySource": "unspecified"
-      }
+      "version": 2,
+      "source": "openapi3"
     }
   }
 }

@@ -97,80 +97,95 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
-						"short": "Age Reduction score (chronological age minus biological age)",
+						"title": "Age Reduction",
 						"type": "`$NUMBER`",
+						"short": "Age Reduction score (chronological age minus biological age)",
 					},
 					map[string]any{
 						"name": "biologicalAge",
-						"short": "Calculated biological age",
+						"title": "Biological Age",
 						"type": "`$NUMBER`",
+						"short": "Calculated biological age",
 					},
 					map[string]any{
 						"name": "chronologicalAge",
-						"short": "Actual age in years",
+						"title": "Chronological Age",
 						"type": "`$NUMBER`",
+						"short": "Actual age in years",
 					},
 					map[string]any{
 						"name": "clockType",
-						"short": "Biological aging clock used",
+						"title": "Clock Type",
 						"type": "`$STRING`",
+						"short": "Biological aging clock used",
 					},
 					map[string]any{
 						"name": "country",
-						"short": "Country code",
+						"title": "Country",
 						"type": "`$STRING`",
+						"short": "Country code",
 					},
 					map[string]any{
 						"name": "division",
-						"short": "Age division category",
+						"title": "Division",
 						"type": "`$STRING`",
+						"short": "Age division category",
 					},
 					map[string]any{
 						"name": "effectiveAgeReduction",
-						"short": "Effective Age Reduction used for ranking",
+						"title": "Effective Age Reduction",
 						"type": "`$NUMBER`",
+						"short": "Effective Age Reduction used for ranking",
 					},
 					map[string]any{
 						"name": "generation",
-						"short": "Generation category",
+						"title": "Generation",
 						"type": "`$STRING`",
+						"short": "Generation category",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Unique athlete identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Unique athlete identifier",
 					},
 					map[string]any{
-						"format": "date-time",
 						"name": "lastUpdated",
-						"short": "Last result submission date",
+						"title": "Last Updated",
 						"type": "`$STRING`",
+						"short": "Last result submission date",
+						"format": "date-time",
 					},
 					map[string]any{
 						"name": "league",
-						"short": "Competition league",
+						"title": "League",
 						"type": "`$STRING`",
+						"short": "Competition league",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Athlete name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Athlete name",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "profileUrl",
-						"short": "URL to athlete's public profile",
+						"title": "Profile Url",
 						"type": "`$STRING`",
+						"short": "URL to athlete's public profile",
+						"format": "uri",
 					},
 					map[string]any{
 						"name": "rank",
-						"short": "Current ranking position",
+						"title": "Rank",
 						"type": "`$INTEGER`",
+						"short": "Current ranking position",
 					},
 					map[string]any{
 						"name": "ultimateLeagueRank",
-						"short": "Rank in Ultimate League (combined Pro and Amateur)",
+						"title": "Ultimate League Rank",
 						"type": "`$INTEGER`",
+						"short": "Rank in Ultimate League (combined Pro and Amateur)",
 					},
 				},
 				"id": map[string]any{
@@ -184,36 +199,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "division",
-											"orig": "division",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "league",
-											"orig": "league",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"example": 100,
-											"kind": "query",
-											"name": "limit",
-											"orig": "limit",
-											"type": "`$INTEGER`",
-										},
-										map[string]any{
-											"example": 0,
-											"kind": "query",
-											"name": "offset",
-											"orig": "offset",
-											"type": "`$INTEGER`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/athletes",
@@ -225,6 +210,45 @@ func MakeConfig() map[string]any {
 										"lit": "athletes",
 									},
 								},
+								"parts": []any{
+									"data",
+									"athletes",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.athletes`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "division",
+											"orig": "division",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "league",
+											"orig": "league",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "limit",
+											"orig": "limit",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 100,
+										},
+										map[string]any{
+											"name": "offset",
+											"orig": "offset",
+											"type": "`$INTEGER`",
+											"kind": "query",
+											"example": 0,
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"division",
@@ -232,14 +256,6 @@ func MakeConfig() map[string]any {
 										"limit",
 										"offset",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.athletes`",
-								},
-								"parts": []any{
-									"data",
-									"athletes",
 								},
 							},
 						},
@@ -253,22 +269,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
-						"short": "Calculated Age Reduction",
+						"title": "Age Reduction",
 						"type": "`$NUMBER`",
+						"short": "Calculated Age Reduction",
 					},
 					map[string]any{
 						"name": "biomarkers",
+						"title": "Biomarkers",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Blood biomarker values required for Bortz Age calculation",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "bortzAge",
-						"short": "Calculated Bortz biological age",
+						"title": "Bortz Age",
 						"type": "`$NUMBER`",
+						"short": "Calculated Bortz biological age",
 					},
 					map[string]any{
 						"name": "chronologicalAge",
+						"title": "Chronological Age",
+						"type": "`$NUMBER`",
 						"op": map[string]any{
 							"create": map[string]any{
 								"req": true,
@@ -276,12 +297,12 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Input chronological age",
-						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "season",
-						"short": "Competition season",
+						"title": "Season",
 						"type": "`$STRING`",
+						"short": "Competition season",
 					},
 				},
 				"name": "bortz_age",
@@ -291,7 +312,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/data/bortz-age",
@@ -303,15 +323,17 @@ func MakeConfig() map[string]any {
 										"lit": "bortz-age",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"bortz-age",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -324,28 +346,33 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageRange",
-						"short": "Age range for this division",
+						"title": "Age Range",
 						"type": "`$STRING`",
+						"short": "Age range for this division",
 					},
 					map[string]any{
 						"name": "id",
-						"short": "Division identifier",
+						"title": "Id",
 						"type": "`$STRING`",
+						"short": "Division identifier",
 					},
 					map[string]any{
 						"name": "maxAge",
-						"short": "Maximum age for division",
+						"title": "Max Age",
 						"type": "`$INTEGER`",
+						"short": "Maximum age for division",
 					},
 					map[string]any{
 						"name": "minAge",
-						"short": "Minimum age for division",
+						"title": "Min Age",
 						"type": "`$INTEGER`",
+						"short": "Minimum age for division",
 					},
 					map[string]any{
 						"name": "name",
-						"short": "Division name",
+						"title": "Name",
 						"type": "`$STRING`",
+						"short": "Division name",
 					},
 				},
 				"id": map[string]any{
@@ -359,7 +386,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/divisions",
@@ -371,15 +397,17 @@ func MakeConfig() map[string]any {
 										"lit": "divisions",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.divisions`",
-								},
 								"parts": []any{
 									"data",
 									"divisions",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.divisions`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -392,38 +420,45 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
-						"short": "Age Reduction score",
+						"title": "Age Reduction",
 						"type": "`$NUMBER`",
+						"short": "Age Reduction score",
 					},
 					map[string]any{
 						"name": "athleteId",
-						"short": "Athlete identifier",
+						"title": "Athlete Id",
 						"type": "`$STRING`",
+						"short": "Athlete identifier",
 					},
 					map[string]any{
 						"name": "athleteName",
-						"short": "Athlete name",
+						"title": "Athlete Name",
 						"type": "`$STRING`",
+						"short": "Athlete name",
 					},
 					map[string]any{
 						"name": "country",
-						"short": "Country code",
+						"title": "Country",
 						"type": "`$STRING`",
+						"short": "Country code",
 					},
 					map[string]any{
 						"name": "division",
-						"short": "Age division",
+						"title": "Division",
 						"type": "`$STRING`",
+						"short": "Age division",
 					},
 					map[string]any{
 						"name": "league",
-						"short": "Competition league",
+						"title": "League",
 						"type": "`$STRING`",
+						"short": "Competition league",
 					},
 					map[string]any{
 						"name": "rank",
-						"short": "Current ranking position",
+						"title": "Rank",
 						"type": "`$INTEGER`",
+						"short": "Current ranking position",
 					},
 				},
 				"name": "leaderboard",
@@ -433,22 +468,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{
-									"query": []any{
-										map[string]any{
-											"kind": "query",
-											"name": "division",
-											"orig": "division",
-											"type": "`$STRING`",
-										},
-										map[string]any{
-											"kind": "query",
-											"name": "league",
-											"orig": "league",
-											"type": "`$STRING`",
-										},
-									},
-								},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/leaderboard",
@@ -460,19 +479,36 @@ func MakeConfig() map[string]any {
 										"lit": "leaderboard",
 									},
 								},
+								"parts": []any{
+									"data",
+									"leaderboard",
+								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.rankings`",
+								},
+								"args": map[string]any{
+									"query": []any{
+										map[string]any{
+											"name": "division",
+											"orig": "division",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+										map[string]any{
+											"name": "league",
+											"orig": "league",
+											"type": "`$STRING`",
+											"kind": "query",
+										},
+									},
+								},
 								"select": map[string]any{
 									"exist": []any{
 										"division",
 										"league",
 									},
-								},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.rankings`",
-								},
-								"parts": []any{
-									"data",
-									"leaderboard",
 								},
 							},
 						},
@@ -486,22 +522,27 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
-						"short": "Calculated Age Reduction",
+						"title": "Age Reduction",
 						"type": "`$NUMBER`",
+						"short": "Calculated Age Reduction",
 					},
 					map[string]any{
 						"name": "biomarkers",
+						"title": "Biomarkers",
+						"type": "`$OBJECT`",
 						"req": true,
 						"short": "Blood biomarker values required for Pheno Age calculation",
-						"type": "`$OBJECT`",
 					},
 					map[string]any{
 						"name": "calculationMethod",
-						"short": "Algorithm version used",
+						"title": "Calculation Method",
 						"type": "`$STRING`",
+						"short": "Algorithm version used",
 					},
 					map[string]any{
 						"name": "chronologicalAge",
+						"title": "Chronological Age",
+						"type": "`$NUMBER`",
 						"op": map[string]any{
 							"create": map[string]any{
 								"req": true,
@@ -509,12 +550,12 @@ func MakeConfig() map[string]any {
 							},
 						},
 						"short": "Input chronological age",
-						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "phenoAge",
-						"short": "Calculated phenotypic biological age",
+						"title": "Pheno Age",
 						"type": "`$NUMBER`",
+						"short": "Calculated phenotypic biological age",
 					},
 				},
 				"name": "pheno_age",
@@ -524,7 +565,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/data/pheno-age",
@@ -536,15 +576,17 @@ func MakeConfig() map[string]any {
 										"lit": "pheno-age",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"pheno-age",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -557,50 +599,59 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "ageReduction",
-						"short": "Calculated Age Reduction",
+						"title": "Age Reduction",
 						"type": "`$NUMBER`",
+						"short": "Calculated Age Reduction",
 					},
 					map[string]any{
 						"name": "athletesInLeague",
-						"short": "Total athletes in target league",
+						"title": "Athletes In League",
 						"type": "`$INTEGER`",
+						"short": "Total athletes in target league",
 					},
 					map[string]any{
 						"name": "biologicalAge",
+						"title": "Biological Age",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Calculated biological age",
-						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "chronologicalAge",
+						"title": "Chronological Age",
+						"type": "`$NUMBER`",
 						"req": true,
 						"short": "Actual age in years",
-						"type": "`$NUMBER`",
 					},
 					map[string]any{
 						"name": "division",
-						"short": "Target division for preview",
+						"title": "Division",
 						"type": "`$STRING`",
+						"short": "Target division for preview",
 					},
 					map[string]any{
 						"name": "estimatedRank",
-						"short": "Estimated ranking position",
+						"title": "Estimated Rank",
 						"type": "`$INTEGER`",
+						"short": "Estimated ranking position",
 					},
 					map[string]any{
 						"name": "estimatedUltimateLeagueRank",
-						"short": "Estimated Ultimate League rank",
+						"title": "Estimated Ultimate League Rank",
 						"type": "`$INTEGER`",
+						"short": "Estimated Ultimate League rank",
 					},
 					map[string]any{
 						"name": "league",
-						"short": "Target league for preview",
+						"title": "League",
 						"type": "`$STRING`",
+						"short": "Target league for preview",
 					},
 					map[string]any{
 						"name": "percentile",
-						"short": "Percentile ranking",
+						"title": "Percentile",
 						"type": "`$NUMBER`",
+						"short": "Percentile ranking",
 					},
 				},
 				"name": "rank_preview",
@@ -610,7 +661,6 @@ func MakeConfig() map[string]any {
 						"name": "create",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "POST",
 								"orig": "/data/rank-preview",
@@ -622,15 +672,17 @@ func MakeConfig() map[string]any {
 										"lit": "rank-preview",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body`",
-								},
 								"parts": []any{
 									"data",
 									"rank-preview",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},
@@ -643,19 +695,22 @@ func MakeConfig() map[string]any {
 				"fields": []any{
 					map[string]any{
 						"name": "countryCode",
-						"short": "ISO country code",
+						"title": "Country Code",
 						"type": "`$STRING`",
+						"short": "ISO country code",
 					},
 					map[string]any{
 						"name": "countryName",
-						"short": "Country name",
+						"title": "Country Name",
 						"type": "`$STRING`",
+						"short": "Country name",
 					},
 					map[string]any{
-						"format": "uri",
 						"name": "flagUrl",
-						"short": "URL to flag image",
+						"title": "Flag Url",
 						"type": "`$STRING`",
+						"short": "URL to flag image",
+						"format": "uri",
 					},
 				},
 				"name": "reference",
@@ -665,7 +720,6 @@ func MakeConfig() map[string]any {
 						"name": "list",
 						"points": []any{
 							map[string]any{
-								"args": map[string]any{},
 								"kind": "http",
 								"method": "GET",
 								"orig": "/data/flags",
@@ -677,15 +731,17 @@ func MakeConfig() map[string]any {
 										"lit": "flags",
 									},
 								},
-								"select": map[string]any{},
-								"transform": map[string]any{
-									"req": "`reqdata`",
-									"res": "`body.flags`",
-								},
 								"parts": []any{
 									"data",
 									"flags",
 								},
+								"rename": map[string]any{},
+								"transform": map[string]any{
+									"req": "`reqdata`",
+									"res": "`body.flags`",
+								},
+								"args": map[string]any{},
+								"select": map[string]any{},
 							},
 						},
 					},

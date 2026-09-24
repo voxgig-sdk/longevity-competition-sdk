@@ -19,7 +19,6 @@ import type {
   ReferenceListMatch,
 } from '../LongevityCompetitionTypes'
 
-// TODO: needs Entity superclass
 class ReferenceEntity extends LongevityCompetitionEntityBase<Reference> {
 
   constructor(client: LongevityCompetitionSDK, entopts: any) {
