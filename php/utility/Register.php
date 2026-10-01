@@ -37,6 +37,8 @@ require_once __DIR__ . '/TransformResponse.php';
 
 LongevityCompetitionUtility::setRegistrar(function (LongevityCompetitionUtility $u): void {
     $u->clean = [LongevityCompetitionClean::class, 'call'];
+    $u->clean_add = [LongevityCompetitionClean::class, 'add'];
+    $u->clean_explain = [LongevityCompetitionDone::class, 'clean_explain'];
     $u->done = [LongevityCompetitionDone::class, 'call'];
     $u->make_error = [LongevityCompetitionMakeError::class, 'call'];
     $u->feature_add = [LongevityCompetitionFeatureAdd::class, 'call'];

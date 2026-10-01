@@ -33,6 +33,8 @@ require_relative 'transform_response'
 
 LongevityCompetitionUtility.registrar = ->(u) {
   u.clean = LongevityCompetitionUtilities::Clean
+  u.clean_add = LongevityCompetitionUtilities::CleanAdd
+  u.clean_explain = LongevityCompetitionUtilities::CleanExplain
   u.done = LongevityCompetitionUtilities::Done
   u.make_error = LongevityCompetitionUtilities::MakeError
   u.feature_add = LongevityCompetitionUtilities::FeatureAdd
