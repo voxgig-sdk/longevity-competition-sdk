@@ -134,7 +134,7 @@ local athlete = client:Athlete(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Athlete():list()
@@ -200,11 +200,12 @@ local bortz_age = client:BortzAge(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:BortzAge():create({
   biomarkers = --[[ table ]],
+  chronologicalAge = --[[ number ]],
 })
 ```
 
@@ -258,7 +259,7 @@ local competition = client:Competition(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Competition():list()
@@ -316,7 +317,7 @@ local leaderboard = client:Leaderboard(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Leaderboard():list()
@@ -382,11 +383,12 @@ local pheno_age = client:PhenoAge(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:PhenoAge():create({
   biomarkers = --[[ table ]],
+  chronologicalAge = --[[ number ]],
 })
 ```
 
@@ -444,7 +446,7 @@ local rank_preview = client:RankPreview(nil)
 
 #### `create(reqdata, ctrl) -> any, err`
 
-Create a new entity with the given data.
+Create a new entity with the given data. Returns the created entity, or `nil` and an error on failure.
 
 ```lua
 local result, err = client:RankPreview():create({
@@ -501,7 +503,7 @@ local reference = client:Reference(nil)
 
 #### `list(reqmatch, ctrl) -> any, err`
 
-List entities matching the given criteria. Returns an array.
+List entities matching the given criteria. Returns an array of entities, one per record, or `nil` and an error on failure.
 
 ```lua
 local results, err = client:Reference():list()
@@ -694,6 +696,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { LongevityCompetitionSDK, BaseFeature, stdutil } from '../../..'
+import { LongevityCompetitionSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('AthleteEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('athlete hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of LongevityCompetitionSDK.test(offline).Athlete().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of LongevityCompetitionSDK.test(offline).Athlete()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = LongevityCompetitionSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Athlete().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of LongevityCompetitionSDK.test().Athlete().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new LongevityCompetitionSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Athlete().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Athlete().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = LongevityCompetitionSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Athlete().list({"division":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.LONGEVITY_COMPETITION_TEST_LIVE
@@ -51,7 +109,7 @@ describe('AthleteEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Age Reduction score (chronological age minus biological age)","t":"`$NUMBER`","key$":"ageReduction","index$":0},"biologicalAge":{"a":true,"h":"Biological Age","n":"biologicalAge","r":false,"sh":"Calculated biological age","t":"`$NUMBER`","key$":"biologicalAge","index$":1},"chronologicalAge":{"a":true,"h":"Chronological Age","n":"chronologicalAge","r":false,"sh":"Actual age in years","t":"`$NUMBER`","key$":"chronologicalAge","index$":2},"clockType":{"a":true,"h":"Clock Type","n":"clockType","r":false,"sh":"Biological aging clock used","t":"`$STRING`","key$":"clockType","index$":3},"country":{"a":true,"h":"Country","n":"country","r":false,"sh":"Country code","t":"`$STRING`","key$":"country","index$":4},"division":{"a":true,"h":"Division","n":"division","r":false,"sh":"Age division category","t":"`$STRING`","key$":"division","index$":5},"effectiveAgeReduction":{"a":true,"h":"Effective Age Reduction","n":"effectiveAgeReduction","r":false,"sh":"Effective Age Reduction used for ranking","t":"`$NUMBER`","key$":"effectiveAgeReduction","index$":6},"generation":{"a":true,"h":"Generation","n":"generation","r":false,"sh":"Generation category","t":"`$STRING`","key$":"generation","index$":7},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique athlete identifier","t":"`$STRING`","key$":"id","index$":8},"lastUpdated":{"a":true,"fo":"date-time","h":"Last Updated","n":"lastUpdated","r":false,"sh":"Last result submission date","t":"`$STRING`","key$":"lastUpdated","index$":9},"league":{"a":true,"h":"League","n":"league","r":false,"sh":"Competition league","t":"`$STRING`","key$":"league","index$":10},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Athlete name","t":"`$STRING`","key$":"name","index$":11},"profileUrl":{"a":true,"fo":"uri","h":"Profile Url","n":"profileUrl","r":false,"sh":"URL to athlete's public profile","t":"`$STRING`","key$":"profileUrl","index$":12},"rank":{"a":true,"h":"Rank","n":"rank","r":false,"sh":"Current ranking position","t":"`$INTEGER`","key$":"rank","index$":13},"ultimateLeagueRank":{"a":true,"h":"Ultimate League Rank","n":"ultimateLeagueRank","r":false,"sh":"Rank in Ultimate League (combined Pro and Amateur)","t":"`$INTEGER`","key$":"ultimateLeagueRank","index$":14}},"id":{"field":"id","name":"id"},"name":"athlete","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /data/athletes","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"division","or":"division","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"league","or":"league","r":false,"t":"`$STRING`","index$":1},{"a":true,"ex":100,"k":"query","n":"limit","or":"limit","r":false,"t":"`$INTEGER`","index$":2},{"a":true,"ex":0,"k":"query","n":"offset","or":"offset","r":false,"t":"`$INTEGER`","index$":3}]},"k":"http","m":"GET","o":"/data/athletes","q":{"exist":["division","league","limit","offset"]},"r":{},"s":[{"lit":"data"},{"lit":"athletes"}],"t":{"req":"`reqdata`","res":"`body.athletes`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"athlete","name__orig":"athlete","Name":"Athlete","name_":"athlete","name-":"athlete","NAME":"ATHLETE","index$":0}, {"active":true,"entity":"athlete","key$":"BasicAthleteFlow","kind":"basic","name":"BasicAthleteFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"athlete_ref01"}}],"index$":0}]}, 'Athlete', {"GET /data/athletes":{"protocol":"http","parameters":[{"name":"league","in":"query","description":"Filter athletes by league (e.g., Ultimate, Pro, Amateur)","required":false,"schema":{"type":"string","enum":["Ultimate","Pro","Amateur"]},"index$":0},{"name":"division","in":"query","description":"Filter athletes by age division","required":false,"schema":{"type":"string"},"index$":1},{"name":"limit","in":"query","description":"Maximum number of athletes to return","required":false,"schema":{"type":"integer","minimum":1,"maximum":1000,"default":100},"index$":2},{"name":"offset","in":"query","description":"Number of athletes to skip for pagination","required":false,"schema":{"type":"integer","minimum":0,"default":0},"index$":3}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Age Reduction score (chronological age minus biological age)","t":"`$NUMBER`","key$":"ageReduction","index$":0},"biologicalAge":{"a":true,"h":"Biological Age","n":"biologicalAge","r":false,"sh":"Calculated biological age","t":"`$NUMBER`","key$":"biologicalAge","index$":1},"chronologicalAge":{"a":true,"h":"Chronological Age","n":"chronologicalAge","r":false,"sh":"Actual age in years","t":"`$NUMBER`","key$":"chronologicalAge","index$":2},"clockType":{"a":true,"h":"Clock Type","n":"clockType","r":false,"sh":"Biological aging clock used","t":"`$STRING`","key$":"clockType","index$":3},"country":{"a":true,"h":"Country","n":"country","r":false,"sh":"Country code","t":"`$STRING`","key$":"country","index$":4},"division":{"a":true,"h":"Division","n":"division","r":false,"sh":"Age division category","t":"`$STRING`","key$":"division","index$":5},"effectiveAgeReduction":{"a":true,"h":"Effective Age Reduction","n":"effectiveAgeReduction","r":false,"sh":"Effective Age Reduction used for ranking","t":"`$NUMBER`","key$":"effectiveAgeReduction","index$":6},"generation":{"a":true,"h":"Generation","n":"generation","r":false,"sh":"Generation category","t":"`$STRING`","key$":"generation","index$":7},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Unique athlete identifier","t":"`$STRING`","key$":"id","index$":8},"lastUpdated":{"a":true,"fo":"date-time","h":"Last Updated","n":"lastUpdated","r":false,"sh":"Last result submission date","t":"`$STRING`","key$":"lastUpdated","index$":9},"league":{"a":true,"h":"League","n":"league","r":false,"sh":"Competition league","t":"`$STRING`","key$":"league","index$":10},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Athlete name","t":"`$STRING`","key$":"name","index$":11},"profileUrl":{"a":true,"fo":"uri","h":"Profile Url","n":"profileUrl","r":false,"sh":"URL to athlete's public profile","t":"`$STRING`","key$":"profileUrl","index$":12},"rank":{"a":true,"h":"Rank","n":"rank","r":false,"sh":"Current ranking position","t":"`$INTEGER`","key$":"rank","index$":13},"ultimateLeagueRank":{"a":true,"h":"Ultimate League Rank","n":"ultimateLeagueRank","r":false,"sh":"Rank in Ultimate League (combined Pro and Amateur)","t":"`$INTEGER`","key$":"ultimateLeagueRank","index$":14}},"id":{"field":"id","name":"id"},"name":"athlete","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /data/athletes","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"division","or":"division","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"league","or":"league","r":false,"t":"`$STRING`","index$":1},{"a":true,"ex":100,"k":"query","n":"limit","or":"limit","r":false,"t":"`$INTEGER`","index$":2},{"a":true,"ex":0,"k":"query","n":"offset","or":"offset","r":false,"t":"`$INTEGER`","index$":3}]},"k":"http","m":"GET","o":"/data/athletes","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"data"},{"lit":"athletes"}],"t":{"req":"`reqdata`","res":"`body.athletes`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"athlete","name__orig":"athlete","Name":"Athlete","name_":"athlete","name-":"athlete","NAME":"ATHLETE","index$":0}, {"active":true,"entity":"athlete","key$":"BasicAthleteFlow","kind":"basic","name":"BasicAthleteFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"athlete_ref01"}}],"index$":0}]}, 'Athlete', {"GET /data/athletes":{"protocol":"http","parameters":[{"name":"league","in":"query","description":"Filter athletes by league (e.g., Ultimate, Pro, Amateur)","required":false,"schema":{"type":"string","enum":["Ultimate","Pro","Amateur"]},"index$":0},{"name":"division","in":"query","description":"Filter athletes by age division","required":false,"schema":{"type":"string"},"index$":1},{"name":"limit","in":"query","description":"Maximum number of athletes to return","required":false,"schema":{"type":"integer","minimum":1,"maximum":1000,"default":100},"index$":2},{"name":"offset","in":"query","description":"Number of athletes to skip for pagination","required":false,"schema":{"type":"integer","minimum":0,"default":0},"index$":3}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('AthleteEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

@@ -20,7 +20,7 @@ export LONGEVITY_COMPETITION_APIKEY=sk_live_xxx
 
 # 4. Each command line is ONE boru expression, run against the API:
 ./longevity-competition-cli list athlete
-./longevity-competition-cli list bortz_age
+./longevity-competition-cli list competition
 
 # 5. Override the API base URL for a single call
 LONGEVITY_COMPETITION_BASE=https://api.example.com ./longevity-competition-cli list athlete

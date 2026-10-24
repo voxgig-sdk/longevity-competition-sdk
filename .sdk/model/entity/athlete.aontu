@@ -166,13 +166,9 @@ main: kit: entity: athlete: {
           }
           m: "GET"
           o: "/data/athletes"
-          q: {
-            exist: [
-              "division"
-              "league"
-              "limit"
-              "offset"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

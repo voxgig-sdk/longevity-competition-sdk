@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { LongevityCompetitionSDK, BaseFeature, stdutil } from '../../..'
+import { LongevityCompetitionSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('LeaderboardEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('leaderboard hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of LongevityCompetitionSDK.test(offline).Leaderboard().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of LongevityCompetitionSDK.test(offline).Leaderboard()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = LongevityCompetitionSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Leaderboard().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of LongevityCompetitionSDK.test().Leaderboard().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new LongevityCompetitionSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Leaderboard().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Leaderboard().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = LongevityCompetitionSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Leaderboard().list({"division":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.LONGEVITY_COMPETITION_TEST_LIVE
@@ -51,7 +109,7 @@ describe('LeaderboardEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Age Reduction score","t":"`$NUMBER`","key$":"ageReduction","index$":0},"athleteId":{"a":true,"h":"Athlete Id","n":"athleteId","r":false,"sh":"Athlete identifier","t":"`$STRING`","key$":"athleteId","index$":1},"athleteName":{"a":true,"h":"Athlete Name","n":"athleteName","r":false,"sh":"Athlete name","t":"`$STRING`","key$":"athleteName","index$":2},"country":{"a":true,"h":"Country","n":"country","r":false,"sh":"Country code","t":"`$STRING`","key$":"country","index$":3},"division":{"a":true,"h":"Division","n":"division","r":false,"sh":"Age division","t":"`$STRING`","key$":"division","index$":4},"league":{"a":true,"h":"League","n":"league","r":false,"sh":"Competition league","t":"`$STRING`","key$":"league","index$":5},"rank":{"a":true,"h":"Rank","n":"rank","r":false,"sh":"Current ranking position","t":"`$INTEGER`","key$":"rank","index$":6}},"name":"leaderboard","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /data/leaderboard","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"division","or":"division","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"league","or":"league","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/data/leaderboard","q":{"exist":["division","league"]},"r":{},"s":[{"lit":"data"},{"lit":"leaderboard"}],"t":{"req":"`reqdata`","res":"`body.rankings`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"leaderboard","name__orig":"leaderboard","Name":"Leaderboard","name_":"leaderboard","name-":"leaderboard","NAME":"LEADERBOARD","index$":3}, {"active":true,"entity":"leaderboard","key$":"BasicLeaderboardFlow","kind":"basic","name":"BasicLeaderboardFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"leaderboard_ref01"}}],"index$":0}]}, 'Leaderboard', {"GET /data/leaderboard":{"protocol":"http","parameters":[{"name":"league","in":"query","description":"Filter by league type","required":false,"schema":{"type":"string","enum":["Ultimate","Pro","Amateur","CrowdAge"]},"index$":0},{"name":"division","in":"query","description":"Filter by age division","required":false,"schema":{"type":"string"},"index$":1}]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Age Reduction score","t":"`$NUMBER`","key$":"ageReduction","index$":0},"athleteId":{"a":true,"h":"Athlete Id","n":"athleteId","r":false,"sh":"Athlete identifier","t":"`$STRING`","key$":"athleteId","index$":1},"athleteName":{"a":true,"h":"Athlete Name","n":"athleteName","r":false,"sh":"Athlete name","t":"`$STRING`","key$":"athleteName","index$":2},"country":{"a":true,"h":"Country","n":"country","r":false,"sh":"Country code","t":"`$STRING`","key$":"country","index$":3},"division":{"a":true,"h":"Division","n":"division","r":false,"sh":"Age division","t":"`$STRING`","key$":"division","index$":4},"league":{"a":true,"h":"League","n":"league","r":false,"sh":"Competition league","t":"`$STRING`","key$":"league","index$":5},"rank":{"a":true,"h":"Rank","n":"rank","r":false,"sh":"Current ranking position","t":"`$INTEGER`","key$":"rank","index$":6}},"name":"leaderboard","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /data/leaderboard","source":"openapi3","version":2},"g":{"query":[{"a":true,"k":"query","n":"division","or":"division","r":false,"t":"`$STRING`","index$":0},{"a":true,"k":"query","n":"league","or":"league","r":false,"t":"`$STRING`","index$":1}]},"k":"http","m":"GET","o":"/data/leaderboard","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"data"},{"lit":"leaderboard"}],"t":{"req":"`reqdata`","res":"`body.rankings`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"leaderboard","name__orig":"leaderboard","Name":"Leaderboard","name_":"leaderboard","name-":"leaderboard","NAME":"LEADERBOARD","index$":3}, {"active":true,"entity":"leaderboard","key$":"BasicLeaderboardFlow","kind":"basic","name":"BasicLeaderboardFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"leaderboard_ref01"}}],"index$":0}]}, 'Leaderboard', {"GET /data/leaderboard":{"protocol":"http","parameters":[{"name":"league","in":"query","description":"Filter by league type","required":false,"schema":{"type":"string","enum":["Ultimate","Pro","Amateur","CrowdAge"]},"index$":0},{"name":"division","in":"query","description":"Filter by age division","required":false,"schema":{"type":"string"},"index$":1}]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('LeaderboardEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

@@ -54,11 +54,8 @@ class BortzAge
 /** Request payload for BortzAge#create. */
 class BortzAgeCreateData
 {
-    public ?float $ageReduction = null;
     public array $biomarkers;
-    public ?float $bortzAge = null;
-    public ?float $chronologicalAge = null;
-    public ?string $season = null;
+    public float $chronologicalAge;
 }
 
 /** Competition entity data model. */
@@ -113,11 +110,8 @@ class PhenoAge
 /** Request payload for PhenoAge#create. */
 class PhenoAgeCreateData
 {
-    public ?float $ageReduction = null;
     public array $biomarkers;
-    public ?string $calculationMethod = null;
-    public ?float $chronologicalAge = null;
-    public ?float $phenoAge = null;
+    public float $chronologicalAge;
 }
 
 /** RankPreview entity data model. */
@@ -137,15 +131,10 @@ class RankPreview
 /** Request payload for RankPreview#create. */
 class RankPreviewCreateData
 {
-    public ?float $ageReduction = null;
-    public ?int $athletesInLeague = null;
     public float $biologicalAge;
     public float $chronologicalAge;
     public ?string $division = null;
-    public ?int $estimatedRank = null;
-    public ?int $estimatedUltimateLeagueRank = null;
     public ?string $league = null;
-    public ?float $percentile = null;
 }
 
 /** Reference entity data model. */

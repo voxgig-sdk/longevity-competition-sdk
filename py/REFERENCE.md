@@ -129,14 +129,14 @@ athlete = client.Athlete()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[AthleteEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Athlete().list()
 for athlete in results:
-    print(athlete)
+    print(athlete.data_get())
 ```
 
 ### Common Methods
@@ -196,13 +196,14 @@ bortz_age = client.BortzAge()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> BortzAgeEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.BortzAge().create({
     "biomarkers": {},  # dict
+    "chronologicalAge": 1,  # float
 })
 ```
 
@@ -253,14 +254,14 @@ competition = client.Competition()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[CompetitionEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Competition().list()
 for competition in results:
-    print(competition)
+    print(competition.data_get())
 ```
 
 ### Common Methods
@@ -312,14 +313,14 @@ leaderboard = client.Leaderboard()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[LeaderboardEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Leaderboard().list()
 for leaderboard in results:
-    print(leaderboard)
+    print(leaderboard.data_get())
 ```
 
 ### Common Methods
@@ -379,13 +380,14 @@ pheno_age = client.PhenoAge()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> PhenoAgeEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.PhenoAge().create({
     "biomarkers": {},  # dict
+    "chronologicalAge": 1,  # float
 })
 ```
 
@@ -440,9 +442,9 @@ rank_preview = client.RankPreview()
 
 ### Operations
 
-#### `create(reqdata, ctrl=None) -> dict`
+#### `create(reqdata, ctrl=None) -> RankPreviewEntity`
 
-Create a new entity with the given data. Returns the created entity data and raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```python
 result = client.RankPreview().create({
@@ -496,14 +498,14 @@ reference = client.Reference()
 
 ### Operations
 
-#### `list(reqmatch=None, ctrl=None) -> list`
+#### `list(reqmatch=None, ctrl=None) -> list[ReferenceEntity]`
 
-List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list and raises on error.
+List entities matching the given criteria. The match is optional — call `list()` with no argument to list all records. Returns a list of entities, one per record, and raises on error.
 
 ```python
 results = client.Reference().list()
 for reference in results:
-    print(reference)
+    print(reference.data_get())
 ```
 
 ### Common Methods
@@ -692,6 +694,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

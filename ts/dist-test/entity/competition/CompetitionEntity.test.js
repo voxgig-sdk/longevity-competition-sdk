@@ -54,6 +54,53 @@ const utility_1 = require("../../utility");
         const ent = testsdk.Competition();
         (0, node_assert_1.default)(null != ent);
     });
+    class FailHook extends __1.BaseFeature {
+        name = 'failhook';
+        version = '0.0.1';
+        active = true;
+        unexpected = 0;
+        init() { }
+        PreSpec() { throw new Error('competition hook failed'); }
+        PreUnexpected() { this.unexpected++; }
+    }
+    (0, node_test_1.test)('stream-error', async () => {
+        const offline = { net: { offline: true } };
+        await node_assert_1.default.rejects(async () => {
+            for await (const _item of __1.LongevityCompetitionSDK.test(offline).Competition().stream('list')) { }
+        }, /offline/);
+        for await (const _item of __1.LongevityCompetitionSDK.test(offline).Competition()
+            .stream('list', undefined, { ctrl: { throw: false } })) { }
+        if (null != __1.config.feature?.rbac) {
+            const denied = __1.LongevityCompetitionSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } });
+            await node_assert_1.default.rejects(async () => {
+                for await (const _item of denied.Competition().stream('list')) { }
+            }, (err) => 'rbac_denied' === err.code);
+        }
+    });
+    (0, node_test_1.test)('stream-ctrl', async () => {
+        const explain = {};
+        const ctrl = { explain };
+        for await (const _item of __1.LongevityCompetitionSDK.test().Competition().stream('list', undefined, { ctrl })) { }
+        node_assert_1.default.deepStrictEqual(Object.keys(ctrl), ['explain']);
+        (0, node_assert_1.default)(explain === ctrl.explain && 0 < Object.keys(explain).length);
+    });
+    (0, node_test_1.test)('unexpected', async () => {
+        const hook = new FailHook();
+        const client = new __1.LongevityCompetitionSDK({ feature: { test: { active: true } }, extend: [hook] });
+        await node_assert_1.default.rejects(client.Competition().list(), /hook failed/);
+        (0, node_assert_1.default)(0 < hook.unexpected);
+        const fired = hook.unexpected;
+        node_assert_1.default.strictEqual(await client.Competition().list(undefined, { throw: false }), undefined);
+        (0, node_assert_1.default)(fired < hook.unexpected);
+    });
+    (0, node_test_1.test)('validate', async (t) => {
+        if (null == __1.config.feature?.validate) {
+            t.skip('feature not present in this SDK: validate');
+            return;
+        }
+        const client = __1.LongevityCompetitionSDK.test(undefined, { feature: { validate: { active: true } } });
+        await node_assert_1.default.rejects(client.Competition().list({ "ageRange": 1 }), (err) => 'validate_failed' === err.code);
+    });
     (0, node_test_1.test)('basic', async (t) => {
         const live = 'TRUE' === process.env.LONGEVITY_COMPETITION_TEST_LIVE;
         for (const op of ['list']) {
@@ -62,7 +109,7 @@ const utility_1 = require("../../utility");
         }
         const setup = basicSetup();
         if (setup.live) {
-            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "ageRange": { "a": true, "h": "Age Range", "n": "ageRange", "r": false, "sh": "Age range for this division", "t": "`$STRING`", "key$": "ageRange", "index$": 0 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Division identifier", "t": "`$STRING`", "key$": "id", "index$": 1 }, "maxAge": { "a": true, "h": "Max Age", "n": "maxAge", "r": false, "sh": "Maximum age for division", "t": "`$INTEGER`", "key$": "maxAge", "index$": 2 }, "minAge": { "a": true, "h": "Min Age", "n": "minAge", "r": false, "sh": "Minimum age for division", "t": "`$INTEGER`", "key$": "minAge", "index$": 3 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "Division name", "t": "`$STRING`", "key$": "name", "index$": 4 } }, "id": { "field": "id", "name": "id" }, "name": "competition", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /data/divisions", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/data/divisions", "q": {}, "r": {}, "s": [{ "lit": "data" }, { "lit": "divisions" }], "t": { "req": "`reqdata`", "res": "`body.divisions`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "competition", "name__orig": "competition", "Name": "Competition", "name_": "competition", "name-": "competition", "NAME": "COMPETITION", "index$": 2 }, { "active": true, "entity": "competition", "key$": "BasicCompetitionFlow", "kind": "basic", "name": "BasicCompetitionFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "competition_ref01" } }], "index$": 0 }] }, 'Competition', { "GET /data/divisions": { "protocol": "http", "parameters": [] } });
+            return (0, live_entity_1.runLiveEntity)(setup, { "active": true, "alias": { "field": {} }, "fields": { "ageRange": { "a": true, "h": "Age Range", "n": "ageRange", "r": false, "sh": "Age range for this division", "t": "`$STRING`", "key$": "ageRange", "index$": 0 }, "id": { "a": true, "h": "Id", "n": "id", "r": false, "sh": "Division identifier", "t": "`$STRING`", "key$": "id", "index$": 1 }, "maxAge": { "a": true, "h": "Max Age", "n": "maxAge", "r": false, "sh": "Maximum age for division", "t": "`$INTEGER`", "key$": "maxAge", "index$": 2 }, "minAge": { "a": true, "h": "Min Age", "n": "minAge", "r": false, "sh": "Minimum age for division", "t": "`$INTEGER`", "key$": "minAge", "index$": 3 }, "name": { "a": true, "h": "Name", "n": "name", "r": false, "sh": "Division name", "t": "`$STRING`", "key$": "name", "index$": 4 } }, "id": { "field": "id", "name": "id" }, "name": "competition", "op": { "list": { "input": "data", "name": "list", "points": [{ "a": true, "co": { "id": "GET /data/divisions", "source": "openapi3", "version": 2 }, "g": {}, "k": "http", "m": "GET", "o": "/data/divisions", "q": {}, "r": {}, "rs": { "kind": "json", "media": "application/json" }, "s": [{ "lit": "data" }, { "lit": "divisions" }], "t": { "req": "`reqdata`", "res": "`body.divisions`" }, "index$": 0 }], "key$": "list" } }, "relations": { "ancestors": [] }, "key$": "competition", "name__orig": "competition", "Name": "Competition", "name_": "competition", "name-": "competition", "NAME": "COMPETITION", "index$": 2 }, { "active": true, "entity": "competition", "key$": "BasicCompetitionFlow", "kind": "basic", "name": "BasicCompetitionFlow", "param": {}, "step": [{ "a": true, "d": {}, "i": {}, "m": {}, "o": "list", "s": [], "v": [{ "apply": "ItemExists", "def": { "ref": "competition_ref01" } }], "index$": 0 }] }, 'Competition', { "GET /data/divisions": { "protocol": "http", "parameters": [] } }, { strict: LIVE_STRICT, t });
         }
         const client = setup.client;
         const struct = setup.struct;
@@ -75,6 +122,11 @@ const utility_1 = require("../../utility");
         const competition_ref01_list = (await competition_ref01_ent.list(competition_ref01_match)).map((e) => e.data());
     });
 });
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true;
 function basicSetup(extra) {
     // TODO: fix test def options
     const options = {}; // null

@@ -54,6 +54,10 @@ main: kit: entity: pheno_age: {
       name: "create"
       points: [
         {
+          bf: [
+            "biomarkers"
+            "chronologicalAge"
+          ]
           co: {
             id: "POST /data/pheno-age"
             source: "openapi3"
@@ -61,6 +65,10 @@ main: kit: entity: pheno_age: {
           }
           m: "POST"
           o: "/data/pheno-age"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "data"

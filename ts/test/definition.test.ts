@@ -18,36 +18,58 @@ const PLAN: any[] = [
     "select": {
       "division": "v1",
       "league": "v1",
-      "limit": "v1",
-      "offset": "v1"
+      "limit": 100,
+      "offset": 0
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "league",
       "division",
       "limit",
       "offset"
     ],
+    "queryArgs": [
+      {
+        "name": "division",
+        "wire": "division"
+      },
+      {
+        "name": "league",
+        "wire": "league"
+      },
+      {
+        "name": "limit",
+        "wire": "limit"
+      },
+      {
+        "name": "offset",
+        "wire": "offset"
+      }
+    ],
     "auth": null,
     "status": 200,
     "sample": {
       "athletes": [
         {
-          "ageReduction": 1,
-          "biologicalAge": 1,
-          "chronologicalAge": 1,
-          "clockType": "PhenoAge",
-          "country": "x",
-          "division": "x",
-          "effectiveAgeReduction": 1,
-          "generation": "x",
           "id": "x",
-          "lastUpdated": "2026-01-01T00:00:00Z",
-          "league": "Pro",
           "name": "x",
           "profileUrl": "x",
+          "chronologicalAge": 1,
+          "biologicalAge": 1,
+          "ageReduction": 1,
+          "effectiveAgeReduction": 1,
+          "league": "Pro",
+          "division": "x",
+          "generation": "x",
           "rank": 1,
-          "ultimateLeagueRank": 1
+          "ultimateLeagueRank": 1,
+          "country": "x",
+          "clockType": "PhenoAge",
+          "lastUpdated": "2026-01-01T00:00:00Z"
         }
       ],
       "total": 1,
@@ -65,7 +87,12 @@ const PLAN: any[] = [
     "args": [],
     "select": {},
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [],
+    "queryArgs": [],
     "auth": null,
     "status": 200,
     "sample": {
@@ -85,17 +112,22 @@ const PLAN: any[] = [
     "args": [],
     "select": {},
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [],
+    "queryArgs": [],
     "auth": null,
     "status": 200,
     "sample": {
       "divisions": [
         {
-          "ageRange": "x",
           "id": "x",
-          "maxAge": 1,
+          "name": "x",
+          "ageRange": "x",
           "minAge": 1,
-          "name": "x"
+          "maxAge": 1
         }
       ]
     },
@@ -113,22 +145,36 @@ const PLAN: any[] = [
       "league": "v1"
     },
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [
       "league",
       "division"
+    ],
+    "queryArgs": [
+      {
+        "name": "division",
+        "wire": "division"
+      },
+      {
+        "name": "league",
+        "wire": "league"
+      }
     ],
     "auth": null,
     "status": 200,
     "sample": {
       "rankings": [
         {
-          "ageReduction": 1,
+          "rank": 1,
           "athleteId": "x",
           "athleteName": "x",
-          "country": "x",
-          "division": "x",
+          "ageReduction": 1,
           "league": "x",
-          "rank": 1
+          "division": "x",
+          "country": "x"
         }
       ],
       "lastUpdated": "2026-01-01T00:00:00Z"
@@ -144,7 +190,12 @@ const PLAN: any[] = [
     "args": [],
     "select": {},
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [],
+    "queryArgs": [],
     "auth": null,
     "status": 200,
     "sample": {
@@ -164,7 +215,12 @@ const PLAN: any[] = [
     "args": [],
     "select": {},
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [],
+    "queryArgs": [],
     "auth": null,
     "status": 200,
     "sample": {
@@ -185,7 +241,12 @@ const PLAN: any[] = [
     "args": [],
     "select": {},
     "headers": [],
+    "cookies": [],
+    "responseMedia": [
+      "application/json"
+    ],
     "query": [],
+    "queryArgs": [],
     "auth": null,
     "status": 200,
     "sample": {

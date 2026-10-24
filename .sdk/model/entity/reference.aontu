@@ -42,6 +42,10 @@ main: kit: entity: reference: {
           }
           m: "GET"
           o: "/data/flags"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "data"

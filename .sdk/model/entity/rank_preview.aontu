@@ -76,6 +76,12 @@ main: kit: entity: rank_preview: {
       name: "create"
       points: [
         {
+          bf: [
+            "biologicalAge"
+            "chronologicalAge"
+            "division"
+            "league"
+          ]
           co: {
             id: "POST /data/rank-preview"
             source: "openapi3"
@@ -83,6 +89,10 @@ main: kit: entity: rank_preview: {
           }
           m: "POST"
           o: "/data/rank-preview"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "data"

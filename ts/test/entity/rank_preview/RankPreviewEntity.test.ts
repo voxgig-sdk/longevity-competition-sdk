@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { LongevityCompetitionSDK, BaseFeature, stdutil } from '../../..'
+import { LongevityCompetitionSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('RankPreviewEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = LongevityCompetitionSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.RankPreview().create({"biologicalAge":"x","chronologicalAge":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.LONGEVITY_COMPETITION_TEST_LIVE
@@ -51,7 +63,7 @@ describe('RankPreviewEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Calculated Age Reduction","t":"`$NUMBER`","key$":"ageReduction","index$":0},"athletesInLeague":{"a":true,"h":"Athletes In League","n":"athletesInLeague","r":false,"sh":"Total athletes in target league","t":"`$INTEGER`","key$":"athletesInLeague","index$":1},"biologicalAge":{"a":true,"h":"Biological Age","n":"biologicalAge","r":true,"sh":"Calculated biological age","t":"`$NUMBER`","key$":"biologicalAge","index$":2},"chronologicalAge":{"a":true,"h":"Chronological Age","n":"chronologicalAge","r":true,"sh":"Actual age in years","t":"`$NUMBER`","key$":"chronologicalAge","index$":3},"division":{"a":true,"h":"Division","n":"division","r":false,"sh":"Target division for preview","t":"`$STRING`","key$":"division","index$":4},"estimatedRank":{"a":true,"h":"Estimated Rank","n":"estimatedRank","r":false,"sh":"Estimated ranking position","t":"`$INTEGER`","key$":"estimatedRank","index$":5},"estimatedUltimateLeagueRank":{"a":true,"h":"Estimated Ultimate League Rank","n":"estimatedUltimateLeagueRank","r":false,"sh":"Estimated Ultimate League rank","t":"`$INTEGER`","key$":"estimatedUltimateLeagueRank","index$":6},"league":{"a":true,"h":"League","n":"league","r":false,"sh":"Target league for preview","t":"`$STRING`","key$":"league","index$":7},"percentile":{"a":true,"h":"Percentile","n":"percentile","r":false,"sh":"Percentile ranking","t":"`$NUMBER`","key$":"percentile","index$":8}},"name":"rank_preview","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /data/rank-preview","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/data/rank-preview","q":{},"r":{},"s":[{"lit":"data"},{"lit":"rank-preview"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"rank_preview","name__orig":"rank_preview","Name":"RankPreview","name_":"rank_preview","name-":"rank-preview","NAME":"RANK_PREVIEW","index$":5}, {"active":true,"entity":"rank_preview","key$":"BasicRankPreviewFlow","kind":"basic","name":"BasicRankPreviewFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"rank_preview_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'RankPreview', {"POST /data/rank-preview":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["chronologicalAge","biologicalAge"],"properties":{"chronologicalAge":{"type":"number","description":"Actual age in years","key$":"chronologicalAge"},"biologicalAge":{"type":"number","description":"Calculated biological age","key$":"biologicalAge"},"league":{"type":"string","enum":["Pro","Amateur"],"description":"Target league for preview","key$":"league"},"division":{"type":"string","description":"Target division for preview","key$":"division"}},"x-ref":"#/components/schemas/RankPreviewRequest","index$":1}}}},"parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Calculated Age Reduction","t":"`$NUMBER`","key$":"ageReduction","index$":0},"athletesInLeague":{"a":true,"h":"Athletes In League","n":"athletesInLeague","r":false,"sh":"Total athletes in target league","t":"`$INTEGER`","key$":"athletesInLeague","index$":1},"biologicalAge":{"a":true,"h":"Biological Age","n":"biologicalAge","r":true,"sh":"Calculated biological age","t":"`$NUMBER`","key$":"biologicalAge","index$":2},"chronologicalAge":{"a":true,"h":"Chronological Age","n":"chronologicalAge","r":true,"sh":"Actual age in years","t":"`$NUMBER`","key$":"chronologicalAge","index$":3},"division":{"a":true,"h":"Division","n":"division","r":false,"sh":"Target division for preview","t":"`$STRING`","key$":"division","index$":4},"estimatedRank":{"a":true,"h":"Estimated Rank","n":"estimatedRank","r":false,"sh":"Estimated ranking position","t":"`$INTEGER`","key$":"estimatedRank","index$":5},"estimatedUltimateLeagueRank":{"a":true,"h":"Estimated Ultimate League Rank","n":"estimatedUltimateLeagueRank","r":false,"sh":"Estimated Ultimate League rank","t":"`$INTEGER`","key$":"estimatedUltimateLeagueRank","index$":6},"league":{"a":true,"h":"League","n":"league","r":false,"sh":"Target league for preview","t":"`$STRING`","key$":"league","index$":7},"percentile":{"a":true,"h":"Percentile","n":"percentile","r":false,"sh":"Percentile ranking","t":"`$NUMBER`","key$":"percentile","index$":8}},"name":"rank_preview","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["biologicalAge","chronologicalAge","division","league"],"co":{"id":"POST /data/rank-preview","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/data/rank-preview","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"data"},{"lit":"rank-preview"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"rank_preview","name__orig":"rank_preview","Name":"RankPreview","name_":"rank_preview","name-":"rank-preview","NAME":"RANK_PREVIEW","index$":5}, {"active":true,"entity":"rank_preview","key$":"BasicRankPreviewFlow","kind":"basic","name":"BasicRankPreviewFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"rank_preview_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'RankPreview', {"POST /data/rank-preview":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["chronologicalAge","biologicalAge"],"properties":{"chronologicalAge":{"type":"number","description":"Actual age in years","key$":"chronologicalAge"},"biologicalAge":{"type":"number","description":"Calculated biological age","key$":"biologicalAge"},"league":{"type":"string","enum":["Pro","Amateur"],"description":"Target league for preview","key$":"league"},"division":{"type":"string","description":"Target division for preview","key$":"division"}},"x-ref":"#/components/schemas/RankPreviewRequest","index$":1}}}},"parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('RankPreviewEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

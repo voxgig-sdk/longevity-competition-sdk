@@ -137,10 +137,11 @@ athlete = client.Athlete
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.Athlete.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -203,11 +204,12 @@ bortz_age = client.BortzAge
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.BortzAge.create({
   "biomarkers" => {}, # Hash
+  "chronologicalAge" => 1, # Float
 })
 ```
 
@@ -261,10 +263,11 @@ competition = client.Competition
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.Competition.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -319,10 +322,11 @@ leaderboard = client.Leaderboard
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.Leaderboard.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -385,11 +389,12 @@ pheno_age = client.PhenoAge
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.PhenoAge.create({
   "biomarkers" => {}, # Hash
+  "chronologicalAge" => 1, # Float
 })
 ```
 
@@ -447,7 +452,7 @@ rank_preview = client.RankPreview
 
 #### `create(reqdata, ctrl = nil) -> result`
 
-Create a new entity with the given data. Raises on error.
+Create a new entity with the given data. Returns the created entity and raises on error.
 
 ```ruby
 result = client.RankPreview.create({
@@ -504,10 +509,11 @@ reference = client.Reference
 
 #### `list(reqmatch = nil, ctrl = nil) -> Array`
 
-List entities matching the given criteria (call with no argument to list all). Returns an array. Raises on error.
+List entities matching the given criteria (call with no argument to list all). Returns an array of entities, one per record; `data_get` reads each record. Raises on error.
 
 ```ruby
 results = client.Reference.list
+results.each { |item| puts item.data_get }
 ```
 
 ### Common Methods
@@ -697,6 +703,7 @@ Timeout.
 | Option | Type |
 |---|---|
 | `clearTimer` | function |
+| `now` | function |
 | `setTimer` | function |
 
 These take no default: the feature behaves one way when you supply them and

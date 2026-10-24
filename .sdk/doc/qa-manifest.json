@@ -3,5 +3,45 @@
     "SUMMARY.md"
   ],
   "config": ".sdk/doc/qa/vale.ini",
-  "routes": {}
+  "routes": {},
+  "quoted": {
+    "SUMMARY.md": [
+      "Actual age in years",
+      "Age Reduction score",
+      "Age Reduction score (chronological age minus biological age)",
+      "Age division",
+      "Age range for this division",
+      "Algorithm version used",
+      "Athlete identifier",
+      "Athlete name",
+      "Biological aging clock used",
+      "Blood biomarker values required for Bortz Age calculation",
+      "Blood biomarker values required for Pheno Age calculation",
+      "Calculated Age Reduction",
+      "Calculated Bortz biological age",
+      "Calculated biological age",
+      "Calculated phenotypic biological age",
+      "Competition season",
+      "Country code",
+      "Country name",
+      "Division identifier",
+      "Division name",
+      "ISO country code",
+      "Input chronological age",
+      "Maximum age for division",
+      "Minimum age for division",
+      "Production API server",
+      "Successful Bortz Age calculation",
+      "Successful Pheno Age calculation",
+      "Successful rank preview",
+      "Successful response with athlete data",
+      "Successful response with division data",
+      "Successful response with flag data",
+      "Successful response with leaderboard data",
+      "Target division for preview",
+      "The Longevity Competition API provides access to real-time information about participants, rankings, events, and historical data related to the Longevity World Cup. It enables users to retrieve public rankings, athlete profiles, and detailed competition rules, facilitating engagement with the longevity-focused sporting community.",
+      "Total athletes in target league",
+      "URL to flag image"
+    ]
+  }
 }

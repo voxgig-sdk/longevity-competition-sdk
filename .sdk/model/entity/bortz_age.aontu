@@ -54,6 +54,10 @@ main: kit: entity: bortz_age: {
       name: "create"
       points: [
         {
+          bf: [
+            "biomarkers"
+            "chronologicalAge"
+          ]
           co: {
             id: "POST /data/bortz-age"
             source: "openapi3"
@@ -61,6 +65,10 @@ main: kit: entity: bortz_age: {
           }
           m: "POST"
           o: "/data/bortz-age"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "data"

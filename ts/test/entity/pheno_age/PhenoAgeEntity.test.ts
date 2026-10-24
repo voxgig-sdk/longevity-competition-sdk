@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { LongevityCompetitionSDK, BaseFeature, stdutil } from '../../..'
+import { LongevityCompetitionSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('PhenoAgeEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = LongevityCompetitionSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.PhenoAge().create({"biomarkers":"x","chronologicalAge":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.LONGEVITY_COMPETITION_TEST_LIVE
@@ -51,7 +63,7 @@ describe('PhenoAgeEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Calculated Age Reduction","t":"`$NUMBER`","key$":"ageReduction","index$":0},"biomarkers":{"a":true,"h":"Biomarkers","n":"biomarkers","r":true,"sh":"Blood biomarker values required for Pheno Age calculation","t":"`$OBJECT`","key$":"biomarkers","index$":1},"calculationMethod":{"a":true,"h":"Calculation Method","n":"calculationMethod","r":false,"sh":"Algorithm version used","t":"`$STRING`","key$":"calculationMethod","index$":2},"chronologicalAge":{"a":true,"h":"Chronological Age","n":"chronologicalAge","op":{"create":{"req":true,"type":"`$NUMBER`"}},"r":false,"sh":"Input chronological age","t":"`$NUMBER`","key$":"chronologicalAge","index$":3},"phenoAge":{"a":true,"h":"Pheno Age","n":"phenoAge","r":false,"sh":"Calculated phenotypic biological age","t":"`$NUMBER`","key$":"phenoAge","index$":4}},"name":"pheno_age","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /data/pheno-age","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/data/pheno-age","q":{},"r":{},"s":[{"lit":"data"},{"lit":"pheno-age"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"pheno_age","name__orig":"pheno_age","Name":"PhenoAge","name_":"pheno_age","name-":"pheno-age","NAME":"PHENO_AGE","index$":4}, {"active":true,"entity":"pheno_age","key$":"BasicPhenoAgeFlow","kind":"basic","name":"BasicPhenoAgeFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"pheno_age_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'PhenoAge', {"POST /data/pheno-age":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["chronologicalAge","biomarkers"],"properties":{"chronologicalAge":{"type":"number","description":"Actual age in years","key$":"chronologicalAge"},"biomarkers":{"type":"object","description":"Blood biomarker values required for Pheno Age calculation","properties":{"albumin":{"type":"number","description":"Albumin level (g/dL)"},"creatinine":{"type":"number","description":"Creatinine level (mg/dL)"},"glucose":{"type":"number","description":"Glucose level (mg/dL)"},"crp":{"type":"number","description":"C-reactive protein (mg/L)"},"lymphocytePercent":{"type":"number","description":"Lymphocyte percentage"},"mcv":{"type":"number","description":"Mean corpuscular volume (fL)"},"rdw":{"type":"number","description":"Red cell distribution width (%)"},"alkalinePhosphatase":{"type":"number","description":"Alkaline phosphatase (U/L)"},"whiteBloodCellCount":{"type":"number","description":"White blood cell count (1000 cells/µL)"}},"key$":"biomarkers"}},"x-ref":"#/components/schemas/PhenoAgeRequest","index$":1}}}},"parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Calculated Age Reduction","t":"`$NUMBER`","key$":"ageReduction","index$":0},"biomarkers":{"a":true,"h":"Biomarkers","n":"biomarkers","r":true,"sh":"Blood biomarker values required for Pheno Age calculation","t":"`$OBJECT`","key$":"biomarkers","index$":1},"calculationMethod":{"a":true,"h":"Calculation Method","n":"calculationMethod","r":false,"sh":"Algorithm version used","t":"`$STRING`","key$":"calculationMethod","index$":2},"chronologicalAge":{"a":true,"h":"Chronological Age","n":"chronologicalAge","op":{"create":{"req":true,"type":"`$NUMBER`"}},"r":false,"sh":"Input chronological age","t":"`$NUMBER`","key$":"chronologicalAge","index$":3},"phenoAge":{"a":true,"h":"Pheno Age","n":"phenoAge","r":false,"sh":"Calculated phenotypic biological age","t":"`$NUMBER`","key$":"phenoAge","index$":4}},"name":"pheno_age","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["biomarkers","chronologicalAge"],"co":{"id":"POST /data/pheno-age","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/data/pheno-age","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"data"},{"lit":"pheno-age"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"pheno_age","name__orig":"pheno_age","Name":"PhenoAge","name_":"pheno_age","name-":"pheno-age","NAME":"PHENO_AGE","index$":4}, {"active":true,"entity":"pheno_age","key$":"BasicPhenoAgeFlow","kind":"basic","name":"BasicPhenoAgeFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"pheno_age_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'PhenoAge', {"POST /data/pheno-age":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["chronologicalAge","biomarkers"],"properties":{"chronologicalAge":{"type":"number","description":"Actual age in years","key$":"chronologicalAge"},"biomarkers":{"type":"object","description":"Blood biomarker values required for Pheno Age calculation","properties":{"albumin":{"type":"number","description":"Albumin level (g/dL)"},"creatinine":{"type":"number","description":"Creatinine level (mg/dL)"},"glucose":{"type":"number","description":"Glucose level (mg/dL)"},"crp":{"type":"number","description":"C-reactive protein (mg/L)"},"lymphocytePercent":{"type":"number","description":"Lymphocyte percentage"},"mcv":{"type":"number","description":"Mean corpuscular volume (fL)"},"rdw":{"type":"number","description":"Red cell distribution width (%)"},"alkalinePhosphatase":{"type":"number","description":"Alkaline phosphatase (U/L)"},"whiteBloodCellCount":{"type":"number","description":"White blood cell count (1000 cells/µL)"}},"key$":"biomarkers"}},"x-ref":"#/components/schemas/PhenoAgeRequest","index$":1}}}},"parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('PhenoAgeEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

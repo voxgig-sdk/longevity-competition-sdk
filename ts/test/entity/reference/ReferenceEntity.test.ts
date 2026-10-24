@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { LongevityCompetitionSDK, BaseFeature, stdutil } from '../../..'
+import { LongevityCompetitionSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('ReferenceEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('reference hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of LongevityCompetitionSDK.test(offline).Reference().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of LongevityCompetitionSDK.test(offline).Reference()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = LongevityCompetitionSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Reference().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of LongevityCompetitionSDK.test().Reference().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new LongevityCompetitionSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Reference().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Reference().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = LongevityCompetitionSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Reference().list({"countryCode":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.LONGEVITY_COMPETITION_TEST_LIVE
@@ -51,7 +109,7 @@ describe('ReferenceEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"countryCode":{"a":true,"h":"Country Code","n":"countryCode","r":false,"sh":"ISO country code","t":"`$STRING`","key$":"countryCode","index$":0},"countryName":{"a":true,"h":"Country Name","n":"countryName","r":false,"sh":"Country name","t":"`$STRING`","key$":"countryName","index$":1},"flagUrl":{"a":true,"fo":"uri","h":"Flag Url","n":"flagUrl","r":false,"sh":"URL to flag image","t":"`$STRING`","key$":"flagUrl","index$":2}},"name":"reference","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /data/flags","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/data/flags","q":{},"r":{},"s":[{"lit":"data"},{"lit":"flags"}],"t":{"req":"`reqdata`","res":"`body.flags`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"reference","name__orig":"reference","Name":"Reference","name_":"reference","name-":"reference","NAME":"REFERENCE","index$":6}, {"active":true,"entity":"reference","key$":"BasicReferenceFlow","kind":"basic","name":"BasicReferenceFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"reference_ref01"}}],"index$":0}]}, 'Reference', {"GET /data/flags":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"countryCode":{"a":true,"h":"Country Code","n":"countryCode","r":false,"sh":"ISO country code","t":"`$STRING`","key$":"countryCode","index$":0},"countryName":{"a":true,"h":"Country Name","n":"countryName","r":false,"sh":"Country name","t":"`$STRING`","key$":"countryName","index$":1},"flagUrl":{"a":true,"fo":"uri","h":"Flag Url","n":"flagUrl","r":false,"sh":"URL to flag image","t":"`$STRING`","key$":"flagUrl","index$":2}},"name":"reference","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /data/flags","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/data/flags","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"data"},{"lit":"flags"}],"t":{"req":"`reqdata`","res":"`body.flags`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"reference","name__orig":"reference","Name":"Reference","name_":"reference","name-":"reference","NAME":"REFERENCE","index$":6}, {"active":true,"entity":"reference","key$":"BasicReferenceFlow","kind":"basic","name":"BasicReferenceFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"reference_ref01"}}],"index$":0}]}, 'Reference', {"GET /data/flags":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('ReferenceEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

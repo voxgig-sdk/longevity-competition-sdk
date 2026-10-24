@@ -52,15 +52,9 @@ class BortzAge(BortzAgeRequired, total=False):
     season: str
 
 
-class BortzAgeCreateDataRequired(TypedDict):
+class BortzAgeCreateData(TypedDict):
     biomarkers: dict
-
-
-class BortzAgeCreateData(BortzAgeCreateDataRequired, total=False):
-    ageReduction: float
-    bortzAge: float
     chronologicalAge: float
-    season: str
 
 
 class Competition(TypedDict, total=False):
@@ -105,15 +99,9 @@ class PhenoAge(PhenoAgeRequired, total=False):
     phenoAge: float
 
 
-class PhenoAgeCreateDataRequired(TypedDict):
+class PhenoAgeCreateData(TypedDict):
     biomarkers: dict
-
-
-class PhenoAgeCreateData(PhenoAgeCreateDataRequired, total=False):
-    ageReduction: float
-    calculationMethod: str
     chronologicalAge: float
-    phenoAge: float
 
 
 class RankPreviewRequired(TypedDict):
@@ -137,13 +125,8 @@ class RankPreviewCreateDataRequired(TypedDict):
 
 
 class RankPreviewCreateData(RankPreviewCreateDataRequired, total=False):
-    ageReduction: float
-    athletesInLeague: int
     division: str
-    estimatedRank: int
-    estimatedUltimateLeagueRank: int
     league: str
-    percentile: float
 
 
 class Reference(TypedDict, total=False):

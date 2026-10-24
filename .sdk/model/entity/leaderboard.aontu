@@ -87,11 +87,9 @@ main: kit: entity: leaderboard: {
           }
           m: "GET"
           o: "/data/leaderboard"
-          q: {
-            exist: [
-              "division"
-              "league"
-            ]
+          rs: {
+            kind: "json"
+            media: "application/json"
           }
           s: [
             {

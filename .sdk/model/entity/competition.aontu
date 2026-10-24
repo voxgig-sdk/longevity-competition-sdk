@@ -60,6 +60,10 @@ main: kit: entity: competition: {
           }
           m: "GET"
           o: "/data/divisions"
+          rs: {
+            kind: "json"
+            media: "application/json"
+          }
           s: [
             {
               lit: "data"

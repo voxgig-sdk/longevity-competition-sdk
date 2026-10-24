@@ -121,26 +121,14 @@ BortzAge = Struct.new(
 
 # Request payload for BortzAge#create.
 #
-# @!attribute [rw] ageReduction
-#   @return [Float, nil]
-#
 # @!attribute [rw] biomarkers
 #   @return [Hash]
 #
-# @!attribute [rw] bortzAge
-#   @return [Float, nil]
-#
 # @!attribute [rw] chronologicalAge
-#   @return [Float, nil]
-#
-# @!attribute [rw] season
-#   @return [String, nil]
+#   @return [Float]
 BortzAgeCreateData = Struct.new(
-  :ageReduction,
   :biomarkers,
-  :bortzAge,
   :chronologicalAge,
-  :season,
   keyword_init: true
 )
 
@@ -267,26 +255,14 @@ PhenoAge = Struct.new(
 
 # Request payload for PhenoAge#create.
 #
-# @!attribute [rw] ageReduction
-#   @return [Float, nil]
-#
 # @!attribute [rw] biomarkers
 #   @return [Hash]
 #
-# @!attribute [rw] calculationMethod
-#   @return [String, nil]
-#
 # @!attribute [rw] chronologicalAge
-#   @return [Float, nil]
-#
-# @!attribute [rw] phenoAge
-#   @return [Float, nil]
+#   @return [Float]
 PhenoAgeCreateData = Struct.new(
-  :ageReduction,
   :biomarkers,
-  :calculationMethod,
   :chronologicalAge,
-  :phenoAge,
   keyword_init: true
 )
 
@@ -333,12 +309,6 @@ RankPreview = Struct.new(
 
 # Request payload for RankPreview#create.
 #
-# @!attribute [rw] ageReduction
-#   @return [Float, nil]
-#
-# @!attribute [rw] athletesInLeague
-#   @return [Integer, nil]
-#
 # @!attribute [rw] biologicalAge
 #   @return [Float]
 #
@@ -348,27 +318,13 @@ RankPreview = Struct.new(
 # @!attribute [rw] division
 #   @return [String, nil]
 #
-# @!attribute [rw] estimatedRank
-#   @return [Integer, nil]
-#
-# @!attribute [rw] estimatedUltimateLeagueRank
-#   @return [Integer, nil]
-#
 # @!attribute [rw] league
 #   @return [String, nil]
-#
-# @!attribute [rw] percentile
-#   @return [Float, nil]
 RankPreviewCreateData = Struct.new(
-  :ageReduction,
-  :athletesInLeague,
   :biologicalAge,
   :chronologicalAge,
   :division,
-  :estimatedRank,
-  :estimatedUltimateLeagueRank,
   :league,
-  :percentile,
   keyword_init: true
 )
 

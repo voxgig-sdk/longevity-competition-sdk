@@ -30,11 +30,8 @@ type BortzAge struct {
 
 // BortzAgeCreateData is the typed request payload for BortzAge.CreateTyped.
 type BortzAgeCreateData struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
 	Biomarkers map[string]any `json:"biomarkers"`
-	BortzAge *float64 `json:"bortzAge,omitempty"`
-	ChronologicalAge *float64 `json:"chronologicalAge,omitempty"`
-	Season *string `json:"season,omitempty"`
+	ChronologicalAge float64 `json:"chronologicalAge"`
 }
 
 // Competition is the typed data model for the competition entity.
@@ -66,11 +63,8 @@ type PhenoAge struct {
 
 // PhenoAgeCreateData is the typed request payload for PhenoAge.CreateTyped.
 type PhenoAgeCreateData struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
 	Biomarkers map[string]any `json:"biomarkers"`
-	CalculationMethod *string `json:"calculationMethod,omitempty"`
-	ChronologicalAge *float64 `json:"chronologicalAge,omitempty"`
-	PhenoAge *float64 `json:"phenoAge,omitempty"`
+	ChronologicalAge float64 `json:"chronologicalAge"`
 }
 
 // RankPreview is the typed data model for the rank_preview entity.
@@ -79,15 +73,10 @@ type RankPreview struct {
 
 // RankPreviewCreateData is the typed request payload for RankPreview.CreateTyped.
 type RankPreviewCreateData struct {
-	AgeReduction *float64 `json:"ageReduction,omitempty"`
-	AthletesInLeague *int `json:"athletesInLeague,omitempty"`
 	BiologicalAge float64 `json:"biologicalAge"`
 	ChronologicalAge float64 `json:"chronologicalAge"`
 	Division *string `json:"division,omitempty"`
-	EstimatedRank *int `json:"estimatedRank,omitempty"`
-	EstimatedUltimateLeagueRank *int `json:"estimatedUltimateLeagueRank,omitempty"`
 	League *string `json:"league,omitempty"`
-	Percentile *float64 `json:"percentile,omitempty"`
 }
 
 // Reference is the typed data model for the reference entity.

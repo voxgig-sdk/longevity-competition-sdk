@@ -37,11 +37,8 @@
 ---@field season? string
 
 ---@class BortzAgeCreateData
----@field ageReduction? number
 ---@field biomarkers table
----@field bortzAge? number
----@field chronologicalAge? number
----@field season? string
+---@field chronologicalAge number
 
 ---@class Competition
 ---@field ageRange? string
@@ -78,11 +75,8 @@
 ---@field phenoAge? number
 
 ---@class PhenoAgeCreateData
----@field ageReduction? number
 ---@field biomarkers table
----@field calculationMethod? string
----@field chronologicalAge? number
----@field phenoAge? number
+---@field chronologicalAge number
 
 ---@class RankPreview
 ---@field ageReduction? number
@@ -96,15 +90,10 @@
 ---@field percentile? number
 
 ---@class RankPreviewCreateData
----@field ageReduction? number
----@field athletesInLeague? number
 ---@field biologicalAge number
 ---@field chronologicalAge number
 ---@field division? string
----@field estimatedRank? number
----@field estimatedUltimateLeagueRank? number
 ---@field league? string
----@field percentile? number
 
 ---@class Reference
 ---@field countryCode? string

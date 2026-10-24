@@ -39,11 +39,8 @@ export interface BortzAge {
 }
 
 export interface BortzAgeCreateData {
-  ageReduction?: number
   biomarkers: Record<string, any>
-  bortzAge?: number
-  chronologicalAge?: number
-  season?: string
+  chronologicalAge: number
 }
 
 export interface Competition {
@@ -86,11 +83,8 @@ export interface PhenoAge {
 }
 
 export interface PhenoAgeCreateData {
-  ageReduction?: number
   biomarkers: Record<string, any>
-  calculationMethod?: string
-  chronologicalAge?: number
-  phenoAge?: number
+  chronologicalAge: number
 }
 
 export interface RankPreview {
@@ -106,15 +100,10 @@ export interface RankPreview {
 }
 
 export interface RankPreviewCreateData {
-  ageReduction?: number
-  athletesInLeague?: number
   biologicalAge: number
   chronologicalAge: number
   division?: string
-  estimatedRank?: number
-  estimatedUltimateLeagueRank?: number
   league?: string
-  percentile?: number
 }
 
 export interface Reference {

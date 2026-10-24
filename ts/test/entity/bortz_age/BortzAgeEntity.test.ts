@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { LongevityCompetitionSDK, BaseFeature, stdutil } from '../../..'
+import { LongevityCompetitionSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,18 @@ describe('BortzAgeEntity', async () => {
   })
 
 
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = LongevityCompetitionSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.BortzAge().create({"biomarkers":"x","chronologicalAge":"x"} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.LONGEVITY_COMPETITION_TEST_LIVE
@@ -51,7 +63,7 @@ describe('BortzAgeEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Calculated Age Reduction","t":"`$NUMBER`","key$":"ageReduction","index$":0},"biomarkers":{"a":true,"h":"Biomarkers","n":"biomarkers","r":true,"sh":"Blood biomarker values required for Bortz Age calculation","t":"`$OBJECT`","key$":"biomarkers","index$":1},"bortzAge":{"a":true,"h":"Bortz Age","n":"bortzAge","r":false,"sh":"Calculated Bortz biological age","t":"`$NUMBER`","key$":"bortzAge","index$":2},"chronologicalAge":{"a":true,"h":"Chronological Age","n":"chronologicalAge","op":{"create":{"req":true,"type":"`$NUMBER`"}},"r":false,"sh":"Input chronological age","t":"`$NUMBER`","key$":"chronologicalAge","index$":3},"season":{"a":true,"h":"Season","n":"season","r":false,"sh":"Competition season","t":"`$STRING`","key$":"season","index$":4}},"name":"bortz_age","op":{"create":{"input":"data","name":"create","points":[{"a":true,"co":{"id":"POST /data/bortz-age","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/data/bortz-age","q":{},"r":{},"s":[{"lit":"data"},{"lit":"bortz-age"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"bortz_age","name__orig":"bortz_age","Name":"BortzAge","name_":"bortz_age","name-":"bortz-age","NAME":"BORTZ_AGE","index$":1}, {"active":true,"entity":"bortz_age","key$":"BasicBortzAgeFlow","kind":"basic","name":"BasicBortzAgeFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"bortz_age_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'BortzAge', {"POST /data/bortz-age":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["chronologicalAge","biomarkers"],"properties":{"chronologicalAge":{"type":"number","description":"Actual age in years","key$":"chronologicalAge"},"biomarkers":{"type":"object","description":"Blood biomarker values required for Bortz Age calculation","key$":"biomarkers"}},"x-ref":"#/components/schemas/BortzAgeRequest","index$":1}}}},"parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageReduction":{"a":true,"h":"Age Reduction","n":"ageReduction","r":false,"sh":"Calculated Age Reduction","t":"`$NUMBER`","key$":"ageReduction","index$":0},"biomarkers":{"a":true,"h":"Biomarkers","n":"biomarkers","r":true,"sh":"Blood biomarker values required for Bortz Age calculation","t":"`$OBJECT`","key$":"biomarkers","index$":1},"bortzAge":{"a":true,"h":"Bortz Age","n":"bortzAge","r":false,"sh":"Calculated Bortz biological age","t":"`$NUMBER`","key$":"bortzAge","index$":2},"chronologicalAge":{"a":true,"h":"Chronological Age","n":"chronologicalAge","op":{"create":{"req":true,"type":"`$NUMBER`"}},"r":false,"sh":"Input chronological age","t":"`$NUMBER`","key$":"chronologicalAge","index$":3},"season":{"a":true,"h":"Season","n":"season","r":false,"sh":"Competition season","t":"`$STRING`","key$":"season","index$":4}},"name":"bortz_age","op":{"create":{"input":"data","name":"create","points":[{"a":true,"bf":["biomarkers","chronologicalAge"],"co":{"id":"POST /data/bortz-age","source":"openapi3","version":2},"g":{},"k":"http","m":"POST","o":"/data/bortz-age","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"data"},{"lit":"bortz-age"}],"t":{"req":"`reqdata`","res":"`body`"},"index$":0}],"key$":"create"}},"relations":{"ancestors":[]},"key$":"bortz_age","name__orig":"bortz_age","Name":"BortzAge","name_":"bortz_age","name-":"bortz-age","NAME":"BORTZ_AGE","index$":1}, {"active":true,"entity":"bortz_age","key$":"BasicBortzAgeFlow","kind":"basic","name":"BasicBortzAgeFlow","param":{},"step":[{"a":true,"d":{},"i":{"ref":"bortz_age_ref01"},"m":{},"o":"create","s":[],"v":[],"index$":0}]}, 'BortzAge', {"POST /data/bortz-age":{"protocol":"http","requestBody":{"required":true,"content":{"application/json":{"schema":{"type":"object","required":["chronologicalAge","biomarkers"],"properties":{"chronologicalAge":{"type":"number","description":"Actual age in years","key$":"chronologicalAge"},"biomarkers":{"type":"object","description":"Blood biomarker values required for Bortz Age calculation","key$":"biomarkers"}},"x-ref":"#/components/schemas/BortzAgeRequest","index$":1}}}},"parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +84,12 @@ describe('BortzAgeEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options

@@ -3,11 +3,16 @@ declare(strict_types=1);
 
 // LongevityCompetition SDK utility: prepare_body
 
+require_once __DIR__ . '/Media.php';
+
 class LongevityCompetitionPrepareBody
 {
     public static function call(LongevityCompetitionContext $ctx): mixed
     {
         if ($ctx->op->input === 'data') {
+            if (LongevityCompetitionMedia::isRawRequest($ctx->point)) {
+                return LongevityCompetitionMedia::rawBody($ctx->reqdata);
+            }
             $body = ($ctx->utility->transform_request)($ctx);
             // PHP cannot tell an empty map from an empty list, and this
             // vendored struct answers [] where the canonical transform

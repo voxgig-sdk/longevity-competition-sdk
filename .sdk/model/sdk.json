@@ -278,15 +278,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/data/athletes",
-                  "q": {
-                    "exist": [
-                      "division",
-                      "league",
-                      "limit",
-                      "offset"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -368,6 +365,10 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "biomarkers",
+                    "chronologicalAge"
+                  ],
                   "co": {
                     "id": "POST /data/bortz-age",
                     "source": "openapi3",
@@ -379,6 +380,10 @@
                   "o": "/data/bortz-age",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -469,6 +474,10 @@
                   "o": "/data/divisions",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -588,13 +597,12 @@
                   "k": "http",
                   "m": "GET",
                   "o": "/data/leaderboard",
-                  "q": {
-                    "exist": [
-                      "division",
-                      "league"
-                    ]
-                  },
+                  "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -676,6 +684,10 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "biomarkers",
+                    "chronologicalAge"
+                  ],
                   "co": {
                     "id": "POST /data/pheno-age",
                     "source": "openapi3",
@@ -687,6 +699,10 @@
                   "o": "/data/pheno-age",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -794,6 +810,12 @@
               "points": [
                 {
                   "a": true,
+                  "bf": [
+                    "biologicalAge",
+                    "chronologicalAge",
+                    "division",
+                    "league"
+                  ],
                   "co": {
                     "id": "POST /data/rank-preview",
                     "source": "openapi3",
@@ -805,6 +827,10 @@
                   "o": "/data/rank-preview",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -876,6 +902,10 @@
                   "o": "/data/flags",
                   "q": {},
                   "r": {},
+                  "rs": {
+                    "kind": "json",
+                    "media": "application/json"
+                  },
                   "s": [
                     {
                       "lit": "data"
@@ -1219,6 +1249,7 @@
             },
             "optspec": {
               "clearTimer": "`$FUNCTION`",
+              "now": "`$FUNCTION`",
               "setTimer": "`$FUNCTION`"
             },
             "strict": false
@@ -1503,7 +1534,7 @@
       "optspec": {
         "allow": {
           "method": "GET,PUT,POST,PATCH,DELETE,OPTIONS",
-          "op": "create,update,load,list,remove,command,direct,graphql"
+          "op": "create,update,patch,load,list,remove,command,direct,graphql"
         },
         "apikey": "",
         "auth": {
@@ -1556,6 +1587,11 @@
         "top": {
           "active": true
         }
+      },
+      "publisher": {
+        "name": "",
+        "security": "",
+        "url": ""
       },
       "repo": {
         "host": "github.com",
@@ -1786,7 +1822,10 @@
             "version": "0.0.1"
           },
           "superseded": [],
-          "title": "Go MCP server"
+          "title": "Go MCP server",
+          "tool": {
+            "write": false
+          }
         },
         "lua": {
           "active": true,
@@ -2163,6 +2202,17 @@
           "base": "",
           "strict": true
         }
+      },
+      "text": {
+        "about_md": "",
+        "docs_url": "",
+        "entity_desc": {},
+        "homepage": "",
+        "meta_source": "",
+        "summary": "",
+        "tagline": "",
+        "title": "",
+        "website": ""
       }
     }
   },

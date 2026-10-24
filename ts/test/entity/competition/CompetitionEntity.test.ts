@@ -9,7 +9,7 @@ import { createLiveTransport } from '../../live-runner'
 import { runLiveEntity } from '../../live-entity'
 
 
-import { LongevityCompetitionSDK, BaseFeature, stdutil } from '../../..'
+import { LongevityCompetitionSDK, BaseFeature, config, stdutil } from '../../..'
 
 import {
   envOverride,
@@ -41,6 +41,64 @@ describe('CompetitionEntity', async () => {
   })
 
 
+  class FailHook extends BaseFeature {
+    name = 'failhook'
+    version = '0.0.1'
+    active = true
+    unexpected = 0
+    init() { }
+    PreSpec() { throw new Error('competition hook failed') }
+    PreUnexpected() { this.unexpected++ }
+  }
+
+  test('stream-error', async () => {
+    const offline = { net: { offline: true } }
+    await assert.rejects(async () => {
+      for await (const _item of LongevityCompetitionSDK.test(offline).Competition().stream('list')) { }
+    }, /offline/)
+
+    for await (const _item of LongevityCompetitionSDK.test(offline).Competition()
+      .stream('list', undefined, { ctrl: { throw: false } })) { }
+
+    if (null != (config as any).feature?.rbac) {
+      const denied = LongevityCompetitionSDK.test(undefined, { feature: { rbac: { active: true, deny: true } } })
+      await assert.rejects(async () => {
+        for await (const _item of denied.Competition().stream('list')) { }
+      }, (err: any) => 'rbac_denied' === err.code)
+    }
+  })
+
+  test('stream-ctrl', async () => {
+    const explain: any = {}
+    const ctrl: any = { explain }
+    for await (const _item of LongevityCompetitionSDK.test().Competition().stream('list', undefined, { ctrl })) { }
+    assert.deepStrictEqual(Object.keys(ctrl), ['explain'])
+    assert(explain === ctrl.explain && 0 < Object.keys(explain).length)
+  })
+
+  test('unexpected', async () => {
+    const hook = new FailHook()
+    const client = new LongevityCompetitionSDK({ feature: { test: { active: true } }, extend: [hook] })
+    await assert.rejects(client.Competition().list(), /hook failed/)
+    assert(0 < hook.unexpected)
+
+    const fired = hook.unexpected
+    assert.strictEqual(await client.Competition().list(undefined, { throw: false }), undefined)
+    assert(fired < hook.unexpected)
+  })
+
+  test('validate', async (t) => {
+    if (null == (config as any).feature?.validate) {
+      t.skip('feature not present in this SDK: validate')
+      return
+    }
+    const client = LongevityCompetitionSDK.test(undefined, { feature: { validate: { active: true } } })
+    await assert.rejects(client.Competition().list({"ageRange":1} as any),
+      (err: any) => 'validate_failed' === err.code)
+  })
+
+
+
   test('basic', async (t) => {
 
     const live = 'TRUE' === process.env.LONGEVITY_COMPETITION_TEST_LIVE
@@ -51,7 +109,7 @@ describe('CompetitionEntity', async () => {
     
     const setup = basicSetup()
     if (setup.live) {
-      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageRange":{"a":true,"h":"Age Range","n":"ageRange","r":false,"sh":"Age range for this division","t":"`$STRING`","key$":"ageRange","index$":0},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Division identifier","t":"`$STRING`","key$":"id","index$":1},"maxAge":{"a":true,"h":"Max Age","n":"maxAge","r":false,"sh":"Maximum age for division","t":"`$INTEGER`","key$":"maxAge","index$":2},"minAge":{"a":true,"h":"Min Age","n":"minAge","r":false,"sh":"Minimum age for division","t":"`$INTEGER`","key$":"minAge","index$":3},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Division name","t":"`$STRING`","key$":"name","index$":4}},"id":{"field":"id","name":"id"},"name":"competition","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /data/divisions","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/data/divisions","q":{},"r":{},"s":[{"lit":"data"},{"lit":"divisions"}],"t":{"req":"`reqdata`","res":"`body.divisions`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"competition","name__orig":"competition","Name":"Competition","name_":"competition","name-":"competition","NAME":"COMPETITION","index$":2}, {"active":true,"entity":"competition","key$":"BasicCompetitionFlow","kind":"basic","name":"BasicCompetitionFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"competition_ref01"}}],"index$":0}]}, 'Competition', {"GET /data/divisions":{"protocol":"http","parameters":[]}})
+      return runLiveEntity(setup, {"active":true,"alias":{"field":{}},"fields":{"ageRange":{"a":true,"h":"Age Range","n":"ageRange","r":false,"sh":"Age range for this division","t":"`$STRING`","key$":"ageRange","index$":0},"id":{"a":true,"h":"Id","n":"id","r":false,"sh":"Division identifier","t":"`$STRING`","key$":"id","index$":1},"maxAge":{"a":true,"h":"Max Age","n":"maxAge","r":false,"sh":"Maximum age for division","t":"`$INTEGER`","key$":"maxAge","index$":2},"minAge":{"a":true,"h":"Min Age","n":"minAge","r":false,"sh":"Minimum age for division","t":"`$INTEGER`","key$":"minAge","index$":3},"name":{"a":true,"h":"Name","n":"name","r":false,"sh":"Division name","t":"`$STRING`","key$":"name","index$":4}},"id":{"field":"id","name":"id"},"name":"competition","op":{"list":{"input":"data","name":"list","points":[{"a":true,"co":{"id":"GET /data/divisions","source":"openapi3","version":2},"g":{},"k":"http","m":"GET","o":"/data/divisions","q":{},"r":{},"rs":{"kind":"json","media":"application/json"},"s":[{"lit":"data"},{"lit":"divisions"}],"t":{"req":"`reqdata`","res":"`body.divisions`"},"index$":0}],"key$":"list"}},"relations":{"ancestors":[]},"key$":"competition","name__orig":"competition","Name":"Competition","name_":"competition","name-":"competition","NAME":"COMPETITION","index$":2}, {"active":true,"entity":"competition","key$":"BasicCompetitionFlow","kind":"basic","name":"BasicCompetitionFlow","param":{},"step":[{"a":true,"d":{},"i":{},"m":{},"o":"list","s":[],"v":[{"apply":"ItemExists","def":{"ref":"competition_ref01"}}],"index$":0}]}, 'Competition', {"GET /data/divisions":{"protocol":"http","parameters":[]}}, { strict: LIVE_STRICT, t })
     }
     const client = setup.client
     const struct = setup.struct
@@ -72,6 +130,12 @@ describe('CompetitionEntity', async () => {
 })
 
 
+
+// main.kit.test.live.strict is true (the default is true): a live
+// request that fails, or a live test missing an input it needs,
+// fails the test.
+// An account with no record for a test to read skips it either way.
+const LIVE_STRICT = true
 
 function basicSetup(extra?: any) {
   // TODO: fix test def options
